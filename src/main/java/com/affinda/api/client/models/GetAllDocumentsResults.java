@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.URL;
 import java.util.List;
 
-/** The Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema model. */
+/** The GetAllDocumentsResults model. */
 @Fluent
-public final class Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema {
+public final class GetAllDocumentsResults {
     /*
      * The count property.
      */
@@ -45,9 +45,9 @@ public final class Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchem
      * Set the count property: The count property.
      *
      * @param count the count value to set.
-     * @return the Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the GetAllDocumentsResults object itself.
      */
-    public Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema setCount(Integer count) {
+    public GetAllDocumentsResults setCount(Integer count) {
         this.count = count;
         return this;
     }
@@ -65,9 +65,9 @@ public final class Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchem
      * Set the next property: The next property.
      *
      * @param next the next value to set.
-     * @return the Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the GetAllDocumentsResults object itself.
      */
-    public Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema setNext(URL next) {
+    public GetAllDocumentsResults setNext(URL next) {
         this.next = next;
         return this;
     }
@@ -85,9 +85,9 @@ public final class Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchem
      * Set the previous property: The previous property.
      *
      * @param previous the previous value to set.
-     * @return the Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the GetAllDocumentsResults object itself.
      */
-    public Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema setPrevious(URL previous) {
+    public GetAllDocumentsResults setPrevious(URL previous) {
         this.previous = previous;
         return this;
     }
@@ -105,9 +105,9 @@ public final class Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchem
      * Set the results property: The results property.
      *
      * @param results the results value to set.
-     * @return the Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the GetAllDocumentsResults object itself.
      */
-    public Paths1Vwy7YkResumesGetResponses200ContentApplicationJsonSchema setResults(List<Meta> results) {
+    public GetAllDocumentsResults setResults(List<Meta> results) {
         this.results = results;
         return this;
     }

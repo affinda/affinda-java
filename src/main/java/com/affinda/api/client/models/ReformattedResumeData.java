@@ -4,9 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.URL;
 
-/** The ReformattedDocumentData model. */
+/** The ReformattedResumeData model. */
 @Fluent
-public final class ReformattedDocumentData {
+public final class ReformattedResumeData {
     /*
      * The reformattedFile property.
      */
@@ -26,9 +26,9 @@ public final class ReformattedDocumentData {
      * Set the reformattedFile property: The reformattedFile property.
      *
      * @param reformattedFile the reformattedFile value to set.
-     * @return the ReformattedDocumentData object itself.
+     * @return the ReformattedResumeData object itself.
      */
-    public ReformattedDocumentData setReformattedFile(URL reformattedFile) {
+    public ReformattedResumeData setReformattedFile(URL reformattedFile) {
         this.reformattedFile = reformattedFile;
         return this;
     }

@@ -157,7 +157,7 @@ public final class AffindaAPI {
 
         // @Multipart not supported by RestProxy
         @Post("/resumes")
-        @ExpectedResponses({201, 400, 401, 404})
+        @ExpectedResponses({200, 201, 400, 401, 404})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Object>> createResume(
                 @HostParam("$host") String host,
@@ -198,7 +198,7 @@ public final class AffindaAPI {
 
         // @Multipart not supported by RestProxy
         @Post("/redacted_resumes")
-        @ExpectedResponses({201, 400, 401, 404})
+        @ExpectedResponses({200, 201, 400, 401, 404})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Object>> createRedactedResume(
                 @HostParam("$host") String host,
@@ -208,6 +208,7 @@ public final class AffindaAPI {
                 @BodyParam("multipart/form-data") String fileName,
                 @BodyParam("multipart/form-data") URL url,
                 @BodyParam("multipart/form-data") String resumeLanguage,
+                @BodyParam("multipart/form-data") Boolean wait,
                 @BodyParam("multipart/form-data") Boolean redactHeadshot,
                 @BodyParam("multipart/form-data") Boolean redactPersonalDetails,
                 @BodyParam("multipart/form-data") Boolean redactWorkDetails,
@@ -254,7 +255,7 @@ public final class AffindaAPI {
 
         // @Multipart not supported by RestProxy
         @Post("/reformatted_resumes")
-        @ExpectedResponses({201, 400, 401, 404})
+        @ExpectedResponses({200, 201, 400, 401, 404})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Object>> createReformattedResume(
                 @HostParam("$host") String host,
@@ -265,6 +266,7 @@ public final class AffindaAPI {
                 @BodyParam("multipart/form-data") URL url,
                 @BodyParam("multipart/form-data") String resumeLanguage,
                 @BodyParam("multipart/form-data") String resumeFormat,
+                @BodyParam("multipart/form-data") Boolean wait,
                 @HeaderParam("Accept") String accept);
 
         @Get("/reformatted_resumes/{identifier}")
@@ -327,8 +329,8 @@ public final class AffindaAPI {
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param wait If true (default), will return a response only after resume processing has completed. If False, will
-     *     return an identifier, which can be polled at the GET endpoint until processing is complete.
+     * @param wait If true (default), will return a response only after processing has completed. If false, will return
+     *     an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
      *     expiry.
@@ -371,8 +373,8 @@ public final class AffindaAPI {
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param wait If true (default), will return a response only after resume processing has completed. If False, will
-     *     return an identifier, which can be polled at the GET endpoint until processing is complete.
+     * @param wait If true (default), will return a response only after processing has completed. If false, will return
+     *     an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
      *     expiry.
@@ -513,9 +515,7 @@ public final class AffindaAPI {
     }
 
     /**
-     * Uploads a resume for redacting. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/redacted_resumes/{identifier}](#operation/getRedactedResume) endpoint to check processing status and
-     * retrieve results.
+     * Uploads a resume for redacting.
      *
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
@@ -524,6 +524,8 @@ public final class AffindaAPI {
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param wait If true (default), will return a response only after processing has completed. If false, will return
+     *     an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param redactHeadshot Whether to redact headshot.
      * @param redactPersonalDetails Whether to redact personal details (e.g. name, address).
      * @param redactWorkDetails Whether to redact work details (e.g. company names).
@@ -546,6 +548,7 @@ public final class AffindaAPI {
             String fileName,
             URL url,
             String resumeLanguage,
+            Boolean wait,
             Boolean redactHeadshot,
             Boolean redactPersonalDetails,
             Boolean redactWorkDetails,
@@ -563,6 +566,7 @@ public final class AffindaAPI {
                 fileName,
                 url,
                 resumeLanguage,
+                wait,
                 redactHeadshot,
                 redactPersonalDetails,
                 redactWorkDetails,
@@ -575,9 +579,7 @@ public final class AffindaAPI {
     }
 
     /**
-     * Uploads a resume for redacting. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/redacted_resumes/{identifier}](#operation/getRedactedResume) endpoint to check processing status and
-     * retrieve results.
+     * Uploads a resume for redacting.
      *
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
@@ -586,6 +588,8 @@ public final class AffindaAPI {
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param wait If true (default), will return a response only after processing has completed. If false, will return
+     *     an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param redactHeadshot Whether to redact headshot.
      * @param redactPersonalDetails Whether to redact personal details (e.g. name, address).
      * @param redactWorkDetails Whether to redact work details (e.g. company names).
@@ -608,6 +612,7 @@ public final class AffindaAPI {
             String fileName,
             URL url,
             String resumeLanguage,
+            Boolean wait,
             Boolean redactHeadshot,
             Boolean redactPersonalDetails,
             Boolean redactWorkDetails,
@@ -623,6 +628,7 @@ public final class AffindaAPI {
                         fileName,
                         url,
                         resumeLanguage,
+                        wait,
                         redactHeadshot,
                         redactPersonalDetails,
                         redactWorkDetails,
@@ -784,9 +790,7 @@ public final class AffindaAPI {
     }
 
     /**
-     * Uploads a resume for reformatting. When successful, returns an `identifier` in the response for subsequent use
-     * with the [/reformatted_resumes/{identifier}](#operation/getReformattedResume) endpoint to check processing status
-     * and retrieve results.
+     * Uploads a resume for reformatting.
      *
      * @param resumeFormat Identifier of the format used.
      * @param file File as binary data blob.
@@ -796,6 +800,8 @@ public final class AffindaAPI {
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param wait If true (default), will return a response only after processing has completed. If false, will return
+     *     an empty data object which can be polled at the GET endpoint until processing is complete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -809,16 +815,24 @@ public final class AffindaAPI {
             String identifier,
             String fileName,
             URL url,
-            String resumeLanguage) {
+            String resumeLanguage,
+            Boolean wait) {
         final String accept = "application/json";
         return service.createReformattedResume(
-                this.getHost(), file, contentLength, identifier, fileName, url, resumeLanguage, resumeFormat, accept);
+                this.getHost(),
+                file,
+                contentLength,
+                identifier,
+                fileName,
+                url,
+                resumeLanguage,
+                resumeFormat,
+                wait,
+                accept);
     }
 
     /**
-     * Uploads a resume for reformatting. When successful, returns an `identifier` in the response for subsequent use
-     * with the [/reformatted_resumes/{identifier}](#operation/getReformattedResume) endpoint to check processing status
-     * and retrieve results.
+     * Uploads a resume for reformatting.
      *
      * @param resumeFormat Identifier of the format used.
      * @param file File as binary data blob.
@@ -828,6 +842,8 @@ public final class AffindaAPI {
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param wait If true (default), will return a response only after processing has completed. If false, will return
+     *     an empty data object which can be polled at the GET endpoint until processing is complete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -841,9 +857,10 @@ public final class AffindaAPI {
             String identifier,
             String fileName,
             URL url,
-            String resumeLanguage) {
+            String resumeLanguage,
+            Boolean wait) {
         return createReformattedResumeWithResponseAsync(
-                        resumeFormat, file, contentLength, identifier, fileName, url, resumeLanguage)
+                        resumeFormat, file, contentLength, identifier, fileName, url, resumeLanguage, wait)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {

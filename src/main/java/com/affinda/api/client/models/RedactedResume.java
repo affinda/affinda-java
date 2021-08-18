@@ -3,33 +3,39 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The RedactedDocument model. */
+/** The RedactedResume model. */
 @Fluent
-public final class RedactedDocument {
+public final class RedactedResume {
     /*
      * The data property.
      */
-    @JsonProperty(value = "data")
-    private RedactedDocumentData data;
+    @JsonProperty(value = "data", required = true)
+    private RedactedResumeData data;
 
     /*
      * The meta property.
      */
-    @JsonProperty(value = "meta")
+    @JsonProperty(value = "meta", required = true)
     private Meta meta;
 
     /*
      * The error property.
      */
-    @JsonProperty(value = "error")
+    @JsonProperty(value = "error", required = true)
     private Error error;
+
+    /*
+     * The user property.
+     */
+    @JsonProperty(value = "user", required = true)
+    private User user;
 
     /**
      * Get the data property: The data property.
      *
      * @return the data value.
      */
-    public RedactedDocumentData getData() {
+    public RedactedResumeData getData() {
         return this.data;
     }
 
@@ -37,9 +43,9 @@ public final class RedactedDocument {
      * Set the data property: The data property.
      *
      * @param data the data value to set.
-     * @return the RedactedDocument object itself.
+     * @return the RedactedResume object itself.
      */
-    public RedactedDocument setData(RedactedDocumentData data) {
+    public RedactedResume setData(RedactedResumeData data) {
         this.data = data;
         return this;
     }
@@ -57,9 +63,9 @@ public final class RedactedDocument {
      * Set the meta property: The meta property.
      *
      * @param meta the meta value to set.
-     * @return the RedactedDocument object itself.
+     * @return the RedactedResume object itself.
      */
-    public RedactedDocument setMeta(Meta meta) {
+    public RedactedResume setMeta(Meta meta) {
         this.meta = meta;
         return this;
     }
@@ -77,10 +83,30 @@ public final class RedactedDocument {
      * Set the error property: The error property.
      *
      * @param error the error value to set.
-     * @return the RedactedDocument object itself.
+     * @return the RedactedResume object itself.
      */
-    public RedactedDocument setError(Error error) {
+    public RedactedResume setError(Error error) {
         this.error = error;
+        return this;
+    }
+
+    /**
+     * Get the user property: The user property.
+     *
+     * @return the user value.
+     */
+    public User getUser() {
+        return this.user;
+    }
+
+    /**
+     * Set the user property: The user property.
+     *
+     * @param user the user value to set.
+     * @return the RedactedResume object itself.
+     */
+    public RedactedResume setUser(User user) {
+        this.user = user;
         return this;
     }
 }

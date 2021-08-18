@@ -9,13 +9,13 @@ public final class Error {
     /*
      * The errorCode property.
      */
-    @JsonProperty(value = "errorCode", required = true)
-    private Integer errorCode;
+    @JsonProperty(value = "errorCode")
+    private String errorCode;
 
     /*
      * The errorDetail property.
      */
-    @JsonProperty(value = "errorDetail", required = true)
+    @JsonProperty(value = "errorDetail")
     private String errorDetail;
 
     /**
@@ -23,7 +23,7 @@ public final class Error {
      *
      * @return the errorCode value.
      */
-    public Integer getErrorCode() {
+    public String getErrorCode() {
         return this.errorCode;
     }
 
@@ -33,7 +33,7 @@ public final class Error {
      * @param errorCode the errorCode value to set.
      * @return the Error object itself.
      */
-    public Error setErrorCode(Integer errorCode) {
+    public Error setErrorCode(String errorCode) {
         this.errorCode = errorCode;
         return this;
     }

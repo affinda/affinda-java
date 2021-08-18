@@ -31,7 +31,7 @@ public final class Meta {
     /*
      * The datetime when the document was ready
      */
-    @JsonProperty(value = "readyDt", required = true)
+    @JsonProperty(value = "readyDt")
     private OffsetDateTime readyDt;
 
     /*
@@ -42,16 +42,10 @@ public final class Meta {
     private boolean failed;
 
     /*
-     * The user property.
-     */
-    @JsonProperty(value = "user", required = true)
-    private User user;
-
-    /*
      * The date/time in ISO-8601 format when the resume will be automatically
      * deleted.  Defaults to no expiry.
      */
-    @JsonProperty(value = "expiryTime", required = true)
+    @JsonProperty(value = "expiryTime")
     private String expiryTime;
 
     /**
@@ -157,26 +151,6 @@ public final class Meta {
      */
     public Meta setFailed(boolean failed) {
         this.failed = failed;
-        return this;
-    }
-
-    /**
-     * Get the user property: The user property.
-     *
-     * @return the user value.
-     */
-    public User getUser() {
-        return this.user;
-    }
-
-    /**
-     * Set the user property: The user property.
-     *
-     * @param user the user value to set.
-     * @return the Meta object itself.
-     */
-    public Meta setUser(User user) {
-        this.user = user;
         return this;
     }
 

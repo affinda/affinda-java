@@ -3,33 +3,39 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ReformattedDocument model. */
+/** The ReformattedResume model. */
 @Fluent
-public final class ReformattedDocument {
+public final class ReformattedResume {
     /*
      * The data property.
      */
-    @JsonProperty(value = "data")
-    private ReformattedDocumentData data;
+    @JsonProperty(value = "data", required = true)
+    private ReformattedResumeData data;
 
     /*
      * The meta property.
      */
-    @JsonProperty(value = "meta")
+    @JsonProperty(value = "meta", required = true)
     private Meta meta;
 
     /*
      * The error property.
      */
-    @JsonProperty(value = "error")
+    @JsonProperty(value = "error", required = true)
     private Error error;
+
+    /*
+     * The user property.
+     */
+    @JsonProperty(value = "user", required = true)
+    private User user;
 
     /**
      * Get the data property: The data property.
      *
      * @return the data value.
      */
-    public ReformattedDocumentData getData() {
+    public ReformattedResumeData getData() {
         return this.data;
     }
 
@@ -37,9 +43,9 @@ public final class ReformattedDocument {
      * Set the data property: The data property.
      *
      * @param data the data value to set.
-     * @return the ReformattedDocument object itself.
+     * @return the ReformattedResume object itself.
      */
-    public ReformattedDocument setData(ReformattedDocumentData data) {
+    public ReformattedResume setData(ReformattedResumeData data) {
         this.data = data;
         return this;
     }
@@ -57,9 +63,9 @@ public final class ReformattedDocument {
      * Set the meta property: The meta property.
      *
      * @param meta the meta value to set.
-     * @return the ReformattedDocument object itself.
+     * @return the ReformattedResume object itself.
      */
-    public ReformattedDocument setMeta(Meta meta) {
+    public ReformattedResume setMeta(Meta meta) {
         this.meta = meta;
         return this;
     }
@@ -77,10 +83,30 @@ public final class ReformattedDocument {
      * Set the error property: The error property.
      *
      * @param error the error value to set.
-     * @return the ReformattedDocument object itself.
+     * @return the ReformattedResume object itself.
      */
-    public ReformattedDocument setError(Error error) {
+    public ReformattedResume setError(Error error) {
         this.error = error;
+        return this;
+    }
+
+    /**
+     * Get the user property: The user property.
+     *
+     * @return the user value.
+     */
+    public User getUser() {
+        return this.user;
+    }
+
+    /**
+     * Set the user property: The user property.
+     *
+     * @param user the user value to set.
+     * @return the ReformattedResume object itself.
+     */
+    public ReformattedResume setUser(User user) {
+        this.user = user;
         return this;
     }
 }

@@ -35,9 +35,9 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
     private URL url;
 
     /*
-     * If true (default), will return a response only after resume processing
-     * has completed. If False, will return an identifier, which can be polled
-     * at the GET endpoint until processing is complete.
+     * If true (default), will return a response only after processing has
+     * completed. If false, will return an empty data object which can be
+     * polled at the GET endpoint until processing is complete.
      */
     @JsonProperty(value = "wait")
     private Boolean wait;
@@ -139,8 +139,8 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
     }
 
     /**
-     * Get the wait property: If true (default), will return a response only after resume processing has completed. If
-     * False, will return an identifier, which can be polled at the GET endpoint until processing is complete.
+     * Get the wait property: If true (default), will return a response only after processing has completed. If false,
+     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
      *
      * @return the wait value.
      */
@@ -149,8 +149,8 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
     }
 
     /**
-     * Set the wait property: If true (default), will return a response only after resume processing has completed. If
-     * False, will return an identifier, which can be polled at the GET endpoint until processing is complete.
+     * Set the wait property: If true (default), will return a response only after processing has completed. If false,
+     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
      *
      * @param wait the wait value to set.
      * @return the Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema object itself.

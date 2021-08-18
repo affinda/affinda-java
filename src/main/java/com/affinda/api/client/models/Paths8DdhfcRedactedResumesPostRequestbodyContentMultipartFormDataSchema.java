@@ -42,6 +42,14 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     private String resumeLanguage;
 
     /*
+     * If true (default), will return a response only after processing has
+     * completed. If false, will return an empty data object which can be
+     * polled at the GET endpoint until processing is complete.
+     */
+    @JsonProperty(value = "wait")
+    private Boolean wait;
+
+    /*
      * Whether to redact headshot
      */
     @JsonProperty(value = "redactHeadshot")
@@ -190,6 +198,28 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setResumeLanguage(
             String resumeLanguage) {
         this.resumeLanguage = resumeLanguage;
+        return this;
+    }
+
+    /**
+     * Get the wait property: If true (default), will return a response only after processing has completed. If false,
+     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
+     *
+     * @return the wait value.
+     */
+    public Boolean isWait() {
+        return this.wait;
+    }
+
+    /**
+     * Set the wait property: If true (default), will return a response only after processing has completed. If false,
+     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
+     *
+     * @param wait the wait value to set.
+     * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     */
+    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setWait(Boolean wait) {
+        this.wait = wait;
         return this;
     }
 

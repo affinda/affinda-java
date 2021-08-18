@@ -8,19 +8,21 @@ import java.net.URL;
 @Fluent
 public final class Get200ApplicationJsonPropertiesItemsItem {
     /*
-     * The identifier property.
+     * Unique identifier for the resume. If creating a document and left blank,
+     * one will be automatically generated.
      */
     @JsonProperty(value = "identifier", required = true)
     private String identifier;
 
     /*
-     * The formatFile property.
+     * The template to apply
      */
     @JsonProperty(value = "formatFile", required = true)
     private URL formatFile;
 
     /**
-     * Get the identifier property: The identifier property.
+     * Get the identifier property: Unique identifier for the resume. If creating a document and left blank, one will be
+     * automatically generated.
      *
      * @return the identifier value.
      */
@@ -29,7 +31,8 @@ public final class Get200ApplicationJsonPropertiesItemsItem {
     }
 
     /**
-     * Set the identifier property: The identifier property.
+     * Set the identifier property: Unique identifier for the resume. If creating a document and left blank, one will be
+     * automatically generated.
      *
      * @param identifier the identifier value to set.
      * @return the Get200ApplicationJsonPropertiesItemsItem object itself.
@@ -40,7 +43,7 @@ public final class Get200ApplicationJsonPropertiesItemsItem {
     }
 
     /**
-     * Get the formatFile property: The formatFile property.
+     * Get the formatFile property: The template to apply.
      *
      * @return the formatFile value.
      */
@@ -49,7 +52,7 @@ public final class Get200ApplicationJsonPropertiesItemsItem {
     }
 
     /**
-     * Set the formatFile property: The formatFile property.
+     * Set the formatFile property: The template to apply.
      *
      * @param formatFile the formatFile value to set.
      * @return the Get200ApplicationJsonPropertiesItemsItem object itself.

@@ -47,6 +47,14 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
     @JsonProperty(value = "resumeFormat", required = true)
     private String resumeFormat;
 
+    /*
+     * If true (default), will return a response only after processing has
+     * completed. If false, will return an empty data object which can be
+     * polled at the GET endpoint until processing is complete.
+     */
+    @JsonProperty(value = "wait")
+    private Boolean wait;
+
     /**
      * Get the file property: File as binary data blob.
      *
@@ -168,6 +176,28 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
     public PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema setResumeFormat(
             String resumeFormat) {
         this.resumeFormat = resumeFormat;
+        return this;
+    }
+
+    /**
+     * Get the wait property: If true (default), will return a response only after processing has completed. If false,
+     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
+     *
+     * @return the wait value.
+     */
+    public Boolean isWait() {
+        return this.wait;
+    }
+
+    /**
+     * Set the wait property: If true (default), will return a response only after processing has completed. If false,
+     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
+     *
+     * @param wait the wait value to set.
+     * @return the PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     */
+    public PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema setWait(Boolean wait) {
+        this.wait = wait;
         return this;
     }
 }

@@ -4,9 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.URL;
 
-/** The RedactedDocumentData model. */
+/** The RedactedResumeData model. */
 @Fluent
-public final class RedactedDocumentData {
+public final class RedactedResumeData {
     /*
      * The redactedPdf property.
      */
@@ -26,9 +26,9 @@ public final class RedactedDocumentData {
      * Set the redactedPdf property: The redactedPdf property.
      *
      * @param redactedPdf the redactedPdf value to set.
-     * @return the RedactedDocumentData object itself.
+     * @return the RedactedResumeData object itself.
      */
-    public RedactedDocumentData setRedactedPdf(URL redactedPdf) {
+    public RedactedResumeData setRedactedPdf(URL redactedPdf) {
         this.redactedPdf = redactedPdf;
         return this;
     }
