@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ResumeDataSkillsDetailsPropertiesItemsItem model. */
+/** The ResumeDataSkillsPropertiesItemsItem model. */
 @Fluent
-public final class ResumeDataSkillsDetailsPropertiesItemsItem {
+public final class ResumeDataSkillsPropertiesItemsItem {
     /*
      * The section property.
      */
@@ -31,9 +31,9 @@ public final class ResumeDataSkillsDetailsPropertiesItemsItem {
      * Set the section property: The section property.
      *
      * @param section the section value to set.
-     * @return the ResumeDataSkillsDetailsPropertiesItemsItem object itself.
+     * @return the ResumeDataSkillsPropertiesItemsItem object itself.
      */
-    public ResumeDataSkillsDetailsPropertiesItemsItem setSection(String section) {
+    public ResumeDataSkillsPropertiesItemsItem setSection(String section) {
         this.section = section;
         return this;
     }
@@ -51,9 +51,9 @@ public final class ResumeDataSkillsDetailsPropertiesItemsItem {
      * Set the position property: The position property.
      *
      * @param position the position value to set.
-     * @return the ResumeDataSkillsDetailsPropertiesItemsItem object itself.
+     * @return the ResumeDataSkillsPropertiesItemsItem object itself.
      */
-    public ResumeDataSkillsDetailsPropertiesItemsItem setPosition(Integer position) {
+    public ResumeDataSkillsPropertiesItemsItem setPosition(Integer position) {
         this.position = position;
         return this;
     }

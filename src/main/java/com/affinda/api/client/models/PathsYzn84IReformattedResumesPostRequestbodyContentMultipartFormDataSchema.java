@@ -48,12 +48,12 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
     private String resumeFormat;
 
     /*
-     * If true (default), will return a response only after processing has
-     * completed. If false, will return an empty data object which can be
+     * If "true" (default), will return a response only after processing has
+     * completed. If "false", will return an empty data object which can be
      * polled at the GET endpoint until processing is complete.
      */
     @JsonProperty(value = "wait")
-    private Boolean wait;
+    private String wait;
 
     /**
      * Get the file property: File as binary data blob.
@@ -180,23 +180,23 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
     }
 
     /**
-     * Get the wait property: If true (default), will return a response only after processing has completed. If false,
-     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * Get the wait property: If "true" (default), will return a response only after processing has completed. If
+     * "false", will return an empty data object which can be polled at the GET endpoint until processing is complete.
      *
      * @return the wait value.
      */
-    public Boolean isWait() {
+    public String getWait() {
         return this.wait;
     }
 
     /**
-     * Set the wait property: If true (default), will return a response only after processing has completed. If false,
-     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * Set the wait property: If "true" (default), will return a response only after processing has completed. If
+     * "false", will return an empty data object which can be polled at the GET endpoint until processing is complete.
      *
      * @param wait the wait value to set.
      * @return the PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema setWait(Boolean wait) {
+    public PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema setWait(String wait) {
         this.wait = wait;
         return this;
     }

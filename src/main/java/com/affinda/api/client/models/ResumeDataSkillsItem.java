@@ -4,9 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ResumeDataSkillsDetailsItem model. */
+/** The ResumeDataSkillsItem model. */
 @Fluent
-public final class ResumeDataSkillsDetailsItem {
+public final class ResumeDataSkillsItem {
     /*
      * The name property.
      */
@@ -35,7 +35,7 @@ public final class ResumeDataSkillsDetailsItem {
      * The sources property.
      */
     @JsonProperty(value = "sources")
-    private List<ResumeDataSkillsDetailsPropertiesItemsItem> sources;
+    private List<ResumeDataSkillsPropertiesItemsItem> sources;
 
     /**
      * Get the name property: The name property.
@@ -50,9 +50,9 @@ public final class ResumeDataSkillsDetailsItem {
      * Set the name property: The name property.
      *
      * @param name the name value to set.
-     * @return the ResumeDataSkillsDetailsItem object itself.
+     * @return the ResumeDataSkillsItem object itself.
      */
-    public ResumeDataSkillsDetailsItem setName(String name) {
+    public ResumeDataSkillsItem setName(String name) {
         this.name = name;
         return this;
     }
@@ -70,9 +70,9 @@ public final class ResumeDataSkillsDetailsItem {
      * Set the lastUsed property: The lastUsed property.
      *
      * @param lastUsed the lastUsed value to set.
-     * @return the ResumeDataSkillsDetailsItem object itself.
+     * @return the ResumeDataSkillsItem object itself.
      */
-    public ResumeDataSkillsDetailsItem setLastUsed(String lastUsed) {
+    public ResumeDataSkillsItem setLastUsed(String lastUsed) {
         this.lastUsed = lastUsed;
         return this;
     }
@@ -90,9 +90,9 @@ public final class ResumeDataSkillsDetailsItem {
      * Set the numberOfMonths property: The numberOfMonths property.
      *
      * @param numberOfMonths the numberOfMonths value to set.
-     * @return the ResumeDataSkillsDetailsItem object itself.
+     * @return the ResumeDataSkillsItem object itself.
      */
-    public ResumeDataSkillsDetailsItem setNumberOfMonths(Integer numberOfMonths) {
+    public ResumeDataSkillsItem setNumberOfMonths(Integer numberOfMonths) {
         this.numberOfMonths = numberOfMonths;
         return this;
     }
@@ -110,9 +110,9 @@ public final class ResumeDataSkillsDetailsItem {
      * Set the type property: The type property.
      *
      * @param type the type value to set.
-     * @return the ResumeDataSkillsDetailsItem object itself.
+     * @return the ResumeDataSkillsItem object itself.
      */
-    public ResumeDataSkillsDetailsItem setType(String type) {
+    public ResumeDataSkillsItem setType(String type) {
         this.type = type;
         return this;
     }
@@ -122,7 +122,7 @@ public final class ResumeDataSkillsDetailsItem {
      *
      * @return the sources value.
      */
-    public List<ResumeDataSkillsDetailsPropertiesItemsItem> getSources() {
+    public List<ResumeDataSkillsPropertiesItemsItem> getSources() {
         return this.sources;
     }
 
@@ -130,9 +130,9 @@ public final class ResumeDataSkillsDetailsItem {
      * Set the sources property: The sources property.
      *
      * @param sources the sources value to set.
-     * @return the ResumeDataSkillsDetailsItem object itself.
+     * @return the ResumeDataSkillsItem object itself.
      */
-    public ResumeDataSkillsDetailsItem setSources(List<ResumeDataSkillsDetailsPropertiesItemsItem> sources) {
+    public ResumeDataSkillsItem setSources(List<ResumeDataSkillsPropertiesItemsItem> sources) {
         this.sources = sources;
         return this;
     }

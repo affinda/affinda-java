@@ -42,54 +42,54 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     private String resumeLanguage;
 
     /*
-     * If true (default), will return a response only after processing has
-     * completed. If false, will return an empty data object which can be
+     * If "true" (default), will return a response only after processing has
+     * completed. If "false", will return an empty data object which can be
      * polled at the GET endpoint until processing is complete.
      */
     @JsonProperty(value = "wait")
-    private Boolean wait;
+    private String wait;
 
     /*
      * Whether to redact headshot
      */
     @JsonProperty(value = "redactHeadshot")
-    private Boolean redactHeadshot;
+    private String redactHeadshot;
 
     /*
      * Whether to redact personal details (e.g. name, address)
      */
     @JsonProperty(value = "redactPersonalDetails")
-    private Boolean redactPersonalDetails;
+    private String redactPersonalDetails;
 
     /*
      * Whether to redact work details (e.g. company names)
      */
     @JsonProperty(value = "redactWorkDetails")
-    private Boolean redactWorkDetails;
+    private String redactWorkDetails;
 
     /*
      * Whether to redact education details (e.g. university names)
      */
     @JsonProperty(value = "redactEducationDetails")
-    private Boolean redactEducationDetails;
+    private String redactEducationDetails;
 
     /*
      * Whether to redact referee details
      */
     @JsonProperty(value = "redactReferees")
-    private Boolean redactReferees;
+    private String redactReferees;
 
     /*
      * Whether to redact location names
      */
     @JsonProperty(value = "redactLocations")
-    private Boolean redactLocations;
+    private String redactLocations;
 
     /*
      * Whether to redact dates
      */
     @JsonProperty(value = "redactDates")
-    private Boolean redactDates;
+    private String redactDates;
 
     /*
      * The date/time in ISO-8601 format when the resume will be automatically
@@ -202,23 +202,23 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     }
 
     /**
-     * Get the wait property: If true (default), will return a response only after processing has completed. If false,
-     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * Get the wait property: If "true" (default), will return a response only after processing has completed. If
+     * "false", will return an empty data object which can be polled at the GET endpoint until processing is complete.
      *
      * @return the wait value.
      */
-    public Boolean isWait() {
+    public String getWait() {
         return this.wait;
     }
 
     /**
-     * Set the wait property: If true (default), will return a response only after processing has completed. If false,
-     * will return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * Set the wait property: If "true" (default), will return a response only after processing has completed. If
+     * "false", will return an empty data object which can be polled at the GET endpoint until processing is complete.
      *
      * @param wait the wait value to set.
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setWait(Boolean wait) {
+    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setWait(String wait) {
         this.wait = wait;
         return this;
     }
@@ -228,7 +228,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      *
      * @return the redactHeadshot value.
      */
-    public Boolean isRedactHeadshot() {
+    public String getRedactHeadshot() {
         return this.redactHeadshot;
     }
 
@@ -239,7 +239,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
     public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactHeadshot(
-            Boolean redactHeadshot) {
+            String redactHeadshot) {
         this.redactHeadshot = redactHeadshot;
         return this;
     }
@@ -249,7 +249,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      *
      * @return the redactPersonalDetails value.
      */
-    public Boolean isRedactPersonalDetails() {
+    public String getRedactPersonalDetails() {
         return this.redactPersonalDetails;
     }
 
@@ -260,7 +260,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
     public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactPersonalDetails(
-            Boolean redactPersonalDetails) {
+            String redactPersonalDetails) {
         this.redactPersonalDetails = redactPersonalDetails;
         return this;
     }
@@ -270,7 +270,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      *
      * @return the redactWorkDetails value.
      */
-    public Boolean isRedactWorkDetails() {
+    public String getRedactWorkDetails() {
         return this.redactWorkDetails;
     }
 
@@ -281,7 +281,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
     public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactWorkDetails(
-            Boolean redactWorkDetails) {
+            String redactWorkDetails) {
         this.redactWorkDetails = redactWorkDetails;
         return this;
     }
@@ -291,7 +291,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      *
      * @return the redactEducationDetails value.
      */
-    public Boolean isRedactEducationDetails() {
+    public String getRedactEducationDetails() {
         return this.redactEducationDetails;
     }
 
@@ -302,7 +302,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
     public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactEducationDetails(
-            Boolean redactEducationDetails) {
+            String redactEducationDetails) {
         this.redactEducationDetails = redactEducationDetails;
         return this;
     }
@@ -312,7 +312,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      *
      * @return the redactReferees value.
      */
-    public Boolean isRedactReferees() {
+    public String getRedactReferees() {
         return this.redactReferees;
     }
 
@@ -323,7 +323,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
     public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactReferees(
-            Boolean redactReferees) {
+            String redactReferees) {
         this.redactReferees = redactReferees;
         return this;
     }
@@ -333,7 +333,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      *
      * @return the redactLocations value.
      */
-    public Boolean isRedactLocations() {
+    public String getRedactLocations() {
         return this.redactLocations;
     }
 
@@ -344,7 +344,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
     public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactLocations(
-            Boolean redactLocations) {
+            String redactLocations) {
         this.redactLocations = redactLocations;
         return this;
     }
@@ -354,7 +354,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      *
      * @return the redactDates value.
      */
-    public Boolean isRedactDates() {
+    public String getRedactDates() {
         return this.redactDates;
     }
 
@@ -364,7 +364,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      * @param redactDates the redactDates value to set.
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactDates(Boolean redactDates) {
+    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactDates(String redactDates) {
         this.redactDates = redactDates;
         return this;
     }

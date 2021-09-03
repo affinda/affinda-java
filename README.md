@@ -1,28 +1,24 @@
-![affinda logo](affinda_logo.png)
+Affinda API - C# Client Library
+===================================
 
-This is the java client for the **Affinda API**
+![affinda logo](https://raw.githubusercontent.com/affinda/affinda-java/main/affinda_logo.png)
+[![license](https://img.shields.io/github/license/affinda/affinda-java)](https://choosealicense.com/licenses/mit/)
 
-## Installation
 
-```shell
-git clone <this repo>
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/affinda/affinda-java)
 
-```
+- [Installation](#installation)
+- [Quickstart](#quickstart)
 
-Or to use in code:
-```shell
-git clone <this repo>
 
-```
+Generated using [autorest](https://github.com/Azure/autorest) and [autorest.java](https://github.com/Azure/autorest.java).
 
-## Quickstart
 
-```java
+Parser
+------
 
-```
+Redactor
+--------
 
-## API reference
-
-## Parser
-## Redactor
-## Reformatter
+Reformatter
+-----------

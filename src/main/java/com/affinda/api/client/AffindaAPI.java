@@ -166,7 +166,7 @@ public final class AffindaAPI {
                 @BodyParam("multipart/form-data") String identifier,
                 @BodyParam("multipart/form-data") String fileName,
                 @BodyParam("multipart/form-data") URL url,
-                @BodyParam("multipart/form-data") Boolean wait,
+                @BodyParam("multipart/form-data") String wait,
                 @BodyParam("multipart/form-data") String resumeLanguage,
                 @BodyParam("multipart/form-data") String expiryTime,
                 @HeaderParam("Accept") String accept);
@@ -208,14 +208,14 @@ public final class AffindaAPI {
                 @BodyParam("multipart/form-data") String fileName,
                 @BodyParam("multipart/form-data") URL url,
                 @BodyParam("multipart/form-data") String resumeLanguage,
-                @BodyParam("multipart/form-data") Boolean wait,
-                @BodyParam("multipart/form-data") Boolean redactHeadshot,
-                @BodyParam("multipart/form-data") Boolean redactPersonalDetails,
-                @BodyParam("multipart/form-data") Boolean redactWorkDetails,
-                @BodyParam("multipart/form-data") Boolean redactEducationDetails,
-                @BodyParam("multipart/form-data") Boolean redactReferees,
-                @BodyParam("multipart/form-data") Boolean redactLocations,
-                @BodyParam("multipart/form-data") Boolean redactDates,
+                @BodyParam("multipart/form-data") String wait,
+                @BodyParam("multipart/form-data") String redactHeadshot,
+                @BodyParam("multipart/form-data") String redactPersonalDetails,
+                @BodyParam("multipart/form-data") String redactWorkDetails,
+                @BodyParam("multipart/form-data") String redactEducationDetails,
+                @BodyParam("multipart/form-data") String redactReferees,
+                @BodyParam("multipart/form-data") String redactLocations,
+                @BodyParam("multipart/form-data") String redactDates,
                 @BodyParam("multipart/form-data") String expiryTime,
                 @HeaderParam("Accept") String accept);
 
@@ -266,7 +266,7 @@ public final class AffindaAPI {
                 @BodyParam("multipart/form-data") URL url,
                 @BodyParam("multipart/form-data") String resumeLanguage,
                 @BodyParam("multipart/form-data") String resumeFormat,
-                @BodyParam("multipart/form-data") Boolean wait,
+                @BodyParam("multipart/form-data") String wait,
                 @HeaderParam("Accept") String accept);
 
         @Get("/reformatted_resumes/{identifier}")
@@ -329,8 +329,8 @@ public final class AffindaAPI {
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param wait If true (default), will return a response only after processing has completed. If false, will return
-     *     an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
      *     expiry.
@@ -346,7 +346,7 @@ public final class AffindaAPI {
             String identifier,
             String fileName,
             URL url,
-            Boolean wait,
+            String wait,
             String resumeLanguage,
             String expiryTime) {
         final String accept = "application/json";
@@ -373,8 +373,8 @@ public final class AffindaAPI {
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param wait If true (default), will return a response only after processing has completed. If false, will return
-     *     an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
      *     expiry.
@@ -390,7 +390,7 @@ public final class AffindaAPI {
             String identifier,
             String fileName,
             URL url,
-            Boolean wait,
+            String wait,
             String resumeLanguage,
             String expiryTime) {
         return createResumeWithResponseAsync(
@@ -524,8 +524,8 @@ public final class AffindaAPI {
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If true (default), will return a response only after processing has completed. If false, will return
-     *     an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param redactHeadshot Whether to redact headshot.
      * @param redactPersonalDetails Whether to redact personal details (e.g. name, address).
      * @param redactWorkDetails Whether to redact work details (e.g. company names).
@@ -548,14 +548,14 @@ public final class AffindaAPI {
             String fileName,
             URL url,
             String resumeLanguage,
-            Boolean wait,
-            Boolean redactHeadshot,
-            Boolean redactPersonalDetails,
-            Boolean redactWorkDetails,
-            Boolean redactEducationDetails,
-            Boolean redactReferees,
-            Boolean redactLocations,
-            Boolean redactDates,
+            String wait,
+            String redactHeadshot,
+            String redactPersonalDetails,
+            String redactWorkDetails,
+            String redactEducationDetails,
+            String redactReferees,
+            String redactLocations,
+            String redactDates,
             String expiryTime) {
         final String accept = "application/json";
         return service.createRedactedResume(
@@ -588,8 +588,8 @@ public final class AffindaAPI {
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If true (default), will return a response only after processing has completed. If false, will return
-     *     an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param redactHeadshot Whether to redact headshot.
      * @param redactPersonalDetails Whether to redact personal details (e.g. name, address).
      * @param redactWorkDetails Whether to redact work details (e.g. company names).
@@ -612,14 +612,14 @@ public final class AffindaAPI {
             String fileName,
             URL url,
             String resumeLanguage,
-            Boolean wait,
-            Boolean redactHeadshot,
-            Boolean redactPersonalDetails,
-            Boolean redactWorkDetails,
-            Boolean redactEducationDetails,
-            Boolean redactReferees,
-            Boolean redactLocations,
-            Boolean redactDates,
+            String wait,
+            String redactHeadshot,
+            String redactPersonalDetails,
+            String redactWorkDetails,
+            String redactEducationDetails,
+            String redactReferees,
+            String redactLocations,
+            String redactDates,
             String expiryTime) {
         return createRedactedResumeWithResponseAsync(
                         file,
@@ -800,8 +800,8 @@ public final class AffindaAPI {
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If true (default), will return a response only after processing has completed. If false, will return
-     *     an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -816,7 +816,7 @@ public final class AffindaAPI {
             String fileName,
             URL url,
             String resumeLanguage,
-            Boolean wait) {
+            String wait) {
         final String accept = "application/json";
         return service.createReformattedResume(
                 this.getHost(),
@@ -842,8 +842,8 @@ public final class AffindaAPI {
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If true (default), will return a response only after processing has completed. If false, will return
-     *     an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -858,7 +858,7 @@ public final class AffindaAPI {
             String fileName,
             URL url,
             String resumeLanguage,
-            Boolean wait) {
+            String wait) {
         return createReformattedResumeWithResponseAsync(
                         resumeFormat, file, contentLength, identifier, fileName, url, resumeLanguage, wait)
                 .flatMap(

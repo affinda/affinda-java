@@ -24,12 +24,6 @@ public final class ReformattedResume {
     @JsonProperty(value = "error", required = true)
     private Error error;
 
-    /*
-     * The user property.
-     */
-    @JsonProperty(value = "user", required = true)
-    private User user;
-
     /**
      * Get the data property: The data property.
      *
@@ -87,26 +81,6 @@ public final class ReformattedResume {
      */
     public ReformattedResume setError(Error error) {
         this.error = error;
-        return this;
-    }
-
-    /**
-     * Get the user property: The user property.
-     *
-     * @return the user value.
-     */
-    public User getUser() {
-        return this.user;
-    }
-
-    /**
-     * Set the user property: The user property.
-     *
-     * @param user the user value to set.
-     * @return the ReformattedResume object itself.
-     */
-    public ReformattedResume setUser(User user) {
-        this.user = user;
         return this;
     }
 }

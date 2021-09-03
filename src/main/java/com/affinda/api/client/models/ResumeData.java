@@ -91,13 +91,7 @@ public final class ResumeData {
      * The skills property.
      */
     @JsonProperty(value = "skills")
-    private List<String> skills;
-
-    /*
-     * The skillsDetails property.
-     */
-    @JsonProperty(value = "skillsDetails")
-    private List<ResumeDataSkillsDetailsItem> skillsDetails;
+    private List<ResumeDataSkillsItem> skills;
 
     /*
      * The certifications property.
@@ -129,6 +123,13 @@ public final class ResumeData {
      */
     @JsonProperty(value = "isResumeProbability")
     private Integer isResumeProbability;
+
+    /*
+     * All of the raw text of the parsed resume, example is shortened for
+     * readiblity
+     */
+    @JsonProperty(value = "rawText")
+    private String rawText;
 
     /**
      * Get the name property: The name property.
@@ -395,7 +396,7 @@ public final class ResumeData {
      *
      * @return the skills value.
      */
-    public List<String> getSkills() {
+    public List<ResumeDataSkillsItem> getSkills() {
         return this.skills;
     }
 
@@ -405,28 +406,8 @@ public final class ResumeData {
      * @param skills the skills value to set.
      * @return the ResumeData object itself.
      */
-    public ResumeData setSkills(List<String> skills) {
+    public ResumeData setSkills(List<ResumeDataSkillsItem> skills) {
         this.skills = skills;
-        return this;
-    }
-
-    /**
-     * Get the skillsDetails property: The skillsDetails property.
-     *
-     * @return the skillsDetails value.
-     */
-    public List<ResumeDataSkillsDetailsItem> getSkillsDetails() {
-        return this.skillsDetails;
-    }
-
-    /**
-     * Set the skillsDetails property: The skillsDetails property.
-     *
-     * @param skillsDetails the skillsDetails value to set.
-     * @return the ResumeData object itself.
-     */
-    public ResumeData setSkillsDetails(List<ResumeDataSkillsDetailsItem> skillsDetails) {
-        this.skillsDetails = skillsDetails;
         return this;
     }
 
@@ -529,6 +510,26 @@ public final class ResumeData {
      */
     public ResumeData setIsResumeProbability(Integer isResumeProbability) {
         this.isResumeProbability = isResumeProbability;
+        return this;
+    }
+
+    /**
+     * Get the rawText property: All of the raw text of the parsed resume, example is shortened for readiblity.
+     *
+     * @return the rawText value.
+     */
+    public String getRawText() {
+        return this.rawText;
+    }
+
+    /**
+     * Set the rawText property: All of the raw text of the parsed resume, example is shortened for readiblity.
+     *
+     * @param rawText the rawText value to set.
+     * @return the ResumeData object itself.
+     */
+    public ResumeData setRawText(String rawText) {
+        this.rawText = rawText;
         return this;
     }
 }
