@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/affinda-api-client/affinda-api-client.iml" filepath="$PROJECT_DIR$/affinda-api-client/affinda-api-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/affinda-api-sample/affinda-api-sample.iml" filepath="$PROJECT_DIR$/affinda-api-sample/affinda-api-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generated.iml" filepath="$PROJECT_DIR$/generated.iml" />
+    </modules>
+  </component>
+</project>
