@@ -1,12 +1,13 @@
-package com.affinda.api.client.implementation;
+package com.affinda.api.client;
 
-import com.affinda.api.client.AffindaAPI;
 import com.azure.core.annotation.ServiceClientBuilder;
+import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.policy.AddHeadersPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.CookiePolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
@@ -25,8 +26,8 @@ import java.util.List;
 import java.util.Map;
 
 /** A builder for creating a new instance of the AffindaAPI type. */
-@ServiceClientBuilder(serviceClients = {AffindaAPIImpl.class})
-public final class AffindaAPIImplBuilder {
+@ServiceClientBuilder(serviceClients = {AffindaAPI.class})
+public final class AffindaAPIBuilder {
     private static final String SDK_NAME = "name";
 
     private static final String SDK_VERSION = "version";
@@ -35,8 +36,8 @@ public final class AffindaAPIImplBuilder {
 
     private final Map<String, String> properties = new HashMap<>();
 
-    /** Create an instance of the AffindaAPIImplBuilder. */
-    public AffindaAPIImplBuilder() {
+    /** Create an instance of the AffindaAPIBuilder. */
+    public AffindaAPIBuilder() {
         this.pipelinePolicies = new ArrayList<>();
     }
 
@@ -49,9 +50,9 @@ public final class AffindaAPIImplBuilder {
      * Sets The numbers of documents to return, defaults to 300.
      *
      * @param limit the limit value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder limit(int limit) {
+    public AffindaAPIBuilder limit(int limit) {
         this.limit = limit;
         return this;
     }
@@ -66,9 +67,9 @@ public final class AffindaAPIImplBuilder {
      * Sets The number of documents to skip before starting to collect the result set.
      *
      * @param offset the offset value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder offset(int offset) {
+    public AffindaAPIBuilder offset(int offset) {
         this.offset = offset;
         return this;
     }
@@ -82,9 +83,9 @@ public final class AffindaAPIImplBuilder {
      * Sets server parameter.
      *
      * @param host the host value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder host(String host) {
+    public AffindaAPIBuilder host(String host) {
         this.host = host;
         return this;
     }
@@ -98,9 +99,9 @@ public final class AffindaAPIImplBuilder {
      * Sets The HTTP pipeline to send requests through.
      *
      * @param pipeline the pipeline value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder pipeline(HttpPipeline pipeline) {
+    public AffindaAPIBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -114,9 +115,9 @@ public final class AffindaAPIImplBuilder {
      * Sets The serializer to serialize an object into a string.
      *
      * @param serializerAdapter the serializerAdapter value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public AffindaAPIBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
@@ -130,9 +131,9 @@ public final class AffindaAPIImplBuilder {
      * Sets The HTTP client used to send the request.
      *
      * @param httpClient the httpClient value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder httpClient(HttpClient httpClient) {
+    public AffindaAPIBuilder httpClient(HttpClient httpClient) {
         this.httpClient = httpClient;
         return this;
     }
@@ -147,10 +148,26 @@ public final class AffindaAPIImplBuilder {
      * Sets The configuration store that is used during construction of the service client.
      *
      * @param configuration the configuration value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder configuration(Configuration configuration) {
+    public AffindaAPIBuilder configuration(Configuration configuration) {
         this.configuration = configuration;
+        return this;
+    }
+
+    /*
+     * The TokenCredential used for authentication.
+     */
+    private TokenCredential tokenCredential;
+
+    /**
+     * Sets The TokenCredential used for authentication.
+     *
+     * @param tokenCredential the tokenCredential value.
+     * @return the AffindaAPIBuilder.
+     */
+    public AffindaAPIBuilder credential(TokenCredential tokenCredential) {
+        this.tokenCredential = tokenCredential;
         return this;
     }
 
@@ -163,9 +180,9 @@ public final class AffindaAPIImplBuilder {
      * Sets The logging configuration for HTTP requests and responses.
      *
      * @param httpLogOptions the httpLogOptions value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder httpLogOptions(HttpLogOptions httpLogOptions) {
+    public AffindaAPIBuilder httpLogOptions(HttpLogOptions httpLogOptions) {
         this.httpLogOptions = httpLogOptions;
         return this;
     }
@@ -180,9 +197,9 @@ public final class AffindaAPIImplBuilder {
      * Sets The retry policy that will attempt to retry failed requests, if applicable.
      *
      * @param retryPolicy the retryPolicy value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder retryPolicy(RetryPolicy retryPolicy) {
+    public AffindaAPIBuilder retryPolicy(RetryPolicy retryPolicy) {
         this.retryPolicy = retryPolicy;
         return this;
     }
@@ -202,9 +219,9 @@ public final class AffindaAPIImplBuilder {
      * Sets The client options such as application ID and custom headers to set on a request.
      *
      * @param clientOptions the clientOptions value.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder clientOptions(ClientOptions clientOptions) {
+    public AffindaAPIBuilder clientOptions(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
         return this;
     }
@@ -213,9 +230,9 @@ public final class AffindaAPIImplBuilder {
      * Adds a custom Http pipeline policy.
      *
      * @param customPolicy The custom Http pipeline policy to add.
-     * @return the AffindaAPIImplBuilder.
+     * @return the AffindaAPIBuilder.
      */
-    public AffindaAPIImplBuilder addPolicy(HttpPipelinePolicy customPolicy) {
+    public AffindaAPIBuilder addPolicy(HttpPipelinePolicy customPolicy) {
         pipelinePolicies.add(customPolicy);
         return this;
     }
@@ -235,7 +252,7 @@ public final class AffindaAPIImplBuilder {
         if (serializerAdapter == null) {
             this.serializerAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         }
-        AffindaAPIImpl client = new AffindaAPIImpl(pipeline, serializerAdapter, limit, offset, host);
+        AffindaAPI client = new AffindaAPI(pipeline, serializerAdapter, limit, offset, host);
         return client;
     }
 
@@ -261,6 +278,9 @@ public final class AffindaAPIImplBuilder {
         HttpPolicyProviders.addBeforeRetryPolicies(policies);
         policies.add(retryPolicy == null ? new RetryPolicy() : retryPolicy);
         policies.add(new CookiePolicy());
+        if (tokenCredential != null) {
+            policies.add(new BearerTokenAuthenticationPolicy(tokenCredential, DEFAULT_SCOPES));
+        }
         policies.addAll(this.pipelinePolicies);
         HttpPolicyProviders.addAfterRetryPolicies(policies);
         policies.add(new HttpLoggingPolicy(httpLogOptions));
