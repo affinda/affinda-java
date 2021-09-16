@@ -38,8 +38,8 @@ class AffindaTokenCredential implements TokenCredential {
 public class run {
     public static void main(String[] args) {
         TokenCredential credential;
-        credential = new AffindaTokenCredential("REPLACE_TOKEN");
-        AffindaAPI client = new AffindaAPIBuilder().credential(credential).clientOptions(null).buildClient();
+        credential = new AffindaTokenCredential("");
+        AffindaAPI client = new AffindaAPIBuilder().credential(credential).buildClient();
         try {
             Object all_resumes = client.getAllResumes();
             System.out.print(all_resumes);
