@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.affinda.api</groupId>
+    <artifactId>affinda-api-client</artifactId>
+    <version>0.1.0-beta</version>
+    <packaging>jar</packaging>
+
+    <name>Affinda API Client for Java</name>
+    <description>This package contains Microsoft Azure SDK for ManagementLock Management SDK. For documentation on how
+        to use this package, please see https://aka.ms/azsdk/java/mgmt. Azure resources can be locked to prevent other
+        users in your organization from deleting or modifying resources. Package tag null.
+    </description>
+    <url>https://github.com/affinda/affinda-java</url>
+
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/affinda/affinda-java</url>
+        <connection>scm:git:git@github.com:affinda/affinda-java.git</connection>
+        <developerConnection>scm:git:git@github.com:affinda/affinda-java</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <developers>
+        <developer>
+            <id>chris</id>
+            <name>Chris Culhane</name>
+        </developer>
+    </developers>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <legal>Copyright (c) Affinda 2021</legal>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-core</artifactId>
+            <version>1.14.1</version> <!-- {x-version-update;com.azure:azure-core;dependency} -->
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.rest</groupId>
+            <artifactId>client-runtime</artifactId>
+            <version>1.7.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-client-runtime</artifactId>
+            <version>1.7.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-client-authentication</artifactId>
+            <version>1.7.13</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

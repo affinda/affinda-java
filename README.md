@@ -1,4 +1,4 @@
-Affinda API - C# Client Library
+Affinda API - Java Client Library
 ===================================
 
 ![affinda logo](https://raw.githubusercontent.com/affinda/affinda-java/main/affinda_logo.png)
