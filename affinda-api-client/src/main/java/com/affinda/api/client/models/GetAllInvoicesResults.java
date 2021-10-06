@@ -4,9 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The GetAllDocumentsResults model. */
+/** The GetAllInvoicesResults model. */
 @Fluent
-public final class GetAllDocumentsResults {
+public final class GetAllInvoicesResults {
     /*
      * Number of documents in result
      */
@@ -44,9 +44,9 @@ public final class GetAllDocumentsResults {
      * Set the count property: Number of documents in result.
      *
      * @param count the count value to set.
-     * @return the GetAllDocumentsResults object itself.
+     * @return the GetAllInvoicesResults object itself.
      */
-    public GetAllDocumentsResults setCount(Integer count) {
+    public GetAllInvoicesResults setCount(Integer count) {
         this.count = count;
         return this;
     }
@@ -64,9 +64,9 @@ public final class GetAllDocumentsResults {
      * Set the next property: URL to request next page of results.
      *
      * @param next the next value to set.
-     * @return the GetAllDocumentsResults object itself.
+     * @return the GetAllInvoicesResults object itself.
      */
-    public GetAllDocumentsResults setNext(String next) {
+    public GetAllInvoicesResults setNext(String next) {
         this.next = next;
         return this;
     }
@@ -84,9 +84,9 @@ public final class GetAllDocumentsResults {
      * Set the previous property: URL to request previous page of results.
      *
      * @param previous the previous value to set.
-     * @return the GetAllDocumentsResults object itself.
+     * @return the GetAllInvoicesResults object itself.
      */
-    public GetAllDocumentsResults setPrevious(String previous) {
+    public GetAllInvoicesResults setPrevious(String previous) {
         this.previous = previous;
         return this;
     }
@@ -104,9 +104,9 @@ public final class GetAllDocumentsResults {
      * Set the results property: The results property.
      *
      * @param results the results value to set.
-     * @return the GetAllDocumentsResults object itself.
+     * @return the GetAllInvoicesResults object itself.
      */
-    public GetAllDocumentsResults setResults(List<Meta> results) {
+    public GetAllInvoicesResults setResults(List<Meta> results) {
         this.results = results;
         return this;
     }

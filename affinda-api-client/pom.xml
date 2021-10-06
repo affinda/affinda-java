@@ -1,20 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.affinda.api</groupId>
     <artifactId>affinda-api-client</artifactId>
-    <version>0.1.0-beta</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
-
-    <name>Affinda API Client for Java</name>
-    <description>This package contains Microsoft Azure SDK for ManagementLock Management SDK. For documentation on how
-        to use this package, please see https://aka.ms/azsdk/java/mgmt. Azure resources can be locked to prevent other
-        users in your organization from deleting or modifying resources. Package tag null.
-    </description>
+    <name>Java Client Library for Affinda Resume Parser API</name>
+    <description>This package contains Java Client Library for the Affinda Resume Parser API. For documentation on how
+        to use this package, please see https://github.com/affinda/affinda-java</description>
     <url>https://github.com/affinda/affinda-java</url>
-
     <licenses>
         <license>
             <name>The MIT License (MIT)</name>
@@ -22,7 +16,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
     <scm>
         <url>https://github.com/affinda/affinda-java</url>
         <connection>scm:git:git@github.com:affinda/affinda-java.git</connection>
@@ -43,20 +36,18 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core</artifactId>
-            <version>1.20.0</version> <!-- {x-version-update;com.azure:azure-core;dependency} -->
+            <version>1.20.0</version>
         </dependency>
         <dependency>
             <groupId>com.microsoft.rest</groupId>
             <artifactId>client-runtime</artifactId>
             <version>1.7.13</version>
         </dependency>
-
         <dependency>
             <groupId>com.microsoft.azure</groupId>
             <artifactId>azure-client-runtime</artifactId>
             <version>1.7.13</version>
         </dependency>
-
         <dependency>
             <groupId>com.microsoft.azure</groupId>
             <artifactId>azure-client-authentication</artifactId>
@@ -70,7 +61,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <release>11</release>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <verbose>false</verbose>
                 </configuration>
             </plugin>
         </plugins>

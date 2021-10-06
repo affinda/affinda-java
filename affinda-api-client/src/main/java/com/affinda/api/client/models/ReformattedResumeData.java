@@ -2,7 +2,6 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.net.URL;
 
 /** The ReformattedResumeData model. */
 @Fluent
@@ -11,14 +10,14 @@ public final class ReformattedResumeData {
      * The reformattedFile property.
      */
     @JsonProperty(value = "reformattedFile")
-    private URL reformattedFile;
+    private String reformattedFile;
 
     /**
      * Get the reformattedFile property: The reformattedFile property.
      *
      * @return the reformattedFile value.
      */
-    public URL getReformattedFile() {
+    public String getReformattedFile() {
         return this.reformattedFile;
     }
 
@@ -28,7 +27,7 @@ public final class ReformattedResumeData {
      * @param reformattedFile the reformattedFile value to set.
      * @return the ReformattedResumeData object itself.
      */
-    public ReformattedResumeData setReformattedFile(URL reformattedFile) {
+    public ReformattedResumeData setReformattedFile(String reformattedFile) {
         this.reformattedFile = reformattedFile;
         return this;
     }

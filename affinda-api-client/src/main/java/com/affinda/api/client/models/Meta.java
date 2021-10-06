@@ -8,8 +8,8 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class Meta {
     /*
-     * Unique identifier for the resume. If creating a document and left blank,
-     * one will be automatically generated.
+     * Unique identifier for the document. If creating a document and left
+     * blank, one will be automatically generated.
      */
     @JsonProperty(value = "identifier", required = true)
     private String identifier;
@@ -42,15 +42,15 @@ public final class Meta {
     private boolean failed;
 
     /*
-     * The date/time in ISO-8601 format when the resume will be automatically
+     * The date/time in ISO-8601 format when the document will be automatically
      * deleted.  Defaults to no expiry.
      */
     @JsonProperty(value = "expiryTime")
     private String expiryTime;
 
     /**
-     * Get the identifier property: Unique identifier for the resume. If creating a document and left blank, one will be
-     * automatically generated.
+     * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
+     * be automatically generated.
      *
      * @return the identifier value.
      */
@@ -59,8 +59,8 @@ public final class Meta {
     }
 
     /**
-     * Set the identifier property: Unique identifier for the resume. If creating a document and left blank, one will be
-     * automatically generated.
+     * Set the identifier property: Unique identifier for the document. If creating a document and left blank, one will
+     * be automatically generated.
      *
      * @param identifier the identifier value to set.
      * @return the Meta object itself.
@@ -155,7 +155,7 @@ public final class Meta {
     }
 
     /**
-     * Get the expiryTime property: The date/time in ISO-8601 format when the resume will be automatically deleted.
+     * Get the expiryTime property: The date/time in ISO-8601 format when the document will be automatically deleted.
      * Defaults to no expiry.
      *
      * @return the expiryTime value.
@@ -165,7 +165,7 @@ public final class Meta {
     }
 
     /**
-     * Set the expiryTime property: The date/time in ISO-8601 format when the resume will be automatically deleted.
+     * Set the expiryTime property: The date/time in ISO-8601 format when the document will be automatically deleted.
      * Defaults to no expiry.
      *
      * @param expiryTime the expiryTime value to set.

@@ -2,33 +2,32 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.net.URL;
 
 /** The RedactedResumeData model. */
 @Fluent
 public final class RedactedResumeData {
     /*
-     * The redactedPdf property.
+     * URL to redacted PDF
      */
     @JsonProperty(value = "redactedPdf")
-    private URL redactedPdf;
+    private String redactedPdf;
 
     /**
-     * Get the redactedPdf property: The redactedPdf property.
+     * Get the redactedPdf property: URL to redacted PDF.
      *
      * @return the redactedPdf value.
      */
-    public URL getRedactedPdf() {
+    public String getRedactedPdf() {
         return this.redactedPdf;
     }
 
     /**
-     * Set the redactedPdf property: The redactedPdf property.
+     * Set the redactedPdf property: URL to redacted PDF.
      *
      * @param redactedPdf the redactedPdf value to set.
      * @return the RedactedResumeData object itself.
      */
-    public RedactedResumeData setRedactedPdf(URL redactedPdf) {
+    public RedactedResumeData setRedactedPdf(String redactedPdf) {
         this.redactedPdf = redactedPdf;
         return this;
     }

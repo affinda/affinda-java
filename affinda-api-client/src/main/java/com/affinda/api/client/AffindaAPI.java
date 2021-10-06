@@ -25,7 +25,6 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
-import java.net.URL;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -166,9 +165,9 @@ public final class AffindaAPI {
                 @HeaderParam("Content-Length") Long contentLength,
                 @BodyParam("multipart/form-data") String identifier,
                 @BodyParam("multipart/form-data") String fileName,
-                @BodyParam("multipart/form-data") URL url,
+                @BodyParam("multipart/form-data") String url,
                 @BodyParam("multipart/form-data") String wait,
-                @BodyParam("multipart/form-data") String resumeLanguage,
+                @BodyParam("multipart/form-data") String language,
                 @BodyParam("multipart/form-data") String expiryTime,
                 @HeaderParam("Accept") String accept);
 
@@ -207,8 +206,8 @@ public final class AffindaAPI {
                 @HeaderParam("Content-Length") Long contentLength,
                 @BodyParam("multipart/form-data") String identifier,
                 @BodyParam("multipart/form-data") String fileName,
-                @BodyParam("multipart/form-data") URL url,
-                @BodyParam("multipart/form-data") String resumeLanguage,
+                @BodyParam("multipart/form-data") String url,
+                @BodyParam("multipart/form-data") String language,
                 @BodyParam("multipart/form-data") String wait,
                 @BodyParam("multipart/form-data") String redactHeadshot,
                 @BodyParam("multipart/form-data") String redactPersonalDetails,
@@ -264,8 +263,8 @@ public final class AffindaAPI {
                 @HeaderParam("Content-Length") Long contentLength,
                 @BodyParam("multipart/form-data") String identifier,
                 @BodyParam("multipart/form-data") String fileName,
-                @BodyParam("multipart/form-data") URL url,
-                @BodyParam("multipart/form-data") String resumeLanguage,
+                @BodyParam("multipart/form-data") String url,
+                @BodyParam("multipart/form-data") String language,
                 @BodyParam("multipart/form-data") String resumeFormat,
                 @BodyParam("multipart/form-data") String wait,
                 @HeaderParam("Accept") String accept);
@@ -282,6 +281,47 @@ public final class AffindaAPI {
         @ExpectedResponses({204, 400, 401, 404})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<RequestError>> deleteReformattedResume(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/invoices")
+        @ExpectedResponses({200, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getAllInvoices(
+                @HostParam("$host") String host,
+                @QueryParam("limit") Integer limit,
+                @QueryParam("offset") Integer offset,
+                @HeaderParam("Accept") String accept);
+
+        // @Multipart not supported by RestProxy
+        @Post("/invoices")
+        @ExpectedResponses({200, 201, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> createInvoice(
+                @HostParam("$host") String host,
+                @BodyParam("multipart/form-data") Flux<ByteBuffer> file,
+                @HeaderParam("Content-Length") Long contentLength,
+                @BodyParam("multipart/form-data") String identifier,
+                @BodyParam("multipart/form-data") String fileName,
+                @BodyParam("multipart/form-data") String url,
+                @BodyParam("multipart/form-data") String wait,
+                @BodyParam("multipart/form-data") String language,
+                @BodyParam("multipart/form-data") String expiryTime,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/invoices/{identifier}")
+        @ExpectedResponses({200, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getInvoice(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/invoices/{identifier}")
+        @ExpectedResponses({204, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<RequestError>> deleteInvoice(
                 @HostParam("$host") String host,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
@@ -338,15 +378,15 @@ public final class AffindaAPI {
      *
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the resume. If creating a document and left blank, one will be
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
      *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
-     *     expiry.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -358,22 +398,13 @@ public final class AffindaAPI {
             Long contentLength,
             String identifier,
             String fileName,
-            URL url,
+            String url,
             String wait,
-            String resumeLanguage,
+            String language,
             String expiryTime) {
         final String accept = "application/json";
         return service.createResume(
-                this.getHost(),
-                file,
-                contentLength,
-                identifier,
-                fileName,
-                url,
-                wait,
-                resumeLanguage,
-                expiryTime,
-                accept);
+                this.getHost(), file, contentLength, identifier, fileName, url, wait, language, expiryTime, accept);
     }
 
     /**
@@ -382,15 +413,15 @@ public final class AffindaAPI {
      *
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the resume. If creating a document and left blank, one will be
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
      *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
-     *     expiry.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -402,12 +433,11 @@ public final class AffindaAPI {
             Long contentLength,
             String identifier,
             String fileName,
-            URL url,
+            String url,
             String wait,
-            String resumeLanguage,
+            String language,
             String expiryTime) {
-        return createResumeWithResponseAsync(
-                        file, contentLength, identifier, fileName, url, wait, resumeLanguage, expiryTime)
+        return createResumeWithResponseAsync(file, contentLength, identifier, fileName, url, wait, language, expiryTime)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -424,15 +454,15 @@ public final class AffindaAPI {
      *
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the resume. If creating a document and left blank, one will be
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
      * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
      *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
-     *     expiry.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -444,12 +474,11 @@ public final class AffindaAPI {
             Long contentLength,
             String identifier,
             String fileName,
-            URL url,
+            String url,
             String wait,
-            String resumeLanguage,
+            String language,
             String expiryTime) {
-        return createResumeAsync(file, contentLength, identifier, fileName, url, wait, resumeLanguage, expiryTime)
-                .block();
+        return createResumeAsync(file, contentLength, identifier, fileName, url, wait, language, expiryTime).block();
     }
 
     /**
@@ -607,11 +636,11 @@ public final class AffindaAPI {
      *
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the resume. If creating a document and left blank, one will be
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
      *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param redactHeadshot Whether to redact headshot.
@@ -621,8 +650,8 @@ public final class AffindaAPI {
      * @param redactReferees Whether to redact referee details.
      * @param redactLocations Whether to redact location names.
      * @param redactDates Whether to redact dates.
-     * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
-     *     expiry.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -634,8 +663,8 @@ public final class AffindaAPI {
             Long contentLength,
             String identifier,
             String fileName,
-            URL url,
-            String resumeLanguage,
+            String url,
+            String language,
             String wait,
             String redactHeadshot,
             String redactPersonalDetails,
@@ -653,7 +682,7 @@ public final class AffindaAPI {
                 identifier,
                 fileName,
                 url,
-                resumeLanguage,
+                language,
                 wait,
                 redactHeadshot,
                 redactPersonalDetails,
@@ -671,11 +700,11 @@ public final class AffindaAPI {
      *
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the resume. If creating a document and left blank, one will be
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
      *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param redactHeadshot Whether to redact headshot.
@@ -685,8 +714,8 @@ public final class AffindaAPI {
      * @param redactReferees Whether to redact referee details.
      * @param redactLocations Whether to redact location names.
      * @param redactDates Whether to redact dates.
-     * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
-     *     expiry.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -698,8 +727,8 @@ public final class AffindaAPI {
             Long contentLength,
             String identifier,
             String fileName,
-            URL url,
-            String resumeLanguage,
+            String url,
+            String language,
             String wait,
             String redactHeadshot,
             String redactPersonalDetails,
@@ -715,7 +744,7 @@ public final class AffindaAPI {
                         identifier,
                         fileName,
                         url,
-                        resumeLanguage,
+                        language,
                         wait,
                         redactHeadshot,
                         redactPersonalDetails,
@@ -740,11 +769,11 @@ public final class AffindaAPI {
      *
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the resume. If creating a document and left blank, one will be
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
      *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @param redactHeadshot Whether to redact headshot.
@@ -754,8 +783,8 @@ public final class AffindaAPI {
      * @param redactReferees Whether to redact referee details.
      * @param redactLocations Whether to redact location names.
      * @param redactDates Whether to redact dates.
-     * @param expiryTime The date/time in ISO-8601 format when the resume will be automatically deleted. Defaults to no
-     *     expiry.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -767,8 +796,8 @@ public final class AffindaAPI {
             Long contentLength,
             String identifier,
             String fileName,
-            URL url,
-            String resumeLanguage,
+            String url,
+            String language,
             String wait,
             String redactHeadshot,
             String redactPersonalDetails,
@@ -784,7 +813,7 @@ public final class AffindaAPI {
                         identifier,
                         fileName,
                         url,
-                        resumeLanguage,
+                        language,
                         wait,
                         redactHeadshot,
                         redactPersonalDetails,
@@ -993,16 +1022,16 @@ public final class AffindaAPI {
     }
 
     /**
-     * Uploads a resume for reformatting.
+     * Upload a resume for reformatting.
      *
      * @param resumeFormat Identifier of the format used.
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the resume. If creating a document and left blank, one will be
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
      *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1017,34 +1046,25 @@ public final class AffindaAPI {
             Long contentLength,
             String identifier,
             String fileName,
-            URL url,
-            String resumeLanguage,
+            String url,
+            String language,
             String wait) {
         final String accept = "application/json";
         return service.createReformattedResume(
-                this.getHost(),
-                file,
-                contentLength,
-                identifier,
-                fileName,
-                url,
-                resumeLanguage,
-                resumeFormat,
-                wait,
-                accept);
+                this.getHost(), file, contentLength, identifier, fileName, url, language, resumeFormat, wait, accept);
     }
 
     /**
-     * Uploads a resume for reformatting.
+     * Upload a resume for reformatting.
      *
      * @param resumeFormat Identifier of the format used.
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the resume. If creating a document and left blank, one will be
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
      *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1059,11 +1079,11 @@ public final class AffindaAPI {
             Long contentLength,
             String identifier,
             String fileName,
-            URL url,
-            String resumeLanguage,
+            String url,
+            String language,
             String wait) {
         return createReformattedResumeWithResponseAsync(
-                        resumeFormat, file, contentLength, identifier, fileName, url, resumeLanguage, wait)
+                        resumeFormat, file, contentLength, identifier, fileName, url, language, wait)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -1075,16 +1095,16 @@ public final class AffindaAPI {
     }
 
     /**
-     * Uploads a resume for reformatting.
+     * Upload a resume for reformatting.
      *
      * @param resumeFormat Identifier of the format used.
      * @param file File as binary data blob.
      * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the resume. If creating a document and left blank, one will be
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
      * @param fileName Optional filename of the file.
      * @param url URL to file to download and process.
-     * @param resumeLanguage Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
      *     return an empty data object which can be polled at the GET endpoint until processing is complete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1099,11 +1119,11 @@ public final class AffindaAPI {
             Long contentLength,
             String identifier,
             String fileName,
-            URL url,
-            String resumeLanguage,
+            String url,
+            String language,
             String wait) {
         return createReformattedResumeAsync(
-                        resumeFormat, file, contentLength, identifier, fileName, url, resumeLanguage, wait)
+                        resumeFormat, file, contentLength, identifier, fileName, url, language, wait)
                 .block();
     }
 
@@ -1165,7 +1185,7 @@ public final class AffindaAPI {
     }
 
     /**
-     * Deletes the specified resume from the database.
+     * Delete the specified resume from the database.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1180,7 +1200,7 @@ public final class AffindaAPI {
     }
 
     /**
-     * Deletes the specified resume from the database.
+     * Delete the specified resume from the database.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1202,7 +1222,7 @@ public final class AffindaAPI {
     }
 
     /**
-     * Deletes the specified resume from the database.
+     * Delete the specified resume from the database.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1213,5 +1233,265 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public RequestError deleteReformattedResume(String identifier) {
         return deleteReformattedResumeAsync(identifier).block();
+    }
+
+    /**
+     * Returns all the invoice summaries for that user, limited to 300 per page.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getAllInvoicesWithResponseAsync() {
+        final String accept = "application/json";
+        return service.getAllInvoices(this.getHost(), this.getLimit(), this.getOffset(), accept);
+    }
+
+    /**
+     * Returns all the invoice summaries for that user, limited to 300 per page.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getAllInvoicesAsync() {
+        return getAllInvoicesWithResponseAsync()
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns all the invoice summaries for that user, limited to 300 per page.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getAllInvoices() {
+        return getAllInvoicesAsync().block();
+    }
+
+    /**
+     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
+     * the [/invoices/{identifier}](#operation/getInvoice) endpoint to check processing status and retrieve results.
+     *
+     * @param file File as binary data blob.
+     * @param contentLength The contentLength parameter.
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
+     *     automatically generated.
+     * @param fileName Optional filename of the file.
+     * @param url URL to file to download and process.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> createInvoiceWithResponseAsync(
+            Flux<ByteBuffer> file,
+            Long contentLength,
+            String identifier,
+            String fileName,
+            String url,
+            String wait,
+            String language,
+            String expiryTime) {
+        final String accept = "application/json";
+        return service.createInvoice(
+                this.getHost(), file, contentLength, identifier, fileName, url, wait, language, expiryTime, accept);
+    }
+
+    /**
+     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
+     * the [/invoices/{identifier}](#operation/getInvoice) endpoint to check processing status and retrieve results.
+     *
+     * @param file File as binary data blob.
+     * @param contentLength The contentLength parameter.
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
+     *     automatically generated.
+     * @param fileName Optional filename of the file.
+     * @param url URL to file to download and process.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> createInvoiceAsync(
+            Flux<ByteBuffer> file,
+            Long contentLength,
+            String identifier,
+            String fileName,
+            String url,
+            String wait,
+            String language,
+            String expiryTime) {
+        return createInvoiceWithResponseAsync(
+                        file, contentLength, identifier, fileName, url, wait, language, expiryTime)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
+     * the [/invoices/{identifier}](#operation/getInvoice) endpoint to check processing status and retrieve results.
+     *
+     * @param file File as binary data blob.
+     * @param contentLength The contentLength parameter.
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
+     *     automatically generated.
+     * @param fileName Optional filename of the file.
+     * @param url URL to file to download and process.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object createInvoice(
+            Flux<ByteBuffer> file,
+            Long contentLength,
+            String identifier,
+            String fileName,
+            String url,
+            String wait,
+            String language,
+            String expiryTime) {
+        return createInvoiceAsync(file, contentLength, identifier, fileName, url, wait, language, expiryTime).block();
+    }
+
+    /**
+     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
+     * returned after POST-ing the invoice via the [/invoices](#operation/createInvoice) endpoint.
+     *
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getInvoiceWithResponseAsync(String identifier) {
+        final String accept = "application/json";
+        return service.getInvoice(this.getHost(), identifier, accept);
+    }
+
+    /**
+     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
+     * returned after POST-ing the invoice via the [/invoices](#operation/createInvoice) endpoint.
+     *
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getInvoiceAsync(String identifier) {
+        return getInvoiceWithResponseAsync(identifier)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
+     * returned after POST-ing the invoice via the [/invoices](#operation/createInvoice) endpoint.
+     *
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getInvoice(String identifier) {
+        return getInvoiceAsync(identifier).block();
+    }
+
+    /**
+     * Delete the specified invoice from the database.
+     *
+     * @param identifier Invoice identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<RequestError>> deleteInvoiceWithResponseAsync(String identifier) {
+        final String accept = "application/json";
+        return service.deleteInvoice(this.getHost(), identifier, accept);
+    }
+
+    /**
+     * Delete the specified invoice from the database.
+     *
+     * @param identifier Invoice identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<RequestError> deleteInvoiceAsync(String identifier) {
+        return deleteInvoiceWithResponseAsync(identifier)
+                .flatMap(
+                        (Response<RequestError> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Delete the specified invoice from the database.
+     *
+     * @param identifier Invoice identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RequestError deleteInvoice(String identifier) {
+        return deleteInvoiceAsync(identifier).block();
     }
 }

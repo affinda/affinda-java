@@ -130,7 +130,7 @@ public final class ResumeData {
 
     /*
      * Probability that the given document is a resume. Values below 30 suggest
-     * that the resume is not a resume.
+     * that the document is not a resume.
      */
     @JsonProperty(value = "isResumeProbability")
     private Integer isResumeProbability;
@@ -544,7 +544,7 @@ public final class ResumeData {
 
     /**
      * Get the isResumeProbability property: Probability that the given document is a resume. Values below 30 suggest
-     * that the resume is not a resume.
+     * that the document is not a resume.
      *
      * @return the isResumeProbability value.
      */
@@ -554,7 +554,7 @@ public final class ResumeData {
 
     /**
      * Set the isResumeProbability property: Probability that the given document is a resume. Values below 30 suggest
-     * that the resume is not a resume.
+     * that the document is not a resume.
      *
      * @param isResumeProbability the isResumeProbability value to set.
      * @return the ResumeData object itself.

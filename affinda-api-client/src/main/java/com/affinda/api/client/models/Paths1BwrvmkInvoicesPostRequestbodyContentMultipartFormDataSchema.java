@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 
-/** The Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema model. */
+/** The Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema model. */
 @Fluent
-public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema {
+public final class Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema {
     /*
      * File as binary data blob
      */
@@ -68,9 +68,9 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
      * Set the file property: File as binary data blob.
      *
      * @param file the file value to set.
-     * @return the Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     * @return the Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema setFile(Flux<ByteBuffer> file) {
+    public Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema setFile(Flux<ByteBuffer> file) {
         this.file = file;
         return this;
     }
@@ -90,9 +90,9 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
      * be automatically generated.
      *
      * @param identifier the identifier value to set.
-     * @return the Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     * @return the Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema setIdentifier(String identifier) {
+    public Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema setIdentifier(String identifier) {
         this.identifier = identifier;
         return this;
     }
@@ -110,9 +110,9 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
      * Set the fileName property: Optional filename of the file.
      *
      * @param fileName the fileName value to set.
-     * @return the Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     * @return the Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema setFileName(String fileName) {
+    public Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema setFileName(String fileName) {
         this.fileName = fileName;
         return this;
     }
@@ -130,9 +130,9 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
      * Set the url property: URL to file to download and process.
      *
      * @param url the url value to set.
-     * @return the Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     * @return the Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema setUrl(String url) {
+    public Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema setUrl(String url) {
         this.url = url;
         return this;
     }
@@ -152,9 +152,9 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
      * "false", will return an empty data object which can be polled at the GET endpoint until processing is complete.
      *
      * @param wait the wait value to set.
-     * @return the Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     * @return the Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema setWait(String wait) {
+    public Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema setWait(String wait) {
         this.wait = wait;
         return this;
     }
@@ -172,9 +172,9 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
      * Set the language property: Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      *
      * @param language the language value to set.
-     * @return the Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     * @return the Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema setLanguage(String language) {
+    public Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema setLanguage(String language) {
         this.language = language;
         return this;
     }
@@ -194,9 +194,9 @@ public final class Paths7EskthResumesPostRequestbodyContentMultipartFormDataSche
      * Defaults to no expiry.
      *
      * @param expiryTime the expiryTime value to set.
-     * @return the Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     * @return the Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths7EskthResumesPostRequestbodyContentMultipartFormDataSchema setExpiryTime(String expiryTime) {
+    public Paths1BwrvmkInvoicesPostRequestbodyContentMultipartFormDataSchema setExpiryTime(String expiryTime) {
         this.expiryTime = expiryTime;
         return this;
     }

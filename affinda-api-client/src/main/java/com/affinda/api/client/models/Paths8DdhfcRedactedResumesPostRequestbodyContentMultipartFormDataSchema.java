@@ -2,7 +2,6 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.net.URL;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 
@@ -16,8 +15,8 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     private Flux<ByteBuffer> file;
 
     /*
-     * Unique identifier for the resume. If creating a document and left blank,
-     * one will be automatically generated.
+     * Unique identifier for the document. If creating a document and left
+     * blank, one will be automatically generated.
      */
     @JsonProperty(value = "identifier")
     private String identifier;
@@ -32,14 +31,14 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      * URL to file to download and process
      */
     @JsonProperty(value = "url")
-    private URL url;
+    private String url;
 
     /*
      * Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for
      * Chinese.
      */
-    @JsonProperty(value = "resumeLanguage")
-    private String resumeLanguage;
+    @JsonProperty(value = "language")
+    private String language;
 
     /*
      * If "true" (default), will return a response only after processing has
@@ -92,7 +91,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     private String redactDates;
 
     /*
-     * The date/time in ISO-8601 format when the resume will be automatically
+     * The date/time in ISO-8601 format when the document will be automatically
      * deleted.  Defaults to no expiry.
      */
     @JsonProperty(value = "expiryTime")
@@ -119,8 +118,8 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     }
 
     /**
-     * Get the identifier property: Unique identifier for the resume. If creating a document and left blank, one will be
-     * automatically generated.
+     * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
+     * be automatically generated.
      *
      * @return the identifier value.
      */
@@ -129,8 +128,8 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     }
 
     /**
-     * Set the identifier property: Unique identifier for the resume. If creating a document and left blank, one will be
-     * automatically generated.
+     * Set the identifier property: Unique identifier for the document. If creating a document and left blank, one will
+     * be automatically generated.
      *
      * @param identifier the identifier value to set.
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
@@ -165,7 +164,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      *
      * @return the url value.
      */
-    public URL getUrl() {
+    public String getUrl() {
         return this.url;
     }
 
@@ -175,29 +174,28 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      * @param url the url value to set.
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setUrl(URL url) {
+    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setUrl(String url) {
         this.url = url;
         return this;
     }
 
     /**
-     * Get the resumeLanguage property: Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * Get the language property: Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      *
-     * @return the resumeLanguage value.
+     * @return the language value.
      */
-    public String getResumeLanguage() {
-        return this.resumeLanguage;
+    public String getLanguage() {
+        return this.language;
     }
 
     /**
-     * Set the resumeLanguage property: Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * Set the language property: Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      *
-     * @param resumeLanguage the resumeLanguage value to set.
+     * @param language the language value to set.
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setResumeLanguage(
-            String resumeLanguage) {
-        this.resumeLanguage = resumeLanguage;
+    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setLanguage(String language) {
+        this.language = language;
         return this;
     }
 
@@ -370,7 +368,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     }
 
     /**
-     * Get the expiryTime property: The date/time in ISO-8601 format when the resume will be automatically deleted.
+     * Get the expiryTime property: The date/time in ISO-8601 format when the document will be automatically deleted.
      * Defaults to no expiry.
      *
      * @return the expiryTime value.
@@ -380,7 +378,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     }
 
     /**
-     * Set the expiryTime property: The date/time in ISO-8601 format when the resume will be automatically deleted.
+     * Set the expiryTime property: The date/time in ISO-8601 format when the document will be automatically deleted.
      * Defaults to no expiry.
      *
      * @param expiryTime the expiryTime value to set.

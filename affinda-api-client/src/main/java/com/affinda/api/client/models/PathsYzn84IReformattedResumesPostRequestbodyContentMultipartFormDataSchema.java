@@ -2,7 +2,6 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.net.URL;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 
@@ -16,8 +15,8 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
     private Flux<ByteBuffer> file;
 
     /*
-     * Unique identifier for the resume. If creating a document and left blank,
-     * one will be automatically generated.
+     * Unique identifier for the document. If creating a document and left
+     * blank, one will be automatically generated.
      */
     @JsonProperty(value = "identifier")
     private String identifier;
@@ -32,14 +31,14 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
      * URL to file to download and process
      */
     @JsonProperty(value = "url")
-    private URL url;
+    private String url;
 
     /*
      * Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for
      * Chinese.
      */
-    @JsonProperty(value = "resumeLanguage")
-    private String resumeLanguage;
+    @JsonProperty(value = "language")
+    private String language;
 
     /*
      * Identifier of the format used
@@ -76,8 +75,8 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
     }
 
     /**
-     * Get the identifier property: Unique identifier for the resume. If creating a document and left blank, one will be
-     * automatically generated.
+     * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
+     * be automatically generated.
      *
      * @return the identifier value.
      */
@@ -86,8 +85,8 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
     }
 
     /**
-     * Set the identifier property: Unique identifier for the resume. If creating a document and left blank, one will be
-     * automatically generated.
+     * Set the identifier property: Unique identifier for the document. If creating a document and left blank, one will
+     * be automatically generated.
      *
      * @param identifier the identifier value to set.
      * @return the PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
@@ -122,7 +121,7 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
      *
      * @return the url value.
      */
-    public URL getUrl() {
+    public String getUrl() {
         return this.url;
     }
 
@@ -132,29 +131,28 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
      * @param url the url value to set.
      * @return the PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema setUrl(URL url) {
+    public PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema setUrl(String url) {
         this.url = url;
         return this;
     }
 
     /**
-     * Get the resumeLanguage property: Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * Get the language property: Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      *
-     * @return the resumeLanguage value.
+     * @return the language value.
      */
-    public String getResumeLanguage() {
-        return this.resumeLanguage;
+    public String getLanguage() {
+        return this.language;
     }
 
     /**
-     * Set the resumeLanguage property: Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * Set the language property: Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
      *
-     * @param resumeLanguage the resumeLanguage value to set.
+     * @param language the language value to set.
      * @return the PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
      */
-    public PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema setResumeLanguage(
-            String resumeLanguage) {
-        this.resumeLanguage = resumeLanguage;
+    public PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema setLanguage(String language) {
+        this.language = language;
         return this;
     }
 

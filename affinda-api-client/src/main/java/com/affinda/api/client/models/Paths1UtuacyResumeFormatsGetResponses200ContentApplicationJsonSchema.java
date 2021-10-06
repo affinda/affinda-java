@@ -2,29 +2,28 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.net.URL;
 import java.util.List;
 
 /** The Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJsonSchema model. */
 @Fluent
 public final class Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJsonSchema {
     /*
-     * The count property.
+     * Number of documents in result
      */
     @JsonProperty(value = "count")
     private Integer count;
 
     /*
-     * The next property.
+     * URL to request next page of results
      */
     @JsonProperty(value = "next")
-    private URL next;
+    private String next;
 
     /*
-     * The previous property.
+     * URL to request previous page of results
      */
     @JsonProperty(value = "previous")
-    private URL previous;
+    private String previous;
 
     /*
      * The results property.
@@ -33,7 +32,7 @@ public final class Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJso
     private List<Get200ApplicationJsonPropertiesItemsItem> results;
 
     /**
-     * Get the count property: The count property.
+     * Get the count property: Number of documents in result.
      *
      * @return the count value.
      */
@@ -42,7 +41,7 @@ public final class Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJso
     }
 
     /**
-     * Set the count property: The count property.
+     * Set the count property: Number of documents in result.
      *
      * @param count the count value to set.
      * @return the Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJsonSchema object itself.
@@ -53,41 +52,41 @@ public final class Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJso
     }
 
     /**
-     * Get the next property: The next property.
+     * Get the next property: URL to request next page of results.
      *
      * @return the next value.
      */
-    public URL getNext() {
+    public String getNext() {
         return this.next;
     }
 
     /**
-     * Set the next property: The next property.
+     * Set the next property: URL to request next page of results.
      *
      * @param next the next value to set.
      * @return the Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJsonSchema setNext(URL next) {
+    public Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJsonSchema setNext(String next) {
         this.next = next;
         return this;
     }
 
     /**
-     * Get the previous property: The previous property.
+     * Get the previous property: URL to request previous page of results.
      *
      * @return the previous value.
      */
-    public URL getPrevious() {
+    public String getPrevious() {
         return this.previous;
     }
 
     /**
-     * Set the previous property: The previous property.
+     * Set the previous property: URL to request previous page of results.
      *
      * @param previous the previous value to set.
      * @return the Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJsonSchema setPrevious(URL previous) {
+    public Paths1UtuacyResumeFormatsGetResponses200ContentApplicationJsonSchema setPrevious(String previous) {
         this.previous = previous;
         return this;
     }
