@@ -9,7 +9,8 @@ import reactor.core.publisher.Flux;
 @Fluent
 public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema {
     /*
-     * File as binary data blob
+     * File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF,
+     * HTML, PNG, JPG
      */
     @JsonProperty(value = "file")
     private Flux<ByteBuffer> file;
@@ -55,7 +56,7 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
     private String wait;
 
     /**
-     * Get the file property: File as binary data blob.
+     * Get the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      *
      * @return the file value.
      */
@@ -64,7 +65,7 @@ public final class PathsYzn84IReformattedResumesPostRequestbodyContentMultipartF
     }
 
     /**
-     * Set the file property: File as binary data blob.
+     * Set the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      *
      * @param file the file value to set.
      * @return the PathsYzn84IReformattedResumesPostRequestbodyContentMultipartFormDataSchema object itself.

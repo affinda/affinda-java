@@ -36,6 +36,12 @@ public final class ResumeDataWorkExperienceItem {
     @JsonProperty(value = "dates")
     private ResumeDataWorkExperienceItemDates dates;
 
+    /*
+     * The occupation property.
+     */
+    @JsonProperty(value = "occupation")
+    private ResumeDataWorkExperienceItemOccupation occupation;
+
     /**
      * Get the jobTitle property: The jobTitle property.
      *
@@ -133,6 +139,26 @@ public final class ResumeDataWorkExperienceItem {
      */
     public ResumeDataWorkExperienceItem setDates(ResumeDataWorkExperienceItemDates dates) {
         this.dates = dates;
+        return this;
+    }
+
+    /**
+     * Get the occupation property: The occupation property.
+     *
+     * @return the occupation value.
+     */
+    public ResumeDataWorkExperienceItemOccupation getOccupation() {
+        return this.occupation;
+    }
+
+    /**
+     * Set the occupation property: The occupation property.
+     *
+     * @param occupation the occupation value to set.
+     * @return the ResumeDataWorkExperienceItem object itself.
+     */
+    public ResumeDataWorkExperienceItem setOccupation(ResumeDataWorkExperienceItemOccupation occupation) {
+        this.occupation = occupation;
         return this;
     }
 }

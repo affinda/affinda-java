@@ -216,6 +216,7 @@ public final class AffindaAPI {
                 @BodyParam("multipart/form-data") String redactReferees,
                 @BodyParam("multipart/form-data") String redactLocations,
                 @BodyParam("multipart/form-data") String redactDates,
+                @BodyParam("multipart/form-data") String redactGender,
                 @BodyParam("multipart/form-data") String expiryTime,
                 @HeaderParam("Accept") String accept);
 
@@ -376,7 +377,7 @@ public final class AffindaAPI {
      * Uploads a resume for parsing. When successful, returns an `identifier` in the response for subsequent use with
      * the [/resumes/{identifier}](#operation/getResume) endpoint to check processing status and retrieve results.
      *
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -411,7 +412,7 @@ public final class AffindaAPI {
      * Uploads a resume for parsing. When successful, returns an `identifier` in the response for subsequent use with
      * the [/resumes/{identifier}](#operation/getResume) endpoint to check processing status and retrieve results.
      *
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -452,7 +453,7 @@ public final class AffindaAPI {
      * Uploads a resume for parsing. When successful, returns an `identifier` in the response for subsequent use with
      * the [/resumes/{identifier}](#operation/getResume) endpoint to check processing status and retrieve results.
      *
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -634,7 +635,7 @@ public final class AffindaAPI {
     /**
      * Uploads a resume for redacting.
      *
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -650,6 +651,7 @@ public final class AffindaAPI {
      * @param redactReferees Whether to redact referee details.
      * @param redactLocations Whether to redact location names.
      * @param redactDates Whether to redact dates.
+     * @param redactGender Whether to redact gender.
      * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
      *     no expiry.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -673,6 +675,7 @@ public final class AffindaAPI {
             String redactReferees,
             String redactLocations,
             String redactDates,
+            String redactGender,
             String expiryTime) {
         final String accept = "application/json";
         return service.createRedactedResume(
@@ -691,6 +694,7 @@ public final class AffindaAPI {
                 redactReferees,
                 redactLocations,
                 redactDates,
+                redactGender,
                 expiryTime,
                 accept);
     }
@@ -698,7 +702,7 @@ public final class AffindaAPI {
     /**
      * Uploads a resume for redacting.
      *
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -714,6 +718,7 @@ public final class AffindaAPI {
      * @param redactReferees Whether to redact referee details.
      * @param redactLocations Whether to redact location names.
      * @param redactDates Whether to redact dates.
+     * @param redactGender Whether to redact gender.
      * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
      *     no expiry.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -737,6 +742,7 @@ public final class AffindaAPI {
             String redactReferees,
             String redactLocations,
             String redactDates,
+            String redactGender,
             String expiryTime) {
         return createRedactedResumeWithResponseAsync(
                         file,
@@ -753,6 +759,7 @@ public final class AffindaAPI {
                         redactReferees,
                         redactLocations,
                         redactDates,
+                        redactGender,
                         expiryTime)
                 .flatMap(
                         (Response<Object> res) -> {
@@ -767,7 +774,7 @@ public final class AffindaAPI {
     /**
      * Uploads a resume for redacting.
      *
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -783,6 +790,7 @@ public final class AffindaAPI {
      * @param redactReferees Whether to redact referee details.
      * @param redactLocations Whether to redact location names.
      * @param redactDates Whether to redact dates.
+     * @param redactGender Whether to redact gender.
      * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
      *     no expiry.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -806,6 +814,7 @@ public final class AffindaAPI {
             String redactReferees,
             String redactLocations,
             String redactDates,
+            String redactGender,
             String expiryTime) {
         return createRedactedResumeAsync(
                         file,
@@ -822,6 +831,7 @@ public final class AffindaAPI {
                         redactReferees,
                         redactLocations,
                         redactDates,
+                        redactGender,
                         expiryTime)
                 .block();
     }
@@ -1025,7 +1035,7 @@ public final class AffindaAPI {
      * Upload a resume for reformatting.
      *
      * @param resumeFormat Identifier of the format used.
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -1058,7 +1068,7 @@ public final class AffindaAPI {
      * Upload a resume for reformatting.
      *
      * @param resumeFormat Identifier of the format used.
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -1098,7 +1108,7 @@ public final class AffindaAPI {
      * Upload a resume for reformatting.
      *
      * @param resumeFormat Identifier of the format used.
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -1284,7 +1294,7 @@ public final class AffindaAPI {
      * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
      * the [/invoices/{identifier}](#operation/getInvoice) endpoint to check processing status and retrieve results.
      *
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -1319,7 +1329,7 @@ public final class AffindaAPI {
      * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
      * the [/invoices/{identifier}](#operation/getInvoice) endpoint to check processing status and retrieve results.
      *
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.
@@ -1361,7 +1371,7 @@ public final class AffindaAPI {
      * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
      * the [/invoices/{identifier}](#operation/getInvoice) endpoint to check processing status and retrieve results.
      *
-     * @param file File as binary data blob.
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      * @param contentLength The contentLength parameter.
      * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
      *     automatically generated.

@@ -9,7 +9,8 @@ import reactor.core.publisher.Flux;
 @Fluent
 public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema {
     /*
-     * File as binary data blob
+     * File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF,
+     * HTML, PNG, JPG
      */
     @JsonProperty(value = "file")
     private Flux<ByteBuffer> file;
@@ -91,6 +92,12 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     private String redactDates;
 
     /*
+     * Whether to redact gender
+     */
+    @JsonProperty(value = "redactGender")
+    private String redactGender;
+
+    /*
      * The date/time in ISO-8601 format when the document will be automatically
      * deleted.  Defaults to no expiry.
      */
@@ -98,7 +105,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     private String expiryTime;
 
     /**
-     * Get the file property: File as binary data blob.
+     * Get the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      *
      * @return the file value.
      */
@@ -107,7 +114,7 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
     }
 
     /**
-     * Set the file property: File as binary data blob.
+     * Set the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      *
      * @param file the file value to set.
      * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
@@ -364,6 +371,27 @@ public final class Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartForm
      */
     public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactDates(String redactDates) {
         this.redactDates = redactDates;
+        return this;
+    }
+
+    /**
+     * Get the redactGender property: Whether to redact gender.
+     *
+     * @return the redactGender value.
+     */
+    public String getRedactGender() {
+        return this.redactGender;
+    }
+
+    /**
+     * Set the redactGender property: Whether to redact gender.
+     *
+     * @param redactGender the redactGender value to set.
+     * @return the Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema object itself.
+     */
+    public Paths8DdhfcRedactedResumesPostRequestbodyContentMultipartFormDataSchema setRedactGender(
+            String redactGender) {
+        this.redactGender = redactGender;
         return this;
     }
 
