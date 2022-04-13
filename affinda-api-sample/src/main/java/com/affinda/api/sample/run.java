@@ -13,7 +13,7 @@ public class run {
         credential = new AffindaTokenCredential("");
         AffindaAPI client = new AffindaAPIBuilder().credential(credential).buildClient();
         try {
-            Object all_resumes = client.getAllResumes();
+            Object all_resumes = client.getAllResumes(0,500);
             System.out.print(all_resumes);
         } catch (HttpResponseException e) {
             System.out.println(e.getMessage());

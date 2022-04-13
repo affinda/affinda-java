@@ -1,7 +1,9 @@
 package com.affinda.api.client;
 
+import com.affinda.api.client.models.PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.RequestError;
 import com.affinda.api.client.models.RequestErrorException;
+import com.affinda.api.client.models.ResumeSearchParameters;
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
@@ -33,30 +35,6 @@ import reactor.core.publisher.Mono;
 public final class AffindaAPI {
     /** The proxy service used to perform REST calls. */
     private final AffindaAPIService service;
-
-    /** The numbers of documents to return, defaults to 300. */
-    private final int limit;
-
-    /**
-     * Gets The numbers of documents to return, defaults to 300.
-     *
-     * @return the limit value.
-     */
-    public int getLimit() {
-        return this.limit;
-    }
-
-    /** The number of documents to skip before starting to collect the result set. */
-    private final int offset;
-
-    /**
-     * Gets The number of documents to skip before starting to collect the result set.
-     *
-     * @return the offset value.
-     */
-    public int getOffset() {
-        return this.offset;
-    }
 
     /** server parameter. */
     private final String host;
@@ -97,18 +75,14 @@ public final class AffindaAPI {
     /**
      * Initializes an instance of AffindaAPI client.
      *
-     * @param limit The numbers of documents to return, defaults to 300.
-     * @param offset The number of documents to skip before starting to collect the result set.
      * @param host server parameter.
      */
-    AffindaAPI(int limit, int offset, String host) {
+    AffindaAPI(String host) {
         this(
                 new HttpPipelineBuilder()
                         .policies(new UserAgentPolicy(), new RetryPolicy(), new CookiePolicy())
                         .build(),
                 JacksonAdapter.createDefaultSerializerAdapter(),
-                limit,
-                offset,
                 host);
     }
 
@@ -116,12 +90,10 @@ public final class AffindaAPI {
      * Initializes an instance of AffindaAPI client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
-     * @param limit The numbers of documents to return, defaults to 300.
-     * @param offset The number of documents to skip before starting to collect the result set.
      * @param host server parameter.
      */
-    AffindaAPI(HttpPipeline httpPipeline, int limit, int offset, String host) {
-        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), limit, offset, host);
+    AffindaAPI(HttpPipeline httpPipeline, String host) {
+        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), host);
     }
 
     /**
@@ -129,15 +101,11 @@ public final class AffindaAPI {
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
-     * @param limit The numbers of documents to return, defaults to 300.
-     * @param offset The number of documents to skip before starting to collect the result set.
      * @param host server parameter.
      */
-    AffindaAPI(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, int limit, int offset, String host) {
+    AffindaAPI(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String host) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
-        this.limit = limit;
-        this.offset = offset;
         this.host = host;
         this.service = RestProxy.create(AffindaAPIService.class, this.httpPipeline, this.getSerializerAdapter());
     }
@@ -151,8 +119,8 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllResumes(
                 @HostParam("$host") String host,
-                @QueryParam("limit") Integer limit,
                 @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
         // @Multipart not supported by RestProxy
@@ -192,8 +160,8 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllRedactedResumes(
                 @HostParam("$host") String host,
-                @QueryParam("limit") Integer limit,
                 @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
         // @Multipart not supported by RestProxy
@@ -241,8 +209,8 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllResumeFormats(
                 @HostParam("$host") String host,
-                @QueryParam("limit") Integer limit,
                 @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
         @Get("/reformatted_resumes")
@@ -250,8 +218,8 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllReformattedResumes(
                 @HostParam("$host") String host,
-                @QueryParam("limit") Integer limit,
                 @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
         // @Multipart not supported by RestProxy
@@ -286,13 +254,72 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
+        @Post("/resume_search")
+        @ExpectedResponses({201, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> createResumeSearch(
+                @HostParam("$host") String host,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @BodyParam("application/json") ResumeSearchParameters body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/index")
+        @ExpectedResponses({200, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getAllIndexes(
+                @HostParam("$host") String host,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @HeaderParam("Accept") String accept);
+
+        // @Multipart not supported by RestProxy
+        @Post("/index")
+        @ExpectedResponses({201, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> createIndex(
+                @HostParam("$host") String host,
+                @BodyParam("multipart/form-data") String name,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/index/{name}")
+        @ExpectedResponses({204, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<RequestError>> deleteIndex(
+                @HostParam("$host") String host, @PathParam("name") String name, @HeaderParam("Accept") String accept);
+
+        @Get("/index/{name}/documents")
+        @ExpectedResponses({200, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getAllIndexDocuments(
+                @HostParam("$host") String host, @PathParam("name") String name, @HeaderParam("Accept") String accept);
+
+        @Post("/index/{name}/documents")
+        @ExpectedResponses({201, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> createIndexDocument(
+                @HostParam("$host") String host,
+                @PathParam("name") String name,
+                @BodyParam("application/json")
+                        PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/index/{name}/documents/{identifier}")
+        @ExpectedResponses({204, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<RequestError>> deleteIndexDocument(
+                @HostParam("$host") String host,
+                @PathParam("name") String name,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
         @Get("/invoices")
         @ExpectedResponses({200, 400, 401, 404})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllInvoices(
                 @HostParam("$host") String host,
-                @QueryParam("limit") Integer limit,
                 @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
         // @Multipart not supported by RestProxy
@@ -326,31 +353,43 @@ public final class AffindaAPI {
                 @HostParam("$host") String host,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
+
+        @Get("/occupation_groups")
+        @ExpectedResponses({201, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> listOccupationGroups(
+                @HostParam("$host") String host, @HeaderParam("Accept") String accept);
     }
 
     /**
      * Returns all the resume summaries for that user, limited to 300 per page.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getAllResumesWithResponseAsync() {
+    public Mono<Response<Object>> getAllResumesWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllResumes(this.getHost(), this.getLimit(), this.getOffset(), accept);
+        return service.getAllResumes(this.getHost(), offset, limit, accept);
     }
 
     /**
      * Returns all the resume summaries for that user, limited to 300 per page.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getAllResumesAsync() {
-        return getAllResumesWithResponseAsync()
+    public Mono<Object> getAllResumesAsync(Integer offset, Integer limit) {
+        return getAllResumesWithResponseAsync(offset, limit)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -364,13 +403,16 @@ public final class AffindaAPI {
     /**
      * Returns all the resume summaries for that user, limited to 300 per page.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getAllResumes() {
-        return getAllResumesAsync().block();
+    public Object getAllResumes(Integer offset, Integer limit) {
+        return getAllResumesAsync(offset, limit).block();
     }
 
     /**
@@ -391,7 +433,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> createResumeWithResponseAsync(
@@ -426,7 +468,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Object> createResumeAsync(
@@ -490,7 +532,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> getResumeWithResponseAsync(String identifier) {
@@ -506,7 +548,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Object> getResumeAsync(String identifier) {
@@ -543,7 +585,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RequestError>> deleteResumeWithResponseAsync(String identifier) {
@@ -558,7 +600,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RequestError> deleteResumeAsync(String identifier) {
@@ -590,26 +632,32 @@ public final class AffindaAPI {
     /**
      * Returns all the redacted resume information for that resume.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getAllRedactedResumesWithResponseAsync() {
+    public Mono<Response<Object>> getAllRedactedResumesWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllRedactedResumes(this.getHost(), this.getLimit(), this.getOffset(), accept);
+        return service.getAllRedactedResumes(this.getHost(), offset, limit, accept);
     }
 
     /**
      * Returns all the redacted resume information for that resume.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getAllRedactedResumesAsync() {
-        return getAllRedactedResumesWithResponseAsync()
+    public Mono<Object> getAllRedactedResumesAsync(Integer offset, Integer limit) {
+        return getAllRedactedResumesWithResponseAsync(offset, limit)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -623,13 +671,16 @@ public final class AffindaAPI {
     /**
      * Returns all the redacted resume information for that resume.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getAllRedactedResumes() {
-        return getAllRedactedResumesAsync().block();
+    public Object getAllRedactedResumes(Integer offset, Integer limit) {
+        return getAllRedactedResumesAsync(offset, limit).block();
     }
 
     /**
@@ -657,7 +708,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> createRedactedResumeWithResponseAsync(
@@ -724,7 +775,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Object> createRedactedResumeAsync(
@@ -844,7 +895,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> getRedactedResumeWithResponseAsync(String identifier) {
@@ -860,7 +911,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Object> getRedactedResumeAsync(String identifier) {
@@ -897,7 +948,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RequestError>> deleteRedactedResumeWithResponseAsync(String identifier) {
@@ -912,7 +963,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RequestError> deleteRedactedResumeAsync(String identifier) {
@@ -944,26 +995,32 @@ public final class AffindaAPI {
     /**
      * Returns all the resume formats.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getAllResumeFormatsWithResponseAsync() {
+    public Mono<Response<Object>> getAllResumeFormatsWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllResumeFormats(this.getHost(), this.getLimit(), this.getOffset(), accept);
+        return service.getAllResumeFormats(this.getHost(), offset, limit, accept);
     }
 
     /**
      * Returns all the resume formats.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getAllResumeFormatsAsync() {
-        return getAllResumeFormatsWithResponseAsync()
+    public Mono<Object> getAllResumeFormatsAsync(Integer offset, Integer limit) {
+        return getAllResumeFormatsWithResponseAsync(offset, limit)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -977,38 +1034,47 @@ public final class AffindaAPI {
     /**
      * Returns all the resume formats.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getAllResumeFormats() {
-        return getAllResumeFormatsAsync().block();
+    public Object getAllResumeFormats(Integer offset, Integer limit) {
+        return getAllResumeFormatsAsync(offset, limit).block();
     }
 
     /**
      * Returns all the reformatted resume information for that resume.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getAllReformattedResumesWithResponseAsync() {
+    public Mono<Response<Object>> getAllReformattedResumesWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllReformattedResumes(this.getHost(), this.getLimit(), this.getOffset(), accept);
+        return service.getAllReformattedResumes(this.getHost(), offset, limit, accept);
     }
 
     /**
      * Returns all the reformatted resume information for that resume.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getAllReformattedResumesAsync() {
-        return getAllReformattedResumesWithResponseAsync()
+    public Mono<Object> getAllReformattedResumesAsync(Integer offset, Integer limit) {
+        return getAllReformattedResumesWithResponseAsync(offset, limit)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -1022,13 +1088,16 @@ public final class AffindaAPI {
     /**
      * Returns all the reformatted resume information for that resume.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getAllReformattedResumes() {
-        return getAllReformattedResumesAsync().block();
+    public Object getAllReformattedResumes(Integer offset, Integer limit) {
+        return getAllReformattedResumesAsync(offset, limit).block();
     }
 
     /**
@@ -1047,7 +1116,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> createReformattedResumeWithResponseAsync(
@@ -1080,7 +1149,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Object> createReformattedResumeAsync(
@@ -1146,7 +1215,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> getReformattedResumeWithResponseAsync(String identifier) {
@@ -1163,7 +1232,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Object> getReformattedResumeAsync(String identifier) {
@@ -1201,7 +1270,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RequestError>> deleteReformattedResumeWithResponseAsync(String identifier) {
@@ -1216,7 +1285,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RequestError> deleteReformattedResumeAsync(String identifier) {
@@ -1246,28 +1315,410 @@ public final class AffindaAPI {
     }
 
     /**
-     * Returns all the invoice summaries for that user, limited to 300 per page.
+     * Searches through parsed resumes.
      *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> createResumeSearchWithResponseAsync(
+            ResumeSearchParameters body, Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.createResumeSearch(this.getHost(), offset, limit, body, accept);
+    }
+
+    /**
+     * Searches through parsed resumes.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> createResumeSearchAsync(ResumeSearchParameters body, Integer offset, Integer limit) {
+        return createResumeSearchWithResponseAsync(body, offset, limit)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Searches through parsed resumes.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getAllInvoicesWithResponseAsync() {
+    public Object createResumeSearch(ResumeSearchParameters body, Integer offset, Integer limit) {
+        return createResumeSearchAsync(body, offset, limit).block();
+    }
+
+    /**
+     * Returns all the indexes.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getAllIndexesWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllInvoices(this.getHost(), this.getLimit(), this.getOffset(), accept);
+        return service.getAllIndexes(this.getHost(), offset, limit, accept);
+    }
+
+    /**
+     * Returns all the indexes.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getAllIndexesAsync(Integer offset, Integer limit) {
+        return getAllIndexesWithResponseAsync(offset, limit)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns all the indexes.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getAllIndexes(Integer offset, Integer limit) {
+        return getAllIndexesAsync(offset, limit).block();
+    }
+
+    /**
+     * Create an index for the search tool.
+     *
+     * @param name The name parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> createIndexWithResponseAsync(String name) {
+        final String accept = "application/json";
+        return service.createIndex(this.getHost(), name, accept);
+    }
+
+    /**
+     * Create an index for the search tool.
+     *
+     * @param name The name parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> createIndexAsync(String name) {
+        return createIndexWithResponseAsync(name)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create an index for the search tool.
+     *
+     * @param name The name parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object createIndex(String name) {
+        return createIndexAsync(name).block();
+    }
+
+    /**
+     * Deletes the specified index from the database.
+     *
+     * @param name Index name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<RequestError>> deleteIndexWithResponseAsync(String name) {
+        final String accept = "application/json";
+        return service.deleteIndex(this.getHost(), name, accept);
+    }
+
+    /**
+     * Deletes the specified index from the database.
+     *
+     * @param name Index name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<RequestError> deleteIndexAsync(String name) {
+        return deleteIndexWithResponseAsync(name)
+                .flatMap(
+                        (Response<RequestError> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Deletes the specified index from the database.
+     *
+     * @param name Index name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RequestError deleteIndex(String name) {
+        return deleteIndexAsync(name).block();
+    }
+
+    /**
+     * Returns all the indexed documents for that index.
+     *
+     * @param name Index name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getAllIndexDocumentsWithResponseAsync(String name) {
+        final String accept = "application/json";
+        return service.getAllIndexDocuments(this.getHost(), name, accept);
+    }
+
+    /**
+     * Returns all the indexed documents for that index.
+     *
+     * @param name Index name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getAllIndexDocumentsAsync(String name) {
+        return getAllIndexDocumentsWithResponseAsync(name)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns all the indexed documents for that index.
+     *
+     * @param name Index name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getAllIndexDocuments(String name) {
+        return getAllIndexDocumentsAsync(name).block();
+    }
+
+    /**
+     * Create an indexed document for the search tool.
+     *
+     * @param name Index name.
+     * @param body Document to index.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> createIndexDocumentWithResponseAsync(
+            String name, PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
+        final String accept = "application/json";
+        return service.createIndexDocument(this.getHost(), name, body, accept);
+    }
+
+    /**
+     * Create an indexed document for the search tool.
+     *
+     * @param name Index name.
+     * @param body Document to index.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> createIndexDocumentAsync(
+            String name, PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
+        return createIndexDocumentWithResponseAsync(name, body)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create an indexed document for the search tool.
+     *
+     * @param name Index name.
+     * @param body Document to index.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object createIndexDocument(
+            String name, PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
+        return createIndexDocumentAsync(name, body).block();
+    }
+
+    /**
+     * Delete the specified indexed document from the database.
+     *
+     * @param name Index name.
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<RequestError>> deleteIndexDocumentWithResponseAsync(String name, String identifier) {
+        final String accept = "application/json";
+        return service.deleteIndexDocument(this.getHost(), name, identifier, accept);
+    }
+
+    /**
+     * Delete the specified indexed document from the database.
+     *
+     * @param name Index name.
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<RequestError> deleteIndexDocumentAsync(String name, String identifier) {
+        return deleteIndexDocumentWithResponseAsync(name, identifier)
+                .flatMap(
+                        (Response<RequestError> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Delete the specified indexed document from the database.
+     *
+     * @param name Index name.
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RequestError deleteIndexDocument(String name, String identifier) {
+        return deleteIndexDocumentAsync(name, identifier).block();
     }
 
     /**
      * Returns all the invoice summaries for that user, limited to 300 per page.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getAllInvoicesAsync() {
-        return getAllInvoicesWithResponseAsync()
+    public Mono<Response<Object>> getAllInvoicesWithResponseAsync(Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.getAllInvoices(this.getHost(), offset, limit, accept);
+    }
+
+    /**
+     * Returns all the invoice summaries for that user, limited to 300 per page.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getAllInvoicesAsync(Integer offset, Integer limit) {
+        return getAllInvoicesWithResponseAsync(offset, limit)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -1281,13 +1732,16 @@ public final class AffindaAPI {
     /**
      * Returns all the invoice summaries for that user, limited to 300 per page.
      *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getAllInvoices() {
-        return getAllInvoicesAsync().block();
+    public Object getAllInvoices(Integer offset, Integer limit) {
+        return getAllInvoicesAsync(offset, limit).block();
     }
 
     /**
@@ -1308,7 +1762,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> createInvoiceWithResponseAsync(
@@ -1343,7 +1797,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Object> createInvoiceAsync(
@@ -1408,7 +1862,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> getInvoiceWithResponseAsync(String identifier) {
@@ -1424,7 +1878,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Object> getInvoiceAsync(String identifier) {
@@ -1461,7 +1915,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RequestError>> deleteInvoiceWithResponseAsync(String identifier) {
@@ -1476,7 +1930,7 @@ public final class AffindaAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RequestError> deleteInvoiceAsync(String identifier) {
@@ -1503,5 +1957,50 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public RequestError deleteInvoice(String identifier) {
         return deleteInvoiceAsync(identifier).block();
+    }
+
+    /**
+     * TODO TODO TODO.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> listOccupationGroupsWithResponseAsync() {
+        final String accept = "application/json";
+        return service.listOccupationGroups(this.getHost(), accept);
+    }
+
+    /**
+     * TODO TODO TODO.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> listOccupationGroupsAsync() {
+        return listOccupationGroupsWithResponseAsync()
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * TODO TODO TODO.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object listOccupationGroups() {
+        return listOccupationGroupsAsync().block();
     }
 }

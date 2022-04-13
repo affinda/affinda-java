@@ -31,6 +31,12 @@ public final class Location {
     private String country;
 
     /*
+     * Two letter country code (ISO 3166-1 alpha-2)
+     */
+    @JsonProperty(value = "countryCode")
+    private String countryCode;
+
+    /*
      * The rawInput property.
      */
     @JsonProperty(value = "rawInput", required = true)
@@ -137,6 +143,26 @@ public final class Location {
      */
     public Location setCountry(String country) {
         this.country = country;
+        return this;
+    }
+
+    /**
+     * Get the countryCode property: Two letter country code (ISO 3166-1 alpha-2).
+     *
+     * @return the countryCode value.
+     */
+    public String getCountryCode() {
+        return this.countryCode;
+    }
+
+    /**
+     * Set the countryCode property: Two letter country code (ISO 3166-1 alpha-2).
+     *
+     * @param countryCode the countryCode value to set.
+     * @return the Location object itself.
+     */
+    public Location setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
         return this;
     }
 

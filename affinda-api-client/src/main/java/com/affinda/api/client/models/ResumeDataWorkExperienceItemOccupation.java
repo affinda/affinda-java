@@ -23,7 +23,7 @@ public final class ResumeDataWorkExperienceItemOccupation {
      * The managementLevel property.
      */
     @JsonProperty(value = "managementLevel")
-    private Enum0 managementLevel;
+    private ManagementLevel managementLevel;
 
     /*
      * The classification property.
@@ -79,7 +79,7 @@ public final class ResumeDataWorkExperienceItemOccupation {
      *
      * @return the managementLevel value.
      */
-    public Enum0 getManagementLevel() {
+    public ManagementLevel getManagementLevel() {
         return this.managementLevel;
     }
 
@@ -89,7 +89,7 @@ public final class ResumeDataWorkExperienceItemOccupation {
      * @param managementLevel the managementLevel value to set.
      * @return the ResumeDataWorkExperienceItemOccupation object itself.
      */
-    public ResumeDataWorkExperienceItemOccupation setManagementLevel(Enum0 managementLevel) {
+    public ResumeDataWorkExperienceItemOccupation setManagementLevel(ManagementLevel managementLevel) {
         this.managementLevel = managementLevel;
         return this;
     }
