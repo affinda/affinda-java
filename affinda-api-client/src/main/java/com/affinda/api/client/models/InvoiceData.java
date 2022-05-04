@@ -10,218 +10,218 @@ public final class InvoiceData {
      * The invoiceDate property.
      */
     @JsonProperty(value = "invoiceDate")
-    private String invoiceDate;
+    private DateAnnotation invoiceDate;
 
     /*
      * The invoiceOrderDate property.
      */
     @JsonProperty(value = "invoiceOrderDate")
-    private String invoiceOrderDate;
+    private DateAnnotation invoiceOrderDate;
 
     /*
      * The paymentDateDue property.
      */
     @JsonProperty(value = "paymentDateDue")
-    private String paymentDateDue;
+    private DateAnnotation paymentDateDue;
 
     /*
      * The paymentAmountBase property.
      */
     @JsonProperty(value = "paymentAmountBase")
-    private String paymentAmountBase;
+    private InvoiceDataPaymentAmountBase paymentAmountBase;
 
     /*
      * The paymentAmountTax property.
      */
     @JsonProperty(value = "paymentAmountTax")
-    private String paymentAmountTax;
+    private InvoiceDataPaymentAmountTax paymentAmountTax;
 
     /*
      * The paymentAmountTotal property.
      */
     @JsonProperty(value = "paymentAmountTotal")
-    private String paymentAmountTotal;
+    private InvoiceDataPaymentAmountTotal paymentAmountTotal;
 
     /*
      * The paymentAmountPaid property.
      */
     @JsonProperty(value = "paymentAmountPaid")
-    private String paymentAmountPaid;
+    private InvoiceDataPaymentAmountPaid paymentAmountPaid;
 
     /*
      * The paymentAmountDue property.
      */
     @JsonProperty(value = "paymentAmountDue")
-    private String paymentAmountDue;
+    private InvoiceDataPaymentAmountDue paymentAmountDue;
 
     /*
      * The invoiceNumber property.
      */
     @JsonProperty(value = "invoiceNumber")
-    private String invoiceNumber;
+    private InvoiceDataInvoiceNumber invoiceNumber;
 
     /*
      * The invoicePurchaseOrderNumber property.
      */
     @JsonProperty(value = "invoicePurchaseOrderNumber")
-    private String invoicePurchaseOrderNumber;
+    private InvoiceDataInvoicePurchaseOrderNumber invoicePurchaseOrderNumber;
 
     /*
      * The supplierBusinessNumber property.
      */
     @JsonProperty(value = "supplierBusinessNumber")
-    private String supplierBusinessNumber;
+    private InvoiceDataSupplierBusinessNumber supplierBusinessNumber;
 
     /*
      * The customerNumber property.
      */
     @JsonProperty(value = "customerNumber")
-    private String customerNumber;
+    private InvoiceDataCustomerNumber customerNumber;
 
     /*
      * The customerBusinessNumber property.
      */
     @JsonProperty(value = "customerBusinessNumber")
-    private String customerBusinessNumber;
+    private InvoiceDataCustomerBusinessNumber customerBusinessNumber;
 
     /*
      * The paymentReference property.
      */
     @JsonProperty(value = "paymentReference")
-    private String paymentReference;
+    private InvoiceDataPaymentReference paymentReference;
 
     /*
      * The bankAccountNumber property.
      */
     @JsonProperty(value = "bankAccountNumber")
-    private String bankAccountNumber;
+    private InvoiceDataBankAccountNumber bankAccountNumber;
 
     /*
      * The supplierVAT property.
      */
     @JsonProperty(value = "supplierVAT")
-    private String supplierVAT;
+    private InvoiceDataSupplierVAT supplierVAT;
 
     /*
      * The customerVAT property.
      */
     @JsonProperty(value = "customerVAT")
-    private String customerVAT;
+    private InvoiceDataCustomerVAT customerVAT;
 
     /*
      * The bpayBillerCode property.
      */
     @JsonProperty(value = "bpayBillerCode")
-    private String bpayBillerCode;
+    private InvoiceDataBpayBillerCode bpayBillerCode;
 
     /*
      * The bpayReference property.
      */
     @JsonProperty(value = "bpayReference")
-    private String bpayReference;
+    private InvoiceDataBpayReference bpayReference;
 
     /*
      * The bankSortCode property.
      */
     @JsonProperty(value = "bankSortCode")
-    private String bankSortCode;
+    private InvoiceDataBankSortCode bankSortCode;
 
     /*
      * The bankIBAN property.
      */
     @JsonProperty(value = "bankIBAN")
-    private String bankIban;
+    private InvoiceDataBankIban bankIban;
 
     /*
      * The bankSwift property.
      */
     @JsonProperty(value = "bankSwift")
-    private String bankSwift;
+    private InvoiceDataBankSwift bankSwift;
 
     /*
      * The bankBSB property.
      */
     @JsonProperty(value = "bankBSB")
-    private String bankBSB;
+    private InvoiceDataBankBSB bankBSB;
 
     /*
      * The customerContactName property.
      */
     @JsonProperty(value = "customerContactName")
-    private String customerContactName;
+    private InvoiceDataCustomerContactName customerContactName;
 
     /*
      * The customerCompanyName property.
      */
     @JsonProperty(value = "customerCompanyName")
-    private String customerCompanyName;
+    private InvoiceDataCustomerCompanyName customerCompanyName;
 
     /*
      * The supplierCompanyName property.
      */
     @JsonProperty(value = "supplierCompanyName")
-    private String supplierCompanyName;
+    private InvoiceDataSupplierCompanyName supplierCompanyName;
 
     /*
      * The customerBillingAddress property.
      */
     @JsonProperty(value = "customerBillingAddress")
-    private Location customerBillingAddress;
+    private LocationAnnotation customerBillingAddress;
 
     /*
      * The customerDeliveryAddress property.
      */
     @JsonProperty(value = "customerDeliveryAddress")
-    private Location customerDeliveryAddress;
+    private LocationAnnotation customerDeliveryAddress;
 
     /*
      * The supplierAddress property.
      */
     @JsonProperty(value = "supplierAddress")
-    private Location supplierAddress;
+    private LocationAnnotation supplierAddress;
 
     /*
      * The customerPhoneNumber property.
      */
     @JsonProperty(value = "customerPhoneNumber")
-    private String customerPhoneNumber;
+    private InvoiceDataCustomerPhoneNumber customerPhoneNumber;
 
     /*
      * The supplierPhoneNumber property.
      */
     @JsonProperty(value = "supplierPhoneNumber")
-    private String supplierPhoneNumber;
+    private InvoiceDataSupplierPhoneNumber supplierPhoneNumber;
 
     /*
      * The supplierFax property.
      */
     @JsonProperty(value = "supplierFax")
-    private String supplierFax;
+    private InvoiceDataSupplierFax supplierFax;
 
     /*
      * The customerEmail property.
      */
     @JsonProperty(value = "customerEmail")
-    private String customerEmail;
+    private InvoiceDataCustomerEmail customerEmail;
 
     /*
      * The supplierEmail property.
      */
     @JsonProperty(value = "supplierEmail")
-    private String supplierEmail;
+    private InvoiceDataSupplierEmail supplierEmail;
 
     /*
      * The supplierWebsite property.
      */
     @JsonProperty(value = "supplierWebsite")
-    private String supplierWebsite;
+    private InvoiceDataSupplierWebsite supplierWebsite;
 
     /**
      * Get the invoiceDate property: The invoiceDate property.
      *
      * @return the invoiceDate value.
      */
-    public String getInvoiceDate() {
+    public DateAnnotation getInvoiceDate() {
         return this.invoiceDate;
     }
 
@@ -231,7 +231,7 @@ public final class InvoiceData {
      * @param invoiceDate the invoiceDate value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setInvoiceDate(String invoiceDate) {
+    public InvoiceData setInvoiceDate(DateAnnotation invoiceDate) {
         this.invoiceDate = invoiceDate;
         return this;
     }
@@ -241,7 +241,7 @@ public final class InvoiceData {
      *
      * @return the invoiceOrderDate value.
      */
-    public String getInvoiceOrderDate() {
+    public DateAnnotation getInvoiceOrderDate() {
         return this.invoiceOrderDate;
     }
 
@@ -251,7 +251,7 @@ public final class InvoiceData {
      * @param invoiceOrderDate the invoiceOrderDate value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setInvoiceOrderDate(String invoiceOrderDate) {
+    public InvoiceData setInvoiceOrderDate(DateAnnotation invoiceOrderDate) {
         this.invoiceOrderDate = invoiceOrderDate;
         return this;
     }
@@ -261,7 +261,7 @@ public final class InvoiceData {
      *
      * @return the paymentDateDue value.
      */
-    public String getPaymentDateDue() {
+    public DateAnnotation getPaymentDateDue() {
         return this.paymentDateDue;
     }
 
@@ -271,7 +271,7 @@ public final class InvoiceData {
      * @param paymentDateDue the paymentDateDue value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setPaymentDateDue(String paymentDateDue) {
+    public InvoiceData setPaymentDateDue(DateAnnotation paymentDateDue) {
         this.paymentDateDue = paymentDateDue;
         return this;
     }
@@ -281,7 +281,7 @@ public final class InvoiceData {
      *
      * @return the paymentAmountBase value.
      */
-    public String getPaymentAmountBase() {
+    public InvoiceDataPaymentAmountBase getPaymentAmountBase() {
         return this.paymentAmountBase;
     }
 
@@ -291,7 +291,7 @@ public final class InvoiceData {
      * @param paymentAmountBase the paymentAmountBase value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setPaymentAmountBase(String paymentAmountBase) {
+    public InvoiceData setPaymentAmountBase(InvoiceDataPaymentAmountBase paymentAmountBase) {
         this.paymentAmountBase = paymentAmountBase;
         return this;
     }
@@ -301,7 +301,7 @@ public final class InvoiceData {
      *
      * @return the paymentAmountTax value.
      */
-    public String getPaymentAmountTax() {
+    public InvoiceDataPaymentAmountTax getPaymentAmountTax() {
         return this.paymentAmountTax;
     }
 
@@ -311,7 +311,7 @@ public final class InvoiceData {
      * @param paymentAmountTax the paymentAmountTax value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setPaymentAmountTax(String paymentAmountTax) {
+    public InvoiceData setPaymentAmountTax(InvoiceDataPaymentAmountTax paymentAmountTax) {
         this.paymentAmountTax = paymentAmountTax;
         return this;
     }
@@ -321,7 +321,7 @@ public final class InvoiceData {
      *
      * @return the paymentAmountTotal value.
      */
-    public String getPaymentAmountTotal() {
+    public InvoiceDataPaymentAmountTotal getPaymentAmountTotal() {
         return this.paymentAmountTotal;
     }
 
@@ -331,7 +331,7 @@ public final class InvoiceData {
      * @param paymentAmountTotal the paymentAmountTotal value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setPaymentAmountTotal(String paymentAmountTotal) {
+    public InvoiceData setPaymentAmountTotal(InvoiceDataPaymentAmountTotal paymentAmountTotal) {
         this.paymentAmountTotal = paymentAmountTotal;
         return this;
     }
@@ -341,7 +341,7 @@ public final class InvoiceData {
      *
      * @return the paymentAmountPaid value.
      */
-    public String getPaymentAmountPaid() {
+    public InvoiceDataPaymentAmountPaid getPaymentAmountPaid() {
         return this.paymentAmountPaid;
     }
 
@@ -351,7 +351,7 @@ public final class InvoiceData {
      * @param paymentAmountPaid the paymentAmountPaid value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setPaymentAmountPaid(String paymentAmountPaid) {
+    public InvoiceData setPaymentAmountPaid(InvoiceDataPaymentAmountPaid paymentAmountPaid) {
         this.paymentAmountPaid = paymentAmountPaid;
         return this;
     }
@@ -361,7 +361,7 @@ public final class InvoiceData {
      *
      * @return the paymentAmountDue value.
      */
-    public String getPaymentAmountDue() {
+    public InvoiceDataPaymentAmountDue getPaymentAmountDue() {
         return this.paymentAmountDue;
     }
 
@@ -371,7 +371,7 @@ public final class InvoiceData {
      * @param paymentAmountDue the paymentAmountDue value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setPaymentAmountDue(String paymentAmountDue) {
+    public InvoiceData setPaymentAmountDue(InvoiceDataPaymentAmountDue paymentAmountDue) {
         this.paymentAmountDue = paymentAmountDue;
         return this;
     }
@@ -381,7 +381,7 @@ public final class InvoiceData {
      *
      * @return the invoiceNumber value.
      */
-    public String getInvoiceNumber() {
+    public InvoiceDataInvoiceNumber getInvoiceNumber() {
         return this.invoiceNumber;
     }
 
@@ -391,7 +391,7 @@ public final class InvoiceData {
      * @param invoiceNumber the invoiceNumber value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setInvoiceNumber(String invoiceNumber) {
+    public InvoiceData setInvoiceNumber(InvoiceDataInvoiceNumber invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
         return this;
     }
@@ -401,7 +401,7 @@ public final class InvoiceData {
      *
      * @return the invoicePurchaseOrderNumber value.
      */
-    public String getInvoicePurchaseOrderNumber() {
+    public InvoiceDataInvoicePurchaseOrderNumber getInvoicePurchaseOrderNumber() {
         return this.invoicePurchaseOrderNumber;
     }
 
@@ -411,7 +411,7 @@ public final class InvoiceData {
      * @param invoicePurchaseOrderNumber the invoicePurchaseOrderNumber value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setInvoicePurchaseOrderNumber(String invoicePurchaseOrderNumber) {
+    public InvoiceData setInvoicePurchaseOrderNumber(InvoiceDataInvoicePurchaseOrderNumber invoicePurchaseOrderNumber) {
         this.invoicePurchaseOrderNumber = invoicePurchaseOrderNumber;
         return this;
     }
@@ -421,7 +421,7 @@ public final class InvoiceData {
      *
      * @return the supplierBusinessNumber value.
      */
-    public String getSupplierBusinessNumber() {
+    public InvoiceDataSupplierBusinessNumber getSupplierBusinessNumber() {
         return this.supplierBusinessNumber;
     }
 
@@ -431,7 +431,7 @@ public final class InvoiceData {
      * @param supplierBusinessNumber the supplierBusinessNumber value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierBusinessNumber(String supplierBusinessNumber) {
+    public InvoiceData setSupplierBusinessNumber(InvoiceDataSupplierBusinessNumber supplierBusinessNumber) {
         this.supplierBusinessNumber = supplierBusinessNumber;
         return this;
     }
@@ -441,7 +441,7 @@ public final class InvoiceData {
      *
      * @return the customerNumber value.
      */
-    public String getCustomerNumber() {
+    public InvoiceDataCustomerNumber getCustomerNumber() {
         return this.customerNumber;
     }
 
@@ -451,7 +451,7 @@ public final class InvoiceData {
      * @param customerNumber the customerNumber value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerNumber(String customerNumber) {
+    public InvoiceData setCustomerNumber(InvoiceDataCustomerNumber customerNumber) {
         this.customerNumber = customerNumber;
         return this;
     }
@@ -461,7 +461,7 @@ public final class InvoiceData {
      *
      * @return the customerBusinessNumber value.
      */
-    public String getCustomerBusinessNumber() {
+    public InvoiceDataCustomerBusinessNumber getCustomerBusinessNumber() {
         return this.customerBusinessNumber;
     }
 
@@ -471,7 +471,7 @@ public final class InvoiceData {
      * @param customerBusinessNumber the customerBusinessNumber value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerBusinessNumber(String customerBusinessNumber) {
+    public InvoiceData setCustomerBusinessNumber(InvoiceDataCustomerBusinessNumber customerBusinessNumber) {
         this.customerBusinessNumber = customerBusinessNumber;
         return this;
     }
@@ -481,7 +481,7 @@ public final class InvoiceData {
      *
      * @return the paymentReference value.
      */
-    public String getPaymentReference() {
+    public InvoiceDataPaymentReference getPaymentReference() {
         return this.paymentReference;
     }
 
@@ -491,7 +491,7 @@ public final class InvoiceData {
      * @param paymentReference the paymentReference value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setPaymentReference(String paymentReference) {
+    public InvoiceData setPaymentReference(InvoiceDataPaymentReference paymentReference) {
         this.paymentReference = paymentReference;
         return this;
     }
@@ -501,7 +501,7 @@ public final class InvoiceData {
      *
      * @return the bankAccountNumber value.
      */
-    public String getBankAccountNumber() {
+    public InvoiceDataBankAccountNumber getBankAccountNumber() {
         return this.bankAccountNumber;
     }
 
@@ -511,7 +511,7 @@ public final class InvoiceData {
      * @param bankAccountNumber the bankAccountNumber value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setBankAccountNumber(String bankAccountNumber) {
+    public InvoiceData setBankAccountNumber(InvoiceDataBankAccountNumber bankAccountNumber) {
         this.bankAccountNumber = bankAccountNumber;
         return this;
     }
@@ -521,7 +521,7 @@ public final class InvoiceData {
      *
      * @return the supplierVAT value.
      */
-    public String getSupplierVAT() {
+    public InvoiceDataSupplierVAT getSupplierVAT() {
         return this.supplierVAT;
     }
 
@@ -531,7 +531,7 @@ public final class InvoiceData {
      * @param supplierVAT the supplierVAT value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierVAT(String supplierVAT) {
+    public InvoiceData setSupplierVAT(InvoiceDataSupplierVAT supplierVAT) {
         this.supplierVAT = supplierVAT;
         return this;
     }
@@ -541,7 +541,7 @@ public final class InvoiceData {
      *
      * @return the customerVAT value.
      */
-    public String getCustomerVAT() {
+    public InvoiceDataCustomerVAT getCustomerVAT() {
         return this.customerVAT;
     }
 
@@ -551,7 +551,7 @@ public final class InvoiceData {
      * @param customerVAT the customerVAT value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerVAT(String customerVAT) {
+    public InvoiceData setCustomerVAT(InvoiceDataCustomerVAT customerVAT) {
         this.customerVAT = customerVAT;
         return this;
     }
@@ -561,7 +561,7 @@ public final class InvoiceData {
      *
      * @return the bpayBillerCode value.
      */
-    public String getBpayBillerCode() {
+    public InvoiceDataBpayBillerCode getBpayBillerCode() {
         return this.bpayBillerCode;
     }
 
@@ -571,7 +571,7 @@ public final class InvoiceData {
      * @param bpayBillerCode the bpayBillerCode value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setBpayBillerCode(String bpayBillerCode) {
+    public InvoiceData setBpayBillerCode(InvoiceDataBpayBillerCode bpayBillerCode) {
         this.bpayBillerCode = bpayBillerCode;
         return this;
     }
@@ -581,7 +581,7 @@ public final class InvoiceData {
      *
      * @return the bpayReference value.
      */
-    public String getBpayReference() {
+    public InvoiceDataBpayReference getBpayReference() {
         return this.bpayReference;
     }
 
@@ -591,7 +591,7 @@ public final class InvoiceData {
      * @param bpayReference the bpayReference value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setBpayReference(String bpayReference) {
+    public InvoiceData setBpayReference(InvoiceDataBpayReference bpayReference) {
         this.bpayReference = bpayReference;
         return this;
     }
@@ -601,7 +601,7 @@ public final class InvoiceData {
      *
      * @return the bankSortCode value.
      */
-    public String getBankSortCode() {
+    public InvoiceDataBankSortCode getBankSortCode() {
         return this.bankSortCode;
     }
 
@@ -611,7 +611,7 @@ public final class InvoiceData {
      * @param bankSortCode the bankSortCode value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setBankSortCode(String bankSortCode) {
+    public InvoiceData setBankSortCode(InvoiceDataBankSortCode bankSortCode) {
         this.bankSortCode = bankSortCode;
         return this;
     }
@@ -621,7 +621,7 @@ public final class InvoiceData {
      *
      * @return the bankIban value.
      */
-    public String getBankIban() {
+    public InvoiceDataBankIban getBankIban() {
         return this.bankIban;
     }
 
@@ -631,7 +631,7 @@ public final class InvoiceData {
      * @param bankIban the bankIban value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setBankIban(String bankIban) {
+    public InvoiceData setBankIban(InvoiceDataBankIban bankIban) {
         this.bankIban = bankIban;
         return this;
     }
@@ -641,7 +641,7 @@ public final class InvoiceData {
      *
      * @return the bankSwift value.
      */
-    public String getBankSwift() {
+    public InvoiceDataBankSwift getBankSwift() {
         return this.bankSwift;
     }
 
@@ -651,7 +651,7 @@ public final class InvoiceData {
      * @param bankSwift the bankSwift value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setBankSwift(String bankSwift) {
+    public InvoiceData setBankSwift(InvoiceDataBankSwift bankSwift) {
         this.bankSwift = bankSwift;
         return this;
     }
@@ -661,7 +661,7 @@ public final class InvoiceData {
      *
      * @return the bankBSB value.
      */
-    public String getBankBSB() {
+    public InvoiceDataBankBSB getBankBSB() {
         return this.bankBSB;
     }
 
@@ -671,7 +671,7 @@ public final class InvoiceData {
      * @param bankBSB the bankBSB value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setBankBSB(String bankBSB) {
+    public InvoiceData setBankBSB(InvoiceDataBankBSB bankBSB) {
         this.bankBSB = bankBSB;
         return this;
     }
@@ -681,7 +681,7 @@ public final class InvoiceData {
      *
      * @return the customerContactName value.
      */
-    public String getCustomerContactName() {
+    public InvoiceDataCustomerContactName getCustomerContactName() {
         return this.customerContactName;
     }
 
@@ -691,7 +691,7 @@ public final class InvoiceData {
      * @param customerContactName the customerContactName value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerContactName(String customerContactName) {
+    public InvoiceData setCustomerContactName(InvoiceDataCustomerContactName customerContactName) {
         this.customerContactName = customerContactName;
         return this;
     }
@@ -701,7 +701,7 @@ public final class InvoiceData {
      *
      * @return the customerCompanyName value.
      */
-    public String getCustomerCompanyName() {
+    public InvoiceDataCustomerCompanyName getCustomerCompanyName() {
         return this.customerCompanyName;
     }
 
@@ -711,7 +711,7 @@ public final class InvoiceData {
      * @param customerCompanyName the customerCompanyName value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerCompanyName(String customerCompanyName) {
+    public InvoiceData setCustomerCompanyName(InvoiceDataCustomerCompanyName customerCompanyName) {
         this.customerCompanyName = customerCompanyName;
         return this;
     }
@@ -721,7 +721,7 @@ public final class InvoiceData {
      *
      * @return the supplierCompanyName value.
      */
-    public String getSupplierCompanyName() {
+    public InvoiceDataSupplierCompanyName getSupplierCompanyName() {
         return this.supplierCompanyName;
     }
 
@@ -731,7 +731,7 @@ public final class InvoiceData {
      * @param supplierCompanyName the supplierCompanyName value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierCompanyName(String supplierCompanyName) {
+    public InvoiceData setSupplierCompanyName(InvoiceDataSupplierCompanyName supplierCompanyName) {
         this.supplierCompanyName = supplierCompanyName;
         return this;
     }
@@ -741,7 +741,7 @@ public final class InvoiceData {
      *
      * @return the customerBillingAddress value.
      */
-    public Location getCustomerBillingAddress() {
+    public LocationAnnotation getCustomerBillingAddress() {
         return this.customerBillingAddress;
     }
 
@@ -751,7 +751,7 @@ public final class InvoiceData {
      * @param customerBillingAddress the customerBillingAddress value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerBillingAddress(Location customerBillingAddress) {
+    public InvoiceData setCustomerBillingAddress(LocationAnnotation customerBillingAddress) {
         this.customerBillingAddress = customerBillingAddress;
         return this;
     }
@@ -761,7 +761,7 @@ public final class InvoiceData {
      *
      * @return the customerDeliveryAddress value.
      */
-    public Location getCustomerDeliveryAddress() {
+    public LocationAnnotation getCustomerDeliveryAddress() {
         return this.customerDeliveryAddress;
     }
 
@@ -771,7 +771,7 @@ public final class InvoiceData {
      * @param customerDeliveryAddress the customerDeliveryAddress value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerDeliveryAddress(Location customerDeliveryAddress) {
+    public InvoiceData setCustomerDeliveryAddress(LocationAnnotation customerDeliveryAddress) {
         this.customerDeliveryAddress = customerDeliveryAddress;
         return this;
     }
@@ -781,7 +781,7 @@ public final class InvoiceData {
      *
      * @return the supplierAddress value.
      */
-    public Location getSupplierAddress() {
+    public LocationAnnotation getSupplierAddress() {
         return this.supplierAddress;
     }
 
@@ -791,7 +791,7 @@ public final class InvoiceData {
      * @param supplierAddress the supplierAddress value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierAddress(Location supplierAddress) {
+    public InvoiceData setSupplierAddress(LocationAnnotation supplierAddress) {
         this.supplierAddress = supplierAddress;
         return this;
     }
@@ -801,7 +801,7 @@ public final class InvoiceData {
      *
      * @return the customerPhoneNumber value.
      */
-    public String getCustomerPhoneNumber() {
+    public InvoiceDataCustomerPhoneNumber getCustomerPhoneNumber() {
         return this.customerPhoneNumber;
     }
 
@@ -811,7 +811,7 @@ public final class InvoiceData {
      * @param customerPhoneNumber the customerPhoneNumber value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerPhoneNumber(String customerPhoneNumber) {
+    public InvoiceData setCustomerPhoneNumber(InvoiceDataCustomerPhoneNumber customerPhoneNumber) {
         this.customerPhoneNumber = customerPhoneNumber;
         return this;
     }
@@ -821,7 +821,7 @@ public final class InvoiceData {
      *
      * @return the supplierPhoneNumber value.
      */
-    public String getSupplierPhoneNumber() {
+    public InvoiceDataSupplierPhoneNumber getSupplierPhoneNumber() {
         return this.supplierPhoneNumber;
     }
 
@@ -831,7 +831,7 @@ public final class InvoiceData {
      * @param supplierPhoneNumber the supplierPhoneNumber value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierPhoneNumber(String supplierPhoneNumber) {
+    public InvoiceData setSupplierPhoneNumber(InvoiceDataSupplierPhoneNumber supplierPhoneNumber) {
         this.supplierPhoneNumber = supplierPhoneNumber;
         return this;
     }
@@ -841,7 +841,7 @@ public final class InvoiceData {
      *
      * @return the supplierFax value.
      */
-    public String getSupplierFax() {
+    public InvoiceDataSupplierFax getSupplierFax() {
         return this.supplierFax;
     }
 
@@ -851,7 +851,7 @@ public final class InvoiceData {
      * @param supplierFax the supplierFax value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierFax(String supplierFax) {
+    public InvoiceData setSupplierFax(InvoiceDataSupplierFax supplierFax) {
         this.supplierFax = supplierFax;
         return this;
     }
@@ -861,7 +861,7 @@ public final class InvoiceData {
      *
      * @return the customerEmail value.
      */
-    public String getCustomerEmail() {
+    public InvoiceDataCustomerEmail getCustomerEmail() {
         return this.customerEmail;
     }
 
@@ -871,7 +871,7 @@ public final class InvoiceData {
      * @param customerEmail the customerEmail value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerEmail(String customerEmail) {
+    public InvoiceData setCustomerEmail(InvoiceDataCustomerEmail customerEmail) {
         this.customerEmail = customerEmail;
         return this;
     }
@@ -881,7 +881,7 @@ public final class InvoiceData {
      *
      * @return the supplierEmail value.
      */
-    public String getSupplierEmail() {
+    public InvoiceDataSupplierEmail getSupplierEmail() {
         return this.supplierEmail;
     }
 
@@ -891,7 +891,7 @@ public final class InvoiceData {
      * @param supplierEmail the supplierEmail value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierEmail(String supplierEmail) {
+    public InvoiceData setSupplierEmail(InvoiceDataSupplierEmail supplierEmail) {
         this.supplierEmail = supplierEmail;
         return this;
     }
@@ -901,7 +901,7 @@ public final class InvoiceData {
      *
      * @return the supplierWebsite value.
      */
-    public String getSupplierWebsite() {
+    public InvoiceDataSupplierWebsite getSupplierWebsite() {
         return this.supplierWebsite;
     }
 
@@ -911,7 +911,7 @@ public final class InvoiceData {
      * @param supplierWebsite the supplierWebsite value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierWebsite(String supplierWebsite) {
+    public InvoiceData setSupplierWebsite(InvoiceDataSupplierWebsite supplierWebsite) {
         this.supplierWebsite = supplierWebsite;
         return this;
     }

@@ -264,6 +264,47 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ResumeSearchParameters body,
                 @HeaderParam("Accept") String accept);
 
+        @Get("/job_descriptions")
+        @ExpectedResponses({200, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getAllJobDescriptions(
+                @HostParam("$host") String host,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @HeaderParam("Accept") String accept);
+
+        // @Multipart not supported by RestProxy
+        @Post("/job_descriptions")
+        @ExpectedResponses({200, 201, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> createJobDescription(
+                @HostParam("$host") String host,
+                @BodyParam("multipart/form-data") Flux<ByteBuffer> file,
+                @HeaderParam("Content-Length") Long contentLength,
+                @BodyParam("multipart/form-data") String identifier,
+                @BodyParam("multipart/form-data") String fileName,
+                @BodyParam("multipart/form-data") String url,
+                @BodyParam("multipart/form-data") String wait,
+                @BodyParam("multipart/form-data") String language,
+                @BodyParam("multipart/form-data") String expiryTime,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/job_descriptions/{identifier}")
+        @ExpectedResponses({200, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getJobDescription(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/job_descriptions/{identifier}")
+        @ExpectedResponses({204, 400, 401, 404})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<RequestError>> deleteJobDescription(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
         @Get("/index")
         @ExpectedResponses({200, 400, 401, 404})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
@@ -1370,6 +1411,279 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Object createResumeSearch(ResumeSearchParameters body, Integer offset, Integer limit) {
         return createResumeSearchAsync(body, offset, limit).block();
+    }
+
+    /**
+     * Returns all the job descriptions for that user, limited to 300 per page.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getAllJobDescriptionsWithResponseAsync(Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.getAllJobDescriptions(this.getHost(), offset, limit, accept);
+    }
+
+    /**
+     * Returns all the job descriptions for that user, limited to 300 per page.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getAllJobDescriptionsAsync(Integer offset, Integer limit) {
+        return getAllJobDescriptionsWithResponseAsync(offset, limit)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns all the job descriptions for that user, limited to 300 per page.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getAllJobDescriptions(Integer offset, Integer limit) {
+        return getAllJobDescriptionsAsync(offset, limit).block();
+    }
+
+    /**
+     * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
+     * use with the [/job_descriptions/{identifier}](#operation/getResume) endpoint to check processing status and
+     * retrieve results.
+     *
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
+     * @param contentLength The contentLength parameter.
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
+     *     automatically generated.
+     * @param fileName Optional filename of the file.
+     * @param url URL to file to download and process.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> createJobDescriptionWithResponseAsync(
+            Flux<ByteBuffer> file,
+            Long contentLength,
+            String identifier,
+            String fileName,
+            String url,
+            String wait,
+            String language,
+            String expiryTime) {
+        final String accept = "application/json";
+        return service.createJobDescription(
+                this.getHost(), file, contentLength, identifier, fileName, url, wait, language, expiryTime, accept);
+    }
+
+    /**
+     * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
+     * use with the [/job_descriptions/{identifier}](#operation/getResume) endpoint to check processing status and
+     * retrieve results.
+     *
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
+     * @param contentLength The contentLength parameter.
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
+     *     automatically generated.
+     * @param fileName Optional filename of the file.
+     * @param url URL to file to download and process.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> createJobDescriptionAsync(
+            Flux<ByteBuffer> file,
+            Long contentLength,
+            String identifier,
+            String fileName,
+            String url,
+            String wait,
+            String language,
+            String expiryTime) {
+        return createJobDescriptionWithResponseAsync(
+                        file, contentLength, identifier, fileName, url, wait, language, expiryTime)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
+     * use with the [/job_descriptions/{identifier}](#operation/getResume) endpoint to check processing status and
+     * retrieve results.
+     *
+     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
+     * @param contentLength The contentLength parameter.
+     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
+     *     automatically generated.
+     * @param fileName Optional filename of the file.
+     * @param url URL to file to download and process.
+     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
+     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
+     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
+     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
+     *     no expiry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object createJobDescription(
+            Flux<ByteBuffer> file,
+            Long contentLength,
+            String identifier,
+            String fileName,
+            String url,
+            String wait,
+            String language,
+            String expiryTime) {
+        return createJobDescriptionAsync(file, contentLength, identifier, fileName, url, wait, language, expiryTime)
+                .block();
+    }
+
+    /**
+     * Returns all the results for that job description if processing is completed. The `identifier` is the unique ID
+     * returned after POST-ing the resume via the [/job_descriptions](#operation/createJobDescription) endpoint.
+     *
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getJobDescriptionWithResponseAsync(String identifier) {
+        final String accept = "application/json";
+        return service.getJobDescription(this.getHost(), identifier, accept);
+    }
+
+    /**
+     * Returns all the results for that job description if processing is completed. The `identifier` is the unique ID
+     * returned after POST-ing the resume via the [/job_descriptions](#operation/createJobDescription) endpoint.
+     *
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getJobDescriptionAsync(String identifier) {
+        return getJobDescriptionWithResponseAsync(identifier)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns all the results for that job description if processing is completed. The `identifier` is the unique ID
+     * returned after POST-ing the resume via the [/job_descriptions](#operation/createJobDescription) endpoint.
+     *
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getJobDescription(String identifier) {
+        return getJobDescriptionAsync(identifier).block();
+    }
+
+    /**
+     * Deletes the specified job description from the database.
+     *
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<RequestError>> deleteJobDescriptionWithResponseAsync(String identifier) {
+        final String accept = "application/json";
+        return service.deleteJobDescription(this.getHost(), identifier, accept);
+    }
+
+    /**
+     * Deletes the specified job description from the database.
+     *
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<RequestError> deleteJobDescriptionAsync(String identifier) {
+        return deleteJobDescriptionWithResponseAsync(identifier)
+                .flatMap(
+                        (Response<RequestError> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Deletes the specified job description from the database.
+     *
+     * @param identifier Document identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RequestError deleteJobDescription(String identifier) {
+        return deleteJobDescriptionAsync(identifier).block();
     }
 
     /**

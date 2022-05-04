@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - updated dependencies
 
+### Added
+- Job Description from API spec
+
 ## [0.2.0] - 2021-10-06
 ### Added
 - Invoices endpoint

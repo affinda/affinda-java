@@ -3,20 +3,20 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Invoice model. */
+/** The JobDescription model. */
 @Fluent
-public final class Invoice {
+public final class JobDescription {
     /*
      * The data property.
      */
     @JsonProperty(value = "data", required = true)
-    private InvoiceData data;
+    private JobDescriptionData data;
 
     /*
      * The meta property.
      */
     @JsonProperty(value = "meta", required = true)
-    private InvoiceMeta meta;
+    private Meta meta;
 
     /*
      * The error property.
@@ -29,7 +29,7 @@ public final class Invoice {
      *
      * @return the data value.
      */
-    public InvoiceData getData() {
+    public JobDescriptionData getData() {
         return this.data;
     }
 
@@ -37,9 +37,9 @@ public final class Invoice {
      * Set the data property: The data property.
      *
      * @param data the data value to set.
-     * @return the Invoice object itself.
+     * @return the JobDescription object itself.
      */
-    public Invoice setData(InvoiceData data) {
+    public JobDescription setData(JobDescriptionData data) {
         this.data = data;
         return this;
     }
@@ -49,7 +49,7 @@ public final class Invoice {
      *
      * @return the meta value.
      */
-    public InvoiceMeta getMeta() {
+    public Meta getMeta() {
         return this.meta;
     }
 
@@ -57,9 +57,9 @@ public final class Invoice {
      * Set the meta property: The meta property.
      *
      * @param meta the meta value to set.
-     * @return the Invoice object itself.
+     * @return the JobDescription object itself.
      */
-    public Invoice setMeta(InvoiceMeta meta) {
+    public JobDescription setMeta(Meta meta) {
         this.meta = meta;
         return this;
     }
@@ -77,9 +77,9 @@ public final class Invoice {
      * Set the error property: The error property.
      *
      * @param error the error value to set.
-     * @return the Invoice object itself.
+     * @return the JobDescription object itself.
      */
-    public Invoice setError(Error error) {
+    public JobDescription setError(Error error) {
         this.error = error;
         return this;
     }

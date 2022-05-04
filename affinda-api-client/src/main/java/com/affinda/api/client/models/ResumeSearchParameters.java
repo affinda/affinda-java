@@ -14,6 +14,13 @@ public final class ResumeSearchParameters {
     private List<String> indices;
 
     /*
+     * Unique identifier for the document. If creating a document and left
+     * blank, one will be automatically generated.
+     */
+    @JsonProperty(value = "jobDescription")
+    private String jobDescription;
+
+    /*
      * The jobTitles property.
      */
     @JsonProperty(value = "jobTitles")
@@ -240,6 +247,28 @@ public final class ResumeSearchParameters {
      */
     public ResumeSearchParameters setIndices(List<String> indices) {
         this.indices = indices;
+        return this;
+    }
+
+    /**
+     * Get the jobDescription property: Unique identifier for the document. If creating a document and left blank, one
+     * will be automatically generated.
+     *
+     * @return the jobDescription value.
+     */
+    public String getJobDescription() {
+        return this.jobDescription;
+    }
+
+    /**
+     * Set the jobDescription property: Unique identifier for the document. If creating a document and left blank, one
+     * will be automatically generated.
+     *
+     * @param jobDescription the jobDescription value to set.
+     * @return the ResumeSearchParameters object itself.
+     */
+    public ResumeSearchParameters setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
         return this;
     }
 

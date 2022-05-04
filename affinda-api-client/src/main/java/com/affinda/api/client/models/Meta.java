@@ -6,7 +6,7 @@ import java.time.OffsetDateTime;
 
 /** The Meta model. */
 @Fluent
-public final class Meta {
+public class Meta {
     /*
      * Unique identifier for the document. If creating a document and left
      * blank, one will be automatically generated.
