@@ -35,49 +35,55 @@ public final class ResumeSearchResult {
      * The jobTitle property.
      */
     @JsonProperty(value = "jobTitle", required = true)
-    private ResumeSearchScoreComponent jobTitle;
+    private JobTitleSearchScoreComponent jobTitle;
 
     /*
      * The managementLevel property.
      */
     @JsonProperty(value = "managementLevel", required = true)
-    private ResumeSearchScoreComponent managementLevel;
+    private ManagementLevelSearchScoreComponent managementLevel;
 
     /*
      * The experience property.
      */
     @JsonProperty(value = "experience", required = true)
-    private ResumeSearchScoreComponent experience;
+    private ExperienceSearchScoreComponent experience;
 
     /*
      * The skills property.
      */
     @JsonProperty(value = "skills", required = true)
-    private ResumeSearchScoreComponent skills;
+    private SkillsSearchScoreComponent skills;
 
     /*
      * The languages property.
      */
     @JsonProperty(value = "languages", required = true)
-    private ResumeSearchScoreComponent languages;
+    private LanguagesSearchScoreComponent languages;
 
     /*
      * The location property.
      */
     @JsonProperty(value = "location", required = true)
-    private ResumeSearchScoreComponent location;
+    private LocationSearchScoreComponent location;
 
     /*
      * The education property.
      */
     @JsonProperty(value = "education", required = true)
-    private ResumeSearchScoreComponent education;
+    private EducationSearchScoreComponent education;
 
     /*
      * The occupationGroup property.
      */
     @JsonProperty(value = "occupationGroup", required = true)
-    private ResumeSearchScoreComponent occupationGroup;
+    private OccupationGroupSearchScoreComponent occupationGroup;
+
+    /*
+     * The searchExpression property.
+     */
+    @JsonProperty(value = "searchExpression", required = true)
+    private SearchExpressionSearchScoreComponent searchExpression;
 
     /**
      * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
@@ -166,7 +172,7 @@ public final class ResumeSearchResult {
      *
      * @return the jobTitle value.
      */
-    public ResumeSearchScoreComponent getJobTitle() {
+    public JobTitleSearchScoreComponent getJobTitle() {
         return this.jobTitle;
     }
 
@@ -176,7 +182,7 @@ public final class ResumeSearchResult {
      * @param jobTitle the jobTitle value to set.
      * @return the ResumeSearchResult object itself.
      */
-    public ResumeSearchResult setJobTitle(ResumeSearchScoreComponent jobTitle) {
+    public ResumeSearchResult setJobTitle(JobTitleSearchScoreComponent jobTitle) {
         this.jobTitle = jobTitle;
         return this;
     }
@@ -186,7 +192,7 @@ public final class ResumeSearchResult {
      *
      * @return the managementLevel value.
      */
-    public ResumeSearchScoreComponent getManagementLevel() {
+    public ManagementLevelSearchScoreComponent getManagementLevel() {
         return this.managementLevel;
     }
 
@@ -196,7 +202,7 @@ public final class ResumeSearchResult {
      * @param managementLevel the managementLevel value to set.
      * @return the ResumeSearchResult object itself.
      */
-    public ResumeSearchResult setManagementLevel(ResumeSearchScoreComponent managementLevel) {
+    public ResumeSearchResult setManagementLevel(ManagementLevelSearchScoreComponent managementLevel) {
         this.managementLevel = managementLevel;
         return this;
     }
@@ -206,7 +212,7 @@ public final class ResumeSearchResult {
      *
      * @return the experience value.
      */
-    public ResumeSearchScoreComponent getExperience() {
+    public ExperienceSearchScoreComponent getExperience() {
         return this.experience;
     }
 
@@ -216,7 +222,7 @@ public final class ResumeSearchResult {
      * @param experience the experience value to set.
      * @return the ResumeSearchResult object itself.
      */
-    public ResumeSearchResult setExperience(ResumeSearchScoreComponent experience) {
+    public ResumeSearchResult setExperience(ExperienceSearchScoreComponent experience) {
         this.experience = experience;
         return this;
     }
@@ -226,7 +232,7 @@ public final class ResumeSearchResult {
      *
      * @return the skills value.
      */
-    public ResumeSearchScoreComponent getSkills() {
+    public SkillsSearchScoreComponent getSkills() {
         return this.skills;
     }
 
@@ -236,7 +242,7 @@ public final class ResumeSearchResult {
      * @param skills the skills value to set.
      * @return the ResumeSearchResult object itself.
      */
-    public ResumeSearchResult setSkills(ResumeSearchScoreComponent skills) {
+    public ResumeSearchResult setSkills(SkillsSearchScoreComponent skills) {
         this.skills = skills;
         return this;
     }
@@ -246,7 +252,7 @@ public final class ResumeSearchResult {
      *
      * @return the languages value.
      */
-    public ResumeSearchScoreComponent getLanguages() {
+    public LanguagesSearchScoreComponent getLanguages() {
         return this.languages;
     }
 
@@ -256,7 +262,7 @@ public final class ResumeSearchResult {
      * @param languages the languages value to set.
      * @return the ResumeSearchResult object itself.
      */
-    public ResumeSearchResult setLanguages(ResumeSearchScoreComponent languages) {
+    public ResumeSearchResult setLanguages(LanguagesSearchScoreComponent languages) {
         this.languages = languages;
         return this;
     }
@@ -266,7 +272,7 @@ public final class ResumeSearchResult {
      *
      * @return the location value.
      */
-    public ResumeSearchScoreComponent getLocation() {
+    public LocationSearchScoreComponent getLocation() {
         return this.location;
     }
 
@@ -276,7 +282,7 @@ public final class ResumeSearchResult {
      * @param location the location value to set.
      * @return the ResumeSearchResult object itself.
      */
-    public ResumeSearchResult setLocation(ResumeSearchScoreComponent location) {
+    public ResumeSearchResult setLocation(LocationSearchScoreComponent location) {
         this.location = location;
         return this;
     }
@@ -286,7 +292,7 @@ public final class ResumeSearchResult {
      *
      * @return the education value.
      */
-    public ResumeSearchScoreComponent getEducation() {
+    public EducationSearchScoreComponent getEducation() {
         return this.education;
     }
 
@@ -296,7 +302,7 @@ public final class ResumeSearchResult {
      * @param education the education value to set.
      * @return the ResumeSearchResult object itself.
      */
-    public ResumeSearchResult setEducation(ResumeSearchScoreComponent education) {
+    public ResumeSearchResult setEducation(EducationSearchScoreComponent education) {
         this.education = education;
         return this;
     }
@@ -306,7 +312,7 @@ public final class ResumeSearchResult {
      *
      * @return the occupationGroup value.
      */
-    public ResumeSearchScoreComponent getOccupationGroup() {
+    public OccupationGroupSearchScoreComponent getOccupationGroup() {
         return this.occupationGroup;
     }
 
@@ -316,8 +322,28 @@ public final class ResumeSearchResult {
      * @param occupationGroup the occupationGroup value to set.
      * @return the ResumeSearchResult object itself.
      */
-    public ResumeSearchResult setOccupationGroup(ResumeSearchScoreComponent occupationGroup) {
+    public ResumeSearchResult setOccupationGroup(OccupationGroupSearchScoreComponent occupationGroup) {
         this.occupationGroup = occupationGroup;
+        return this;
+    }
+
+    /**
+     * Get the searchExpression property: The searchExpression property.
+     *
+     * @return the searchExpression value.
+     */
+    public SearchExpressionSearchScoreComponent getSearchExpression() {
+        return this.searchExpression;
+    }
+
+    /**
+     * Set the searchExpression property: The searchExpression property.
+     *
+     * @param searchExpression the searchExpression value to set.
+     * @return the ResumeSearchResult object itself.
+     */
+    public ResumeSearchResult setSearchExpression(SearchExpressionSearchScoreComponent searchExpression) {
+        this.searchExpression = searchExpression;
         return this;
     }
 }

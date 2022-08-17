@@ -6,7 +6,7 @@ import java.util.List;
 
 /** The OccupationGroup model. */
 @Fluent
-public final class OccupationGroup {
+public class OccupationGroup {
     /*
      * The code property.
      */

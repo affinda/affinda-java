@@ -12,6 +12,12 @@ import java.util.Map;
 @Fluent
 public class Annotation {
     /*
+     * The id property.
+     */
+    @JsonProperty(value = "id")
+    private Integer id;
+
+    /*
      * The rectangle property.
      */
     @JsonProperty(value = "rectangle", required = true)
@@ -51,6 +57,26 @@ public class Annotation {
      * Dictionary of <any>
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
+
+    /**
+     * Get the id property: The id property.
+     *
+     * @return the id value.
+     */
+    public Integer getId() {
+        return this.id;
+    }
+
+    /**
+     * Set the id property: The id property.
+     *
+     * @param id the id value to set.
+     * @return the Annotation object itself.
+     */
+    public Annotation setId(Integer id) {
+        this.id = id;
+        return this;
+    }
 
     /**
      * Get the rectangle property: The rectangle property.

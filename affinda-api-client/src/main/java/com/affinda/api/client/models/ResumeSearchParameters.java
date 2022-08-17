@@ -21,6 +21,13 @@ public final class ResumeSearchParameters {
     private String jobDescription;
 
     /*
+     * Unique identifier for the document. If creating a document and left
+     * blank, one will be automatically generated.
+     */
+    @JsonProperty(value = "resume")
+    private String resume;
+
+    /*
      * The jobTitles property.
      */
     @JsonProperty(value = "jobTitles")
@@ -72,7 +79,7 @@ public final class ResumeSearchParameters {
      * The locations property.
      */
     @JsonProperty(value = "locations")
-    private List<ResumeSearchParametersLocationsItem> locations;
+    private List<ResumeSearchParametersLocation> locations;
 
     /*
      * The locationsWeight property.
@@ -90,7 +97,7 @@ public final class ResumeSearchParameters {
      * The skills property.
      */
     @JsonProperty(value = "skills")
-    private List<ResumeSearchParametersSkillsItem> skills;
+    private List<ResumeSearchParametersSkill> skills;
 
     /*
      * The skillsWeight property.
@@ -102,7 +109,7 @@ public final class ResumeSearchParameters {
      * The languages property.
      */
     @JsonProperty(value = "languages")
-    private List<ResumeSearchParametersLanguagesItem> languages;
+    private List<ResumeSearchParametersSkill> languages;
 
     /*
      * The languagesWeight property.
@@ -169,6 +176,18 @@ public final class ResumeSearchParameters {
      */
     @JsonProperty(value = "isRecentGraduateRequired")
     private Boolean isRecentGraduateRequired;
+
+    /*
+     * The isTopStudent property.
+     */
+    @JsonProperty(value = "isTopStudent")
+    private Boolean isTopStudent;
+
+    /*
+     * The isTopStudentRequired property.
+     */
+    @JsonProperty(value = "isTopStudentRequired")
+    private Boolean isTopStudentRequired;
 
     /*
      * The educationWeight property.
@@ -269,6 +288,28 @@ public final class ResumeSearchParameters {
      */
     public ResumeSearchParameters setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
+        return this;
+    }
+
+    /**
+     * Get the resume property: Unique identifier for the document. If creating a document and left blank, one will be
+     * automatically generated.
+     *
+     * @return the resume value.
+     */
+    public String getResume() {
+        return this.resume;
+    }
+
+    /**
+     * Set the resume property: Unique identifier for the document. If creating a document and left blank, one will be
+     * automatically generated.
+     *
+     * @param resume the resume value to set.
+     * @return the ResumeSearchParameters object itself.
+     */
+    public ResumeSearchParameters setResume(String resume) {
+        this.resume = resume;
         return this;
     }
 
@@ -437,7 +478,7 @@ public final class ResumeSearchParameters {
      *
      * @return the locations value.
      */
-    public List<ResumeSearchParametersLocationsItem> getLocations() {
+    public List<ResumeSearchParametersLocation> getLocations() {
         return this.locations;
     }
 
@@ -447,7 +488,7 @@ public final class ResumeSearchParameters {
      * @param locations the locations value to set.
      * @return the ResumeSearchParameters object itself.
      */
-    public ResumeSearchParameters setLocations(List<ResumeSearchParametersLocationsItem> locations) {
+    public ResumeSearchParameters setLocations(List<ResumeSearchParametersLocation> locations) {
         this.locations = locations;
         return this;
     }
@@ -497,7 +538,7 @@ public final class ResumeSearchParameters {
      *
      * @return the skills value.
      */
-    public List<ResumeSearchParametersSkillsItem> getSkills() {
+    public List<ResumeSearchParametersSkill> getSkills() {
         return this.skills;
     }
 
@@ -507,7 +548,7 @@ public final class ResumeSearchParameters {
      * @param skills the skills value to set.
      * @return the ResumeSearchParameters object itself.
      */
-    public ResumeSearchParameters setSkills(List<ResumeSearchParametersSkillsItem> skills) {
+    public ResumeSearchParameters setSkills(List<ResumeSearchParametersSkill> skills) {
         this.skills = skills;
         return this;
     }
@@ -537,7 +578,7 @@ public final class ResumeSearchParameters {
      *
      * @return the languages value.
      */
-    public List<ResumeSearchParametersLanguagesItem> getLanguages() {
+    public List<ResumeSearchParametersSkill> getLanguages() {
         return this.languages;
     }
 
@@ -547,7 +588,7 @@ public final class ResumeSearchParameters {
      * @param languages the languages value to set.
      * @return the ResumeSearchParameters object itself.
      */
-    public ResumeSearchParameters setLanguages(List<ResumeSearchParametersLanguagesItem> languages) {
+    public ResumeSearchParameters setLanguages(List<ResumeSearchParametersSkill> languages) {
         this.languages = languages;
         return this;
     }
@@ -769,6 +810,46 @@ public final class ResumeSearchParameters {
      */
     public ResumeSearchParameters setIsRecentGraduateRequired(Boolean isRecentGraduateRequired) {
         this.isRecentGraduateRequired = isRecentGraduateRequired;
+        return this;
+    }
+
+    /**
+     * Get the isTopStudent property: The isTopStudent property.
+     *
+     * @return the isTopStudent value.
+     */
+    public Boolean isTopStudent() {
+        return this.isTopStudent;
+    }
+
+    /**
+     * Set the isTopStudent property: The isTopStudent property.
+     *
+     * @param isTopStudent the isTopStudent value to set.
+     * @return the ResumeSearchParameters object itself.
+     */
+    public ResumeSearchParameters setIsTopStudent(Boolean isTopStudent) {
+        this.isTopStudent = isTopStudent;
+        return this;
+    }
+
+    /**
+     * Get the isTopStudentRequired property: The isTopStudentRequired property.
+     *
+     * @return the isTopStudentRequired value.
+     */
+    public Boolean isTopStudentRequired() {
+        return this.isTopStudentRequired;
+    }
+
+    /**
+     * Set the isTopStudentRequired property: The isTopStudentRequired property.
+     *
+     * @param isTopStudentRequired the isTopStudentRequired value to set.
+     * @return the ResumeSearchParameters object itself.
+     */
+    public ResumeSearchParameters setIsTopStudentRequired(Boolean isTopStudentRequired) {
+        this.isTopStudentRequired = isTopStudentRequired;
         return this;
     }
 

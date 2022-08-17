@@ -2,10 +2,18 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+import java.util.Map;
 
 /** The InvoiceData model. */
 @Fluent
 public final class InvoiceData {
+    /*
+     * The tables property.
+     */
+    @JsonProperty(value = "tables")
+    private List<InvoiceDataTablesItem> tables;
+
     /*
      * The invoiceDate property.
      */
@@ -215,6 +223,38 @@ public final class InvoiceData {
      */
     @JsonProperty(value = "supplierWebsite")
     private InvoiceDataSupplierWebsite supplierWebsite;
+
+    /*
+     * The currencyCode property.
+     */
+    @JsonProperty(value = "currencyCode")
+    private EnumAnnotationSerializer currencyCode;
+
+    /*
+     * Dictionary of <any>
+     */
+    @JsonProperty(value = "customFields")
+    private Map<String, Object> customFields;
+
+    /**
+     * Get the tables property: The tables property.
+     *
+     * @return the tables value.
+     */
+    public List<InvoiceDataTablesItem> getTables() {
+        return this.tables;
+    }
+
+    /**
+     * Set the tables property: The tables property.
+     *
+     * @param tables the tables value to set.
+     * @return the InvoiceData object itself.
+     */
+    public InvoiceData setTables(List<InvoiceDataTablesItem> tables) {
+        this.tables = tables;
+        return this;
+    }
 
     /**
      * Get the invoiceDate property: The invoiceDate property.
@@ -913,6 +953,46 @@ public final class InvoiceData {
      */
     public InvoiceData setSupplierWebsite(InvoiceDataSupplierWebsite supplierWebsite) {
         this.supplierWebsite = supplierWebsite;
+        return this;
+    }
+
+    /**
+     * Get the currencyCode property: The currencyCode property.
+     *
+     * @return the currencyCode value.
+     */
+    public EnumAnnotationSerializer getCurrencyCode() {
+        return this.currencyCode;
+    }
+
+    /**
+     * Set the currencyCode property: The currencyCode property.
+     *
+     * @param currencyCode the currencyCode value to set.
+     * @return the InvoiceData object itself.
+     */
+    public InvoiceData setCurrencyCode(EnumAnnotationSerializer currencyCode) {
+        this.currencyCode = currencyCode;
+        return this;
+    }
+
+    /**
+     * Get the customFields property: Dictionary of &lt;any&gt;.
+     *
+     * @return the customFields value.
+     */
+    public Map<String, Object> getCustomFields() {
+        return this.customFields;
+    }
+
+    /**
+     * Set the customFields property: Dictionary of &lt;any&gt;.
+     *
+     * @param customFields the customFields value to set.
+     * @return the InvoiceData object itself.
+     */
+    public InvoiceData setCustomFields(Map<String, Object> customFields) {
+        this.customFields = customFields;
         return this;
     }
 }

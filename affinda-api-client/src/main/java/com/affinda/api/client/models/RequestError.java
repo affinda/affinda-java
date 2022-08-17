@@ -2,59 +2,60 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** The RequestError model. */
 @Fluent
 public final class RequestError {
     /*
-     * The detail property.
+     * The type property.
      */
-    @JsonProperty(value = "detail", required = true)
-    private String detail;
+    @JsonProperty(value = "type", required = true)
+    private String type;
 
     /*
-     * The statusCode property.
+     * The errors property.
      */
-    @JsonProperty(value = "statusCode", required = true)
-    private int statusCode;
+    @JsonProperty(value = "errors", required = true)
+    private List<RequestErrorErrorsItem> errors;
 
     /**
-     * Get the detail property: The detail property.
+     * Get the type property: The type property.
      *
-     * @return the detail value.
+     * @return the type value.
      */
-    public String getDetail() {
-        return this.detail;
+    public String getType() {
+        return this.type;
     }
 
     /**
-     * Set the detail property: The detail property.
+     * Set the type property: The type property.
      *
-     * @param detail the detail value to set.
+     * @param type the type value to set.
      * @return the RequestError object itself.
      */
-    public RequestError setDetail(String detail) {
-        this.detail = detail;
+    public RequestError setType(String type) {
+        this.type = type;
         return this;
     }
 
     /**
-     * Get the statusCode property: The statusCode property.
+     * Get the errors property: The errors property.
      *
-     * @return the statusCode value.
+     * @return the errors value.
      */
-    public int getStatusCode() {
-        return this.statusCode;
+    public List<RequestErrorErrorsItem> getErrors() {
+        return this.errors;
     }
 
     /**
-     * Set the statusCode property: The statusCode property.
+     * Set the errors property: The errors property.
      *
-     * @param statusCode the statusCode value to set.
+     * @param errors the errors value to set.
      * @return the RequestError object itself.
      */
-    public RequestError setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
+    public RequestError setErrors(List<RequestErrorErrorsItem> errors) {
+        this.errors = errors;
         return this;
     }
 }

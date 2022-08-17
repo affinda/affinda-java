@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 /** Defines values for ManagementLevel. */
 public enum ManagementLevel {
+    /** Enum value None. */
+    NONE("None"),
+
     /** Enum value Low. */
     LOW("Low"),
 

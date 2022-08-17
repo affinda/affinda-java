@@ -6,10 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- updated dependencies
+- Updated dependencies
 
 ### Added
 - Job Description from API spec
+- Resume search
+- Prediction confidence
+- Review URL in the invoice response that allows embedding of the Affinda Invoice Review UI
+- Ability to update resume data in the search system
+- New endpoint for creating and managing users within a master account
+- Ability to find other candidates that have similar attributes to a resume
+- Endpoint to get the matching score between a resume and a job description
+- Reverse Match endpoint
+
+### Fixed
+- Make expiry time native date time
 
 ## [0.2.0] - 2021-10-06
 ### Added
@@ -21,4 +32,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2021-04-01
 ### Added
 - First beta build
-

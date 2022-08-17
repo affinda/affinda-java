@@ -29,7 +29,7 @@ public final class Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema {
      * The results property.
      */
     @JsonProperty(value = "results")
-    private List<Paths108CfgmIndexGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems> results;
+    private List<Get200ApplicationJsonPropertiesItemsItem> results;
 
     /**
      * Get the count property: Number of indexes in result.
@@ -96,7 +96,7 @@ public final class Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema {
      *
      * @return the results value.
      */
-    public List<Paths108CfgmIndexGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems> getResults() {
+    public List<Get200ApplicationJsonPropertiesItemsItem> getResults() {
         return this.results;
     }
 
@@ -107,7 +107,7 @@ public final class Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema {
      * @return the Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema object itself.
      */
     public Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema setResults(
-            List<Paths108CfgmIndexGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems> results) {
+            List<Get200ApplicationJsonPropertiesItemsItem> results) {
         this.results = results;
         return this;
     }

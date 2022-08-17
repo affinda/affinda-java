@@ -7,57 +7,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class Get200ApplicationJsonPropertiesItemsItem {
     /*
-     * Unique identifier for the document. If creating a document and left
-     * blank, one will be automatically generated.
+     * The name property.
      */
-    @JsonProperty(value = "identifier", required = true)
-    private String identifier;
-
-    /*
-     * URL to a template to apply
-     */
-    @JsonProperty(value = "formatFile", required = true)
-    private String formatFile;
+    @JsonProperty(value = "name", required = true)
+    private String name;
 
     /**
-     * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
-     * be automatically generated.
+     * Get the name property: The name property.
      *
-     * @return the identifier value.
+     * @return the name value.
      */
-    public String getIdentifier() {
-        return this.identifier;
+    public String getName() {
+        return this.name;
     }
 
     /**
-     * Set the identifier property: Unique identifier for the document. If creating a document and left blank, one will
-     * be automatically generated.
+     * Set the name property: The name property.
      *
-     * @param identifier the identifier value to set.
+     * @param name the name value to set.
      * @return the Get200ApplicationJsonPropertiesItemsItem object itself.
      */
-    public Get200ApplicationJsonPropertiesItemsItem setIdentifier(String identifier) {
-        this.identifier = identifier;
-        return this;
-    }
-
-    /**
-     * Get the formatFile property: URL to a template to apply.
-     *
-     * @return the formatFile value.
-     */
-    public String getFormatFile() {
-        return this.formatFile;
-    }
-
-    /**
-     * Set the formatFile property: URL to a template to apply.
-     *
-     * @param formatFile the formatFile value to set.
-     * @return the Get200ApplicationJsonPropertiesItemsItem object itself.
-     */
-    public Get200ApplicationJsonPropertiesItemsItem setFormatFile(String formatFile) {
-        this.formatFile = formatFile;
+    public Get200ApplicationJsonPropertiesItemsItem setName(String name) {
+        this.name = name;
         return this;
     }
 }

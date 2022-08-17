@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class Resume {
     /*
-     * The data property.
+     * A JSON-encoded string of the `ResumeData` object.
      */
     @JsonProperty(value = "data", required = true)
     private ResumeData data;
@@ -25,7 +25,7 @@ public final class Resume {
     private Error error;
 
     /**
-     * Get the data property: The data property.
+     * Get the data property: A JSON-encoded string of the `ResumeData` object.
      *
      * @return the data value.
      */
@@ -34,7 +34,7 @@ public final class Resume {
     }
 
     /**
-     * Set the data property: The data property.
+     * Set the data property: A JSON-encoded string of the `ResumeData` object.
      *
      * @param data the data value to set.
      * @return the Resume object itself.

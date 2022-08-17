@@ -1,9 +1,19 @@
 package com.affinda.api.client;
 
+import com.affinda.api.client.models.IndexRequestBody;
+import com.affinda.api.client.models.InvoiceRequestBody;
+import com.affinda.api.client.models.JobDescriptionRequestBody;
+import com.affinda.api.client.models.JobDescriptionSearchParameters;
+import com.affinda.api.client.models.Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
+import com.affinda.api.client.models.RedactedResumeRequestBody;
 import com.affinda.api.client.models.RequestError;
 import com.affinda.api.client.models.RequestErrorException;
+import com.affinda.api.client.models.ResumeData;
+import com.affinda.api.client.models.ResumeRequestBody;
+import com.affinda.api.client.models.ResumeSearchConfig;
 import com.affinda.api.client.models.ResumeSearchParameters;
+import com.affinda.api.client.models.User;
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
@@ -11,6 +21,7 @@ import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
 import com.azure.core.annotation.QueryParam;
@@ -27,8 +38,6 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
-import java.nio.ByteBuffer;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the AffindaAPI type. */
@@ -115,7 +124,7 @@ public final class AffindaAPI {
     @ServiceInterface(name = "AffindaAPI")
     public interface AffindaAPIService {
         @Get("/resumes")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllResumes(
                 @HostParam("$host") String host,
@@ -123,32 +132,34 @@ public final class AffindaAPI {
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
-        // @Multipart not supported by RestProxy
         @Post("/resumes")
-        @ExpectedResponses({200, 201, 400, 401, 404})
+        @ExpectedResponses({200, 201, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> createResume(
                 @HostParam("$host") String host,
-                @BodyParam("multipart/form-data") Flux<ByteBuffer> file,
-                @HeaderParam("Content-Length") Long contentLength,
-                @BodyParam("multipart/form-data") String identifier,
-                @BodyParam("multipart/form-data") String fileName,
-                @BodyParam("multipart/form-data") String url,
-                @BodyParam("multipart/form-data") String wait,
-                @BodyParam("multipart/form-data") String language,
-                @BodyParam("multipart/form-data") String expiryTime,
+                @BodyParam("application/json") ResumeRequestBody body,
                 @HeaderParam("Accept") String accept);
 
         @Get("/resumes/{identifier}")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getResume(
                 @HostParam("$host") String host,
                 @PathParam("identifier") String identifier,
+                @QueryParam("format") String format,
+                @HeaderParam("Accept") String accept);
+
+        @Patch("/resumes/{identifier}")
+        @ExpectedResponses({200, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> updateResumeData(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") ResumeData body,
                 @HeaderParam("Accept") String accept);
 
         @Delete("/resumes/{identifier}")
-        @ExpectedResponses({204, 400, 401, 404})
+        @ExpectedResponses({204, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<RequestError>> deleteResume(
                 @HostParam("$host") String host,
@@ -156,7 +167,7 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Get("/redacted_resumes")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllRedactedResumes(
                 @HostParam("$host") String host,
@@ -164,32 +175,16 @@ public final class AffindaAPI {
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
-        // @Multipart not supported by RestProxy
         @Post("/redacted_resumes")
-        @ExpectedResponses({200, 201, 400, 401, 404})
+        @ExpectedResponses({200, 201, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> createRedactedResume(
                 @HostParam("$host") String host,
-                @BodyParam("multipart/form-data") Flux<ByteBuffer> file,
-                @HeaderParam("Content-Length") Long contentLength,
-                @BodyParam("multipart/form-data") String identifier,
-                @BodyParam("multipart/form-data") String fileName,
-                @BodyParam("multipart/form-data") String url,
-                @BodyParam("multipart/form-data") String language,
-                @BodyParam("multipart/form-data") String wait,
-                @BodyParam("multipart/form-data") String redactHeadshot,
-                @BodyParam("multipart/form-data") String redactPersonalDetails,
-                @BodyParam("multipart/form-data") String redactWorkDetails,
-                @BodyParam("multipart/form-data") String redactEducationDetails,
-                @BodyParam("multipart/form-data") String redactReferees,
-                @BodyParam("multipart/form-data") String redactLocations,
-                @BodyParam("multipart/form-data") String redactDates,
-                @BodyParam("multipart/form-data") String redactGender,
-                @BodyParam("multipart/form-data") String expiryTime,
+                @BodyParam("application/json") RedactedResumeRequestBody body,
                 @HeaderParam("Accept") String accept);
 
         @Get("/redacted_resumes/{identifier}")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getRedactedResume(
                 @HostParam("$host") String host,
@@ -197,65 +192,15 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Delete("/redacted_resumes/{identifier}")
-        @ExpectedResponses({204, 400, 401, 404})
+        @ExpectedResponses({204, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<RequestError>> deleteRedactedResume(
                 @HostParam("$host") String host,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/resume_formats")
-        @ExpectedResponses({200, 400, 401, 404})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> getAllResumeFormats(
-                @HostParam("$host") String host,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/reformatted_resumes")
-        @ExpectedResponses({200, 400, 401, 404})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> getAllReformattedResumes(
-                @HostParam("$host") String host,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
-
-        // @Multipart not supported by RestProxy
-        @Post("/reformatted_resumes")
-        @ExpectedResponses({200, 201, 400, 401, 404})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> createReformattedResume(
-                @HostParam("$host") String host,
-                @BodyParam("multipart/form-data") Flux<ByteBuffer> file,
-                @HeaderParam("Content-Length") Long contentLength,
-                @BodyParam("multipart/form-data") String identifier,
-                @BodyParam("multipart/form-data") String fileName,
-                @BodyParam("multipart/form-data") String url,
-                @BodyParam("multipart/form-data") String language,
-                @BodyParam("multipart/form-data") String resumeFormat,
-                @BodyParam("multipart/form-data") String wait,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/reformatted_resumes/{identifier}")
-        @ExpectedResponses({200, 400, 401, 404})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> getReformattedResume(
-                @HostParam("$host") String host,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Delete("/reformatted_resumes/{identifier}")
-        @ExpectedResponses({204, 400, 401, 404})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<RequestError>> deleteReformattedResume(
-                @HostParam("$host") String host,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
         @Post("/resume_search")
-        @ExpectedResponses({201, 400, 401, 404})
+        @ExpectedResponses({201, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> createResumeSearch(
                 @HostParam("$host") String host,
@@ -264,8 +209,60 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ResumeSearchParameters body,
                 @HeaderParam("Accept") String accept);
 
+        @Post("/resume_search/details/{identifier}")
+        @ExpectedResponses({200, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getResumeSearchDetail(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") ResumeSearchParameters body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/resume_search/match")
+        @ExpectedResponses({200, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getResumeSearchMatch(
+                @HostParam("$host") String host,
+                @QueryParam("resume") String resume,
+                @QueryParam("job_description") String jobDescription,
+                @QueryParam("index") String index,
+                @QueryParam("search_expression") String searchExpression,
+                @QueryParam("job_titles_weight") Float jobTitlesWeight,
+                @QueryParam("years_experience_weight") Float yearsExperienceWeight,
+                @QueryParam("locations_weight") Float locationsWeight,
+                @QueryParam("languages_weight") Float languagesWeight,
+                @QueryParam("skills_weight") Float skillsWeight,
+                @QueryParam("education_weight") Float educationWeight,
+                @QueryParam("search_expression_weight") Float searchExpressionWeight,
+                @QueryParam("soc_codes_weight") Float socCodesWeight,
+                @QueryParam("management_level_weight") Float managementLevelWeight,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/resume_search/config")
+        @ExpectedResponses({200, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getResumeSearchConfig(
+                @HostParam("$host") String host, @HeaderParam("Accept") String accept);
+
+        @Patch("/resume_search/config")
+        @ExpectedResponses({200, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> updateResumeSearchConfig(
+                @HostParam("$host") String host,
+                @BodyParam("application/json") ResumeSearchConfig body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/resume_search/embed")
+        @ExpectedResponses({200, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> createResumeSearchEmbedUrl(
+                @HostParam("$host") String host,
+                @BodyParam("application/json")
+                        Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
+                @HeaderParam("Accept") String accept);
+
         @Get("/job_descriptions")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllJobDescriptions(
                 @HostParam("$host") String host,
@@ -273,24 +270,16 @@ public final class AffindaAPI {
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
-        // @Multipart not supported by RestProxy
         @Post("/job_descriptions")
-        @ExpectedResponses({200, 201, 400, 401, 404})
+        @ExpectedResponses({200, 201, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> createJobDescription(
                 @HostParam("$host") String host,
-                @BodyParam("multipart/form-data") Flux<ByteBuffer> file,
-                @HeaderParam("Content-Length") Long contentLength,
-                @BodyParam("multipart/form-data") String identifier,
-                @BodyParam("multipart/form-data") String fileName,
-                @BodyParam("multipart/form-data") String url,
-                @BodyParam("multipart/form-data") String wait,
-                @BodyParam("multipart/form-data") String language,
-                @BodyParam("multipart/form-data") String expiryTime,
+                @BodyParam("application/json") JobDescriptionRequestBody body,
                 @HeaderParam("Accept") String accept);
 
         @Get("/job_descriptions/{identifier}")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getJobDescription(
                 @HostParam("$host") String host,
@@ -298,15 +287,25 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Delete("/job_descriptions/{identifier}")
-        @ExpectedResponses({204, 400, 401, 404})
+        @ExpectedResponses({204, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<RequestError>> deleteJobDescription(
                 @HostParam("$host") String host,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
+        @Post("/job_description_search")
+        @ExpectedResponses({201, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> createJobDescriptionSearch(
+                @HostParam("$host") String host,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @BodyParam("application/json") JobDescriptionSearchParameters body,
+                @HeaderParam("Accept") String accept);
+
         @Get("/index")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllIndexes(
                 @HostParam("$host") String host,
@@ -314,29 +313,28 @@ public final class AffindaAPI {
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
-        // @Multipart not supported by RestProxy
         @Post("/index")
-        @ExpectedResponses({201, 400, 401, 404})
+        @ExpectedResponses({201, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> createIndex(
                 @HostParam("$host") String host,
-                @BodyParam("multipart/form-data") String name,
+                @BodyParam("application/json") IndexRequestBody body,
                 @HeaderParam("Accept") String accept);
 
         @Delete("/index/{name}")
-        @ExpectedResponses({204, 400, 401, 404})
+        @ExpectedResponses({204, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<RequestError>> deleteIndex(
                 @HostParam("$host") String host, @PathParam("name") String name, @HeaderParam("Accept") String accept);
 
         @Get("/index/{name}/documents")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllIndexDocuments(
                 @HostParam("$host") String host, @PathParam("name") String name, @HeaderParam("Accept") String accept);
 
         @Post("/index/{name}/documents")
-        @ExpectedResponses({201, 400, 401, 404})
+        @ExpectedResponses({201, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> createIndexDocument(
                 @HostParam("$host") String host,
@@ -346,7 +344,7 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Delete("/index/{name}/documents/{identifier}")
-        @ExpectedResponses({204, 400, 401, 404})
+        @ExpectedResponses({204, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<RequestError>> deleteIndexDocument(
                 @HostParam("$host") String host,
@@ -355,7 +353,7 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Get("/invoices")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getAllInvoices(
                 @HostParam("$host") String host,
@@ -363,24 +361,16 @@ public final class AffindaAPI {
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
-        // @Multipart not supported by RestProxy
         @Post("/invoices")
-        @ExpectedResponses({200, 201, 400, 401, 404})
+        @ExpectedResponses({200, 201, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> createInvoice(
                 @HostParam("$host") String host,
-                @BodyParam("multipart/form-data") Flux<ByteBuffer> file,
-                @HeaderParam("Content-Length") Long contentLength,
-                @BodyParam("multipart/form-data") String identifier,
-                @BodyParam("multipart/form-data") String fileName,
-                @BodyParam("multipart/form-data") String url,
-                @BodyParam("multipart/form-data") String wait,
-                @BodyParam("multipart/form-data") String language,
-                @BodyParam("multipart/form-data") String expiryTime,
+                @BodyParam("application/json") InvoiceRequestBody body,
                 @HeaderParam("Accept") String accept);
 
         @Get("/invoices/{identifier}")
-        @ExpectedResponses({200, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getInvoice(
                 @HostParam("$host") String host,
@@ -388,7 +378,7 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Delete("/invoices/{identifier}")
-        @ExpectedResponses({204, 400, 401, 404})
+        @ExpectedResponses({204, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<RequestError>> deleteInvoice(
                 @HostParam("$host") String host,
@@ -396,10 +386,27 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Get("/occupation_groups")
-        @ExpectedResponses({201, 400, 401, 404})
+        @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> listOccupationGroups(
                 @HostParam("$host") String host, @HeaderParam("Accept") String accept);
+
+        @Get("/users")
+        @ExpectedResponses({200, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getAllUsers(
+                @HostParam("$host") String host,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/users")
+        @ExpectedResponses({201, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> createUser(
+                @HostParam("$host") String host,
+                @BodyParam("application/json") User body,
+                @HeaderParam("Accept") String accept);
     }
 
     /**
@@ -458,70 +465,39 @@ public final class AffindaAPI {
 
     /**
      * Uploads a resume for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/resumes/{identifier}](#operation/getResume) endpoint to check processing status and retrieve results.
+     * the [/resumes/{identifier}](#get-/resumes/-identifier-) endpoint to check processing status and retrieve
+     * results.&lt;br/&gt; Resumes can be uploaded as a file or a URL. In addition, data can be added directly if users
+     * want to upload directly without parsing any resume file. For uploading resume data, the `data` argument provided
+     * must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Resume to upload, either via file upload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> createResumeWithResponseAsync(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String wait,
-            String language,
-            String expiryTime) {
+    public Mono<Response<Object>> createResumeWithResponseAsync(ResumeRequestBody body) {
         final String accept = "application/json";
-        return service.createResume(
-                this.getHost(), file, contentLength, identifier, fileName, url, wait, language, expiryTime, accept);
+        return service.createResume(this.getHost(), body, accept);
     }
 
     /**
      * Uploads a resume for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/resumes/{identifier}](#operation/getResume) endpoint to check processing status and retrieve results.
+     * the [/resumes/{identifier}](#get-/resumes/-identifier-) endpoint to check processing status and retrieve
+     * results.&lt;br/&gt; Resumes can be uploaded as a file or a URL. In addition, data can be added directly if users
+     * want to upload directly without parsing any resume file. For uploading resume data, the `data` argument provided
+     * must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Resume to upload, either via file upload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> createResumeAsync(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String wait,
-            String language,
-            String expiryTime) {
-        return createResumeWithResponseAsync(file, contentLength, identifier, fileName, url, wait, language, expiryTime)
+    public Mono<Object> createResumeAsync(ResumeRequestBody body) {
+        return createResumeWithResponseAsync(body)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -534,66 +510,55 @@ public final class AffindaAPI {
 
     /**
      * Uploads a resume for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/resumes/{identifier}](#operation/getResume) endpoint to check processing status and retrieve results.
+     * the [/resumes/{identifier}](#get-/resumes/-identifier-) endpoint to check processing status and retrieve
+     * results.&lt;br/&gt; Resumes can be uploaded as a file or a URL. In addition, data can be added directly if users
+     * want to upload directly without parsing any resume file. For uploading resume data, the `data` argument provided
+     * must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Resume to upload, either via file upload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object createResume(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String wait,
-            String language,
-            String expiryTime) {
-        return createResumeAsync(file, contentLength, identifier, fileName, url, wait, language, expiryTime).block();
+    public Object createResume(ResumeRequestBody body) {
+        return createResumeAsync(body).block();
     }
 
     /**
      * Returns all the parse results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/resumes](#operation/createResume) endpoint.
+     * returned after POST-ing the resume via the [/resumes](#post-/resumes) endpoint.
      *
      * @param identifier Document identifier.
+     * @param format Set this to "hr-xml" to get the response in HR-XML format. Currently the only supported value for
+     *     this parameter is "hr-xml".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getResumeWithResponseAsync(String identifier) {
+    public Mono<Response<Object>> getResumeWithResponseAsync(String identifier, String format) {
         final String accept = "application/json";
-        return service.getResume(this.getHost(), identifier, accept);
+        return service.getResume(this.getHost(), identifier, format, accept);
     }
 
     /**
      * Returns all the parse results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/resumes](#operation/createResume) endpoint.
+     * returned after POST-ing the resume via the [/resumes](#post-/resumes) endpoint.
      *
      * @param identifier Document identifier.
+     * @param format Set this to "hr-xml" to get the response in HR-XML format. Currently the only supported value for
+     *     this parameter is "hr-xml".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getResumeAsync(String identifier) {
-        return getResumeWithResponseAsync(identifier)
+    public Mono<Object> getResumeAsync(String identifier, String format) {
+        return getResumeWithResponseAsync(identifier, format)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -606,17 +571,77 @@ public final class AffindaAPI {
 
     /**
      * Returns all the parse results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/resumes](#operation/createResume) endpoint.
+     * returned after POST-ing the resume via the [/resumes](#post-/resumes) endpoint.
      *
      * @param identifier Document identifier.
+     * @param format Set this to "hr-xml" to get the response in HR-XML format. Currently the only supported value for
+     *     this parameter is "hr-xml".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getResume(String identifier) {
-        return getResumeAsync(identifier).block();
+    public Object getResume(String identifier, String format) {
+        return getResumeAsync(identifier, format).block();
+    }
+
+    /**
+     * Update data of a parsed resume. The `identifier` is the unique ID returned after POST-ing the resume via the
+     * [/resumes](#post-/resumes) endpoint.
+     *
+     * @param identifier Resume identifier.
+     * @param body Resume data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a JSON-encoded string of the `ResumeData` object along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> updateResumeDataWithResponseAsync(String identifier, ResumeData body) {
+        final String accept = "application/json";
+        return service.updateResumeData(this.getHost(), identifier, body, accept);
+    }
+
+    /**
+     * Update data of a parsed resume. The `identifier` is the unique ID returned after POST-ing the resume via the
+     * [/resumes](#post-/resumes) endpoint.
+     *
+     * @param identifier Resume identifier.
+     * @param body Resume data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a JSON-encoded string of the `ResumeData` object on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> updateResumeDataAsync(String identifier, ResumeData body) {
+        return updateResumeDataWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update data of a parsed resume. The `identifier` is the unique ID returned after POST-ing the resume via the
+     * [/resumes](#post-/resumes) endpoint.
+     *
+     * @param identifier Resume identifier.
+     * @param body Resume data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a JSON-encoded string of the `ResumeData` object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object updateResumeData(String identifier, ResumeData body) {
+        return updateResumeDataAsync(identifier, body).block();
     }
 
     /**
@@ -727,132 +752,30 @@ public final class AffindaAPI {
     /**
      * Uploads a resume for redacting.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param redactHeadshot Whether to redact headshot.
-     * @param redactPersonalDetails Whether to redact personal details (e.g. name, address).
-     * @param redactWorkDetails Whether to redact work details (e.g. company names).
-     * @param redactEducationDetails Whether to redact education details (e.g. university names).
-     * @param redactReferees Whether to redact referee details.
-     * @param redactLocations Whether to redact location names.
-     * @param redactDates Whether to redact dates.
-     * @param redactGender Whether to redact gender.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Resume to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> createRedactedResumeWithResponseAsync(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String language,
-            String wait,
-            String redactHeadshot,
-            String redactPersonalDetails,
-            String redactWorkDetails,
-            String redactEducationDetails,
-            String redactReferees,
-            String redactLocations,
-            String redactDates,
-            String redactGender,
-            String expiryTime) {
+    public Mono<Response<Object>> createRedactedResumeWithResponseAsync(RedactedResumeRequestBody body) {
         final String accept = "application/json";
-        return service.createRedactedResume(
-                this.getHost(),
-                file,
-                contentLength,
-                identifier,
-                fileName,
-                url,
-                language,
-                wait,
-                redactHeadshot,
-                redactPersonalDetails,
-                redactWorkDetails,
-                redactEducationDetails,
-                redactReferees,
-                redactLocations,
-                redactDates,
-                redactGender,
-                expiryTime,
-                accept);
+        return service.createRedactedResume(this.getHost(), body, accept);
     }
 
     /**
      * Uploads a resume for redacting.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param redactHeadshot Whether to redact headshot.
-     * @param redactPersonalDetails Whether to redact personal details (e.g. name, address).
-     * @param redactWorkDetails Whether to redact work details (e.g. company names).
-     * @param redactEducationDetails Whether to redact education details (e.g. university names).
-     * @param redactReferees Whether to redact referee details.
-     * @param redactLocations Whether to redact location names.
-     * @param redactDates Whether to redact dates.
-     * @param redactGender Whether to redact gender.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Resume to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> createRedactedResumeAsync(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String language,
-            String wait,
-            String redactHeadshot,
-            String redactPersonalDetails,
-            String redactWorkDetails,
-            String redactEducationDetails,
-            String redactReferees,
-            String redactLocations,
-            String redactDates,
-            String redactGender,
-            String expiryTime) {
-        return createRedactedResumeWithResponseAsync(
-                        file,
-                        contentLength,
-                        identifier,
-                        fileName,
-                        url,
-                        language,
-                        wait,
-                        redactHeadshot,
-                        redactPersonalDetails,
-                        redactWorkDetails,
-                        redactEducationDetails,
-                        redactReferees,
-                        redactLocations,
-                        redactDates,
-                        redactGender,
-                        expiryTime)
+    public Mono<Object> createRedactedResumeAsync(RedactedResumeRequestBody body) {
+        return createRedactedResumeWithResponseAsync(body)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -866,71 +789,20 @@ public final class AffindaAPI {
     /**
      * Uploads a resume for redacting.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param redactHeadshot Whether to redact headshot.
-     * @param redactPersonalDetails Whether to redact personal details (e.g. name, address).
-     * @param redactWorkDetails Whether to redact work details (e.g. company names).
-     * @param redactEducationDetails Whether to redact education details (e.g. university names).
-     * @param redactReferees Whether to redact referee details.
-     * @param redactLocations Whether to redact location names.
-     * @param redactDates Whether to redact dates.
-     * @param redactGender Whether to redact gender.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Resume to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object createRedactedResume(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String language,
-            String wait,
-            String redactHeadshot,
-            String redactPersonalDetails,
-            String redactWorkDetails,
-            String redactEducationDetails,
-            String redactReferees,
-            String redactLocations,
-            String redactDates,
-            String redactGender,
-            String expiryTime) {
-        return createRedactedResumeAsync(
-                        file,
-                        contentLength,
-                        identifier,
-                        fileName,
-                        url,
-                        language,
-                        wait,
-                        redactHeadshot,
-                        redactPersonalDetails,
-                        redactWorkDetails,
-                        redactEducationDetails,
-                        redactReferees,
-                        redactLocations,
-                        redactDates,
-                        redactGender,
-                        expiryTime)
-                .block();
+    public Object createRedactedResume(RedactedResumeRequestBody body) {
+        return createRedactedResumeAsync(body).block();
     }
 
     /**
      * Returns all the redaction results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/redacted_resumes](#operation/createRedactedResume) endpoint.
+     * returned after POST-ing the resume via the [/redacted_resumes](#post-/redacted_resumes) endpoint.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -946,7 +818,7 @@ public final class AffindaAPI {
 
     /**
      * Returns all the redaction results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/redacted_resumes](#operation/createRedactedResume) endpoint.
+     * returned after POST-ing the resume via the [/redacted_resumes](#post-/redacted_resumes) endpoint.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -969,7 +841,7 @@ public final class AffindaAPI {
 
     /**
      * Returns all the redaction results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/redacted_resumes](#operation/createRedactedResume) endpoint.
+     * returned after POST-ing the resume via the [/redacted_resumes](#post-/redacted_resumes) endpoint.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1034,329 +906,11 @@ public final class AffindaAPI {
     }
 
     /**
-     * Returns all the resume formats.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getAllResumeFormatsWithResponseAsync(Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.getAllResumeFormats(this.getHost(), offset, limit, accept);
-    }
-
-    /**
-     * Returns all the resume formats.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getAllResumeFormatsAsync(Integer offset, Integer limit) {
-        return getAllResumeFormatsWithResponseAsync(offset, limit)
-                .flatMap(
-                        (Response<Object> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the resume formats.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getAllResumeFormats(Integer offset, Integer limit) {
-        return getAllResumeFormatsAsync(offset, limit).block();
-    }
-
-    /**
-     * Returns all the reformatted resume information for that resume.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getAllReformattedResumesWithResponseAsync(Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.getAllReformattedResumes(this.getHost(), offset, limit, accept);
-    }
-
-    /**
-     * Returns all the reformatted resume information for that resume.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getAllReformattedResumesAsync(Integer offset, Integer limit) {
-        return getAllReformattedResumesWithResponseAsync(offset, limit)
-                .flatMap(
-                        (Response<Object> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the reformatted resume information for that resume.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getAllReformattedResumes(Integer offset, Integer limit) {
-        return getAllReformattedResumesAsync(offset, limit).block();
-    }
-
-    /**
-     * Upload a resume for reformatting.
-     *
-     * @param resumeFormat Identifier of the format used.
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> createReformattedResumeWithResponseAsync(
-            String resumeFormat,
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String language,
-            String wait) {
-        final String accept = "application/json";
-        return service.createReformattedResume(
-                this.getHost(), file, contentLength, identifier, fileName, url, language, resumeFormat, wait, accept);
-    }
-
-    /**
-     * Upload a resume for reformatting.
-     *
-     * @param resumeFormat Identifier of the format used.
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> createReformattedResumeAsync(
-            String resumeFormat,
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String language,
-            String wait) {
-        return createReformattedResumeWithResponseAsync(
-                        resumeFormat, file, contentLength, identifier, fileName, url, language, wait)
-                .flatMap(
-                        (Response<Object> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Upload a resume for reformatting.
-     *
-     * @param resumeFormat Identifier of the format used.
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object createReformattedResume(
-            String resumeFormat,
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String language,
-            String wait) {
-        return createReformattedResumeAsync(
-                        resumeFormat, file, contentLength, identifier, fileName, url, language, wait)
-                .block();
-    }
-
-    /**
-     * Returns all the reformatting results for that resume if processing is completed. The `identifier` is the unique
-     * ID returned after POST-ing the resume via the [/reformatted_resumes](#operation/createReformattedResume)
-     * endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getReformattedResumeWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.getReformattedResume(this.getHost(), identifier, accept);
-    }
-
-    /**
-     * Returns all the reformatting results for that resume if processing is completed. The `identifier` is the unique
-     * ID returned after POST-ing the resume via the [/reformatted_resumes](#operation/createReformattedResume)
-     * endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getReformattedResumeAsync(String identifier) {
-        return getReformattedResumeWithResponseAsync(identifier)
-                .flatMap(
-                        (Response<Object> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the reformatting results for that resume if processing is completed. The `identifier` is the unique
-     * ID returned after POST-ing the resume via the [/reformatted_resumes](#operation/createReformattedResume)
-     * endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getReformattedResume(String identifier) {
-        return getReformattedResumeAsync(identifier).block();
-    }
-
-    /**
-     * Delete the specified resume from the database.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<RequestError>> deleteReformattedResumeWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.deleteReformattedResume(this.getHost(), identifier, accept);
-    }
-
-    /**
-     * Delete the specified resume from the database.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<RequestError> deleteReformattedResumeAsync(String identifier) {
-        return deleteReformattedResumeWithResponseAsync(identifier)
-                .flatMap(
-                        (Response<RequestError> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Delete the specified resume from the database.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RequestError deleteReformattedResume(String identifier) {
-        return deleteReformattedResumeAsync(identifier).block();
-    }
-
-    /**
-     * Searches through parsed resumes.
+     * Searches through parsed resumes. Users have 3 options to create a search:&lt;br /&gt;&lt;br /&gt; 1. Match to a
+     * job description - a parsed job description is used to find candidates that suit it&lt;br /&gt; 2. Match to a
+     * resume - a parsed resume is used to find other candidates that have similar attributes&lt;br /&gt; 3. Search
+     * using custom criteria&lt;br /&gt;&lt;br /&gt; Users should only populate 1 of jobDescription, resume or the
+     * custom criteria.
      *
      * @param body Search parameters.
      * @param offset The number of documents to skip before starting to collect the result set.
@@ -1374,7 +928,11 @@ public final class AffindaAPI {
     }
 
     /**
-     * Searches through parsed resumes.
+     * Searches through parsed resumes. Users have 3 options to create a search:&lt;br /&gt;&lt;br /&gt; 1. Match to a
+     * job description - a parsed job description is used to find candidates that suit it&lt;br /&gt; 2. Match to a
+     * resume - a parsed resume is used to find other candidates that have similar attributes&lt;br /&gt; 3. Search
+     * using custom criteria&lt;br /&gt;&lt;br /&gt; Users should only populate 1 of jobDescription, resume or the
+     * custom criteria.
      *
      * @param body Search parameters.
      * @param offset The number of documents to skip before starting to collect the result set.
@@ -1398,7 +956,11 @@ public final class AffindaAPI {
     }
 
     /**
-     * Searches through parsed resumes.
+     * Searches through parsed resumes. Users have 3 options to create a search:&lt;br /&gt;&lt;br /&gt; 1. Match to a
+     * job description - a parsed job description is used to find candidates that suit it&lt;br /&gt; 2. Match to a
+     * resume - a parsed resume is used to find other candidates that have similar attributes&lt;br /&gt; 3. Search
+     * using custom criteria&lt;br /&gt;&lt;br /&gt; Users should only populate 1 of jobDescription, resume or the
+     * custom criteria.
      *
      * @param body Search parameters.
      * @param offset The number of documents to skip before starting to collect the result set.
@@ -1411,6 +973,401 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Object createResumeSearch(ResumeSearchParameters body, Integer offset, Integer limit) {
         return createResumeSearchAsync(body, offset, limit).block();
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this resume. The `identifier` is the unique ID returned via the
+     * [/resume_search](#post-/resume_search) endpoint.
+     *
+     * @param identifier Resume identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getResumeSearchDetailWithResponseAsync(
+            String identifier, ResumeSearchParameters body) {
+        final String accept = "application/json";
+        return service.getResumeSearchDetail(this.getHost(), identifier, body, accept);
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this resume. The `identifier` is the unique ID returned via the
+     * [/resume_search](#post-/resume_search) endpoint.
+     *
+     * @param identifier Resume identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getResumeSearchDetailAsync(String identifier, ResumeSearchParameters body) {
+        return getResumeSearchDetailWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this resume. The `identifier` is the unique ID returned via the
+     * [/resume_search](#post-/resume_search) endpoint.
+     *
+     * @param identifier Resume identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getResumeSearchDetail(String identifier, ResumeSearchParameters body) {
+        return getResumeSearchDetailAsync(identifier, body).block();
+    }
+
+    /**
+     * Get the matching score between a resume and a job description. The score ranges between 0 and 1, with 0 being not
+     * a match at all, and 1 being perfect match.&lt;br/&gt; Note, this score will not directly match the score returned
+     * from POST [/resume_search/details/{identifier}](#post-/resume_search/details/-identifier-).
+     *
+     * @param resume Identify the resume to match.
+     * @param jobDescription Identify the job description to match.
+     * @param index Optionally, specify an index to search in. If not specified, will search in all indexes.
+     * @param searchExpression Add keywords to the search criteria.
+     * @param jobTitlesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param yearsExperienceWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param locationsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param languagesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param skillsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param educationWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param searchExpressionWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param socCodesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param managementLevelWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the matching score between a resume and a job description along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getResumeSearchMatchWithResponseAsync(
+            String resume,
+            String jobDescription,
+            String index,
+            String searchExpression,
+            Float jobTitlesWeight,
+            Float yearsExperienceWeight,
+            Float locationsWeight,
+            Float languagesWeight,
+            Float skillsWeight,
+            Float educationWeight,
+            Float searchExpressionWeight,
+            Float socCodesWeight,
+            Float managementLevelWeight) {
+        final String accept = "application/json";
+        return service.getResumeSearchMatch(
+                this.getHost(),
+                resume,
+                jobDescription,
+                index,
+                searchExpression,
+                jobTitlesWeight,
+                yearsExperienceWeight,
+                locationsWeight,
+                languagesWeight,
+                skillsWeight,
+                educationWeight,
+                searchExpressionWeight,
+                socCodesWeight,
+                managementLevelWeight,
+                accept);
+    }
+
+    /**
+     * Get the matching score between a resume and a job description. The score ranges between 0 and 1, with 0 being not
+     * a match at all, and 1 being perfect match.&lt;br/&gt; Note, this score will not directly match the score returned
+     * from POST [/resume_search/details/{identifier}](#post-/resume_search/details/-identifier-).
+     *
+     * @param resume Identify the resume to match.
+     * @param jobDescription Identify the job description to match.
+     * @param index Optionally, specify an index to search in. If not specified, will search in all indexes.
+     * @param searchExpression Add keywords to the search criteria.
+     * @param jobTitlesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param yearsExperienceWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param locationsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param languagesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param skillsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param educationWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param searchExpressionWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param socCodesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param managementLevelWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the matching score between a resume and a job description on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getResumeSearchMatchAsync(
+            String resume,
+            String jobDescription,
+            String index,
+            String searchExpression,
+            Float jobTitlesWeight,
+            Float yearsExperienceWeight,
+            Float locationsWeight,
+            Float languagesWeight,
+            Float skillsWeight,
+            Float educationWeight,
+            Float searchExpressionWeight,
+            Float socCodesWeight,
+            Float managementLevelWeight) {
+        return getResumeSearchMatchWithResponseAsync(
+                        resume,
+                        jobDescription,
+                        index,
+                        searchExpression,
+                        jobTitlesWeight,
+                        yearsExperienceWeight,
+                        locationsWeight,
+                        languagesWeight,
+                        skillsWeight,
+                        educationWeight,
+                        searchExpressionWeight,
+                        socCodesWeight,
+                        managementLevelWeight)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Get the matching score between a resume and a job description. The score ranges between 0 and 1, with 0 being not
+     * a match at all, and 1 being perfect match.&lt;br/&gt; Note, this score will not directly match the score returned
+     * from POST [/resume_search/details/{identifier}](#post-/resume_search/details/-identifier-).
+     *
+     * @param resume Identify the resume to match.
+     * @param jobDescription Identify the job description to match.
+     * @param index Optionally, specify an index to search in. If not specified, will search in all indexes.
+     * @param searchExpression Add keywords to the search criteria.
+     * @param jobTitlesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param yearsExperienceWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param locationsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param languagesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param skillsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param educationWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param searchExpressionWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param socCodesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param managementLevelWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the matching score between a resume and a job description.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getResumeSearchMatch(
+            String resume,
+            String jobDescription,
+            String index,
+            String searchExpression,
+            Float jobTitlesWeight,
+            Float yearsExperienceWeight,
+            Float locationsWeight,
+            Float languagesWeight,
+            Float skillsWeight,
+            Float educationWeight,
+            Float searchExpressionWeight,
+            Float socCodesWeight,
+            Float managementLevelWeight) {
+        return getResumeSearchMatchAsync(
+                        resume,
+                        jobDescription,
+                        index,
+                        searchExpression,
+                        jobTitlesWeight,
+                        yearsExperienceWeight,
+                        locationsWeight,
+                        languagesWeight,
+                        skillsWeight,
+                        educationWeight,
+                        searchExpressionWeight,
+                        socCodesWeight,
+                        managementLevelWeight)
+                .block();
+    }
+
+    /**
+     * Return configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getResumeSearchConfigWithResponseAsync() {
+        final String accept = "application/json";
+        return service.getResumeSearchConfig(this.getHost(), accept);
+    }
+
+    /**
+     * Return configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getResumeSearchConfigAsync() {
+        return getResumeSearchConfigWithResponseAsync()
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getResumeSearchConfig() {
+        return getResumeSearchConfigAsync().block();
+    }
+
+    /**
+     * Update configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> updateResumeSearchConfigWithResponseAsync(ResumeSearchConfig body) {
+        final String accept = "application/json";
+        return service.updateResumeSearchConfig(this.getHost(), body, accept);
+    }
+
+    /**
+     * Update configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> updateResumeSearchConfigAsync(ResumeSearchConfig body) {
+        return updateResumeSearchConfigWithResponseAsync(body)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object updateResumeSearchConfig(ResumeSearchConfig body) {
+        return updateResumeSearchConfigAsync(body).block();
+    }
+
+    /**
+     * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
+     * parameter `config_override` can be passed to override the user-level configurations of the embedable search tool.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> createResumeSearchEmbedUrlWithResponseAsync(
+            Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+        final String accept = "application/json";
+        return service.createResumeSearchEmbedUrl(this.getHost(), body, accept);
+    }
+
+    /**
+     * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
+     * parameter `config_override` can be passed to override the user-level configurations of the embedable search tool.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> createResumeSearchEmbedUrlAsync(
+            Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+        return createResumeSearchEmbedUrlWithResponseAsync(body)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
+     * parameter `config_override` can be passed to override the user-level configurations of the embedable search tool.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object createResumeSearchEmbedUrl(
+            Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+        return createResumeSearchEmbedUrlAsync(body).block();
     }
 
     /**
@@ -1469,73 +1426,35 @@ public final class AffindaAPI {
 
     /**
      * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
-     * use with the [/job_descriptions/{identifier}](#operation/getResume) endpoint to check processing status and
-     * retrieve results.
+     * use with the [/job_descriptions/{identifier}](#get-/job_descriptions/-identifier-) endpoint to check processing
+     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Job Description to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> createJobDescriptionWithResponseAsync(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String wait,
-            String language,
-            String expiryTime) {
+    public Mono<Response<Object>> createJobDescriptionWithResponseAsync(JobDescriptionRequestBody body) {
         final String accept = "application/json";
-        return service.createJobDescription(
-                this.getHost(), file, contentLength, identifier, fileName, url, wait, language, expiryTime, accept);
+        return service.createJobDescription(this.getHost(), body, accept);
     }
 
     /**
      * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
-     * use with the [/job_descriptions/{identifier}](#operation/getResume) endpoint to check processing status and
-     * retrieve results.
+     * use with the [/job_descriptions/{identifier}](#get-/job_descriptions/-identifier-) endpoint to check processing
+     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Job Description to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> createJobDescriptionAsync(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String wait,
-            String language,
-            String expiryTime) {
-        return createJobDescriptionWithResponseAsync(
-                        file, contentLength, identifier, fileName, url, wait, language, expiryTime)
+    public Mono<Object> createJobDescriptionAsync(JobDescriptionRequestBody body) {
+        return createJobDescriptionWithResponseAsync(body)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -1548,42 +1467,23 @@ public final class AffindaAPI {
 
     /**
      * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
-     * use with the [/job_descriptions/{identifier}](#operation/getResume) endpoint to check processing status and
-     * retrieve results.
+     * use with the [/job_descriptions/{identifier}](#get-/job_descriptions/-identifier-) endpoint to check processing
+     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Job Description to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object createJobDescription(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String wait,
-            String language,
-            String expiryTime) {
-        return createJobDescriptionAsync(file, contentLength, identifier, fileName, url, wait, language, expiryTime)
-                .block();
+    public Object createJobDescription(JobDescriptionRequestBody body) {
+        return createJobDescriptionAsync(body).block();
     }
 
     /**
      * Returns all the results for that job description if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/job_descriptions](#operation/createJobDescription) endpoint.
+     * returned after POST-ing the resume via the [/job_descriptions](#post-/job_descriptions) endpoint.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1599,7 +1499,7 @@ public final class AffindaAPI {
 
     /**
      * Returns all the results for that job description if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/job_descriptions](#operation/createJobDescription) endpoint.
+     * returned after POST-ing the resume via the [/job_descriptions](#post-/job_descriptions) endpoint.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1622,7 +1522,7 @@ public final class AffindaAPI {
 
     /**
      * Returns all the results for that job description if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/job_descriptions](#operation/createJobDescription) endpoint.
+     * returned after POST-ing the resume via the [/job_descriptions](#post-/job_descriptions) endpoint.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1687,6 +1587,65 @@ public final class AffindaAPI {
     }
 
     /**
+     * Searches through parsed job descriptions. You can search with custom criterias or a resume.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> createJobDescriptionSearchWithResponseAsync(
+            JobDescriptionSearchParameters body, Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.createJobDescriptionSearch(this.getHost(), offset, limit, body, accept);
+    }
+
+    /**
+     * Searches through parsed job descriptions. You can search with custom criterias or a resume.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> createJobDescriptionSearchAsync(
+            JobDescriptionSearchParameters body, Integer offset, Integer limit) {
+        return createJobDescriptionSearchWithResponseAsync(body, offset, limit)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Searches through parsed job descriptions. You can search with custom criterias or a resume.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object createJobDescriptionSearch(JobDescriptionSearchParameters body, Integer offset, Integer limit) {
+        return createJobDescriptionSearchAsync(body, offset, limit).block();
+    }
+
+    /**
      * Returns all the indexes.
      *
      * @param offset The number of documents to skip before starting to collect the result set.
@@ -1743,30 +1702,30 @@ public final class AffindaAPI {
     /**
      * Create an index for the search tool.
      *
-     * @param name The name parameter.
+     * @param body Index to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> createIndexWithResponseAsync(String name) {
+    public Mono<Response<Object>> createIndexWithResponseAsync(IndexRequestBody body) {
         final String accept = "application/json";
-        return service.createIndex(this.getHost(), name, accept);
+        return service.createIndex(this.getHost(), body, accept);
     }
 
     /**
      * Create an index for the search tool.
      *
-     * @param name The name parameter.
+     * @param body Index to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> createIndexAsync(String name) {
-        return createIndexWithResponseAsync(name)
+    public Mono<Object> createIndexAsync(IndexRequestBody body) {
+        return createIndexWithResponseAsync(body)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -1780,15 +1739,15 @@ public final class AffindaAPI {
     /**
      * Create an index for the search tool.
      *
-     * @param name The name parameter.
+     * @param body Index to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object createIndex(String name) {
-        return createIndexAsync(name).block();
+    public Object createIndex(IndexRequestBody body) {
+        return createIndexAsync(body).block();
     }
 
     /**
@@ -2060,71 +2019,35 @@ public final class AffindaAPI {
 
     /**
      * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/invoices/{identifier}](#operation/getInvoice) endpoint to check processing status and retrieve results.
+     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
+     * results.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Invoice to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> createInvoiceWithResponseAsync(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String wait,
-            String language,
-            String expiryTime) {
+    public Mono<Response<Object>> createInvoiceWithResponseAsync(InvoiceRequestBody body) {
         final String accept = "application/json";
-        return service.createInvoice(
-                this.getHost(), file, contentLength, identifier, fileName, url, wait, language, expiryTime, accept);
+        return service.createInvoice(this.getHost(), body, accept);
     }
 
     /**
      * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/invoices/{identifier}](#operation/getInvoice) endpoint to check processing status and retrieve results.
+     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
+     * results.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Invoice to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> createInvoiceAsync(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String wait,
-            String language,
-            String expiryTime) {
-        return createInvoiceWithResponseAsync(
-                        file, contentLength, identifier, fileName, url, wait, language, expiryTime)
+    public Mono<Object> createInvoiceAsync(InvoiceRequestBody body) {
+        return createInvoiceWithResponseAsync(body)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -2137,40 +2060,23 @@ public final class AffindaAPI {
 
     /**
      * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/invoices/{identifier}](#operation/getInvoice) endpoint to check processing status and retrieve results.
+     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
+     * results.
      *
-     * @param file File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
-     * @param contentLength The contentLength parameter.
-     * @param identifier Unique identifier for the document. If creating a document and left blank, one will be
-     *     automatically generated.
-     * @param fileName Optional filename of the file.
-     * @param url URL to file to download and process.
-     * @param wait If "true" (default), will return a response only after processing has completed. If "false", will
-     *     return an empty data object which can be polled at the GET endpoint until processing is complete.
-     * @param language Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for Chinese.
-     * @param expiryTime The date/time in ISO-8601 format when the document will be automatically deleted. Defaults to
-     *     no expiry.
+     * @param body Invoice to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object createInvoice(
-            Flux<ByteBuffer> file,
-            Long contentLength,
-            String identifier,
-            String fileName,
-            String url,
-            String wait,
-            String language,
-            String expiryTime) {
-        return createInvoiceAsync(file, contentLength, identifier, fileName, url, wait, language, expiryTime).block();
+    public Object createInvoice(InvoiceRequestBody body) {
+        return createInvoiceAsync(body).block();
     }
 
     /**
      * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the invoice via the [/invoices](#operation/createInvoice) endpoint.
+     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2186,7 +2092,7 @@ public final class AffindaAPI {
 
     /**
      * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the invoice via the [/invoices](#operation/createInvoice) endpoint.
+     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2209,7 +2115,7 @@ public final class AffindaAPI {
 
     /**
      * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the invoice via the [/invoices](#operation/createInvoice) endpoint.
+     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
      *
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2223,7 +2129,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Delete the specified invoice from the database.
+     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
+     * used in any tailored customer models.
      *
      * @param identifier Invoice identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2238,7 +2145,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Delete the specified invoice from the database.
+     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
+     * used in any tailored customer models.
      *
      * @param identifier Invoice identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2260,7 +2168,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Delete the specified invoice from the database.
+     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
+     * used in any tailored customer models.
      *
      * @param identifier Invoice identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2274,11 +2183,11 @@ public final class AffindaAPI {
     }
 
     /**
-     * TODO TODO TODO.
+     * Returns the list of searchable occupation groups.
      *
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of OccupationGroup along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> listOccupationGroupsWithResponseAsync() {
@@ -2287,11 +2196,11 @@ public final class AffindaAPI {
     }
 
     /**
-     * TODO TODO TODO.
+     * Returns the list of searchable occupation groups.
      *
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return array of OccupationGroup on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Object> listOccupationGroupsAsync() {
@@ -2307,14 +2216,119 @@ public final class AffindaAPI {
     }
 
     /**
-     * TODO TODO TODO.
+     * Returns the list of searchable occupation groups.
      *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of OccupationGroup.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object listOccupationGroups() {
+        return listOccupationGroupsAsync().block();
+    }
+
+    /**
+     * Returns all the users.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getAllUsersWithResponseAsync(Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.getAllUsers(this.getHost(), offset, limit, accept);
+    }
+
+    /**
+     * Returns all the users.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getAllUsersAsync(Integer offset, Integer limit) {
+        return getAllUsersWithResponseAsync(offset, limit)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns all the users.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object listOccupationGroups() {
-        return listOccupationGroupsAsync().block();
+    public Object getAllUsers(Integer offset, Integer limit) {
+        return getAllUsersAsync(offset, limit).block();
+    }
+
+    /**
+     * Create an user as part of your account.
+     *
+     * @param body User to create.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> createUserWithResponseAsync(User body) {
+        final String accept = "application/json";
+        return service.createUser(this.getHost(), body, accept);
+    }
+
+    /**
+     * Create an user as part of your account.
+     *
+     * @param body User to create.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> createUserAsync(User body) {
+        return createUserWithResponseAsync(body)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create an user as part of your account.
+     *
+     * @param body User to create.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object createUser(User body) {
+        return createUserAsync(body).block();
     }
 }

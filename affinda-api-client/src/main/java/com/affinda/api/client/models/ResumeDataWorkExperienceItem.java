@@ -7,16 +7,40 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ResumeDataWorkExperienceItem {
     /*
+     * The id property.
+     */
+    @JsonProperty(value = "id")
+    private Integer id;
+
+    /*
      * The jobTitle property.
      */
     @JsonProperty(value = "jobTitle")
     private String jobTitle;
 
     /*
+     * The socCode property.
+     */
+    @JsonProperty(value = "socCode", access = JsonProperty.Access.WRITE_ONLY)
+    private String socCode;
+
+    /*
+     * The socName property.
+     */
+    @JsonProperty(value = "socName", access = JsonProperty.Access.WRITE_ONLY)
+    private String socName;
+
+    /*
      * The organization property.
      */
     @JsonProperty(value = "organization")
     private String organization;
+
+    /*
+     * The industry property.
+     */
+    @JsonProperty(value = "industry", access = JsonProperty.Access.WRITE_ONLY)
+    private String industry;
 
     /*
      * The location property.
@@ -39,8 +63,28 @@ public final class ResumeDataWorkExperienceItem {
     /*
      * The occupation property.
      */
-    @JsonProperty(value = "occupation")
+    @JsonProperty(value = "occupation", access = JsonProperty.Access.WRITE_ONLY)
     private ResumeDataWorkExperienceItemOccupation occupation;
+
+    /**
+     * Get the id property: The id property.
+     *
+     * @return the id value.
+     */
+    public Integer getId() {
+        return this.id;
+    }
+
+    /**
+     * Set the id property: The id property.
+     *
+     * @param id the id value to set.
+     * @return the ResumeDataWorkExperienceItem object itself.
+     */
+    public ResumeDataWorkExperienceItem setId(Integer id) {
+        this.id = id;
+        return this;
+    }
 
     /**
      * Get the jobTitle property: The jobTitle property.
@@ -63,6 +107,24 @@ public final class ResumeDataWorkExperienceItem {
     }
 
     /**
+     * Get the socCode property: The socCode property.
+     *
+     * @return the socCode value.
+     */
+    public String getSocCode() {
+        return this.socCode;
+    }
+
+    /**
+     * Get the socName property: The socName property.
+     *
+     * @return the socName value.
+     */
+    public String getSocName() {
+        return this.socName;
+    }
+
+    /**
      * Get the organization property: The organization property.
      *
      * @return the organization value.
@@ -80,6 +142,15 @@ public final class ResumeDataWorkExperienceItem {
     public ResumeDataWorkExperienceItem setOrganization(String organization) {
         this.organization = organization;
         return this;
+    }
+
+    /**
+     * Get the industry property: The industry property.
+     *
+     * @return the industry value.
+     */
+    public String getIndustry() {
+        return this.industry;
     }
 
     /**
@@ -149,16 +220,5 @@ public final class ResumeDataWorkExperienceItem {
      */
     public ResumeDataWorkExperienceItemOccupation getOccupation() {
         return this.occupation;
-    }
-
-    /**
-     * Set the occupation property: The occupation property.
-     *
-     * @param occupation the occupation value to set.
-     * @return the ResumeDataWorkExperienceItem object itself.
-     */
-    public ResumeDataWorkExperienceItem setOccupation(ResumeDataWorkExperienceItemOccupation occupation) {
-        this.occupation = occupation;
-        return this;
     }
 }

@@ -7,6 +7,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ResumeDataEducationItem {
     /*
+     * The id property.
+     */
+    @JsonProperty(value = "id")
+    private Integer id;
+
+    /*
      * The organization property.
      */
     @JsonProperty(value = "organization")
@@ -35,6 +41,26 @@ public final class ResumeDataEducationItem {
      */
     @JsonProperty(value = "dates")
     private ResumeDataEducationItemDates dates;
+
+    /**
+     * Get the id property: The id property.
+     *
+     * @return the id value.
+     */
+    public Integer getId() {
+        return this.id;
+    }
+
+    /**
+     * Set the id property: The id property.
+     *
+     * @param id the id value to set.
+     * @return the ResumeDataEducationItem object itself.
+     */
+    public ResumeDataEducationItem setId(Integer id) {
+        this.id = id;
+        return this;
+    }
 
     /**
      * Get the organization property: The organization property.

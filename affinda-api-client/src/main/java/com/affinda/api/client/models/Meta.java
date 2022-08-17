@@ -1,8 +1,13 @@
 package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /** The Meta model. */
 @Fluent
@@ -46,7 +51,18 @@ public class Meta {
      * deleted.  Defaults to no expiry.
      */
     @JsonProperty(value = "expiryTime")
-    private String expiryTime;
+    private OffsetDateTime expiryTime;
+
+    /*
+     * The resume's language.
+     */
+    @JsonProperty(value = "language")
+    private String language;
+
+    /*
+     * Dictionary of <any>
+     */
+    @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
      * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
@@ -160,7 +176,7 @@ public class Meta {
      *
      * @return the expiryTime value.
      */
-    public String getExpiryTime() {
+    public OffsetDateTime getExpiryTime() {
         return this.expiryTime;
     }
 
@@ -171,8 +187,57 @@ public class Meta {
      * @param expiryTime the expiryTime value to set.
      * @return the Meta object itself.
      */
-    public Meta setExpiryTime(String expiryTime) {
+    public Meta setExpiryTime(OffsetDateTime expiryTime) {
         this.expiryTime = expiryTime;
         return this;
+    }
+
+    /**
+     * Get the language property: The resume's language.
+     *
+     * @return the language value.
+     */
+    public String getLanguage() {
+        return this.language;
+    }
+
+    /**
+     * Set the language property: The resume's language.
+     *
+     * @param language the language value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setLanguage(String language) {
+        this.language = language;
+        return this;
+    }
+
+    /**
+     * Get the additionalProperties property: Dictionary of &lt;any&gt;.
+     *
+     * @return the additionalProperties value.
+     */
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    /**
+     * Set the additionalProperties property: Dictionary of &lt;any&gt;.
+     *
+     * @param additionalProperties the additionalProperties value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setAdditionalProperties(Map<String, Object> additionalProperties) {
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
+    @JsonAnySetter
+    void setAdditionalProperties(String key, Object value) {
+        if (additionalProperties == null) {
+            additionalProperties = new HashMap<>();
+        }
+        additionalProperties.put(key, value);
     }
 }

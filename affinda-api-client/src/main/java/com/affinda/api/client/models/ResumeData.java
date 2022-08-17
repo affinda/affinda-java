@@ -5,7 +5,7 @@ import com.azure.core.util.CoreUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ResumeData model. */
+/** A JSON-encoded string of the `ResumeData` object. */
 @Fluent
 public final class ResumeData {
     /*
@@ -53,8 +53,14 @@ public final class ResumeData {
     /*
      * The languages property.
      */
-    @JsonProperty(value = "languages")
+    @JsonProperty(value = "languages", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> languages;
+
+    /*
+     * The languageCodes property.
+     */
+    @JsonProperty(value = "languageCodes", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> languageCodes;
 
     /*
      * The summary property.
@@ -71,7 +77,7 @@ public final class ResumeData {
     /*
      * base64 encoded string
      */
-    @JsonProperty(value = "headShot")
+    @JsonProperty(value = "headShot", access = JsonProperty.Access.WRITE_ONLY)
     private byte[] headShot;
 
     /*
@@ -83,13 +89,13 @@ public final class ResumeData {
     /*
      * Prediction of the candidate's profession based on recent work experience
      */
-    @JsonProperty(value = "profession")
+    @JsonProperty(value = "profession", access = JsonProperty.Access.WRITE_ONLY)
     private String profession;
 
     /*
      * Linkedin account associated with the candidate
      */
-    @JsonProperty(value = "linkedin")
+    @JsonProperty(value = "linkedin", access = JsonProperty.Access.WRITE_ONLY)
     private String linkedin;
 
     /*
@@ -125,14 +131,14 @@ public final class ResumeData {
     /*
      * The sections property.
      */
-    @JsonProperty(value = "sections")
+    @JsonProperty(value = "sections", access = JsonProperty.Access.WRITE_ONLY)
     private List<ResumeDataSectionsItem> sections;
 
     /*
      * Probability that the given document is a resume. Values below 30 suggest
      * that the document is not a resume.
      */
-    @JsonProperty(value = "isResumeProbability")
+    @JsonProperty(value = "isResumeProbability", access = JsonProperty.Access.WRITE_ONLY)
     private Integer isResumeProbability;
 
     /*
@@ -292,14 +298,12 @@ public final class ResumeData {
     }
 
     /**
-     * Set the languages property: The languages property.
+     * Get the languageCodes property: The languageCodes property.
      *
-     * @param languages the languages value to set.
-     * @return the ResumeData object itself.
+     * @return the languageCodes value.
      */
-    public ResumeData setLanguages(List<String> languages) {
-        this.languages = languages;
-        return this;
+    public List<String> getLanguageCodes() {
+        return this.languageCodes;
     }
 
     /**
@@ -352,17 +356,6 @@ public final class ResumeData {
     }
 
     /**
-     * Set the headShot property: base64 encoded string.
-     *
-     * @param headShot the headShot value to set.
-     * @return the ResumeData object itself.
-     */
-    public ResumeData setHeadShot(byte[] headShot) {
-        this.headShot = CoreUtils.clone(headShot);
-        return this;
-    }
-
-    /**
      * Get the education property: The education property.
      *
      * @return the education value.
@@ -392,34 +385,12 @@ public final class ResumeData {
     }
 
     /**
-     * Set the profession property: Prediction of the candidate's profession based on recent work experience.
-     *
-     * @param profession the profession value to set.
-     * @return the ResumeData object itself.
-     */
-    public ResumeData setProfession(String profession) {
-        this.profession = profession;
-        return this;
-    }
-
-    /**
      * Get the linkedin property: Linkedin account associated with the candidate.
      *
      * @return the linkedin value.
      */
     public String getLinkedin() {
         return this.linkedin;
-    }
-
-    /**
-     * Set the linkedin property: Linkedin account associated with the candidate.
-     *
-     * @param linkedin the linkedin value to set.
-     * @return the ResumeData object itself.
-     */
-    public ResumeData setLinkedin(String linkedin) {
-        this.linkedin = linkedin;
-        return this;
     }
 
     /**
@@ -532,17 +503,6 @@ public final class ResumeData {
     }
 
     /**
-     * Set the sections property: The sections property.
-     *
-     * @param sections the sections value to set.
-     * @return the ResumeData object itself.
-     */
-    public ResumeData setSections(List<ResumeDataSectionsItem> sections) {
-        this.sections = sections;
-        return this;
-    }
-
-    /**
      * Get the isResumeProbability property: Probability that the given document is a resume. Values below 30 suggest
      * that the document is not a resume.
      *
@@ -550,18 +510,6 @@ public final class ResumeData {
      */
     public Integer getIsResumeProbability() {
         return this.isResumeProbability;
-    }
-
-    /**
-     * Set the isResumeProbability property: Probability that the given document is a resume. Values below 30 suggest
-     * that the document is not a resume.
-     *
-     * @param isResumeProbability the isResumeProbability value to set.
-     * @return the ResumeData object itself.
-     */
-    public ResumeData setIsResumeProbability(Integer isResumeProbability) {
-        this.isResumeProbability = isResumeProbability;
-        return this;
     }
 
     /**

@@ -8,6 +8,12 @@ import java.util.List;
 @Fluent
 public final class JobDescriptionData {
     /*
+     * The jobTitle property.
+     */
+    @JsonProperty(value = "jobTitle")
+    private JobTitleAnnotation jobTitle;
+
+    /*
      * The contactEmail property.
      */
     @JsonProperty(value = "contactEmail")
@@ -96,6 +102,32 @@ public final class JobDescriptionData {
      */
     @JsonProperty(value = "certifications")
     private List<TextAnnotation> certifications;
+
+    /*
+     * The yearsExperience property.
+     */
+    @JsonProperty(value = "yearsExperience")
+    private YearsExperienceAnnotation yearsExperience;
+
+    /**
+     * Get the jobTitle property: The jobTitle property.
+     *
+     * @return the jobTitle value.
+     */
+    public JobTitleAnnotation getJobTitle() {
+        return this.jobTitle;
+    }
+
+    /**
+     * Set the jobTitle property: The jobTitle property.
+     *
+     * @param jobTitle the jobTitle value to set.
+     * @return the JobDescriptionData object itself.
+     */
+    public JobDescriptionData setJobTitle(JobTitleAnnotation jobTitle) {
+        this.jobTitle = jobTitle;
+        return this;
+    }
 
     /**
      * Get the contactEmail property: The contactEmail property.
@@ -394,6 +426,26 @@ public final class JobDescriptionData {
      */
     public JobDescriptionData setCertifications(List<TextAnnotation> certifications) {
         this.certifications = certifications;
+        return this;
+    }
+
+    /**
+     * Get the yearsExperience property: The yearsExperience property.
+     *
+     * @return the yearsExperience value.
+     */
+    public YearsExperienceAnnotation getYearsExperience() {
+        return this.yearsExperience;
+    }
+
+    /**
+     * Set the yearsExperience property: The yearsExperience property.
+     *
+     * @param yearsExperience the yearsExperience value to set.
+     * @return the JobDescriptionData object itself.
+     */
+    public JobDescriptionData setYearsExperience(YearsExperienceAnnotation yearsExperience) {
+        this.yearsExperience = yearsExperience;
         return this;
     }
 }

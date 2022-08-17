@@ -8,6 +8,18 @@ import java.util.List;
 @Fluent
 public final class ResumeDataSkillsItem {
     /*
+     * The id property.
+     */
+    @JsonProperty(value = "id")
+    private Integer id;
+
+    /*
+     * EMSI id of this skill.
+     */
+    @JsonProperty(value = "emsiId", access = JsonProperty.Access.WRITE_ONLY)
+    private String emsiId;
+
+    /*
      * The name property.
      */
     @JsonProperty(value = "name")
@@ -28,14 +40,55 @@ public final class ResumeDataSkillsItem {
     /*
      * The type property.
      */
-    @JsonProperty(value = "type")
+    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private String type;
+
+    /*
+     * The count property.
+     */
+    @JsonProperty(value = "count", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer count;
+
+    /*
+     * The weighting property.
+     */
+    @JsonProperty(value = "weighting", access = JsonProperty.Access.WRITE_ONLY)
+    private Float weighting;
 
     /*
      * The sources property.
      */
-    @JsonProperty(value = "sources")
+    @JsonProperty(value = "sources", access = JsonProperty.Access.WRITE_ONLY)
     private List<ResumeDataSkillsPropertiesItemsItem> sources;
+
+    /**
+     * Get the id property: The id property.
+     *
+     * @return the id value.
+     */
+    public Integer getId() {
+        return this.id;
+    }
+
+    /**
+     * Set the id property: The id property.
+     *
+     * @param id the id value to set.
+     * @return the ResumeDataSkillsItem object itself.
+     */
+    public ResumeDataSkillsItem setId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get the emsiId property: EMSI id of this skill.
+     *
+     * @return the emsiId value.
+     */
+    public String getEmsiId() {
+        return this.emsiId;
+    }
 
     /**
      * Get the name property: The name property.
@@ -107,14 +160,21 @@ public final class ResumeDataSkillsItem {
     }
 
     /**
-     * Set the type property: The type property.
+     * Get the count property: The count property.
      *
-     * @param type the type value to set.
-     * @return the ResumeDataSkillsItem object itself.
+     * @return the count value.
      */
-    public ResumeDataSkillsItem setType(String type) {
-        this.type = type;
-        return this;
+    public Integer getCount() {
+        return this.count;
+    }
+
+    /**
+     * Get the weighting property: The weighting property.
+     *
+     * @return the weighting value.
+     */
+    public Float getWeighting() {
+        return this.weighting;
     }
 
     /**
@@ -124,16 +184,5 @@ public final class ResumeDataSkillsItem {
      */
     public List<ResumeDataSkillsPropertiesItemsItem> getSources() {
         return this.sources;
-    }
-
-    /**
-     * Set the sources property: The sources property.
-     *
-     * @param sources the sources value to set.
-     * @return the ResumeDataSkillsItem object itself.
-     */
-    public ResumeDataSkillsItem setSources(List<ResumeDataSkillsPropertiesItemsItem> sources) {
-        this.sources = sources;
-        return this;
     }
 }

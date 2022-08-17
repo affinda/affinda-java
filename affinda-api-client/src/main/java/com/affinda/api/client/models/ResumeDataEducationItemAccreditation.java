@@ -15,19 +15,19 @@ public final class ResumeDataEducationItemAccreditation {
     /*
      * The inputStr property.
      */
-    @JsonProperty(value = "inputStr")
+    @JsonProperty(value = "inputStr", access = JsonProperty.Access.WRITE_ONLY)
     private String inputStr;
 
     /*
      * The matchStr property.
      */
-    @JsonProperty(value = "matchStr")
+    @JsonProperty(value = "matchStr", access = JsonProperty.Access.WRITE_ONLY)
     private String matchStr;
 
     /*
      * The educationLevel property.
      */
-    @JsonProperty(value = "educationLevel")
+    @JsonProperty(value = "educationLevel", access = JsonProperty.Access.WRITE_ONLY)
     private String educationLevel;
 
     /**
@@ -60,17 +60,6 @@ public final class ResumeDataEducationItemAccreditation {
     }
 
     /**
-     * Set the inputStr property: The inputStr property.
-     *
-     * @param inputStr the inputStr value to set.
-     * @return the ResumeDataEducationItemAccreditation object itself.
-     */
-    public ResumeDataEducationItemAccreditation setInputStr(String inputStr) {
-        this.inputStr = inputStr;
-        return this;
-    }
-
-    /**
      * Get the matchStr property: The matchStr property.
      *
      * @return the matchStr value.
@@ -80,33 +69,11 @@ public final class ResumeDataEducationItemAccreditation {
     }
 
     /**
-     * Set the matchStr property: The matchStr property.
-     *
-     * @param matchStr the matchStr value to set.
-     * @return the ResumeDataEducationItemAccreditation object itself.
-     */
-    public ResumeDataEducationItemAccreditation setMatchStr(String matchStr) {
-        this.matchStr = matchStr;
-        return this;
-    }
-
-    /**
      * Get the educationLevel property: The educationLevel property.
      *
      * @return the educationLevel value.
      */
     public String getEducationLevel() {
         return this.educationLevel;
-    }
-
-    /**
-     * Set the educationLevel property: The educationLevel property.
-     *
-     * @param educationLevel the educationLevel value to set.
-     * @return the ResumeDataEducationItemAccreditation object itself.
-     */
-    public ResumeDataEducationItemAccreditation setEducationLevel(String educationLevel) {
-        this.educationLevel = educationLevel;
-        return this;
     }
 }

@@ -7,6 +7,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class Invoice {
     /*
+     * The clientVerifiedDt property.
+     */
+    @JsonProperty(value = "clientVerifiedDt", required = true)
+    private String clientVerifiedDt;
+
+    /*
      * The data property.
      */
     @JsonProperty(value = "data", required = true)
@@ -23,6 +29,26 @@ public final class Invoice {
      */
     @JsonProperty(value = "error", required = true)
     private Error error;
+
+    /**
+     * Get the clientVerifiedDt property: The clientVerifiedDt property.
+     *
+     * @return the clientVerifiedDt value.
+     */
+    public String getClientVerifiedDt() {
+        return this.clientVerifiedDt;
+    }
+
+    /**
+     * Set the clientVerifiedDt property: The clientVerifiedDt property.
+     *
+     * @param clientVerifiedDt the clientVerifiedDt value to set.
+     * @return the Invoice object itself.
+     */
+    public Invoice setClientVerifiedDt(String clientVerifiedDt) {
+        this.clientVerifiedDt = clientVerifiedDt;
+        return this;
+    }
 
     /**
      * Get the data property: The data property.
