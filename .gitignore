@@ -24,8 +24,5 @@ hs_err_pid*
 
 */target/*
 .idea/libraries/
-.idea/azure/
 
 build_state.json
-
-.vscode/

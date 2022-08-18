@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Updated dependencies
+- Update modelerfour version to latest
 
 ### Added
 - Job Description from API spec
@@ -22,6 +23,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Make expiry time native date time
 
+### Deprecated
+- Depreciated resume_formats and reformatted_resumes endpoints
+
 ## [0.2.0] - 2021-10-06
 ### Added
 - Invoices endpoint
@@ -32,3 +36,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2021-04-01
 ### Added
 - First beta build
+
