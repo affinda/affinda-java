@@ -304,6 +304,15 @@ public final class AffindaAPI {
                 @BodyParam("application/json") JobDescriptionSearchParameters body,
                 @HeaderParam("Accept") String accept);
 
+        @Post("/job_description_search/details/{identifier}")
+        @ExpectedResponses({200, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getJobDescriptionSearchDetail(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") JobDescriptionSearchParameters body,
+                @HeaderParam("Accept") String accept);
+
         @Get("/index")
         @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
@@ -1643,6 +1652,67 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Object createJobDescriptionSearch(JobDescriptionSearchParameters body, Integer offset, Integer limit) {
         return createJobDescriptionSearchAsync(body, offset, limit).block();
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this job description. The `identifier` is the unique ID returned via the
+     * [/job_description_search](#post-/job_description_search) endpoint.
+     *
+     * @param identifier Job Description identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getJobDescriptionSearchDetailWithResponseAsync(
+            String identifier, JobDescriptionSearchParameters body) {
+        final String accept = "application/json";
+        return service.getJobDescriptionSearchDetail(this.getHost(), identifier, body, accept);
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this job description. The `identifier` is the unique ID returned via the
+     * [/job_description_search](#post-/job_description_search) endpoint.
+     *
+     * @param identifier Job Description identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getJobDescriptionSearchDetailAsync(String identifier, JobDescriptionSearchParameters body) {
+        return getJobDescriptionSearchDetailWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this job description. The `identifier` is the unique ID returned via the
+     * [/job_description_search](#post-/job_description_search) endpoint.
+     *
+     * @param identifier Job Description identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getJobDescriptionSearchDetail(String identifier, JobDescriptionSearchParameters body) {
+        return getJobDescriptionSearchDetailAsync(identifier, body).block();
     }
 
     /**

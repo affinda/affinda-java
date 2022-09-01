@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.4.0] - 2022-09-01
+### Changed
+- Update types of objects for some endpoints using AllOf attributes for better client library generation
+- Changed and updated tag order to better match documentation needs
+
+### Added
+-  Reverse match functionality - search job descriptions with a resume, or with a set of parameters.
+
 ## [0.3.1] - 2022-08-18
 ### Changed
 - Updated dependencies
