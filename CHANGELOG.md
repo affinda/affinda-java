@@ -6,15 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.4.0] - 2022-09-20
-### Added
-- Reverse match functionality - search job descriptions with a resume, or with a set of parameters.
-- Add job description search config and embed endpoints
-- Update index endpoint with document type parameter
-
+## [0.4.0] - 2022-09-01
 ### Changed
 - Update types of objects for some endpoints using AllOf attributes for better client library generation
 - Changed and updated tag order to better match documentation needs
+
+### Added
+-  Reverse match functionality - search job descriptions with a resume, or with a set of parameters.
 
 ## [0.3.1] - 2022-08-18
 ### Changed

@@ -1,13 +1,10 @@
 package com.affinda.api.client;
 
-import com.affinda.api.client.models.Enum1;
 import com.affinda.api.client.models.IndexRequestBody;
 import com.affinda.api.client.models.InvoiceRequestBody;
 import com.affinda.api.client.models.JobDescriptionRequestBody;
-import com.affinda.api.client.models.JobDescriptionSearchConfig;
 import com.affinda.api.client.models.JobDescriptionSearchParameters;
 import com.affinda.api.client.models.Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.RedactedResumeRequestBody;
 import com.affinda.api.client.models.RequestError;
@@ -316,29 +313,6 @@ public final class AffindaAPI {
                 @BodyParam("application/json") JobDescriptionSearchParameters body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/job_description_search/config")
-        @ExpectedResponses({200, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> getJobDescriptionSearchConfig(
-                @HostParam("$host") String host, @HeaderParam("Accept") String accept);
-
-        @Patch("/job_description_search/config")
-        @ExpectedResponses({200, 400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> updateJobDescriptionSearchConfig(
-                @HostParam("$host") String host,
-                @BodyParam("application/json") JobDescriptionSearchConfig body,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/job_description_search/embed")
-        @ExpectedResponses({200, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> createJobDescriptionSearchEmbedUrl(
-                @HostParam("$host") String host,
-                @BodyParam("application/json")
-                        PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
-                @HeaderParam("Accept") String accept);
-
         @Get("/index")
         @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
@@ -346,7 +320,6 @@ public final class AffindaAPI {
                 @HostParam("$host") String host,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
-                @QueryParam("document_type") Enum1 documentType,
                 @HeaderParam("Accept") String accept);
 
         @Post("/index")
@@ -1248,8 +1221,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     * Return configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
      *
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1262,8 +1235,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     * Return configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
      *
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1283,8 +1256,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     * Return configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
      *
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1296,8 +1269,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     * Update configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1312,8 +1285,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     * Update configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1335,8 +1308,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     * Update configurations such as which fields can be displayed in the logged in user's embedable search tool, what
+     * are their weights, what is the maximum number of results that can be returned, etc.
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1351,8 +1324,7 @@ public final class AffindaAPI {
 
     /**
      * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
-     * parameter `config_override` can be passed to override the user-level configurations of the embeddable resume
-     * search tool.
+     * parameter `config_override` can be passed to override the user-level configurations of the embedable search tool.
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1369,8 +1341,7 @@ public final class AffindaAPI {
 
     /**
      * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
-     * parameter `config_override` can be passed to override the user-level configurations of the embeddable resume
-     * search tool.
+     * parameter `config_override` can be passed to override the user-level configurations of the embedable search tool.
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1394,8 +1365,7 @@ public final class AffindaAPI {
 
     /**
      * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
-     * parameter `config_override` can be passed to override the user-level configurations of the embeddable resume
-     * search tool.
+     * parameter `config_override` can be passed to override the user-level configurations of the embedable search tool.
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1746,165 +1716,19 @@ public final class AffindaAPI {
     }
 
     /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     * Returns all the indexes.
      *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getJobDescriptionSearchConfigWithResponseAsync() {
-        final String accept = "application/json";
-        return service.getJobDescriptionSearchConfig(this.getHost(), accept);
-    }
-
-    /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getJobDescriptionSearchConfigAsync() {
-        return getJobDescriptionSearchConfigWithResponseAsync()
-                .flatMap(
-                        (Response<Object> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getJobDescriptionSearchConfig() {
-        return getJobDescriptionSearchConfigAsync().block();
-    }
-
-    /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @param body The body parameter.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> updateJobDescriptionSearchConfigWithResponseAsync(JobDescriptionSearchConfig body) {
+    public Mono<Response<Object>> getAllIndexesWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.updateJobDescriptionSearchConfig(this.getHost(), body, accept);
-    }
-
-    /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> updateJobDescriptionSearchConfigAsync(JobDescriptionSearchConfig body) {
-        return updateJobDescriptionSearchConfigWithResponseAsync(body)
-                .flatMap(
-                        (Response<Object> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object updateJobDescriptionSearchConfig(JobDescriptionSearchConfig body) {
-        return updateJobDescriptionSearchConfigAsync(body).block();
-    }
-
-    /**
-     * Create and return a signed URL of the job description search tool which then can be embedded on a web page. An
-     * optional parameter `config_override` can be passed to override the user-level configurations of the embeddable
-     * search tool.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> createJobDescriptionSearchEmbedUrlWithResponseAsync(
-            PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
-        final String accept = "application/json";
-        return service.createJobDescriptionSearchEmbedUrl(this.getHost(), body, accept);
-    }
-
-    /**
-     * Create and return a signed URL of the job description search tool which then can be embedded on a web page. An
-     * optional parameter `config_override` can be passed to override the user-level configurations of the embeddable
-     * search tool.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> createJobDescriptionSearchEmbedUrlAsync(
-            PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
-        return createJobDescriptionSearchEmbedUrlWithResponseAsync(body)
-                .flatMap(
-                        (Response<Object> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Create and return a signed URL of the job description search tool which then can be embedded on a web page. An
-     * optional parameter `config_override` can be passed to override the user-level configurations of the embeddable
-     * search tool.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object createJobDescriptionSearchEmbedUrl(
-            PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
-        return createJobDescriptionSearchEmbedUrlAsync(body).block();
+        return service.getAllIndexes(this.getHost(), offset, limit, accept);
     }
 
     /**
@@ -1912,32 +1736,14 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
-     * @param documentType Filter indices by a document type.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getAllIndexesWithResponseAsync(Integer offset, Integer limit, Enum1 documentType) {
-        final String accept = "application/json";
-        return service.getAllIndexes(this.getHost(), offset, limit, documentType, accept);
-    }
-
-    /**
-     * Returns all the indexes.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @param documentType Filter indices by a document type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getAllIndexesAsync(Integer offset, Integer limit, Enum1 documentType) {
-        return getAllIndexesWithResponseAsync(offset, limit, documentType)
+    public Mono<Object> getAllIndexesAsync(Integer offset, Integer limit) {
+        return getAllIndexesWithResponseAsync(offset, limit)
                 .flatMap(
                         (Response<Object> res) -> {
                             if (res.getValue() != null) {
@@ -1953,15 +1759,14 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
-     * @param documentType Filter indices by a document type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getAllIndexes(Integer offset, Integer limit, Enum1 documentType) {
-        return getAllIndexesAsync(offset, limit, documentType).block();
+    public Object getAllIndexes(Integer offset, Integer limit) {
+        return getAllIndexesAsync(offset, limit).block();
     }
 
     /**
