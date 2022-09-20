@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /** The Meta model. */
@@ -54,10 +55,37 @@ public class Meta {
     private OffsetDateTime expiryTime;
 
     /*
-     * The resume's language.
+     * The document's language.
      */
     @JsonProperty(value = "language")
     private String language;
+
+    /*
+     * The URL to the document's pdf (if the uploaded document is not already
+     * pdf, it's converted to pdf as part of the parsing process).
+     */
+    @JsonProperty(value = "pdf", access = JsonProperty.Access.WRITE_ONLY)
+    private String pdf;
+
+    /*
+     * If this document is part of a splitted document, this attribute points
+     * to the original document that this document is splitted from.
+     */
+    @JsonProperty(value = "parentDocument", access = JsonProperty.Access.WRITE_ONLY)
+    private SplitRelation parentDocument;
+
+    /*
+     * If this document has been splitted into a number of child documents,
+     * this attribute points to those child documents.
+     */
+    @JsonProperty(value = "childDocuments", access = JsonProperty.Access.WRITE_ONLY)
+    private List<SplitRelation> childDocuments;
+
+    /*
+     * The document's pages.
+     */
+    @JsonProperty(value = "pages")
+    private List<PageMeta> pages;
 
     /*
      * Dictionary of <any>
@@ -193,7 +221,7 @@ public class Meta {
     }
 
     /**
-     * Get the language property: The resume's language.
+     * Get the language property: The document's language.
      *
      * @return the language value.
      */
@@ -202,13 +230,63 @@ public class Meta {
     }
 
     /**
-     * Set the language property: The resume's language.
+     * Set the language property: The document's language.
      *
      * @param language the language value to set.
      * @return the Meta object itself.
      */
     public Meta setLanguage(String language) {
         this.language = language;
+        return this;
+    }
+
+    /**
+     * Get the pdf property: The URL to the document's pdf (if the uploaded document is not already pdf, it's converted
+     * to pdf as part of the parsing process).
+     *
+     * @return the pdf value.
+     */
+    public String getPdf() {
+        return this.pdf;
+    }
+
+    /**
+     * Get the parentDocument property: If this document is part of a splitted document, this attribute points to the
+     * original document that this document is splitted from.
+     *
+     * @return the parentDocument value.
+     */
+    public SplitRelation getParentDocument() {
+        return this.parentDocument;
+    }
+
+    /**
+     * Get the childDocuments property: If this document has been splitted into a number of child documents, this
+     * attribute points to those child documents.
+     *
+     * @return the childDocuments value.
+     */
+    public List<SplitRelation> getChildDocuments() {
+        return this.childDocuments;
+    }
+
+    /**
+     * Get the pages property: The document's pages.
+     *
+     * @return the pages value.
+     */
+    public List<PageMeta> getPages() {
+        return this.pages;
+    }
+
+    /**
+     * Set the pages property: The document's pages.
+     *
+     * @param pages the pages value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setPages(List<PageMeta> pages) {
+        this.pages = pages;
         return this;
     }
 

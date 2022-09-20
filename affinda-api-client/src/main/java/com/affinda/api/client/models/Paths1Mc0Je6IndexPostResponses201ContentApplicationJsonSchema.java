@@ -12,6 +12,12 @@ public final class Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema
     @JsonProperty(value = "name")
     private String name;
 
+    /*
+     * The documentType property.
+     */
+    @JsonProperty(value = "documentType")
+    private Enum4 documentType;
+
     /**
      * Get the name property: The name property.
      *
@@ -29,6 +35,26 @@ public final class Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema
      */
     public Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the documentType property: The documentType property.
+     *
+     * @return the documentType value.
+     */
+    public Enum4 getDocumentType() {
+        return this.documentType;
+    }
+
+    /**
+     * Set the documentType property: The documentType property.
+     *
+     * @param documentType the documentType value to set.
+     * @return the Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema object itself.
+     */
+    public Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema setDocumentType(Enum4 documentType) {
+        this.documentType = documentType;
         return this;
     }
 }
