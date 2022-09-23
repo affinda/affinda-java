@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Components1Stp713SchemasInvoicedataPropertiesBankbsbAllof1 model. */
+/** The ComponentsB3U7OaSchemasInvoicedataPropertiesSuppliervatAllof1 model. */
 @Fluent
-public class Components1Stp713SchemasInvoicedataPropertiesBankbsbAllof1 {
+public class ComponentsB3U7OaSchemasInvoicedataPropertiesSuppliervatAllof1 {
     /*
      * The raw property.
      */
@@ -31,9 +31,9 @@ public class Components1Stp713SchemasInvoicedataPropertiesBankbsbAllof1 {
      * Set the raw property: The raw property.
      *
      * @param raw the raw value to set.
-     * @return the Components1Stp713SchemasInvoicedataPropertiesBankbsbAllof1 object itself.
+     * @return the ComponentsB3U7OaSchemasInvoicedataPropertiesSuppliervatAllof1 object itself.
      */
-    public Components1Stp713SchemasInvoicedataPropertiesBankbsbAllof1 setRaw(String raw) {
+    public ComponentsB3U7OaSchemasInvoicedataPropertiesSuppliervatAllof1 setRaw(String raw) {
         this.raw = raw;
         return this;
     }
@@ -51,9 +51,9 @@ public class Components1Stp713SchemasInvoicedataPropertiesBankbsbAllof1 {
      * Set the parsed property: The parsed property.
      *
      * @param parsed the parsed value to set.
-     * @return the Components1Stp713SchemasInvoicedataPropertiesBankbsbAllof1 object itself.
+     * @return the ComponentsB3U7OaSchemasInvoicedataPropertiesSuppliervatAllof1 object itself.
      */
-    public Components1Stp713SchemasInvoicedataPropertiesBankbsbAllof1 setParsed(String parsed) {
+    public ComponentsB3U7OaSchemasInvoicedataPropertiesSuppliervatAllof1 setParsed(String parsed) {
         this.parsed = parsed;
         return this;
     }

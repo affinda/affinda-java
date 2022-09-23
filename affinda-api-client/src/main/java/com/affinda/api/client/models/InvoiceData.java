@@ -105,16 +105,16 @@ public final class InvoiceData {
     private InvoiceDataBankAccountNumber bankAccountNumber;
 
     /*
-     * The supplierVAT property.
+     * The supplierVat property.
      */
-    @JsonProperty(value = "supplierVAT")
-    private InvoiceDataSupplierVAT supplierVAT;
+    @JsonProperty(value = "supplierVat")
+    private InvoiceDataSupplierVat supplierVat;
 
     /*
-     * The customerVAT property.
+     * The customerVat property.
      */
-    @JsonProperty(value = "customerVAT")
-    private InvoiceDataCustomerVAT customerVAT;
+    @JsonProperty(value = "customerVat")
+    private InvoiceDataCustomerVat customerVat;
 
     /*
      * The bpayBillerCode property.
@@ -135,9 +135,9 @@ public final class InvoiceData {
     private InvoiceDataBankSortCode bankSortCode;
 
     /*
-     * The bankIBAN property.
+     * The bankIban property.
      */
-    @JsonProperty(value = "bankIBAN")
+    @JsonProperty(value = "bankIban")
     private InvoiceDataBankIban bankIban;
 
     /*
@@ -147,10 +147,10 @@ public final class InvoiceData {
     private InvoiceDataBankSwift bankSwift;
 
     /*
-     * The bankBSB property.
+     * The bankBsb property.
      */
-    @JsonProperty(value = "bankBSB")
-    private InvoiceDataBankBSB bankBSB;
+    @JsonProperty(value = "bankBsb")
+    private InvoiceDataBankBsb bankBsb;
 
     /*
      * The customerContactName property.
@@ -557,42 +557,42 @@ public final class InvoiceData {
     }
 
     /**
-     * Get the supplierVAT property: The supplierVAT property.
+     * Get the supplierVat property: The supplierVat property.
      *
-     * @return the supplierVAT value.
+     * @return the supplierVat value.
      */
-    public InvoiceDataSupplierVAT getSupplierVAT() {
-        return this.supplierVAT;
+    public InvoiceDataSupplierVat getSupplierVat() {
+        return this.supplierVat;
     }
 
     /**
-     * Set the supplierVAT property: The supplierVAT property.
+     * Set the supplierVat property: The supplierVat property.
      *
-     * @param supplierVAT the supplierVAT value to set.
+     * @param supplierVat the supplierVat value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierVAT(InvoiceDataSupplierVAT supplierVAT) {
-        this.supplierVAT = supplierVAT;
+    public InvoiceData setSupplierVat(InvoiceDataSupplierVat supplierVat) {
+        this.supplierVat = supplierVat;
         return this;
     }
 
     /**
-     * Get the customerVAT property: The customerVAT property.
+     * Get the customerVat property: The customerVat property.
      *
-     * @return the customerVAT value.
+     * @return the customerVat value.
      */
-    public InvoiceDataCustomerVAT getCustomerVAT() {
-        return this.customerVAT;
+    public InvoiceDataCustomerVat getCustomerVat() {
+        return this.customerVat;
     }
 
     /**
-     * Set the customerVAT property: The customerVAT property.
+     * Set the customerVat property: The customerVat property.
      *
-     * @param customerVAT the customerVAT value to set.
+     * @param customerVat the customerVat value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerVAT(InvoiceDataCustomerVAT customerVAT) {
-        this.customerVAT = customerVAT;
+    public InvoiceData setCustomerVat(InvoiceDataCustomerVat customerVat) {
+        this.customerVat = customerVat;
         return this;
     }
 
@@ -657,7 +657,7 @@ public final class InvoiceData {
     }
 
     /**
-     * Get the bankIban property: The bankIBAN property.
+     * Get the bankIban property: The bankIban property.
      *
      * @return the bankIban value.
      */
@@ -666,7 +666,7 @@ public final class InvoiceData {
     }
 
     /**
-     * Set the bankIban property: The bankIBAN property.
+     * Set the bankIban property: The bankIban property.
      *
      * @param bankIban the bankIban value to set.
      * @return the InvoiceData object itself.
@@ -697,22 +697,22 @@ public final class InvoiceData {
     }
 
     /**
-     * Get the bankBSB property: The bankBSB property.
+     * Get the bankBsb property: The bankBsb property.
      *
-     * @return the bankBSB value.
+     * @return the bankBsb value.
      */
-    public InvoiceDataBankBSB getBankBSB() {
-        return this.bankBSB;
+    public InvoiceDataBankBsb getBankBsb() {
+        return this.bankBsb;
     }
 
     /**
-     * Set the bankBSB property: The bankBSB property.
+     * Set the bankBsb property: The bankBsb property.
      *
-     * @param bankBSB the bankBSB value to set.
+     * @param bankBsb the bankBsb value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setBankBSB(InvoiceDataBankBSB bankBSB) {
-        this.bankBSB = bankBSB;
+    public InvoiceData setBankBsb(InvoiceDataBankBsb bankBsb) {
+        this.bankBsb = bankBsb;
         return this;
     }
 

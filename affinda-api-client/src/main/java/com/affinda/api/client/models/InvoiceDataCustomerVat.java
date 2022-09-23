@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ComponentsUlui83SchemasInvoicedataPropertiesBankibanAllof1 model. */
+/** The InvoiceDataCustomerVat model. */
 @Fluent
-public class ComponentsUlui83SchemasInvoicedataPropertiesBankibanAllof1 {
+public final class InvoiceDataCustomerVat extends TextAnnotation {
     /*
      * The raw property.
      */
@@ -31,9 +31,9 @@ public class ComponentsUlui83SchemasInvoicedataPropertiesBankibanAllof1 {
      * Set the raw property: The raw property.
      *
      * @param raw the raw value to set.
-     * @return the ComponentsUlui83SchemasInvoicedataPropertiesBankibanAllof1 object itself.
+     * @return the InvoiceDataCustomerVat object itself.
      */
-    public ComponentsUlui83SchemasInvoicedataPropertiesBankibanAllof1 setRaw(String raw) {
+    public InvoiceDataCustomerVat setRaw(String raw) {
         this.raw = raw;
         return this;
     }
@@ -51,9 +51,9 @@ public class ComponentsUlui83SchemasInvoicedataPropertiesBankibanAllof1 {
      * Set the parsed property: The parsed property.
      *
      * @param parsed the parsed value to set.
-     * @return the ComponentsUlui83SchemasInvoicedataPropertiesBankibanAllof1 object itself.
+     * @return the InvoiceDataCustomerVat object itself.
      */
-    public ComponentsUlui83SchemasInvoicedataPropertiesBankibanAllof1 setParsed(String parsed) {
+    public InvoiceDataCustomerVat setParsed(String parsed) {
         this.parsed = parsed;
         return this;
     }

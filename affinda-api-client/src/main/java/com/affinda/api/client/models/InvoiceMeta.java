@@ -10,7 +10,7 @@ public final class InvoiceMeta extends Meta {
      * The clientVerifiedDt property.
      */
     @JsonProperty(value = "clientVerifiedDt")
-    private String clientVerifiedDt;
+    private Boolean clientVerifiedDt;
 
     /*
      * Signed URL (valid for 60 minutes) to access the invoice review tool
@@ -23,7 +23,7 @@ public final class InvoiceMeta extends Meta {
      *
      * @return the clientVerifiedDt value.
      */
-    public String getClientVerifiedDt() {
+    public Boolean isClientVerifiedDt() {
         return this.clientVerifiedDt;
     }
 
@@ -33,7 +33,7 @@ public final class InvoiceMeta extends Meta {
      * @param clientVerifiedDt the clientVerifiedDt value to set.
      * @return the InvoiceMeta object itself.
      */
-    public InvoiceMeta setClientVerifiedDt(String clientVerifiedDt) {
+    public InvoiceMeta setClientVerifiedDt(Boolean clientVerifiedDt) {
         this.clientVerifiedDt = clientVerifiedDt;
         return this;
     }

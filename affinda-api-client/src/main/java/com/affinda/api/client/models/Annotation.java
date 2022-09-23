@@ -39,7 +39,7 @@ public class Annotation {
      * The confidence property.
      */
     @JsonProperty(value = "confidence", required = true)
-    private float confidence;
+    private Float confidence;
 
     /*
      * The isVerified property.
@@ -143,7 +143,7 @@ public class Annotation {
      *
      * @return the confidence value.
      */
-    public float getConfidence() {
+    public Float getConfidence() {
         return this.confidence;
     }
 
@@ -153,7 +153,7 @@ public class Annotation {
      * @param confidence the confidence value to set.
      * @return the Annotation object itself.
      */
-    public Annotation setConfidence(float confidence) {
+    public Annotation setConfidence(Float confidence) {
         this.confidence = confidence;
         return this;
     }

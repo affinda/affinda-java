@@ -10,7 +10,7 @@ public class Components17Ashz6SchemasInvoicePropertiesMetaAllof1 {
      * The clientVerifiedDt property.
      */
     @JsonProperty(value = "clientVerifiedDt")
-    private String clientVerifiedDt;
+    private Boolean clientVerifiedDt;
 
     /*
      * Signed URL (valid for 60 minutes) to access the invoice review tool
@@ -23,7 +23,7 @@ public class Components17Ashz6SchemasInvoicePropertiesMetaAllof1 {
      *
      * @return the clientVerifiedDt value.
      */
-    public String getClientVerifiedDt() {
+    public Boolean isClientVerifiedDt() {
         return this.clientVerifiedDt;
     }
 
@@ -33,7 +33,7 @@ public class Components17Ashz6SchemasInvoicePropertiesMetaAllof1 {
      * @param clientVerifiedDt the clientVerifiedDt value to set.
      * @return the Components17Ashz6SchemasInvoicePropertiesMetaAllof1 object itself.
      */
-    public Components17Ashz6SchemasInvoicePropertiesMetaAllof1 setClientVerifiedDt(String clientVerifiedDt) {
+    public Components17Ashz6SchemasInvoicePropertiesMetaAllof1 setClientVerifiedDt(Boolean clientVerifiedDt) {
         this.clientVerifiedDt = clientVerifiedDt;
         return this;
     }
