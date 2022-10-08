@@ -48,6 +48,18 @@ public class Annotation {
     private boolean isVerified;
 
     /*
+     * The isClientVerified property.
+     */
+    @JsonProperty(value = "isClientVerified")
+    private Boolean isClientVerified;
+
+    /*
+     * The isAutoVerified property.
+     */
+    @JsonProperty(value = "isAutoVerified")
+    private Boolean isAutoVerified;
+
+    /*
      * The classification property.
      */
     @JsonProperty(value = "classification", required = true)
@@ -175,6 +187,46 @@ public class Annotation {
      */
     public Annotation setIsVerified(boolean isVerified) {
         this.isVerified = isVerified;
+        return this;
+    }
+
+    /**
+     * Get the isClientVerified property: The isClientVerified property.
+     *
+     * @return the isClientVerified value.
+     */
+    public Boolean isClientVerified() {
+        return this.isClientVerified;
+    }
+
+    /**
+     * Set the isClientVerified property: The isClientVerified property.
+     *
+     * @param isClientVerified the isClientVerified value to set.
+     * @return the Annotation object itself.
+     */
+    public Annotation setIsClientVerified(Boolean isClientVerified) {
+        this.isClientVerified = isClientVerified;
+        return this;
+    }
+
+    /**
+     * Get the isAutoVerified property: The isAutoVerified property.
+     *
+     * @return the isAutoVerified value.
+     */
+    public Boolean isAutoVerified() {
+        return this.isAutoVerified;
+    }
+
+    /**
+     * Set the isAutoVerified property: The isAutoVerified property.
+     *
+     * @param isAutoVerified the isAutoVerified value to set.
+     * @return the Annotation object itself.
+     */
+    public Annotation setIsAutoVerified(Boolean isAutoVerified) {
+        this.isAutoVerified = isAutoVerified;
         return this;
     }
 
