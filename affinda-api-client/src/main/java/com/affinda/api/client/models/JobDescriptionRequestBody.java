@@ -44,6 +44,14 @@ public final class JobDescriptionRequestBody {
     private Boolean wait;
 
     /*
+     * If "true", parsing will fail when the uploaded document is duplicate of
+     * an existing document. If "false" (default), will parse the document
+     * normally whether its a duplicate or not.
+     */
+    @JsonProperty(value = "rejectDuplicates")
+    private Boolean rejectDuplicates;
+
+    /*
      * Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for
      * Chinese.
      */
@@ -158,6 +166,28 @@ public final class JobDescriptionRequestBody {
      */
     public JobDescriptionRequestBody setWait(Boolean wait) {
         this.wait = wait;
+        return this;
+    }
+
+    /**
+     * Get the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
+     * existing document. If "false" (default), will parse the document normally whether its a duplicate or not.
+     *
+     * @return the rejectDuplicates value.
+     */
+    public Boolean isRejectDuplicates() {
+        return this.rejectDuplicates;
+    }
+
+    /**
+     * Set the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
+     * existing document. If "false" (default), will parse the document normally whether its a duplicate or not.
+     *
+     * @param rejectDuplicates the rejectDuplicates value to set.
+     * @return the JobDescriptionRequestBody object itself.
+     */
+    public JobDescriptionRequestBody setRejectDuplicates(Boolean rejectDuplicates) {
+        this.rejectDuplicates = rejectDuplicates;
         return this;
     }
 
