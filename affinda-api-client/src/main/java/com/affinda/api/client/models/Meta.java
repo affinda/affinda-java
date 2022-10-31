@@ -12,7 +12,7 @@ import java.util.Map;
 
 /** The Meta model. */
 @Fluent
-public class Meta {
+public final class Meta {
     /*
      * Unique identifier for the document. If creating a document and left
      * blank, one will be automatically generated.
@@ -86,6 +86,27 @@ public class Meta {
      */
     @JsonProperty(value = "pages")
     private List<PageMeta> pages;
+
+    /*
+     * This is true if the "confirm" button has been clicked in the Affinda
+     * validation tool
+     */
+    @JsonProperty(value = "isVerified")
+    private Boolean isVerified;
+
+    /*
+     * Signed URL (valid for 60 minutes) to access the validation tool.  Not
+     * applicable for documents types such a resumes.
+     */
+    @JsonProperty(value = "reviewUrl")
+    private String reviewUrl;
+
+    /*
+     * The overall confidence in the conversion of image to text.  (only
+     * applicable for images or PDF documents without a text layer)
+     */
+    @JsonProperty(value = "ocrConfidence")
+    private Float ocrConfidence;
 
     /*
      * Dictionary of <any>
@@ -287,6 +308,72 @@ public class Meta {
      */
     public Meta setPages(List<PageMeta> pages) {
         this.pages = pages;
+        return this;
+    }
+
+    /**
+     * Get the isVerified property: This is true if the "confirm" button has been clicked in the Affinda validation
+     * tool.
+     *
+     * @return the isVerified value.
+     */
+    public Boolean isVerified() {
+        return this.isVerified;
+    }
+
+    /**
+     * Set the isVerified property: This is true if the "confirm" button has been clicked in the Affinda validation
+     * tool.
+     *
+     * @param isVerified the isVerified value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setIsVerified(Boolean isVerified) {
+        this.isVerified = isVerified;
+        return this;
+    }
+
+    /**
+     * Get the reviewUrl property: Signed URL (valid for 60 minutes) to access the validation tool. Not applicable for
+     * documents types such a resumes.
+     *
+     * @return the reviewUrl value.
+     */
+    public String getReviewUrl() {
+        return this.reviewUrl;
+    }
+
+    /**
+     * Set the reviewUrl property: Signed URL (valid for 60 minutes) to access the validation tool. Not applicable for
+     * documents types such a resumes.
+     *
+     * @param reviewUrl the reviewUrl value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setReviewUrl(String reviewUrl) {
+        this.reviewUrl = reviewUrl;
+        return this;
+    }
+
+    /**
+     * Get the ocrConfidence property: The overall confidence in the conversion of image to text. (only applicable for
+     * images or PDF documents without a text layer).
+     *
+     * @return the ocrConfidence value.
+     */
+    public Float getOcrConfidence() {
+        return this.ocrConfidence;
+    }
+
+    /**
+     * Set the ocrConfidence property: The overall confidence in the conversion of image to text. (only applicable for
+     * images or PDF documents without a text layer).
+     *
+     * @param ocrConfidence the ocrConfidence value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setOcrConfidence(Float ocrConfidence) {
+        this.ocrConfidence = ocrConfidence;
         return this;
     }
 

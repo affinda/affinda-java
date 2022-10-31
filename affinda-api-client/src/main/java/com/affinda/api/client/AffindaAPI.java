@@ -144,7 +144,7 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Get("/resumes/{identifier}")
-        @ExpectedResponses({200, 400, 401})
+        @ExpectedResponses({200, 200, 400, 400, 401, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getResume(
                 @HostParam("$host") String host,
@@ -576,7 +576,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> getResumeWithResponseAsync(String identifier, String format) {
-        final String accept = "application/json";
+        final String accept = "application/json, application/xml";
         return service.getResume(this.getHost(), identifier, format, accept);
     }
 

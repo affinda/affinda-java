@@ -22,7 +22,7 @@ public final class Invoice {
      * The meta property.
      */
     @JsonProperty(value = "meta", required = true)
-    private InvoiceMeta meta;
+    private Meta meta;
 
     /*
      * The error property.
@@ -75,7 +75,7 @@ public final class Invoice {
      *
      * @return the meta value.
      */
-    public InvoiceMeta getMeta() {
+    public Meta getMeta() {
         return this.meta;
     }
 
@@ -85,7 +85,7 @@ public final class Invoice {
      * @param meta the meta value to set.
      * @return the Invoice object itself.
      */
-    public Invoice setMeta(InvoiceMeta meta) {
+    public Invoice setMeta(Meta meta) {
         this.meta = meta;
         return this;
     }
