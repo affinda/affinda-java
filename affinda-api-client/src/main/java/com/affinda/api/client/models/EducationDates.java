@@ -2,21 +2,16 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDate;
 
 /** The EducationDates model. */
 @Fluent
 public final class EducationDates {
     /*
-     * The startDate property.
-     */
-    @JsonProperty(value = "startDate")
-    private String startDate;
-
-    /*
      * The completionDate property.
      */
     @JsonProperty(value = "completionDate")
-    private String completionDate;
+    private LocalDate completionDate;
 
     /*
      * The isCurrent property.
@@ -24,32 +19,18 @@ public final class EducationDates {
     @JsonProperty(value = "isCurrent")
     private Boolean isCurrent;
 
-    /**
-     * Get the startDate property: The startDate property.
-     *
-     * @return the startDate value.
+    /*
+     * The startDate property.
      */
-    public String getStartDate() {
-        return this.startDate;
-    }
-
-    /**
-     * Set the startDate property: The startDate property.
-     *
-     * @param startDate the startDate value to set.
-     * @return the EducationDates object itself.
-     */
-    public EducationDates setStartDate(String startDate) {
-        this.startDate = startDate;
-        return this;
-    }
+    @JsonProperty(value = "startDate")
+    private LocalDate startDate;
 
     /**
      * Get the completionDate property: The completionDate property.
      *
      * @return the completionDate value.
      */
-    public String getCompletionDate() {
+    public LocalDate getCompletionDate() {
         return this.completionDate;
     }
 
@@ -59,7 +40,7 @@ public final class EducationDates {
      * @param completionDate the completionDate value to set.
      * @return the EducationDates object itself.
      */
-    public EducationDates setCompletionDate(String completionDate) {
+    public EducationDates setCompletionDate(LocalDate completionDate) {
         this.completionDate = completionDate;
         return this;
     }
@@ -81,6 +62,26 @@ public final class EducationDates {
      */
     public EducationDates setIsCurrent(Boolean isCurrent) {
         this.isCurrent = isCurrent;
+        return this;
+    }
+
+    /**
+     * Get the startDate property: The startDate property.
+     *
+     * @return the startDate value.
+     */
+    public LocalDate getStartDate() {
+        return this.startDate;
+    }
+
+    /**
+     * Set the startDate property: The startDate property.
+     *
+     * @param startDate the startDate value to set.
+     * @return the EducationDates object itself.
+     */
+    public EducationDates setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
         return this;
     }
 }

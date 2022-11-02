@@ -13,22 +13,22 @@ public final class Accreditation {
     private String education;
 
     /*
-     * The educationLevel property.
-     */
-    @JsonProperty(value = "educationLevel")
-    private String educationLevel;
-
-    /*
      * The inputStr property.
      */
-    @JsonProperty(value = "inputStr")
+    @JsonProperty(value = "inputStr", access = JsonProperty.Access.WRITE_ONLY)
     private String inputStr;
 
     /*
      * The matchStr property.
      */
-    @JsonProperty(value = "matchStr")
+    @JsonProperty(value = "matchStr", access = JsonProperty.Access.WRITE_ONLY)
     private String matchStr;
+
+    /*
+     * The educationLevel property.
+     */
+    @JsonProperty(value = "educationLevel", access = JsonProperty.Access.WRITE_ONLY)
+    private String educationLevel;
 
     /**
      * Get the education property: The education property.
@@ -51,43 +51,12 @@ public final class Accreditation {
     }
 
     /**
-     * Get the educationLevel property: The educationLevel property.
-     *
-     * @return the educationLevel value.
-     */
-    public String getEducationLevel() {
-        return this.educationLevel;
-    }
-
-    /**
-     * Set the educationLevel property: The educationLevel property.
-     *
-     * @param educationLevel the educationLevel value to set.
-     * @return the Accreditation object itself.
-     */
-    public Accreditation setEducationLevel(String educationLevel) {
-        this.educationLevel = educationLevel;
-        return this;
-    }
-
-    /**
      * Get the inputStr property: The inputStr property.
      *
      * @return the inputStr value.
      */
     public String getInputStr() {
         return this.inputStr;
-    }
-
-    /**
-     * Set the inputStr property: The inputStr property.
-     *
-     * @param inputStr the inputStr value to set.
-     * @return the Accreditation object itself.
-     */
-    public Accreditation setInputStr(String inputStr) {
-        this.inputStr = inputStr;
-        return this;
     }
 
     /**
@@ -100,13 +69,11 @@ public final class Accreditation {
     }
 
     /**
-     * Set the matchStr property: The matchStr property.
+     * Get the educationLevel property: The educationLevel property.
      *
-     * @param matchStr the matchStr value to set.
-     * @return the Accreditation object itself.
+     * @return the educationLevel value.
      */
-    public Accreditation setMatchStr(String matchStr) {
-        this.matchStr = matchStr;
-        return this;
+    public String getEducationLevel() {
+        return this.educationLevel;
     }
 }

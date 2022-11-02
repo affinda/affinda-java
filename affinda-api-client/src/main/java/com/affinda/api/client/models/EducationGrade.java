@@ -13,16 +13,16 @@ public final class EducationGrade {
     private String raw;
 
     /*
-     * The value property.
-     */
-    @JsonProperty(value = "value")
-    private String value;
-
-    /*
      * The metric property.
      */
     @JsonProperty(value = "metric")
     private String metric;
+
+    /*
+     * The value property.
+     */
+    @JsonProperty(value = "value")
+    private String value;
 
     /**
      * Get the raw property: The raw property.
@@ -45,26 +45,6 @@ public final class EducationGrade {
     }
 
     /**
-     * Get the value property: The value property.
-     *
-     * @return the value value.
-     */
-    public String getValue() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: The value property.
-     *
-     * @param value the value value to set.
-     * @return the EducationGrade object itself.
-     */
-    public EducationGrade setValue(String value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
      * Get the metric property: The metric property.
      *
      * @return the metric value.
@@ -81,6 +61,26 @@ public final class EducationGrade {
      */
     public EducationGrade setMetric(String metric) {
         this.metric = metric;
+        return this;
+    }
+
+    /**
+     * Get the value property: The value property.
+     *
+     * @return the value value.
+     */
+    public String getValue() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: The value property.
+     *
+     * @param value the value value to set.
+     * @return the EducationGrade object itself.
+     */
+    public EducationGrade setValue(String value) {
+        this.value = value;
         return this;
     }
 }

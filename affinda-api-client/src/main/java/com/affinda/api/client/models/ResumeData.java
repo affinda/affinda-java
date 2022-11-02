@@ -84,7 +84,7 @@ public final class ResumeData {
      * The education property.
      */
     @JsonProperty(value = "education")
-    private List<ResumeDataEducationItem> education;
+    private List<Education> education;
 
     /*
      * Prediction of the candidate's profession based on recent work experience
@@ -360,7 +360,7 @@ public final class ResumeData {
      *
      * @return the education value.
      */
-    public List<ResumeDataEducationItem> getEducation() {
+    public List<Education> getEducation() {
         return this.education;
     }
 
@@ -370,7 +370,7 @@ public final class ResumeData {
      * @param education the education value to set.
      * @return the ResumeData object itself.
      */
-    public ResumeData setEducation(List<ResumeDataEducationItem> education) {
+    public ResumeData setEducation(List<Education> education) {
         this.education = education;
         return this;
     }
