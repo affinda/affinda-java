@@ -79,6 +79,12 @@ public final class JobDescriptionSearchResult {
     @JsonProperty(value = "searchExpression", required = true)
     private SearchExpressionSearchScoreComponent searchExpression;
 
+    /*
+     * The organizationName property.
+     */
+    @JsonProperty(value = "organizationName", required = true)
+    private String organizationName;
+
     /**
      * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
      * be automatically generated.
@@ -318,6 +324,26 @@ public final class JobDescriptionSearchResult {
      */
     public JobDescriptionSearchResult setSearchExpression(SearchExpressionSearchScoreComponent searchExpression) {
         this.searchExpression = searchExpression;
+        return this;
+    }
+
+    /**
+     * Get the organizationName property: The organizationName property.
+     *
+     * @return the organizationName value.
+     */
+    public String getOrganizationName() {
+        return this.organizationName;
+    }
+
+    /**
+     * Set the organizationName property: The organizationName property.
+     *
+     * @param organizationName the organizationName value to set.
+     * @return the JobDescriptionSearchResult object itself.
+     */
+    public JobDescriptionSearchResult setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
         return this;
     }
 }

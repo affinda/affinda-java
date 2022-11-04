@@ -249,6 +249,12 @@ public final class ResumeSearchParameters {
     @JsonProperty(value = "managementLevelWeight")
     private Float managementLevelWeight;
 
+    /*
+     * The customData property.
+     */
+    @JsonProperty(value = "customData")
+    private List<ResumeSearchParametersCustomData> customData;
+
     /**
      * Get the indices property: The indices property.
      *
@@ -1050,6 +1056,26 @@ public final class ResumeSearchParameters {
      */
     public ResumeSearchParameters setManagementLevelWeight(Float managementLevelWeight) {
         this.managementLevelWeight = managementLevelWeight;
+        return this;
+    }
+
+    /**
+     * Get the customData property: The customData property.
+     *
+     * @return the customData value.
+     */
+    public List<ResumeSearchParametersCustomData> getCustomData() {
+        return this.customData;
+    }
+
+    /**
+     * Set the customData property: The customData property.
+     *
+     * @param customData the customData value to set.
+     * @return the ResumeSearchParameters object itself.
+     */
+    public ResumeSearchParameters setCustomData(List<ResumeSearchParametersCustomData> customData) {
+        this.customData = customData;
         return this;
     }
 }

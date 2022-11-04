@@ -2,6 +2,7 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** The ResumeSearchResult model. */
 @Fluent
@@ -84,6 +85,13 @@ public final class ResumeSearchResult {
      */
     @JsonProperty(value = "searchExpression", required = true)
     private SearchExpressionSearchScoreComponent searchExpression;
+
+    /*
+     * Dictionary of
+     * <components·nqbw24·schemas·customdatasearchscorecomponent·additionalproperties>
+     */
+    @JsonProperty(value = "customData", required = true)
+    private Map<String, ComponentsNqbw24SchemasCustomdatasearchscorecomponentAdditionalproperties> customData;
 
     /**
      * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
@@ -344,6 +352,29 @@ public final class ResumeSearchResult {
      */
     public ResumeSearchResult setSearchExpression(SearchExpressionSearchScoreComponent searchExpression) {
         this.searchExpression = searchExpression;
+        return this;
+    }
+
+    /**
+     * Get the customData property: Dictionary of
+     * &lt;components·nqbw24·schemas·customdatasearchscorecomponent·additionalproperties&gt;.
+     *
+     * @return the customData value.
+     */
+    public Map<String, ComponentsNqbw24SchemasCustomdatasearchscorecomponentAdditionalproperties> getCustomData() {
+        return this.customData;
+    }
+
+    /**
+     * Set the customData property: Dictionary of
+     * &lt;components·nqbw24·schemas·customdatasearchscorecomponent·additionalproperties&gt;.
+     *
+     * @param customData the customData value to set.
+     * @return the ResumeSearchResult object itself.
+     */
+    public ResumeSearchResult setCustomData(
+            Map<String, ComponentsNqbw24SchemasCustomdatasearchscorecomponentAdditionalproperties> customData) {
+        this.customData = customData;
         return this;
     }
 }
