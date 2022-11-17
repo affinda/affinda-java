@@ -1,6 +1,6 @@
 package com.affinda.api.client;
 
-import com.affinda.api.client.models.Enum1;
+import com.affinda.api.client.models.Enum2;
 import com.affinda.api.client.models.IndexRequestBody;
 import com.affinda.api.client.models.InvoiceRequestBody;
 import com.affinda.api.client.models.JobDescriptionRequestBody;
@@ -41,6 +41,12 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the AffindaAPI type. */
@@ -264,6 +270,22 @@ public final class AffindaAPI {
                         Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
                 @HeaderParam("Accept") String accept);
 
+        @Get("/resume_search/suggestion_job_title")
+        @ExpectedResponses({200, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getResumeSearchSuggestionJobTitle(
+                @HostParam("$host") String host,
+                @QueryParam(value = "job_titles", multipleQueryParams = true) List<String> jobTitles,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/resume_search/suggestion_skill")
+        @ExpectedResponses({200, 400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getResumeSearchSuggestionSkill(
+                @HostParam("$host") String host,
+                @QueryParam(value = "skills", multipleQueryParams = true) List<String> skills,
+                @HeaderParam("Accept") String accept);
+
         @Get("/job_descriptions")
         @ExpectedResponses({200, 400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
@@ -346,7 +368,7 @@ public final class AffindaAPI {
                 @HostParam("$host") String host,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
-                @QueryParam("document_type") Enum1 documentType,
+                @QueryParam("document_type") Enum2 documentType,
                 @HeaderParam("Accept") String accept);
 
         @Post("/index")
@@ -1410,6 +1432,121 @@ public final class AffindaAPI {
     }
 
     /**
+     * Provided one or more job titles, get related suggestions for your search.
+     *
+     * @param jobTitles Job title to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Get200ApplicationJsonItemsItem along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getResumeSearchSuggestionJobTitleWithResponseAsync(List<String> jobTitles) {
+        final String accept = "application/json";
+        List<String> jobTitlesConverted =
+                Optional.ofNullable(jobTitles)
+                        .map(Collection::stream)
+                        .orElseGet(Stream::empty)
+                        .map((item) -> Objects.toString(item, ""))
+                        .collect(Collectors.toList());
+        return service.getResumeSearchSuggestionJobTitle(this.getHost(), jobTitlesConverted, accept);
+    }
+
+    /**
+     * Provided one or more job titles, get related suggestions for your search.
+     *
+     * @param jobTitles Job title to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Get200ApplicationJsonItemsItem on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getResumeSearchSuggestionJobTitleAsync(List<String> jobTitles) {
+        return getResumeSearchSuggestionJobTitleWithResponseAsync(jobTitles)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Provided one or more job titles, get related suggestions for your search.
+     *
+     * @param jobTitles Job title to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Get200ApplicationJsonItemsItem.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getResumeSearchSuggestionJobTitle(List<String> jobTitles) {
+        return getResumeSearchSuggestionJobTitleAsync(jobTitles).block();
+    }
+
+    /**
+     * Provided one or more skills, get related suggestions for your search.
+     *
+     * @param skills Skill to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of String along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getResumeSearchSuggestionSkillWithResponseAsync(List<String> skills) {
+        final String accept = "application/json";
+        List<String> skillsConverted =
+                Optional.ofNullable(skills)
+                        .map(Collection::stream)
+                        .orElseGet(Stream::empty)
+                        .map((item) -> Objects.toString(item, ""))
+                        .collect(Collectors.toList());
+        return service.getResumeSearchSuggestionSkill(this.getHost(), skillsConverted, accept);
+    }
+
+    /**
+     * Provided one or more skills, get related suggestions for your search.
+     *
+     * @param skills Skill to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of String on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getResumeSearchSuggestionSkillAsync(List<String> skills) {
+        return getResumeSearchSuggestionSkillWithResponseAsync(skills)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Provided one or more skills, get related suggestions for your search.
+     *
+     * @param skills Skill to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of String.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getResumeSearchSuggestionSkill(List<String> skills) {
+        return getResumeSearchSuggestionSkillAsync(skills).block();
+    }
+
+    /**
      * Returns all the job descriptions for that user, limited to 300 per page.
      *
      * @param offset The number of documents to skip before starting to collect the result set.
@@ -1919,7 +2056,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getAllIndexesWithResponseAsync(Integer offset, Integer limit, Enum1 documentType) {
+    public Mono<Response<Object>> getAllIndexesWithResponseAsync(Integer offset, Integer limit, Enum2 documentType) {
         final String accept = "application/json";
         return service.getAllIndexes(this.getHost(), offset, limit, documentType, accept);
     }
@@ -1936,7 +2073,7 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getAllIndexesAsync(Integer offset, Integer limit, Enum1 documentType) {
+    public Mono<Object> getAllIndexesAsync(Integer offset, Integer limit, Enum2 documentType) {
         return getAllIndexesWithResponseAsync(offset, limit, documentType)
                 .flatMap(
                         (Response<Object> res) -> {
@@ -1960,7 +2097,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getAllIndexes(Integer offset, Integer limit, Enum1 documentType) {
+    public Object getAllIndexes(Integer offset, Integer limit, Enum2 documentType) {
         return getAllIndexesAsync(offset, limit, documentType).block();
     }
 

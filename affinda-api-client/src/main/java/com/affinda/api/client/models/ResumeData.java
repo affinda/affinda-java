@@ -2,8 +2,13 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /** A JSON-encoded string of the `ResumeData` object. */
 @Fluent
@@ -147,6 +152,11 @@ public final class ResumeData {
      */
     @JsonProperty(value = "rawText")
     private String rawText;
+
+    /*
+     * A JSON-encoded string of the `ResumeData` object.
+     */
+    @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
      * Get the name property: The name property.
@@ -530,5 +540,34 @@ public final class ResumeData {
     public ResumeData setRawText(String rawText) {
         this.rawText = rawText;
         return this;
+    }
+
+    /**
+     * Get the additionalProperties property: A JSON-encoded string of the `ResumeData` object.
+     *
+     * @return the additionalProperties value.
+     */
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    /**
+     * Set the additionalProperties property: A JSON-encoded string of the `ResumeData` object.
+     *
+     * @param additionalProperties the additionalProperties value to set.
+     * @return the ResumeData object itself.
+     */
+    public ResumeData setAdditionalProperties(Map<String, Object> additionalProperties) {
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
+    @JsonAnySetter
+    void setAdditionalProperties(String key, Object value) {
+        if (additionalProperties == null) {
+            additionalProperties = new HashMap<>();
+        }
+        additionalProperties.put(key, value);
     }
 }

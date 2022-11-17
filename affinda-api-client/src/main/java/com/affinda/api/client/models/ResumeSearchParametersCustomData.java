@@ -10,7 +10,7 @@ public final class ResumeSearchParametersCustomData {
      * The filterType property.
      */
     @JsonProperty(value = "filterType", required = true)
-    private String filterType;
+    private ResumeSearchParametersCustomDataFilterType filterType;
 
     /*
      * The dataPoint property.
@@ -19,7 +19,9 @@ public final class ResumeSearchParametersCustomData {
     private String dataPoint;
 
     /*
-     * Any object
+     * "equals" searches require the "value" key inside the query, and "range"
+     * searches require at least one of "gte" (greater than or equal) and "lte"
+     * (less than or equal)
      */
     @JsonProperty(value = "query", required = true)
     private Object query;
@@ -41,7 +43,7 @@ public final class ResumeSearchParametersCustomData {
      *
      * @return the filterType value.
      */
-    public String getFilterType() {
+    public ResumeSearchParametersCustomDataFilterType getFilterType() {
         return this.filterType;
     }
 
@@ -51,7 +53,7 @@ public final class ResumeSearchParametersCustomData {
      * @param filterType the filterType value to set.
      * @return the ResumeSearchParametersCustomData object itself.
      */
-    public ResumeSearchParametersCustomData setFilterType(String filterType) {
+    public ResumeSearchParametersCustomData setFilterType(ResumeSearchParametersCustomDataFilterType filterType) {
         this.filterType = filterType;
         return this;
     }
@@ -77,7 +79,8 @@ public final class ResumeSearchParametersCustomData {
     }
 
     /**
-     * Get the query property: Any object.
+     * Get the query property: "equals" searches require the "value" key inside the query, and "range" searches require
+     * at least one of "gte" (greater than or equal) and "lte" (less than or equal).
      *
      * @return the query value.
      */
@@ -86,7 +89,8 @@ public final class ResumeSearchParametersCustomData {
     }
 
     /**
-     * Set the query property: Any object.
+     * Set the query property: "equals" searches require the "value" key inside the query, and "range" searches require
+     * at least one of "gte" (greater than or equal) and "lte" (less than or equal).
      *
      * @param query the query value to set.
      * @return the ResumeSearchParametersCustomData object itself.
