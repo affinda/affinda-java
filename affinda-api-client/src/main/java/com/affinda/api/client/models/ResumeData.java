@@ -148,7 +148,7 @@ public final class ResumeData {
 
     /*
      * All of the raw text of the parsed resume, example is shortened for
-     * readiblity
+     * readability
      */
     @JsonProperty(value = "rawText")
     private String rawText;
@@ -523,7 +523,7 @@ public final class ResumeData {
     }
 
     /**
-     * Get the rawText property: All of the raw text of the parsed resume, example is shortened for readiblity.
+     * Get the rawText property: All of the raw text of the parsed resume, example is shortened for readability.
      *
      * @return the rawText value.
      */
@@ -532,7 +532,7 @@ public final class ResumeData {
     }
 
     /**
-     * Set the rawText property: All of the raw text of the parsed resume, example is shortened for readiblity.
+     * Set the rawText property: All of the raw text of the parsed resume, example is shortened for readability.
      *
      * @param rawText the rawText value to set.
      * @return the ResumeData object itself.

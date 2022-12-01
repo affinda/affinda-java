@@ -34,7 +34,7 @@ public final class ResumeSearchParameters {
     private List<String> jobTitles;
 
     /*
-     * The jobTitlesCurrentOnly property.
+     * Search only through the canditate's current job
      */
     @JsonProperty(value = "jobTitlesCurrentOnly")
     private Boolean jobTitlesCurrentOnly;
@@ -52,13 +52,13 @@ public final class ResumeSearchParameters {
     private Float jobTitlesWeight;
 
     /*
-     * The yearsExperienceMin property.
+     * Minimum years of total work experience
      */
     @JsonProperty(value = "yearsExperienceMin")
     private Integer yearsExperienceMin;
 
     /*
-     * The yearsExperienceMax property.
+     * Maximum years of total work experience
      */
     @JsonProperty(value = "yearsExperienceMax")
     private Integer yearsExperienceMax;
@@ -76,7 +76,7 @@ public final class ResumeSearchParameters {
     private Float yearsExperienceWeight;
 
     /*
-     * The locations property.
+     * Search by location name or by coordinates
      */
     @JsonProperty(value = "locations")
     private List<ResumeSearchParametersLocation> locations;
@@ -154,7 +154,7 @@ public final class ResumeSearchParameters {
     private Boolean highestDegreeTypesRequired;
 
     /*
-     * The isCurrentStudent property.
+     * Search for student canditates
      */
     @JsonProperty(value = "isCurrentStudent")
     private Boolean isCurrentStudent;
@@ -166,7 +166,7 @@ public final class ResumeSearchParameters {
     private Boolean isCurrentStudentRequired;
 
     /*
-     * The isRecentGraduate property.
+     * Search for canditates that graduated less than a year ago
      */
     @JsonProperty(value = "isRecentGraduate")
     private Boolean isRecentGraduate;
@@ -178,25 +178,13 @@ public final class ResumeSearchParameters {
     private Boolean isRecentGraduateRequired;
 
     /*
-     * The isTopStudent property.
-     */
-    @JsonProperty(value = "isTopStudent")
-    private Boolean isTopStudent;
-
-    /*
-     * The isTopStudentRequired property.
-     */
-    @JsonProperty(value = "isTopStudentRequired")
-    private Boolean isTopStudentRequired;
-
-    /*
      * The educationWeight property.
      */
     @JsonProperty(value = "educationWeight")
     private Float educationWeight;
 
     /*
-     * The searchExpression property.
+     * Search through resumes' raw text
      */
     @JsonProperty(value = "searchExpression")
     private String searchExpression;
@@ -340,7 +328,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Get the jobTitlesCurrentOnly property: The jobTitlesCurrentOnly property.
+     * Get the jobTitlesCurrentOnly property: Search only through the canditate's current job.
      *
      * @return the jobTitlesCurrentOnly value.
      */
@@ -349,7 +337,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Set the jobTitlesCurrentOnly property: The jobTitlesCurrentOnly property.
+     * Set the jobTitlesCurrentOnly property: Search only through the canditate's current job.
      *
      * @param jobTitlesCurrentOnly the jobTitlesCurrentOnly value to set.
      * @return the ResumeSearchParameters object itself.
@@ -400,7 +388,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Get the yearsExperienceMin property: The yearsExperienceMin property.
+     * Get the yearsExperienceMin property: Minimum years of total work experience.
      *
      * @return the yearsExperienceMin value.
      */
@@ -409,7 +397,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Set the yearsExperienceMin property: The yearsExperienceMin property.
+     * Set the yearsExperienceMin property: Minimum years of total work experience.
      *
      * @param yearsExperienceMin the yearsExperienceMin value to set.
      * @return the ResumeSearchParameters object itself.
@@ -420,7 +408,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Get the yearsExperienceMax property: The yearsExperienceMax property.
+     * Get the yearsExperienceMax property: Maximum years of total work experience.
      *
      * @return the yearsExperienceMax value.
      */
@@ -429,7 +417,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Set the yearsExperienceMax property: The yearsExperienceMax property.
+     * Set the yearsExperienceMax property: Maximum years of total work experience.
      *
      * @param yearsExperienceMax the yearsExperienceMax value to set.
      * @return the ResumeSearchParameters object itself.
@@ -480,7 +468,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Get the locations property: The locations property.
+     * Get the locations property: Search by location name or by coordinates.
      *
      * @return the locations value.
      */
@@ -489,7 +477,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Set the locations property: The locations property.
+     * Set the locations property: Search by location name or by coordinates.
      *
      * @param locations the locations value to set.
      * @return the ResumeSearchParameters object itself.
@@ -740,7 +728,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Get the isCurrentStudent property: The isCurrentStudent property.
+     * Get the isCurrentStudent property: Search for student canditates.
      *
      * @return the isCurrentStudent value.
      */
@@ -749,7 +737,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Set the isCurrentStudent property: The isCurrentStudent property.
+     * Set the isCurrentStudent property: Search for student canditates.
      *
      * @param isCurrentStudent the isCurrentStudent value to set.
      * @return the ResumeSearchParameters object itself.
@@ -780,7 +768,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Get the isRecentGraduate property: The isRecentGraduate property.
+     * Get the isRecentGraduate property: Search for canditates that graduated less than a year ago.
      *
      * @return the isRecentGraduate value.
      */
@@ -789,7 +777,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Set the isRecentGraduate property: The isRecentGraduate property.
+     * Set the isRecentGraduate property: Search for canditates that graduated less than a year ago.
      *
      * @param isRecentGraduate the isRecentGraduate value to set.
      * @return the ResumeSearchParameters object itself.
@@ -820,46 +808,6 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Get the isTopStudent property: The isTopStudent property.
-     *
-     * @return the isTopStudent value.
-     */
-    public Boolean isTopStudent() {
-        return this.isTopStudent;
-    }
-
-    /**
-     * Set the isTopStudent property: The isTopStudent property.
-     *
-     * @param isTopStudent the isTopStudent value to set.
-     * @return the ResumeSearchParameters object itself.
-     */
-    public ResumeSearchParameters setIsTopStudent(Boolean isTopStudent) {
-        this.isTopStudent = isTopStudent;
-        return this;
-    }
-
-    /**
-     * Get the isTopStudentRequired property: The isTopStudentRequired property.
-     *
-     * @return the isTopStudentRequired value.
-     */
-    public Boolean isTopStudentRequired() {
-        return this.isTopStudentRequired;
-    }
-
-    /**
-     * Set the isTopStudentRequired property: The isTopStudentRequired property.
-     *
-     * @param isTopStudentRequired the isTopStudentRequired value to set.
-     * @return the ResumeSearchParameters object itself.
-     */
-    public ResumeSearchParameters setIsTopStudentRequired(Boolean isTopStudentRequired) {
-        this.isTopStudentRequired = isTopStudentRequired;
-        return this;
-    }
-
-    /**
      * Get the educationWeight property: The educationWeight property.
      *
      * @return the educationWeight value.
@@ -880,7 +828,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Get the searchExpression property: The searchExpression property.
+     * Get the searchExpression property: Search through resumes' raw text.
      *
      * @return the searchExpression value.
      */
@@ -889,7 +837,7 @@ public final class ResumeSearchParameters {
     }
 
     /**
-     * Set the searchExpression property: The searchExpression property.
+     * Set the searchExpression property: Search through resumes' raw text.
      *
      * @param searchExpression the searchExpression value to set.
      * @return the ResumeSearchParameters object itself.
