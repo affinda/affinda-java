@@ -1,7 +1,7 @@
 Java Client Library for Affinda Resume Parser API
 =================================================
 
-![affinda logo](https://raw.githubusercontent.com/affinda/affinda-java/main/affinda_logo.png)
+![affinda logo](https://raw.githubusercontent.com/affinda/affinda-java/master/affinda_logo.png)
 [![license](https://img.shields.io/github/license/affinda/affinda-java)](https://choosealicense.com/licenses/mit/)
 
 

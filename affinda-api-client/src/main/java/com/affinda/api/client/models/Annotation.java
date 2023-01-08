@@ -36,10 +36,22 @@ public class Annotation {
     private String raw;
 
     /*
-     * The confidence property.
+     * Combined confidence from the model confidence and the OCR confidence.
      */
     @JsonProperty(value = "confidence", required = true)
     private Float confidence;
+
+    /*
+     * The AI model confidence.
+     */
+    @JsonProperty(value = "classification_confidence", required = true)
+    private Float classificationConfidence;
+
+    /*
+     * The OCR confidence.
+     */
+    @JsonProperty(value = "text_extraction_confidence", required = true)
+    private Float textExtractionConfidence;
 
     /*
      * The isVerified property.
@@ -151,7 +163,7 @@ public class Annotation {
     }
 
     /**
-     * Get the confidence property: The confidence property.
+     * Get the confidence property: Combined confidence from the model confidence and the OCR confidence.
      *
      * @return the confidence value.
      */
@@ -160,13 +172,53 @@ public class Annotation {
     }
 
     /**
-     * Set the confidence property: The confidence property.
+     * Set the confidence property: Combined confidence from the model confidence and the OCR confidence.
      *
      * @param confidence the confidence value to set.
      * @return the Annotation object itself.
      */
     public Annotation setConfidence(Float confidence) {
         this.confidence = confidence;
+        return this;
+    }
+
+    /**
+     * Get the classificationConfidence property: The AI model confidence.
+     *
+     * @return the classificationConfidence value.
+     */
+    public Float getClassificationConfidence() {
+        return this.classificationConfidence;
+    }
+
+    /**
+     * Set the classificationConfidence property: The AI model confidence.
+     *
+     * @param classificationConfidence the classificationConfidence value to set.
+     * @return the Annotation object itself.
+     */
+    public Annotation setClassificationConfidence(Float classificationConfidence) {
+        this.classificationConfidence = classificationConfidence;
+        return this;
+    }
+
+    /**
+     * Get the textExtractionConfidence property: The OCR confidence.
+     *
+     * @return the textExtractionConfidence value.
+     */
+    public Float getTextExtractionConfidence() {
+        return this.textExtractionConfidence;
+    }
+
+    /**
+     * Set the textExtractionConfidence property: The OCR confidence.
+     *
+     * @param textExtractionConfidence the textExtractionConfidence value to set.
+     * @return the Annotation object itself.
+     */
+    public Annotation setTextExtractionConfidence(Float textExtractionConfidence) {
+        this.textExtractionConfidence = textExtractionConfidence;
         return this;
     }
 
