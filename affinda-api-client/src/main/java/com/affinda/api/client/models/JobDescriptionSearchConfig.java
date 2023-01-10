@@ -153,6 +153,12 @@ public final class JobDescriptionSearchConfig {
     @JsonProperty(value = "username", access = JsonProperty.Access.WRITE_ONLY)
     private String username;
 
+    /*
+     * A list of actions to show in the dropdown in the embedded search tool
+     */
+    @JsonProperty(value = "actions")
+    private List<JobDescriptionSearchConfigActionsItem> actions;
+
     /**
      * Get the allowPdfDownload property: The allowPdfDownload property.
      *
@@ -611,5 +617,25 @@ public final class JobDescriptionSearchConfig {
      */
     public String getUsername() {
         return this.username;
+    }
+
+    /**
+     * Get the actions property: A list of actions to show in the dropdown in the embedded search tool.
+     *
+     * @return the actions value.
+     */
+    public List<JobDescriptionSearchConfigActionsItem> getActions() {
+        return this.actions;
+    }
+
+    /**
+     * Set the actions property: A list of actions to show in the dropdown in the embedded search tool.
+     *
+     * @param actions the actions value to set.
+     * @return the JobDescriptionSearchConfig object itself.
+     */
+    public JobDescriptionSearchConfig setActions(List<JobDescriptionSearchConfigActionsItem> actions) {
+        this.actions = actions;
+        return this;
     }
 }

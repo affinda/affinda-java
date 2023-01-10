@@ -30,6 +30,12 @@ public final class ResumeDataRefereesItem {
     @JsonProperty(value = "number")
     private String number;
 
+    /*
+     * The position property.
+     */
+    @JsonProperty(value = "position")
+    private String position;
+
     /**
      * Get the name property: The name property.
      *
@@ -107,6 +113,26 @@ public final class ResumeDataRefereesItem {
      */
     public ResumeDataRefereesItem setNumber(String number) {
         this.number = number;
+        return this;
+    }
+
+    /**
+     * Get the position property: The position property.
+     *
+     * @return the position value.
+     */
+    public String getPosition() {
+        return this.position;
+    }
+
+    /**
+     * Set the position property: The position property.
+     *
+     * @param position the position value to set.
+     * @return the ResumeDataRefereesItem object itself.
+     */
+    public ResumeDataRefereesItem setPosition(String position) {
+        this.position = position;
         return this;
     }
 }

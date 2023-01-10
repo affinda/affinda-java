@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /** The Annotation model. */
@@ -24,6 +25,12 @@ public class Annotation {
     private Rectangle rectangle;
 
     /*
+     * The rectangles property.
+     */
+    @JsonProperty(value = "rectangles")
+    private List<Rectangle> rectangles;
+
+    /*
      * The pageIndex property.
      */
     @JsonProperty(value = "pageIndex", required = true)
@@ -36,21 +43,22 @@ public class Annotation {
     private String raw;
 
     /*
-     * Combined confidence from the model confidence and the OCR confidence.
+     * The overall confidence that the model's prediction is correct
      */
     @JsonProperty(value = "confidence", required = true)
     private Float confidence;
 
     /*
-     * The AI model confidence.
+     * The model's confidence that the text has been classified correctly
      */
-    @JsonProperty(value = "classification_confidence", required = true)
+    @JsonProperty(value = "classificationConfidence", required = true)
     private Float classificationConfidence;
 
     /*
-     * The OCR confidence.
+     * If the document was submitted as an image, this is the confidence that
+     * the text in the image has been correctly read by the model.
      */
-    @JsonProperty(value = "text_extraction_confidence", required = true)
+    @JsonProperty(value = "textExtractionConfidence", required = true)
     private Float textExtractionConfidence;
 
     /*
@@ -123,6 +131,26 @@ public class Annotation {
     }
 
     /**
+     * Get the rectangles property: The rectangles property.
+     *
+     * @return the rectangles value.
+     */
+    public List<Rectangle> getRectangles() {
+        return this.rectangles;
+    }
+
+    /**
+     * Set the rectangles property: The rectangles property.
+     *
+     * @param rectangles the rectangles value to set.
+     * @return the Annotation object itself.
+     */
+    public Annotation setRectangles(List<Rectangle> rectangles) {
+        this.rectangles = rectangles;
+        return this;
+    }
+
+    /**
      * Get the pageIndex property: The pageIndex property.
      *
      * @return the pageIndex value.
@@ -163,7 +191,7 @@ public class Annotation {
     }
 
     /**
-     * Get the confidence property: Combined confidence from the model confidence and the OCR confidence.
+     * Get the confidence property: The overall confidence that the model's prediction is correct.
      *
      * @return the confidence value.
      */
@@ -172,7 +200,7 @@ public class Annotation {
     }
 
     /**
-     * Set the confidence property: Combined confidence from the model confidence and the OCR confidence.
+     * Set the confidence property: The overall confidence that the model's prediction is correct.
      *
      * @param confidence the confidence value to set.
      * @return the Annotation object itself.
@@ -183,7 +211,7 @@ public class Annotation {
     }
 
     /**
-     * Get the classificationConfidence property: The AI model confidence.
+     * Get the classificationConfidence property: The model's confidence that the text has been classified correctly.
      *
      * @return the classificationConfidence value.
      */
@@ -192,7 +220,7 @@ public class Annotation {
     }
 
     /**
-     * Set the classificationConfidence property: The AI model confidence.
+     * Set the classificationConfidence property: The model's confidence that the text has been classified correctly.
      *
      * @param classificationConfidence the classificationConfidence value to set.
      * @return the Annotation object itself.
@@ -203,7 +231,8 @@ public class Annotation {
     }
 
     /**
-     * Get the textExtractionConfidence property: The OCR confidence.
+     * Get the textExtractionConfidence property: If the document was submitted as an image, this is the confidence that
+     * the text in the image has been correctly read by the model.
      *
      * @return the textExtractionConfidence value.
      */
@@ -212,7 +241,8 @@ public class Annotation {
     }
 
     /**
-     * Set the textExtractionConfidence property: The OCR confidence.
+     * Set the textExtractionConfidence property: If the document was submitted as an image, this is the confidence that
+     * the text in the image has been correctly read by the model.
      *
      * @param textExtractionConfidence the textExtractionConfidence value to set.
      * @return the Annotation object itself.
