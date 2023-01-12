@@ -3,11 +3,11 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The PathsTop5ZkUsersPostResponses201ContentApplicationJsonSchema model. */
+/** The UserCreateResponse model. */
 @Fluent
-public final class PathsTop5ZkUsersPostResponses201ContentApplicationJsonSchema extends User {
+public final class UserCreateResponse extends User {
     /*
-     * API key used to authenticate for future requests.  This key is only
+     * API key used to authenticate for future requests. This key is only
      * retrievable at the initial creation of the user.
      */
     @JsonProperty(value = "apiKey")
@@ -28,9 +28,9 @@ public final class PathsTop5ZkUsersPostResponses201ContentApplicationJsonSchema 
      * initial creation of the user.
      *
      * @param apiKey the apiKey value to set.
-     * @return the PathsTop5ZkUsersPostResponses201ContentApplicationJsonSchema object itself.
+     * @return the UserCreateResponse object itself.
      */
-    public PathsTop5ZkUsersPostResponses201ContentApplicationJsonSchema setApiKey(String apiKey) {
+    public UserCreateResponse setApiKey(String apiKey) {
         this.apiKey = apiKey;
         return this;
     }

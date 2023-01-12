@@ -8,8 +8,7 @@ import java.util.Map;
 @Fluent
 public final class ResumeSearchResult {
     /*
-     * Unique identifier for the document. If creating a document and left
-     * blank, one will be automatically generated.
+     * A random string that uniquely identify the resource.
      */
     @JsonProperty(value = "identifier", required = true)
     private String identifier;
@@ -94,8 +93,7 @@ public final class ResumeSearchResult {
     private Map<String, ComponentsNqbw24SchemasCustomdatasearchscorecomponentAdditionalproperties> customData;
 
     /**
-     * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
-     * be automatically generated.
+     * Get the identifier property: A random string that uniquely identify the resource.
      *
      * @return the identifier value.
      */
@@ -104,8 +102,7 @@ public final class ResumeSearchResult {
     }
 
     /**
-     * Set the identifier property: Unique identifier for the document. If creating a document and left blank, one will
-     * be automatically generated.
+     * Set the identifier property: A random string that uniquely identify the resource.
      *
      * @param identifier the identifier value to set.
      * @return the ResumeSearchResult object itself.

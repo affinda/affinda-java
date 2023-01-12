@@ -9,46 +9,46 @@ public final class PageMeta {
     /*
      * The id property.
      */
-    @JsonProperty(value = "id")
-    private Integer id;
+    @JsonProperty(value = "id", required = true)
+    private int id;
 
     /*
      * Page number within the document, starts from 0.
      */
-    @JsonProperty(value = "pageIndex")
-    private Integer pageIndex;
+    @JsonProperty(value = "pageIndex", required = true)
+    private int pageIndex;
 
     /*
      * The URL to the image of the page.
      */
-    @JsonProperty(value = "image")
+    @JsonProperty(value = "image", required = true)
     private String image;
 
     /*
      * Height of the page's image in px.
      */
-    @JsonProperty(value = "height")
-    private Float height;
+    @JsonProperty(value = "height", required = true)
+    private float height;
 
     /*
      * Width of the page's image in px.
      */
-    @JsonProperty(value = "width")
-    private Float width;
+    @JsonProperty(value = "width", required = true)
+    private float width;
 
     /*
      * The degree of rotation applied to the page. Greater than 0 indicates
      * clockwise rotation. Less than 0 indicates counter-clockwise rotation.
      */
-    @JsonProperty(value = "rotation")
-    private Integer rotation;
+    @JsonProperty(value = "rotation", required = true)
+    private int rotation;
 
     /**
      * Get the id property: The id property.
      *
      * @return the id value.
      */
-    public Integer getId() {
+    public int getId() {
         return this.id;
     }
 
@@ -58,7 +58,7 @@ public final class PageMeta {
      * @param id the id value to set.
      * @return the PageMeta object itself.
      */
-    public PageMeta setId(Integer id) {
+    public PageMeta setId(int id) {
         this.id = id;
         return this;
     }
@@ -68,7 +68,7 @@ public final class PageMeta {
      *
      * @return the pageIndex value.
      */
-    public Integer getPageIndex() {
+    public int getPageIndex() {
         return this.pageIndex;
     }
 
@@ -78,7 +78,7 @@ public final class PageMeta {
      * @param pageIndex the pageIndex value to set.
      * @return the PageMeta object itself.
      */
-    public PageMeta setPageIndex(Integer pageIndex) {
+    public PageMeta setPageIndex(int pageIndex) {
         this.pageIndex = pageIndex;
         return this;
     }
@@ -108,7 +108,7 @@ public final class PageMeta {
      *
      * @return the height value.
      */
-    public Float getHeight() {
+    public float getHeight() {
         return this.height;
     }
 
@@ -118,7 +118,7 @@ public final class PageMeta {
      * @param height the height value to set.
      * @return the PageMeta object itself.
      */
-    public PageMeta setHeight(Float height) {
+    public PageMeta setHeight(float height) {
         this.height = height;
         return this;
     }
@@ -128,7 +128,7 @@ public final class PageMeta {
      *
      * @return the width value.
      */
-    public Float getWidth() {
+    public float getWidth() {
         return this.width;
     }
 
@@ -138,7 +138,7 @@ public final class PageMeta {
      * @param width the width value to set.
      * @return the PageMeta object itself.
      */
-    public PageMeta setWidth(Float width) {
+    public PageMeta setWidth(float width) {
         this.width = width;
         return this;
     }
@@ -149,7 +149,7 @@ public final class PageMeta {
      *
      * @return the rotation value.
      */
-    public Integer getRotation() {
+    public int getRotation() {
         return this.rotation;
     }
 
@@ -160,7 +160,7 @@ public final class PageMeta {
      * @param rotation the rotation value to set.
      * @return the PageMeta object itself.
      */
-    public PageMeta setRotation(Integer rotation) {
+    public PageMeta setRotation(int rotation) {
         this.rotation = rotation;
         return this;
     }

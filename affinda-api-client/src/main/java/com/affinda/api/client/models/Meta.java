@@ -1,23 +1,17 @@
 package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /** The Meta model. */
 @Fluent
 public final class Meta {
     /*
-     * Unique identifier for the document. If creating a document and left
-     * blank, one will be automatically generated.
+     * Uniquely identify a document.
      */
-    @JsonProperty(value = "identifier", required = true)
+    @JsonProperty(value = "identifier")
     private String identifier;
 
     /*
@@ -31,8 +25,8 @@ public final class Meta {
      * endpoint request specified wait=False, when polling use this variable to
      * determine when to stop polling
      */
-    @JsonProperty(value = "ready", required = true)
-    private boolean ready;
+    @JsonProperty(value = "ready")
+    private Boolean ready;
 
     /*
      * The datetime when the document was ready
@@ -44,8 +38,8 @@ public final class Meta {
      * If true, some exception was raised during processing. Check the 'error'
      * field of the main return object.
      */
-    @JsonProperty(value = "failed", required = true)
-    private boolean failed;
+    @JsonProperty(value = "failed")
+    private Boolean failed;
 
     /*
      * The date/time in ISO-8601 format when the document will be automatically
@@ -64,22 +58,22 @@ public final class Meta {
      * The URL to the document's pdf (if the uploaded document is not already
      * pdf, it's converted to pdf as part of the parsing process).
      */
-    @JsonProperty(value = "pdf", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "pdf")
     private String pdf;
 
     /*
      * If this document is part of a splitted document, this attribute points
      * to the original document that this document is splitted from.
      */
-    @JsonProperty(value = "parentDocument", access = JsonProperty.Access.WRITE_ONLY)
-    private SplitRelation parentDocument;
+    @JsonProperty(value = "parentDocument")
+    private MetaParentDocument parentDocument;
 
     /*
      * If this document has been splitted into a number of child documents,
      * this attribute points to those child documents.
      */
-    @JsonProperty(value = "childDocuments", access = JsonProperty.Access.WRITE_ONLY)
-    private List<SplitRelation> childDocuments;
+    @JsonProperty(value = "childDocuments")
+    private List<MetaChildDocumentsItem> childDocuments;
 
     /*
      * The document's pages.
@@ -108,14 +102,8 @@ public final class Meta {
     @JsonProperty(value = "ocrConfidence")
     private Float ocrConfidence;
 
-    /*
-     * Dictionary of <any>
-     */
-    @JsonIgnore private Map<String, Object> additionalProperties;
-
     /**
-     * Get the identifier property: Unique identifier for the document. If creating a document and left blank, one will
-     * be automatically generated.
+     * Get the identifier property: Uniquely identify a document.
      *
      * @return the identifier value.
      */
@@ -124,8 +112,7 @@ public final class Meta {
     }
 
     /**
-     * Set the identifier property: Unique identifier for the document. If creating a document and left blank, one will
-     * be automatically generated.
+     * Set the identifier property: Uniquely identify a document.
      *
      * @param identifier the identifier value to set.
      * @return the Meta object itself.
@@ -161,7 +148,7 @@ public final class Meta {
      *
      * @return the ready value.
      */
-    public boolean isReady() {
+    public Boolean isReady() {
         return this.ready;
     }
 
@@ -172,7 +159,7 @@ public final class Meta {
      * @param ready the ready value to set.
      * @return the Meta object itself.
      */
-    public Meta setReady(boolean ready) {
+    public Meta setReady(Boolean ready) {
         this.ready = ready;
         return this;
     }
@@ -203,7 +190,7 @@ public final class Meta {
      *
      * @return the failed value.
      */
-    public boolean isFailed() {
+    public Boolean isFailed() {
         return this.failed;
     }
 
@@ -214,7 +201,7 @@ public final class Meta {
      * @param failed the failed value to set.
      * @return the Meta object itself.
      */
-    public Meta setFailed(boolean failed) {
+    public Meta setFailed(Boolean failed) {
         this.failed = failed;
         return this;
     }
@@ -272,13 +259,37 @@ public final class Meta {
     }
 
     /**
+     * Set the pdf property: The URL to the document's pdf (if the uploaded document is not already pdf, it's converted
+     * to pdf as part of the parsing process).
+     *
+     * @param pdf the pdf value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setPdf(String pdf) {
+        this.pdf = pdf;
+        return this;
+    }
+
+    /**
      * Get the parentDocument property: If this document is part of a splitted document, this attribute points to the
      * original document that this document is splitted from.
      *
      * @return the parentDocument value.
      */
-    public SplitRelation getParentDocument() {
+    public MetaParentDocument getParentDocument() {
         return this.parentDocument;
+    }
+
+    /**
+     * Set the parentDocument property: If this document is part of a splitted document, this attribute points to the
+     * original document that this document is splitted from.
+     *
+     * @param parentDocument the parentDocument value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setParentDocument(MetaParentDocument parentDocument) {
+        this.parentDocument = parentDocument;
+        return this;
     }
 
     /**
@@ -287,8 +298,20 @@ public final class Meta {
      *
      * @return the childDocuments value.
      */
-    public List<SplitRelation> getChildDocuments() {
+    public List<MetaChildDocumentsItem> getChildDocuments() {
         return this.childDocuments;
+    }
+
+    /**
+     * Set the childDocuments property: If this document has been splitted into a number of child documents, this
+     * attribute points to those child documents.
+     *
+     * @param childDocuments the childDocuments value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setChildDocuments(List<MetaChildDocumentsItem> childDocuments) {
+        this.childDocuments = childDocuments;
+        return this;
     }
 
     /**
@@ -375,34 +398,5 @@ public final class Meta {
     public Meta setOcrConfidence(Float ocrConfidence) {
         this.ocrConfidence = ocrConfidence;
         return this;
-    }
-
-    /**
-     * Get the additionalProperties property: Dictionary of &lt;any&gt;.
-     *
-     * @return the additionalProperties value.
-     */
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    /**
-     * Set the additionalProperties property: Dictionary of &lt;any&gt;.
-     *
-     * @param additionalProperties the additionalProperties value to set.
-     * @return the Meta object itself.
-     */
-    public Meta setAdditionalProperties(Map<String, Object> additionalProperties) {
-        this.additionalProperties = additionalProperties;
-        return this;
-    }
-
-    @JsonAnySetter
-    void setAdditionalProperties(String key, Object value) {
-        if (additionalProperties == null) {
-            additionalProperties = new HashMap<>();
-        }
-        additionalProperties.put(key, value);
     }
 }

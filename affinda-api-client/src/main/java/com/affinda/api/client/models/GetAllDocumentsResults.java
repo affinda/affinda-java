@@ -10,8 +10,8 @@ public final class GetAllDocumentsResults {
     /*
      * Number of documents in result
      */
-    @JsonProperty(value = "count")
-    private Integer count;
+    @JsonProperty(value = "count", required = true)
+    private int count;
 
     /*
      * URL to request next page of results
@@ -28,15 +28,15 @@ public final class GetAllDocumentsResults {
     /*
      * The results property.
      */
-    @JsonProperty(value = "results")
-    private List<Meta> results;
+    @JsonProperty(value = "results", required = true)
+    private List<Document> results;
 
     /**
      * Get the count property: Number of documents in result.
      *
      * @return the count value.
      */
-    public Integer getCount() {
+    public int getCount() {
         return this.count;
     }
 
@@ -46,7 +46,7 @@ public final class GetAllDocumentsResults {
      * @param count the count value to set.
      * @return the GetAllDocumentsResults object itself.
      */
-    public GetAllDocumentsResults setCount(Integer count) {
+    public GetAllDocumentsResults setCount(int count) {
         this.count = count;
         return this;
     }
@@ -96,7 +96,7 @@ public final class GetAllDocumentsResults {
      *
      * @return the results value.
      */
-    public List<Meta> getResults() {
+    public List<Document> getResults() {
         return this.results;
     }
 
@@ -106,7 +106,7 @@ public final class GetAllDocumentsResults {
      * @param results the results value to set.
      * @return the GetAllDocumentsResults object itself.
      */
-    public GetAllDocumentsResults setResults(List<Meta> results) {
+    public GetAllDocumentsResults setResults(List<Document> results) {
         this.results = results;
         return this;
     }

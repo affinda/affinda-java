@@ -15,8 +15,8 @@ public class Annotation {
     /*
      * The id property.
      */
-    @JsonProperty(value = "id")
-    private Integer id;
+    @JsonProperty(value = "id", required = true)
+    private int id;
 
     /*
      * The rectangle property.
@@ -27,7 +27,7 @@ public class Annotation {
     /*
      * The rectangles property.
      */
-    @JsonProperty(value = "rectangles")
+    @JsonProperty(value = "rectangles", required = true)
     private List<Rectangle> rectangles;
 
     /*
@@ -70,20 +70,26 @@ public class Annotation {
     /*
      * The isClientVerified property.
      */
-    @JsonProperty(value = "isClientVerified")
-    private Boolean isClientVerified;
+    @JsonProperty(value = "isClientVerified", required = true)
+    private boolean isClientVerified;
 
     /*
      * The isAutoVerified property.
      */
-    @JsonProperty(value = "isAutoVerified")
-    private Boolean isAutoVerified;
+    @JsonProperty(value = "isAutoVerified", required = true)
+    private boolean isAutoVerified;
 
     /*
-     * The classification property.
+     * The dataPoint property.
      */
-    @JsonProperty(value = "classification", required = true)
-    private String classification;
+    @JsonProperty(value = "dataPoint", required = true)
+    private String dataPoint;
+
+    /*
+     * The contentType property.
+     */
+    @JsonProperty(value = "contentType", required = true)
+    private String contentType;
 
     /*
      * Dictionary of <any>
@@ -95,7 +101,7 @@ public class Annotation {
      *
      * @return the id value.
      */
-    public Integer getId() {
+    public int getId() {
         return this.id;
     }
 
@@ -105,7 +111,7 @@ public class Annotation {
      * @param id the id value to set.
      * @return the Annotation object itself.
      */
-    public Annotation setId(Integer id) {
+    public Annotation setId(int id) {
         this.id = id;
         return this;
     }
@@ -277,7 +283,7 @@ public class Annotation {
      *
      * @return the isClientVerified value.
      */
-    public Boolean isClientVerified() {
+    public boolean isClientVerified() {
         return this.isClientVerified;
     }
 
@@ -287,7 +293,7 @@ public class Annotation {
      * @param isClientVerified the isClientVerified value to set.
      * @return the Annotation object itself.
      */
-    public Annotation setIsClientVerified(Boolean isClientVerified) {
+    public Annotation setIsClientVerified(boolean isClientVerified) {
         this.isClientVerified = isClientVerified;
         return this;
     }
@@ -297,7 +303,7 @@ public class Annotation {
      *
      * @return the isAutoVerified value.
      */
-    public Boolean isAutoVerified() {
+    public boolean isAutoVerified() {
         return this.isAutoVerified;
     }
 
@@ -307,28 +313,48 @@ public class Annotation {
      * @param isAutoVerified the isAutoVerified value to set.
      * @return the Annotation object itself.
      */
-    public Annotation setIsAutoVerified(Boolean isAutoVerified) {
+    public Annotation setIsAutoVerified(boolean isAutoVerified) {
         this.isAutoVerified = isAutoVerified;
         return this;
     }
 
     /**
-     * Get the classification property: The classification property.
+     * Get the dataPoint property: The dataPoint property.
      *
-     * @return the classification value.
+     * @return the dataPoint value.
      */
-    public String getClassification() {
-        return this.classification;
+    public String getDataPoint() {
+        return this.dataPoint;
     }
 
     /**
-     * Set the classification property: The classification property.
+     * Set the dataPoint property: The dataPoint property.
      *
-     * @param classification the classification value to set.
+     * @param dataPoint the dataPoint value to set.
      * @return the Annotation object itself.
      */
-    public Annotation setClassification(String classification) {
-        this.classification = classification;
+    public Annotation setDataPoint(String dataPoint) {
+        this.dataPoint = dataPoint;
+        return this;
+    }
+
+    /**
+     * Get the contentType property: The contentType property.
+     *
+     * @return the contentType value.
+     */
+    public String getContentType() {
+        return this.contentType;
+    }
+
+    /**
+     * Set the contentType property: The contentType property.
+     *
+     * @param contentType the contentType value to set.
+     * @return the Annotation object itself.
+     */
+    public Annotation setContentType(String contentType) {
+        this.contentType = contentType;
         return this;
     }
 

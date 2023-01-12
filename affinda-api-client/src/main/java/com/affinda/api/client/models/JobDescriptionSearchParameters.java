@@ -14,8 +14,7 @@ public final class JobDescriptionSearchParameters {
     private List<String> indices;
 
     /*
-     * Unique identifier for the document. If creating a document and left
-     * blank, one will be automatically generated.
+     * A random string that uniquely identify the resource.
      */
     @JsonProperty(value = "resume")
     private String resume;
@@ -203,8 +202,7 @@ public final class JobDescriptionSearchParameters {
     }
 
     /**
-     * Get the resume property: Unique identifier for the document. If creating a document and left blank, one will be
-     * automatically generated.
+     * Get the resume property: A random string that uniquely identify the resource.
      *
      * @return the resume value.
      */
@@ -213,8 +211,7 @@ public final class JobDescriptionSearchParameters {
     }
 
     /**
-     * Set the resume property: Unique identifier for the document. If creating a document and left blank, one will be
-     * automatically generated.
+     * Set the resume property: A random string that uniquely identify the resource.
      *
      * @param resume the resume value to set.
      * @return the JobDescriptionSearchParameters object itself.

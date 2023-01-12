@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public class User {
     /*
-     * The id property.
+     * Uniquely identify a user.
      */
     @JsonProperty(value = "id")
     private Integer id;
@@ -21,7 +21,7 @@ public class User {
     /*
      * The username property.
      */
-    @JsonProperty(value = "username", required = true)
+    @JsonProperty(value = "username")
     private String username;
 
     /*
@@ -31,13 +31,13 @@ public class User {
     private String email;
 
     /*
-     * The apiKey property.
+     * URL of the user's avatar.
      */
-    @JsonProperty(value = "apiKey")
-    private String apiKey;
+    @JsonProperty(value = "avatar")
+    private String avatar;
 
     /**
-     * Get the id property: The id property.
+     * Get the id property: Uniquely identify a user.
      *
      * @return the id value.
      */
@@ -46,7 +46,7 @@ public class User {
     }
 
     /**
-     * Set the id property: The id property.
+     * Set the id property: Uniquely identify a user.
      *
      * @param id the id value to set.
      * @return the User object itself.
@@ -117,22 +117,22 @@ public class User {
     }
 
     /**
-     * Get the apiKey property: The apiKey property.
+     * Get the avatar property: URL of the user's avatar.
      *
-     * @return the apiKey value.
+     * @return the avatar value.
      */
-    public String getApiKey() {
-        return this.apiKey;
+    public String getAvatar() {
+        return this.avatar;
     }
 
     /**
-     * Set the apiKey property: The apiKey property.
+     * Set the avatar property: URL of the user's avatar.
      *
-     * @param apiKey the apiKey value to set.
+     * @param avatar the avatar value to set.
      * @return the User object itself.
      */
-    public User setApiKey(String apiKey) {
-        this.apiKey = apiKey;
+    public User setAvatar(String avatar) {
+        this.avatar = avatar;
         return this;
     }
 }
