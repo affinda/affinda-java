@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The PathsHryo8IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems model. */
+/** The PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema model. */
 @Fluent
-public final class PathsHryo8IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems {
+public final class PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema {
     /*
      * The document property.
      */
@@ -25,11 +25,9 @@ public final class PathsHryo8IndexNameDocumentsGetResponses200ContentApplication
      * Set the document property: The document property.
      *
      * @param document the document value to set.
-     * @return the PathsHryo8IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems object
-     *     itself.
+     * @return the PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema object itself.
      */
-    public PathsHryo8IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems setDocument(
-            String document) {
+    public PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema setDocument(String document) {
         this.document = document;
         return this;
     }

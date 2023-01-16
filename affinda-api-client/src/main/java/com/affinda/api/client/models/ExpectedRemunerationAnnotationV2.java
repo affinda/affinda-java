@@ -3,21 +3,21 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SkillAnnotation model. */
+/** The ExpectedRemunerationAnnotationV2 model. */
 @Fluent
-public final class SkillAnnotation extends Annotation {
+public final class ExpectedRemunerationAnnotationV2 extends AnnotationV2 {
     /*
      * The parsed property.
      */
     @JsonProperty(value = "parsed")
-    private String parsed;
+    private ExpectedRemunerationAnnotationV2Parsed parsed;
 
     /**
      * Get the parsed property: The parsed property.
      *
      * @return the parsed value.
      */
-    public String getParsed() {
+    public ExpectedRemunerationAnnotationV2Parsed getParsed() {
         return this.parsed;
     }
 
@@ -25,9 +25,9 @@ public final class SkillAnnotation extends Annotation {
      * Set the parsed property: The parsed property.
      *
      * @param parsed the parsed value to set.
-     * @return the SkillAnnotation object itself.
+     * @return the ExpectedRemunerationAnnotationV2 object itself.
      */
-    public SkillAnnotation setParsed(String parsed) {
+    public ExpectedRemunerationAnnotationV2 setParsed(ExpectedRemunerationAnnotationV2Parsed parsed) {
         this.parsed = parsed;
         return this;
     }

@@ -82,7 +82,7 @@ public final class Meta {
     private List<PageMeta> pages;
 
     /*
-     * This is true if the "confirm" button has been clicked in the Affinda
+     * This is true if the 'confirm' button has been clicked in the Affinda
      * validation tool
      */
     @JsonProperty(value = "isVerified")
@@ -335,7 +335,7 @@ public final class Meta {
     }
 
     /**
-     * Get the isVerified property: This is true if the "confirm" button has been clicked in the Affinda validation
+     * Get the isVerified property: This is true if the 'confirm' button has been clicked in the Affinda validation
      * tool.
      *
      * @return the isVerified value.
@@ -345,7 +345,7 @@ public final class Meta {
     }
 
     /**
-     * Set the isVerified property: This is true if the "confirm" button has been clicked in the Affinda validation
+     * Set the isVerified property: This is true if the 'confirm' button has been clicked in the Affinda validation
      * tool.
      *
      * @param isVerified the isVerified value to set.

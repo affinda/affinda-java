@@ -13,6 +13,12 @@ public final class DocumentMetaCollectionExtractor {
     private Integer id;
 
     /*
+     * The identifier property.
+     */
+    @JsonProperty(value = "identifier")
+    private String identifier;
+
+    /*
      * The name property.
      */
     @JsonProperty(value = "name")
@@ -47,6 +53,26 @@ public final class DocumentMetaCollectionExtractor {
      */
     public DocumentMetaCollectionExtractor setId(Integer id) {
         this.id = id;
+        return this;
+    }
+
+    /**
+     * Get the identifier property: The identifier property.
+     *
+     * @return the identifier value.
+     */
+    public String getIdentifier() {
+        return this.identifier;
+    }
+
+    /**
+     * Set the identifier property: The identifier property.
+     *
+     * @param identifier the identifier value to set.
+     * @return the DocumentMetaCollectionExtractor object itself.
+     */
+    public DocumentMetaCollectionExtractor setIdentifier(String identifier) {
+        this.identifier = identifier;
         return this;
     }
 

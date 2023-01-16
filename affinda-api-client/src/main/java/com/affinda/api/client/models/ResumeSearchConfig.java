@@ -153,6 +153,12 @@ public final class ResumeSearchConfig {
     @JsonProperty(value = "username", access = JsonProperty.Access.WRITE_ONLY)
     private String username;
 
+    /*
+     * A list of actions to show in the dropdown in the embedded search tool
+     */
+    @JsonProperty(value = "actions")
+    private List<ResumeSearchConfigActionsItem> actions;
+
     /**
      * Get the allowPdfDownload property: The allowPdfDownload property.
      *
@@ -611,5 +617,25 @@ public final class ResumeSearchConfig {
      */
     public String getUsername() {
         return this.username;
+    }
+
+    /**
+     * Get the actions property: A list of actions to show in the dropdown in the embedded search tool.
+     *
+     * @return the actions value.
+     */
+    public List<ResumeSearchConfigActionsItem> getActions() {
+        return this.actions;
+    }
+
+    /**
+     * Set the actions property: A list of actions to show in the dropdown in the embedded search tool.
+     *
+     * @param actions the actions value to set.
+     * @return the ResumeSearchConfig object itself.
+     */
+    public ResumeSearchConfig setActions(List<ResumeSearchConfigActionsItem> actions) {
+        this.actions = actions;
+        return this;
     }
 }

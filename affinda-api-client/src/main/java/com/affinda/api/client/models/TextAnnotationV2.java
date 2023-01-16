@@ -3,21 +3,21 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The LocationAnnotation model. */
+/** The TextAnnotationV2 model. */
 @Fluent
-public final class LocationAnnotation extends Annotation {
+public class TextAnnotationV2 extends AnnotationV2 {
     /*
      * The parsed property.
      */
     @JsonProperty(value = "parsed")
-    private Location parsed;
+    private String parsed;
 
     /**
      * Get the parsed property: The parsed property.
      *
      * @return the parsed value.
      */
-    public Location getParsed() {
+    public String getParsed() {
         return this.parsed;
     }
 
@@ -25,9 +25,9 @@ public final class LocationAnnotation extends Annotation {
      * Set the parsed property: The parsed property.
      *
      * @param parsed the parsed value to set.
-     * @return the LocationAnnotation object itself.
+     * @return the TextAnnotationV2 object itself.
      */
-    public LocationAnnotation setParsed(Location parsed) {
+    public TextAnnotationV2 setParsed(String parsed) {
         this.parsed = parsed;
         return this;
     }

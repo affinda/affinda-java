@@ -19,8 +19,8 @@ public final class ResumeSearchParametersCustomData {
     private String dataPoint;
 
     /*
-     * "equals" searches require the "value" key inside the query, and "range"
-     * searches require at least one of "gte" (greater than or equal) and "lte"
+     * 'equals' searches require the 'value' key inside the query, and 'range'
+     * searches require at least one of 'gte' (greater than or equal) and 'lte'
      * (less than or equal)
      */
     @JsonProperty(value = "query", required = true)
@@ -79,8 +79,8 @@ public final class ResumeSearchParametersCustomData {
     }
 
     /**
-     * Get the query property: "equals" searches require the "value" key inside the query, and "range" searches require
-     * at least one of "gte" (greater than or equal) and "lte" (less than or equal).
+     * Get the query property: 'equals' searches require the 'value' key inside the query, and 'range' searches require
+     * at least one of 'gte' (greater than or equal) and 'lte' (less than or equal).
      *
      * @return the query value.
      */
@@ -89,8 +89,8 @@ public final class ResumeSearchParametersCustomData {
     }
 
     /**
-     * Set the query property: "equals" searches require the "value" key inside the query, and "range" searches require
-     * at least one of "gte" (greater than or equal) and "lte" (less than or equal).
+     * Set the query property: 'equals' searches require the 'value' key inside the query, and 'range' searches require
+     * at least one of 'gte' (greater than or equal) and 'lte' (less than or equal).
      *
      * @param query the query value to set.
      * @return the ResumeSearchParametersCustomData object itself.

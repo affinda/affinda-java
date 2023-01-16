@@ -4,11 +4,11 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema model. */
+/** The PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema model. */
 @Fluent
-public final class PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema {
+public final class PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema {
     /*
-     * Number of indexes in result
+     * Number of indexed documents in result
      */
     @JsonProperty(value = "count")
     private Integer count;
@@ -29,10 +29,11 @@ public final class PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema {
      * The results property.
      */
     @JsonProperty(value = "results")
-    private List<User> results;
+    private List<Paths1Kdm1ZxV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems>
+            results;
 
     /**
-     * Get the count property: Number of indexes in result.
+     * Get the count property: Number of indexed documents in result.
      *
      * @return the count value.
      */
@@ -41,12 +42,12 @@ public final class PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema {
     }
 
     /**
-     * Set the count property: Number of indexes in result.
+     * Set the count property: Number of indexed documents in result.
      *
      * @param count the count value to set.
-     * @return the PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema setCount(Integer count) {
+    public PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema setCount(Integer count) {
         this.count = count;
         return this;
     }
@@ -64,9 +65,9 @@ public final class PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema {
      * Set the next property: URL to request next page of results.
      *
      * @param next the next value to set.
-     * @return the PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema setNext(String next) {
+    public PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema setNext(String next) {
         this.next = next;
         return this;
     }
@@ -84,9 +85,9 @@ public final class PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema {
      * Set the previous property: URL to request previous page of results.
      *
      * @param previous the previous value to set.
-     * @return the PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema setPrevious(String previous) {
+    public PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema setPrevious(String previous) {
         this.previous = previous;
         return this;
     }
@@ -96,7 +97,8 @@ public final class PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema {
      *
      * @return the results value.
      */
-    public List<User> getResults() {
+    public List<Paths1Kdm1ZxV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems>
+            getResults() {
         return this.results;
     }
 
@@ -104,9 +106,11 @@ public final class PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema {
      * Set the results property: The results property.
      *
      * @param results the results value to set.
-     * @return the PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema setResults(List<User> results) {
+    public PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema setResults(
+            List<Paths1Kdm1ZxV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems>
+                    results) {
         this.results = results;
         return this;
     }

@@ -222,7 +222,7 @@ public final class AffindaAPIBuilder
             this.pipeline = createHttpPipeline();
         }
         if (host == null) {
-            this.host = "https://api.affinda.com/v2";
+            this.host = "https://api.affinda.com";
         }
         if (serializerAdapter == null) {
             this.serializerAdapter = JacksonAdapter.createDefaultSerializerAdapter();

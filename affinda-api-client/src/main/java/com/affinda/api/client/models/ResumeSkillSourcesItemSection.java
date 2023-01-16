@@ -57,6 +57,17 @@ public final class ResumeSkillSourcesItemSection extends ExpandableStringEnum<Re
     /** Static value Footer for ResumeSkillSourcesItemSection. */
     public static final ResumeSkillSourcesItemSection FOOTER = fromString("Footer");
 
+    /** Static value Skills/Interests/Languages for ResumeSkillSourcesItemSection. */
+    public static final ResumeSkillSourcesItemSection SKILLS_INTERESTS_LANGUAGES =
+            fromString("Skills/Interests/Languages");
+
+    /** Static value Training/Certifications for ResumeSkillSourcesItemSection. */
+    public static final ResumeSkillSourcesItemSection TRAINING_CERTIFICATIONS = fromString("Training/Certifications");
+
+    /** Static value Extracurriculars/Leadership for ResumeSkillSourcesItemSection. */
+    public static final ResumeSkillSourcesItemSection EXTRACURRICULARS_LEADERSHIP =
+            fromString("Extracurriculars/Leadership");
+
     /**
      * Creates or finds a ResumeSkillSourcesItemSection from its string representation.
      *

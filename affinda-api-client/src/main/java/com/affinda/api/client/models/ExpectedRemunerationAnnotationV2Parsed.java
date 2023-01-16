@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ExpectedRemunerationAnnotationParsed model. */
+/** The ExpectedRemunerationAnnotationV2Parsed model. */
 @Fluent
-public final class ExpectedRemunerationAnnotationParsed {
+public final class ExpectedRemunerationAnnotationV2Parsed {
     /*
      * The minimum property.
      */
@@ -43,9 +43,9 @@ public final class ExpectedRemunerationAnnotationParsed {
      * Set the minimum property: The minimum property.
      *
      * @param minimum the minimum value to set.
-     * @return the ExpectedRemunerationAnnotationParsed object itself.
+     * @return the ExpectedRemunerationAnnotationV2Parsed object itself.
      */
-    public ExpectedRemunerationAnnotationParsed setMinimum(Float minimum) {
+    public ExpectedRemunerationAnnotationV2Parsed setMinimum(Float minimum) {
         this.minimum = minimum;
         return this;
     }
@@ -63,9 +63,9 @@ public final class ExpectedRemunerationAnnotationParsed {
      * Set the maximum property: The maximum property.
      *
      * @param maximum the maximum value to set.
-     * @return the ExpectedRemunerationAnnotationParsed object itself.
+     * @return the ExpectedRemunerationAnnotationV2Parsed object itself.
      */
-    public ExpectedRemunerationAnnotationParsed setMaximum(Float maximum) {
+    public ExpectedRemunerationAnnotationV2Parsed setMaximum(Float maximum) {
         this.maximum = maximum;
         return this;
     }
@@ -83,9 +83,9 @@ public final class ExpectedRemunerationAnnotationParsed {
      * Set the currency property: The currency property.
      *
      * @param currency the currency value to set.
-     * @return the ExpectedRemunerationAnnotationParsed object itself.
+     * @return the ExpectedRemunerationAnnotationV2Parsed object itself.
      */
-    public ExpectedRemunerationAnnotationParsed setCurrency(String currency) {
+    public ExpectedRemunerationAnnotationV2Parsed setCurrency(String currency) {
         this.currency = currency;
         return this;
     }
@@ -103,9 +103,9 @@ public final class ExpectedRemunerationAnnotationParsed {
      * Set the unit property: The unit property.
      *
      * @param unit the unit value to set.
-     * @return the ExpectedRemunerationAnnotationParsed object itself.
+     * @return the ExpectedRemunerationAnnotationV2Parsed object itself.
      */
-    public ExpectedRemunerationAnnotationParsed setUnit(String unit) {
+    public ExpectedRemunerationAnnotationV2Parsed setUnit(String unit) {
         this.unit = unit;
         return this;
     }

@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The PathsW51LnrInvitationsTokenPatchRequestbodyContentApplicationJsonSchema model. */
+/** The PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema model. */
 @Fluent
-public final class PathsW51LnrInvitationsTokenPatchRequestbodyContentApplicationJsonSchema {
+public final class PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema {
     /*
      * The status property.
      */
@@ -25,9 +25,9 @@ public final class PathsW51LnrInvitationsTokenPatchRequestbodyContentApplication
      * Set the status property: The status property.
      *
      * @param status the status value to set.
-     * @return the PathsW51LnrInvitationsTokenPatchRequestbodyContentApplicationJsonSchema object itself.
+     * @return the PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema object itself.
      */
-    public PathsW51LnrInvitationsTokenPatchRequestbodyContentApplicationJsonSchema setStatus(
+    public PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema setStatus(
             PatchContentSchemaStatus status) {
         this.status = status;
         return this;

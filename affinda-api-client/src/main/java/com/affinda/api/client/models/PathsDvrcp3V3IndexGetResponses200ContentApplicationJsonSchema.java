@@ -4,9 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema model. */
+/** The PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema model. */
 @Fluent
-public final class Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema {
+public final class PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema {
     /*
      * Number of indexes in result
      */
@@ -44,9 +44,9 @@ public final class Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema {
      * Set the count property: Number of indexes in result.
      *
      * @param count the count value to set.
-     * @return the Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema setCount(Integer count) {
+    public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema setCount(Integer count) {
         this.count = count;
         return this;
     }
@@ -64,9 +64,9 @@ public final class Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema {
      * Set the next property: URL to request next page of results.
      *
      * @param next the next value to set.
-     * @return the Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema setNext(String next) {
+    public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema setNext(String next) {
         this.next = next;
         return this;
     }
@@ -84,9 +84,9 @@ public final class Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema {
      * Set the previous property: URL to request previous page of results.
      *
      * @param previous the previous value to set.
-     * @return the Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema setPrevious(String previous) {
+    public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema setPrevious(String previous) {
         this.previous = previous;
         return this;
     }
@@ -104,9 +104,9 @@ public final class Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema {
      * Set the results property: The results property.
      *
      * @param results the results value to set.
-     * @return the Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema setResults(
+    public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema setResults(
             List<Get200ApplicationJsonPropertiesItemsItem> results) {
         this.results = results;
         return this;

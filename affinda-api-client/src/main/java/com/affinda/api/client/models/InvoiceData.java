@@ -18,19 +18,19 @@ public final class InvoiceData {
      * The invoiceDate property.
      */
     @JsonProperty(value = "invoiceDate")
-    private DateAnnotation invoiceDate;
+    private DateAnnotationV2 invoiceDate;
 
     /*
      * The invoiceOrderDate property.
      */
     @JsonProperty(value = "invoiceOrderDate")
-    private DateAnnotation invoiceOrderDate;
+    private DateAnnotationV2 invoiceOrderDate;
 
     /*
      * The paymentDateDue property.
      */
     @JsonProperty(value = "paymentDateDue")
-    private DateAnnotation paymentDateDue;
+    private DateAnnotationV2 paymentDateDue;
 
     /*
      * The paymentAmountBase property.
@@ -174,19 +174,19 @@ public final class InvoiceData {
      * The customerBillingAddress property.
      */
     @JsonProperty(value = "customerBillingAddress")
-    private LocationAnnotation customerBillingAddress;
+    private LocationAnnotationV2 customerBillingAddress;
 
     /*
      * The customerDeliveryAddress property.
      */
     @JsonProperty(value = "customerDeliveryAddress")
-    private LocationAnnotation customerDeliveryAddress;
+    private LocationAnnotationV2 customerDeliveryAddress;
 
     /*
      * The supplierAddress property.
      */
     @JsonProperty(value = "supplierAddress")
-    private LocationAnnotation supplierAddress;
+    private LocationAnnotationV2 supplierAddress;
 
     /*
      * The customerPhoneNumber property.
@@ -228,7 +228,7 @@ public final class InvoiceData {
      * The currencyCode property.
      */
     @JsonProperty(value = "currencyCode")
-    private EnumAnnotationSerializer currencyCode;
+    private EnumAnnotationSerializerV2 currencyCode;
 
     /*
      * Dictionary of <any>
@@ -261,7 +261,7 @@ public final class InvoiceData {
      *
      * @return the invoiceDate value.
      */
-    public DateAnnotation getInvoiceDate() {
+    public DateAnnotationV2 getInvoiceDate() {
         return this.invoiceDate;
     }
 
@@ -271,7 +271,7 @@ public final class InvoiceData {
      * @param invoiceDate the invoiceDate value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setInvoiceDate(DateAnnotation invoiceDate) {
+    public InvoiceData setInvoiceDate(DateAnnotationV2 invoiceDate) {
         this.invoiceDate = invoiceDate;
         return this;
     }
@@ -281,7 +281,7 @@ public final class InvoiceData {
      *
      * @return the invoiceOrderDate value.
      */
-    public DateAnnotation getInvoiceOrderDate() {
+    public DateAnnotationV2 getInvoiceOrderDate() {
         return this.invoiceOrderDate;
     }
 
@@ -291,7 +291,7 @@ public final class InvoiceData {
      * @param invoiceOrderDate the invoiceOrderDate value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setInvoiceOrderDate(DateAnnotation invoiceOrderDate) {
+    public InvoiceData setInvoiceOrderDate(DateAnnotationV2 invoiceOrderDate) {
         this.invoiceOrderDate = invoiceOrderDate;
         return this;
     }
@@ -301,7 +301,7 @@ public final class InvoiceData {
      *
      * @return the paymentDateDue value.
      */
-    public DateAnnotation getPaymentDateDue() {
+    public DateAnnotationV2 getPaymentDateDue() {
         return this.paymentDateDue;
     }
 
@@ -311,7 +311,7 @@ public final class InvoiceData {
      * @param paymentDateDue the paymentDateDue value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setPaymentDateDue(DateAnnotation paymentDateDue) {
+    public InvoiceData setPaymentDateDue(DateAnnotationV2 paymentDateDue) {
         this.paymentDateDue = paymentDateDue;
         return this;
     }
@@ -781,7 +781,7 @@ public final class InvoiceData {
      *
      * @return the customerBillingAddress value.
      */
-    public LocationAnnotation getCustomerBillingAddress() {
+    public LocationAnnotationV2 getCustomerBillingAddress() {
         return this.customerBillingAddress;
     }
 
@@ -791,7 +791,7 @@ public final class InvoiceData {
      * @param customerBillingAddress the customerBillingAddress value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerBillingAddress(LocationAnnotation customerBillingAddress) {
+    public InvoiceData setCustomerBillingAddress(LocationAnnotationV2 customerBillingAddress) {
         this.customerBillingAddress = customerBillingAddress;
         return this;
     }
@@ -801,7 +801,7 @@ public final class InvoiceData {
      *
      * @return the customerDeliveryAddress value.
      */
-    public LocationAnnotation getCustomerDeliveryAddress() {
+    public LocationAnnotationV2 getCustomerDeliveryAddress() {
         return this.customerDeliveryAddress;
     }
 
@@ -811,7 +811,7 @@ public final class InvoiceData {
      * @param customerDeliveryAddress the customerDeliveryAddress value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerDeliveryAddress(LocationAnnotation customerDeliveryAddress) {
+    public InvoiceData setCustomerDeliveryAddress(LocationAnnotationV2 customerDeliveryAddress) {
         this.customerDeliveryAddress = customerDeliveryAddress;
         return this;
     }
@@ -821,7 +821,7 @@ public final class InvoiceData {
      *
      * @return the supplierAddress value.
      */
-    public LocationAnnotation getSupplierAddress() {
+    public LocationAnnotationV2 getSupplierAddress() {
         return this.supplierAddress;
     }
 
@@ -831,7 +831,7 @@ public final class InvoiceData {
      * @param supplierAddress the supplierAddress value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierAddress(LocationAnnotation supplierAddress) {
+    public InvoiceData setSupplierAddress(LocationAnnotationV2 supplierAddress) {
         this.supplierAddress = supplierAddress;
         return this;
     }
@@ -961,7 +961,7 @@ public final class InvoiceData {
      *
      * @return the currencyCode value.
      */
-    public EnumAnnotationSerializer getCurrencyCode() {
+    public EnumAnnotationSerializerV2 getCurrencyCode() {
         return this.currencyCode;
     }
 
@@ -971,7 +971,7 @@ public final class InvoiceData {
      * @param currencyCode the currencyCode value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCurrencyCode(EnumAnnotationSerializer currencyCode) {
+    public InvoiceData setCurrencyCode(EnumAnnotationSerializerV2 currencyCode) {
         this.currencyCode = currencyCode;
         return this;
     }

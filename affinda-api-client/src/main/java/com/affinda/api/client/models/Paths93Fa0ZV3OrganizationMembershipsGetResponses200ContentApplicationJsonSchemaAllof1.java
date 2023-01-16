@@ -4,10 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema model. */
+/** The Paths93Fa0ZV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchemaAllof1 model. */
 @Fluent
-public final class PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema
-        extends PaginatedResponse {
+public class Paths93Fa0ZV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchemaAllof1 {
     /*
      * The results property.
      */
@@ -27,9 +26,9 @@ public final class PathsCkdzu3OrganizationMembershipsGetResponses200ContentAppli
      * Set the results property: The results property.
      *
      * @param results the results value to set.
-     * @return the PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the Paths93Fa0ZV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchemaAllof1 object itself.
      */
-    public PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema setResults(
+    public Paths93Fa0ZV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchemaAllof1 setResults(
             List<OrganizationMembership> results) {
         this.results = results;
         return this;

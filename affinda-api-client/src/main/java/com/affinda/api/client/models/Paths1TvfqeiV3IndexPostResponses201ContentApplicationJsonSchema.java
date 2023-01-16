@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema model. */
+/** The Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema model. */
 @Fluent
-public final class Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema {
+public final class Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema {
     /*
      * The name property.
      */
@@ -31,9 +31,9 @@ public final class Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema
      * Set the name property: The name property.
      *
      * @param name the name value to set.
-     * @return the Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema object itself.
+     * @return the Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema object itself.
      */
-    public Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema setName(String name) {
+    public Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema setName(String name) {
         this.name = name;
         return this;
     }
@@ -51,9 +51,9 @@ public final class Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema
      * Set the documentType property: The documentType property.
      *
      * @param documentType the documentType value to set.
-     * @return the Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema object itself.
+     * @return the Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema object itself.
      */
-    public Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema setDocumentType(Enum5 documentType) {
+    public Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema setDocumentType(Enum5 documentType) {
         this.documentType = documentType;
         return this;
     }

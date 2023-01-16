@@ -4,14 +4,14 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema model. */
+/** The GetAllDocumentsResultsV2 model. */
 @Fluent
-public final class PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema {
+public final class GetAllDocumentsResultsV2 {
     /*
-     * Number of indexed documents in result
+     * Number of documents in result
      */
-    @JsonProperty(value = "count")
-    private Integer count;
+    @JsonProperty(value = "count", required = true)
+    private int count;
 
     /*
      * URL to request next page of results
@@ -28,25 +28,25 @@ public final class PathsRvverlIndexNameDocumentsGetResponses200ContentApplicatio
     /*
      * The results property.
      */
-    @JsonProperty(value = "results")
-    private List<PathsHryo8IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems> results;
+    @JsonProperty(value = "results", required = true)
+    private List<Meta> results;
 
     /**
-     * Get the count property: Number of indexed documents in result.
+     * Get the count property: Number of documents in result.
      *
      * @return the count value.
      */
-    public Integer getCount() {
+    public int getCount() {
         return this.count;
     }
 
     /**
-     * Set the count property: Number of indexed documents in result.
+     * Set the count property: Number of documents in result.
      *
      * @param count the count value to set.
-     * @return the PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the GetAllDocumentsResultsV2 object itself.
      */
-    public PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema setCount(Integer count) {
+    public GetAllDocumentsResultsV2 setCount(int count) {
         this.count = count;
         return this;
     }
@@ -64,9 +64,9 @@ public final class PathsRvverlIndexNameDocumentsGetResponses200ContentApplicatio
      * Set the next property: URL to request next page of results.
      *
      * @param next the next value to set.
-     * @return the PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the GetAllDocumentsResultsV2 object itself.
      */
-    public PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema setNext(String next) {
+    public GetAllDocumentsResultsV2 setNext(String next) {
         this.next = next;
         return this;
     }
@@ -84,9 +84,9 @@ public final class PathsRvverlIndexNameDocumentsGetResponses200ContentApplicatio
      * Set the previous property: URL to request previous page of results.
      *
      * @param previous the previous value to set.
-     * @return the PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the GetAllDocumentsResultsV2 object itself.
      */
-    public PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema setPrevious(String previous) {
+    public GetAllDocumentsResultsV2 setPrevious(String previous) {
         this.previous = previous;
         return this;
     }
@@ -96,8 +96,7 @@ public final class PathsRvverlIndexNameDocumentsGetResponses200ContentApplicatio
      *
      * @return the results value.
      */
-    public List<PathsHryo8IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems>
-            getResults() {
+    public List<Meta> getResults() {
         return this.results;
     }
 
@@ -105,11 +104,9 @@ public final class PathsRvverlIndexNameDocumentsGetResponses200ContentApplicatio
      * Set the results property: The results property.
      *
      * @param results the results value to set.
-     * @return the PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the GetAllDocumentsResultsV2 object itself.
      */
-    public PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema setResults(
-            List<PathsHryo8IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems>
-                    results) {
+    public GetAllDocumentsResultsV2 setResults(List<Meta> results) {
         this.results = results;
         return this;
     }

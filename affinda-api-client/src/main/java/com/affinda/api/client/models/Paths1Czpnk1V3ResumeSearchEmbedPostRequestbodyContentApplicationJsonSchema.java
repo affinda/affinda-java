@@ -3,21 +3,21 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema model. */
+/** The Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema model. */
 @Fluent
-public final class PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema {
+public final class Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema {
     /*
      * The configOverride property.
      */
     @JsonProperty(value = "configOverride")
-    private JobDescriptionSearchConfig configOverride;
+    private ResumeSearchConfig configOverride;
 
     /**
      * Get the configOverride property: The configOverride property.
      *
      * @return the configOverride value.
      */
-    public JobDescriptionSearchConfig getConfigOverride() {
+    public ResumeSearchConfig getConfigOverride() {
         return this.configOverride;
     }
 
@@ -25,10 +25,10 @@ public final class PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApp
      * Set the configOverride property: The configOverride property.
      *
      * @param configOverride the configOverride value to set.
-     * @return the PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema object itself.
+     * @return the Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema object itself.
      */
-    public PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema setConfigOverride(
-            JobDescriptionSearchConfig configOverride) {
+    public Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema setConfigOverride(
+            ResumeSearchConfig configOverride) {
         this.configOverride = configOverride;
         return this;
     }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The JobTitleAnnotation model. */
 @Fluent
-public final class JobTitleAnnotation extends Annotation {
+public final class JobTitleAnnotation extends AnnotationV2 {
     /*
      * Years of experience range
      */

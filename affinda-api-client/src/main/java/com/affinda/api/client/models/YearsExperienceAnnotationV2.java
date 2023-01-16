@@ -3,21 +3,21 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The YearsExperienceAnnotation model. */
+/** The YearsExperienceAnnotationV2 model. */
 @Fluent
-public final class YearsExperienceAnnotation extends Annotation {
+public final class YearsExperienceAnnotationV2 extends AnnotationV2 {
     /*
      * Years of experience range
      */
     @JsonProperty(value = "parsed")
-    private YearsExperienceAnnotationParsed parsed;
+    private YearsExperienceAnnotationV2Parsed parsed;
 
     /**
      * Get the parsed property: Years of experience range.
      *
      * @return the parsed value.
      */
-    public YearsExperienceAnnotationParsed getParsed() {
+    public YearsExperienceAnnotationV2Parsed getParsed() {
         return this.parsed;
     }
 
@@ -25,9 +25,9 @@ public final class YearsExperienceAnnotation extends Annotation {
      * Set the parsed property: Years of experience range.
      *
      * @param parsed the parsed value to set.
-     * @return the YearsExperienceAnnotation object itself.
+     * @return the YearsExperienceAnnotationV2 object itself.
      */
-    public YearsExperienceAnnotation setParsed(YearsExperienceAnnotationParsed parsed) {
+    public YearsExperienceAnnotationV2 setParsed(YearsExperienceAnnotationV2Parsed parsed) {
         this.parsed = parsed;
         return this;
     }

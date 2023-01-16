@@ -17,6 +17,7 @@ import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
 import com.affinda.api.client.models.Get8ItemsItem;
 import com.affinda.api.client.models.GetAllDocumentsResults;
+import com.affinda.api.client.models.GetAllDocumentsResultsV2;
 import com.affinda.api.client.models.GetAllInvoicesResults;
 import com.affinda.api.client.models.GetAllJobDescriptionsResults;
 import com.affinda.api.client.models.IndexRequestBody;
@@ -39,18 +40,18 @@ import com.affinda.api.client.models.OrganizationCreate;
 import com.affinda.api.client.models.OrganizationMembership;
 import com.affinda.api.client.models.OrganizationMembershipUpdate;
 import com.affinda.api.client.models.OrganizationRole;
-import com.affinda.api.client.models.Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema;
-import com.affinda.api.client.models.Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
-import com.affinda.api.client.models.Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsAdr1YhWorkspaceMembershipsGetResponses200ContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsCoo0XpIndexNameDocumentsPostResponses201ContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsW51LnrInvitationsTokenPatchRequestbodyContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsZt2JhiInvitationsGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema;
+import com.affinda.api.client.models.Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
+import com.affinda.api.client.models.Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema;
+import com.affinda.api.client.models.Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.RedactedResume;
 import com.affinda.api.client.models.RedactedResumeRequestBody;
 import com.affinda.api.client.models.RequestErrorException;
@@ -191,19 +192,19 @@ public final class AffindaAPI {
     @Host("{$host}")
     @ServiceInterface(name = "AffindaAPI")
     public interface AffindaAPIService {
-        @Get("/resumes")
+        @Get("/v2/resumes")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<GetAllDocumentsResults>> getAllResumes(
+        Mono<Response<GetAllDocumentsResultsV2>> getAllResumes(
                 @HostParam("$host") String host,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/resumes")
+        @Post("/v2/resumes")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -214,7 +215,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ResumeRequestBody body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/resumes/{identifier}")
+        @Get("/v2/resumes/{identifier}")
         @ExpectedResponses({200, 200, 400, 400, 401, 401, 404, 404})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getResume(
@@ -223,7 +224,7 @@ public final class AffindaAPI {
                 @QueryParam("format") String format,
                 @HeaderParam("Accept") String accept);
 
-        @Patch("/resumes/{identifier}")
+        @Patch("/v2/resumes/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -235,7 +236,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ResumeData body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/resumes/{identifier}")
+        @Delete("/v2/resumes/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -246,19 +247,19 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/redacted_resumes")
+        @Get("/v2/redacted_resumes")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<GetAllDocumentsResults>> getAllRedactedResumes(
+        Mono<Response<GetAllDocumentsResultsV2>> getAllRedactedResumes(
                 @HostParam("$host") String host,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/redacted_resumes")
+        @Post("/v2/redacted_resumes")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -269,7 +270,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") RedactedResumeRequestBody body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/redacted_resumes/{identifier}")
+        @Get("/v2/redacted_resumes/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -280,7 +281,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/redacted_resumes/{identifier}")
+        @Delete("/v2/redacted_resumes/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -291,7 +292,154 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/resume_search")
+        @Get("/v2/invoices")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<GetAllInvoicesResults>> getAllInvoices(
+                @HostParam("$host") String host,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v2/invoices")
+        @ExpectedResponses({200, 201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Invoice>> createInvoice(
+                @HostParam("$host") String host,
+                @BodyParam("application/json") InvoiceRequestBody body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v2/invoices/{identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Invoice>> getInvoice(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v2/invoices/{identifier}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteInvoice(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v2/job_descriptions")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<GetAllJobDescriptionsResults>> getAllJobDescriptions(
+                @HostParam("$host") String host,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v2/job_descriptions")
+        @ExpectedResponses({200, 201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescription>> createJobDescription(
+                @HostParam("$host") String host,
+                @BodyParam("application/json") JobDescriptionRequestBody body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v2/job_descriptions/{identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescription>> getJobDescription(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v2/job_descriptions/{identifier}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteJobDescription(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v2/job_description_search")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearch>> createJobDescriptionSearch(
+                @HostParam("$host") String host,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @BodyParam("application/json") JobDescriptionSearchParameters body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v2/job_description_search/details/{identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearchDetail>> getJobDescriptionSearchDetail(
+                @HostParam("$host") String host,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") JobDescriptionSearchParameters body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v2/job_description_search/config")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearchConfig>> getJobDescriptionSearchConfig(
+                @HostParam("$host") String host, @HeaderParam("Accept") String accept);
+
+        @Patch("/v2/job_description_search/config")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearchConfig>> updateJobDescriptionSearchConfig(
+                @HostParam("$host") String host,
+                @BodyParam("application/json") JobDescriptionSearchConfig body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v2/job_description_search/embed")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearchEmbed>> createJobDescriptionSearchEmbedUrl(
+                @HostParam("$host") String host,
+                @BodyParam("application/json")
+                        Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/resume_search")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -304,7 +452,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ResumeSearchParameters body,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/resume_search/details/{identifier}")
+        @Post("/v3/resume_search/details/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -316,7 +464,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ResumeSearchParameters body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/resume_search/match")
+        @Get("/v3/resume_search/match")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -339,7 +487,7 @@ public final class AffindaAPI {
                 @QueryParam("management_level_weight") Float managementLevelWeight,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/resume_search/config")
+        @Get("/v3/resume_search/config")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -348,7 +496,7 @@ public final class AffindaAPI {
         Mono<Response<ResumeSearchConfig>> getResumeSearchConfig(
                 @HostParam("$host") String host, @HeaderParam("Accept") String accept);
 
-        @Patch("/resume_search/config")
+        @Patch("/v3/resume_search/config")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -359,7 +507,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ResumeSearchConfig body,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/resume_search/embed")
+        @Post("/v3/resume_search/embed")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -368,10 +516,10 @@ public final class AffindaAPI {
         Mono<Response<ResumeSearchEmbed>> createResumeSearchEmbedUrl(
                 @HostParam("$host") String host,
                 @BodyParam("application/json")
-                        Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
+                        Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/resume_search/suggestion_job_title")
+        @Get("/v3/resume_search/suggestion_job_title")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -382,7 +530,7 @@ public final class AffindaAPI {
                 @QueryParam(value = "job_titles", multipleQueryParams = true) List<String> jobTitles,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/resume_search/suggestion_skill")
+        @Get("/v3/resume_search/suggestion_skill")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -393,133 +541,31 @@ public final class AffindaAPI {
                 @QueryParam(value = "skills", multipleQueryParams = true) List<String> skills,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/job_descriptions")
+        @Get("/v3/index")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<GetAllJobDescriptionsResults>> getAllJobDescriptions(
-                @HostParam("$host") String host,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/job_descriptions")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescription>> createJobDescription(
-                @HostParam("$host") String host,
-                @BodyParam("application/json") JobDescriptionRequestBody body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/job_descriptions/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescription>> getJobDescription(
-                @HostParam("$host") String host,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Delete("/job_descriptions/{identifier}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Void>> deleteJobDescription(
-                @HostParam("$host") String host,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/job_description_search")
-        @ExpectedResponses({201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearch>> createJobDescriptionSearch(
-                @HostParam("$host") String host,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @BodyParam("application/json") JobDescriptionSearchParameters body,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/job_description_search/details/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearchDetail>> getJobDescriptionSearchDetail(
-                @HostParam("$host") String host,
-                @PathParam("identifier") String identifier,
-                @BodyParam("application/json") JobDescriptionSearchParameters body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/job_description_search/config")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearchConfig>> getJobDescriptionSearchConfig(
-                @HostParam("$host") String host, @HeaderParam("Accept") String accept);
-
-        @Patch("/job_description_search/config")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearchConfig>> updateJobDescriptionSearchConfig(
-                @HostParam("$host") String host,
-                @BodyParam("application/json") JobDescriptionSearchConfig body,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/job_description_search/embed")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearchEmbed>> createJobDescriptionSearchEmbedUrl(
-                @HostParam("$host") String host,
-                @BodyParam("application/json")
-                        PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/index")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexes(
+        Mono<Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexes(
                 @HostParam("$host") String host,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @QueryParam("document_type") Enum2 documentType,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/index")
+        @Post("/v3/index")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema>> createIndex(
+        Mono<Response<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema>> createIndex(
                 @HostParam("$host") String host,
                 @BodyParam("application/json") IndexRequestBody body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/index/{name}")
+        @Delete("/v3/index/{name}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -528,29 +574,29 @@ public final class AffindaAPI {
         Mono<Response<Void>> deleteIndex(
                 @HostParam("$host") String host, @PathParam("name") String name, @HeaderParam("Accept") String accept);
 
-        @Get("/index/{name}/documents")
+        @Get("/v3/index/{name}/documents")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema>> getAllIndexDocuments(
+        Mono<Response<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema>> getAllIndexDocuments(
                 @HostParam("$host") String host, @PathParam("name") String name, @HeaderParam("Accept") String accept);
 
-        @Post("/index/{name}/documents")
+        @Post("/v3/index/{name}/documents")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<PathsCoo0XpIndexNameDocumentsPostResponses201ContentApplicationJsonSchema>> createIndexDocument(
+        Mono<Response<PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema>> createIndexDocument(
                 @HostParam("$host") String host,
                 @PathParam("name") String name,
                 @BodyParam("application/json")
-                        PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body,
+                        PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/index/{name}/documents/{identifier}")
+        @Delete("/v3/index/{name}/documents/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -562,52 +608,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/invoices")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<GetAllInvoicesResults>> getAllInvoices(
-                @HostParam("$host") String host,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/invoices")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Invoice>> createInvoice(
-                @HostParam("$host") String host,
-                @BodyParam("application/json") InvoiceRequestBody body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/invoices/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Invoice>> getInvoice(
-                @HostParam("$host") String host,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Delete("/invoices/{identifier}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Void>> deleteInvoice(
-                @HostParam("$host") String host,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/occupation_groups")
+        @Get("/v3/occupation_groups")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -616,19 +617,19 @@ public final class AffindaAPI {
         Mono<Response<List<OccupationGroup>>> listOccupationGroups(
                 @HostParam("$host") String host, @HeaderParam("Accept") String accept);
 
-        @Get("/users")
+        @Get("/v3/users")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema>> getAllUsers(
+        Mono<Response<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema>> getAllUsers(
                 @HostParam("$host") String host,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/users")
+        @Post("/v3/users")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -639,7 +640,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") UserCreateRequest body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/organizations")
+        @Get("/v3/organizations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -648,7 +649,7 @@ public final class AffindaAPI {
         Mono<Response<List<Organization>>> getAllOrganizations(
                 @HostParam("$host") String host, @HeaderParam("Accept") String accept);
 
-        @Post("/organizations")
+        @Post("/v3/organizations")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -659,7 +660,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") OrganizationCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/organizations/{identifier}")
+        @Get("/v3/organizations/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -671,7 +672,7 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         // @Multipart not supported by RestProxy
-        @Patch("/organizations/{identifier}")
+        @Patch("/v3/organizations/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -686,7 +687,7 @@ public final class AffindaAPI {
                 @BodyParam("multipart/form-data") String resthookSignatureKey,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/organizations/{identifier}")
+        @Delete("/v3/organizations/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -697,13 +698,13 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/organization_memberships")
+        @Get("/v3/organization_memberships")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema>>
+        Mono<Response<PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema>>
                 getAllOrganizationMemberships(
                         @HostParam("$host") String host,
                         @QueryParam("offset") Integer offset,
@@ -712,7 +713,7 @@ public final class AffindaAPI {
                         @QueryParam("role") OrganizationRole role,
                         @HeaderParam("Accept") String accept);
 
-        @Get("/organization_memberships/{identifier}")
+        @Get("/v3/organization_memberships/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -723,7 +724,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Patch("/organization_memberships/{identifier}")
+        @Patch("/v3/organization_memberships/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -735,7 +736,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") OrganizationMembershipUpdate body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/organization_memberships/{identifier}")
+        @Delete("/v3/organization_memberships/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -746,13 +747,13 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/invitations")
+        @Get("/v3/invitations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<PathsZt2JhiInvitationsGetResponses200ContentApplicationJsonSchema>> getAllInvitations(
+        Mono<Response<Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema>> getAllInvitations(
                 @HostParam("$host") String host,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
@@ -761,7 +762,7 @@ public final class AffindaAPI {
                 @QueryParam("role") OrganizationRole role,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/invitations")
+        @Post("/v3/invitations")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -772,7 +773,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") InvitationCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/invitations/{identifier}")
+        @Get("/v3/invitations/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -783,7 +784,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Patch("/invitations/{identifier}")
+        @Patch("/v3/invitations/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -795,7 +796,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") InvitationUpdate body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/invitations/{identifier}")
+        @Delete("/v3/invitations/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -806,7 +807,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/invitations/token/{token}")
+        @Get("/v3/invitations/token/{token}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -817,7 +818,7 @@ public final class AffindaAPI {
                 @PathParam("token") String token,
                 @HeaderParam("Accept") String accept);
 
-        @Patch("/invitations/token/{token}")
+        @Patch("/v3/invitations/token/{token}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -827,10 +828,10 @@ public final class AffindaAPI {
                 @HostParam("$host") String host,
                 @PathParam("token") String token,
                 @BodyParam("application/json")
-                        PathsW51LnrInvitationsTokenPatchRequestbodyContentApplicationJsonSchema body,
+                        PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/extractors")
+        @Get("/v3/extractors")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -844,7 +845,7 @@ public final class AffindaAPI {
                 @QueryParam("validatable") Boolean validatable,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/extractors")
+        @Post("/v3/extractors")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -855,7 +856,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ExtractorCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/extractors/{id}")
+        @Get("/v3/extractors/{id}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -864,7 +865,7 @@ public final class AffindaAPI {
         Mono<Response<Extractor>> getExtractor(
                 @HostParam("$host") String host, @PathParam("id") int id, @HeaderParam("Accept") String accept);
 
-        @Patch("/extractors/{id}")
+        @Patch("/v3/extractors/{id}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -876,7 +877,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ExtractorUpdate body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/extractors/{id}")
+        @Delete("/v3/extractors/{id}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -885,7 +886,7 @@ public final class AffindaAPI {
         Mono<Response<Void>> deleteExtractor(
                 @HostParam("$host") String host, @PathParam("id") int id, @HeaderParam("Accept") String accept);
 
-        @Get("/data_points")
+        @Get("/v3/data_points")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -902,7 +903,7 @@ public final class AffindaAPI {
                 @QueryParam("annotation_content_type") String annotationContentType,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/data_points")
+        @Post("/v3/data_points")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -913,7 +914,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") DataPointCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/data_points/{identifier}")
+        @Get("/v3/data_points/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -924,7 +925,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Patch("/data_points/{identifier}")
+        @Patch("/v3/data_points/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -936,7 +937,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") DataPointUpdate body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/data_points/{identifier}")
+        @Delete("/v3/data_points/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -947,7 +948,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/workspaces")
+        @Get("/v3/workspaces")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -959,7 +960,7 @@ public final class AffindaAPI {
                 @QueryParam("name") String name,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/workspaces")
+        @Post("/v3/workspaces")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -970,7 +971,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") WorkspaceCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/workspaces/{identifier}")
+        @Get("/v3/workspaces/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -981,7 +982,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Patch("/workspaces/{identifier}")
+        @Patch("/v3/workspaces/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -993,7 +994,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") WorkspaceUpdate body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/workspaces/{identifier}")
+        @Delete("/v3/workspaces/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1004,13 +1005,13 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/workspace_memberships")
+        @Get("/v3/workspace_memberships")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<PathsAdr1YhWorkspaceMembershipsGetResponses200ContentApplicationJsonSchema>>
+        Mono<Response<PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema>>
                 getAllWorkspaceMemberships(
                         @HostParam("$host") String host,
                         @QueryParam("offset") Integer offset,
@@ -1019,7 +1020,7 @@ public final class AffindaAPI {
                         @QueryParam("user") String user,
                         @HeaderParam("Accept") String accept);
 
-        @Post("/workspace_memberships")
+        @Post("/v3/workspace_memberships")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1030,7 +1031,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") WorkspaceMembershipCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/workspace_memberships/{identifier}")
+        @Get("/v3/workspace_memberships/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1041,7 +1042,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/workspace_memberships/{identifier}")
+        @Delete("/v3/workspace_memberships/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1052,7 +1053,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/collections")
+        @Get("/v3/collections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1063,7 +1064,7 @@ public final class AffindaAPI {
                 @QueryParam("workspace") String workspace,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/collections")
+        @Post("/v3/collections")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1074,7 +1075,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") DocumentCollectionCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/collections/{identifier}")
+        @Get("/v3/collections/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1085,7 +1086,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Patch("/collections/{identifier}")
+        @Patch("/v3/collections/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1097,7 +1098,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") DocumentCollectionUpdate body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/collections/{identifier}")
+        @Delete("/v3/collections/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1108,7 +1109,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/documents")
+        @Get("/v3/documents")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1128,7 +1129,7 @@ public final class AffindaAPI {
                 @QueryParam("include_data") Boolean includeData,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/documents")
+        @Post("/v3/documents")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1139,7 +1140,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") DocumentCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/documents/{identifier}")
+        @Get("/v3/documents/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1150,7 +1151,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Patch("/documents/{identifier}")
+        @Patch("/v3/documents/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1162,7 +1163,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") DocumentUpdate body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/documents/{identifier}")
+        @Delete("/v3/documents/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1173,7 +1174,7 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/tags")
+        @Get("/v3/tags")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1186,7 +1187,7 @@ public final class AffindaAPI {
                 @QueryParam("workspace") String workspace,
                 @HeaderParam("Accept") String accept);
 
-        @Post("/tags")
+        @Post("/v3/tags")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1197,7 +1198,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") TagCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/tags/{id}")
+        @Get("/v3/tags/{id}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1206,7 +1207,7 @@ public final class AffindaAPI {
         Mono<Response<Tag>> getTag(
                 @HostParam("$host") String host, @PathParam("id") int id, @HeaderParam("Accept") String accept);
 
-        @Patch("/tags/{id}")
+        @Patch("/v3/tags/{id}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1218,7 +1219,7 @@ public final class AffindaAPI {
                 @BodyParam("application/json") TagUpdate body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/tags/{id}")
+        @Delete("/v3/tags/{id}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -1240,7 +1241,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<GetAllDocumentsResults>> getAllResumesWithResponseAsync(Integer offset, Integer limit) {
+    public Mono<Response<GetAllDocumentsResultsV2>> getAllResumesWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
         return service.getAllResumes(this.getHost(), offset, limit, accept);
     }
@@ -1257,10 +1258,10 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetAllDocumentsResults> getAllResumesAsync(Integer offset, Integer limit) {
+    public Mono<GetAllDocumentsResultsV2> getAllResumesAsync(Integer offset, Integer limit) {
         return getAllResumesWithResponseAsync(offset, limit)
                 .flatMap(
-                        (Response<GetAllDocumentsResults> res) -> {
+                        (Response<GetAllDocumentsResultsV2> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -1281,7 +1282,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetAllDocumentsResults getAllResumes(Integer offset, Integer limit) {
+    public GetAllDocumentsResultsV2 getAllResumes(Integer offset, Integer limit) {
         return getAllResumesAsync(offset, limit).block();
     }
 
@@ -1529,7 +1530,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<GetAllDocumentsResults>> getAllRedactedResumesWithResponseAsync(
+    public Mono<Response<GetAllDocumentsResultsV2>> getAllRedactedResumesWithResponseAsync(
             Integer offset, Integer limit) {
         final String accept = "application/json";
         return service.getAllRedactedResumes(this.getHost(), offset, limit, accept);
@@ -1547,10 +1548,10 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetAllDocumentsResults> getAllRedactedResumesAsync(Integer offset, Integer limit) {
+    public Mono<GetAllDocumentsResultsV2> getAllRedactedResumesAsync(Integer offset, Integer limit) {
         return getAllRedactedResumesWithResponseAsync(offset, limit)
                 .flatMap(
-                        (Response<GetAllDocumentsResults> res) -> {
+                        (Response<GetAllDocumentsResultsV2> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -1571,7 +1572,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetAllDocumentsResults getAllRedactedResumes(Integer offset, Integer limit) {
+    public GetAllDocumentsResultsV2 getAllRedactedResumes(Integer offset, Integer limit) {
         return getAllRedactedResumesAsync(offset, limit).block();
     }
 
@@ -1732,13 +1733,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Searches through parsed resumes. Users have 3 options to create a search:&lt;br /&gt;&lt;br /&gt; 1. Match to a
-     * job description - a parsed job description is used to find candidates that suit it&lt;br /&gt; 2. Match to a
-     * resume - a parsed resume is used to find other candidates that have similar attributes&lt;br /&gt; 3. Search
-     * using custom criteria&lt;br /&gt;&lt;br /&gt; Users should only populate 1 of jobDescription, resume or the
-     * custom criteria.
+     * Returns all the invoice summaries for that user, limited to 300 per page.
      *
-     * @param body Search parameters.
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1748,20 +1744,14 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResumeSearch>> createResumeSearchWithResponseAsync(
-            ResumeSearchParameters body, Integer offset, Integer limit) {
+    public Mono<Response<GetAllInvoicesResults>> getAllInvoicesWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.createResumeSearch(this.getHost(), offset, limit, body, accept);
+        return service.getAllInvoices(this.getHost(), offset, limit, accept);
     }
 
     /**
-     * Searches through parsed resumes. Users have 3 options to create a search:&lt;br /&gt;&lt;br /&gt; 1. Match to a
-     * job description - a parsed job description is used to find candidates that suit it&lt;br /&gt; 2. Match to a
-     * resume - a parsed resume is used to find other candidates that have similar attributes&lt;br /&gt; 3. Search
-     * using custom criteria&lt;br /&gt;&lt;br /&gt; Users should only populate 1 of jobDescription, resume or the
-     * custom criteria.
+     * Returns all the invoice summaries for that user, limited to 300 per page.
      *
-     * @param body Search parameters.
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1771,10 +1761,10 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResumeSearch> createResumeSearchAsync(ResumeSearchParameters body, Integer offset, Integer limit) {
-        return createResumeSearchWithResponseAsync(body, offset, limit)
+    public Mono<GetAllInvoicesResults> getAllInvoicesAsync(Integer offset, Integer limit) {
+        return getAllInvoicesWithResponseAsync(offset, limit)
                 .flatMap(
-                        (Response<ResumeSearch> res) -> {
+                        (Response<GetAllInvoicesResults> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -1784,13 +1774,8 @@ public final class AffindaAPI {
     }
 
     /**
-     * Searches through parsed resumes. Users have 3 options to create a search:&lt;br /&gt;&lt;br /&gt; 1. Match to a
-     * job description - a parsed job description is used to find candidates that suit it&lt;br /&gt; 2. Match to a
-     * resume - a parsed resume is used to find other candidates that have similar attributes&lt;br /&gt; 3. Search
-     * using custom criteria&lt;br /&gt;&lt;br /&gt; Users should only populate 1 of jobDescription, resume or the
-     * custom criteria.
+     * Returns all the invoice summaries for that user, limited to 300 per page.
      *
-     * @param body Search parameters.
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1800,17 +1785,16 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResumeSearch createResumeSearch(ResumeSearchParameters body, Integer offset, Integer limit) {
-        return createResumeSearchAsync(body, offset, limit).block();
+    public GetAllInvoicesResults getAllInvoices(Integer offset, Integer limit) {
+        return getAllInvoicesAsync(offset, limit).block();
     }
 
     /**
-     * This contains more detailed information about the matching score of the search criteria, or which search criteria
-     * is missing in this resume. The `identifier` is the unique ID returned via the
-     * [/resume_search](#post-/resume_search) endpoint.
+     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
+     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
+     * results.
      *
-     * @param identifier Resume identifier.
-     * @param body Search parameters.
+     * @param body Invoice to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1818,19 +1802,17 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResumeSearchDetail>> getResumeSearchDetailWithResponseAsync(
-            String identifier, ResumeSearchParameters body) {
+    public Mono<Response<Invoice>> createInvoiceWithResponseAsync(InvoiceRequestBody body) {
         final String accept = "application/json";
-        return service.getResumeSearchDetail(this.getHost(), identifier, body, accept);
+        return service.createInvoice(this.getHost(), body, accept);
     }
 
     /**
-     * This contains more detailed information about the matching score of the search criteria, or which search criteria
-     * is missing in this resume. The `identifier` is the unique ID returned via the
-     * [/resume_search](#post-/resume_search) endpoint.
+     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
+     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
+     * results.
      *
-     * @param identifier Resume identifier.
-     * @param body Search parameters.
+     * @param body Invoice to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1838,10 +1820,10 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResumeSearchDetail> getResumeSearchDetailAsync(String identifier, ResumeSearchParameters body) {
-        return getResumeSearchDetailWithResponseAsync(identifier, body)
+    public Mono<Invoice> createInvoiceAsync(InvoiceRequestBody body) {
+        return createInvoiceWithResponseAsync(body)
                 .flatMap(
-                        (Response<ResumeSearchDetail> res) -> {
+                        (Response<Invoice> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -1851,12 +1833,11 @@ public final class AffindaAPI {
     }
 
     /**
-     * This contains more detailed information about the matching score of the search criteria, or which search criteria
-     * is missing in this resume. The `identifier` is the unique ID returned via the
-     * [/resume_search](#post-/resume_search) endpoint.
+     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
+     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
+     * results.
      *
-     * @param identifier Resume identifier.
-     * @param body Search parameters.
+     * @param body Invoice to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1864,244 +1845,15 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResumeSearchDetail getResumeSearchDetail(String identifier, ResumeSearchParameters body) {
-        return getResumeSearchDetailAsync(identifier, body).block();
+    public Invoice createInvoice(InvoiceRequestBody body) {
+        return createInvoiceAsync(body).block();
     }
 
     /**
-     * Get the matching score between a resume and a job description. The score ranges between 0 and 1, with 0 being not
-     * a match at all, and 1 being perfect match.&lt;br/&gt; Note, this score will not directly match the score returned
-     * from POST [/resume_search/details/{identifier}](#post-/resume_search/details/-identifier-).
+     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
+     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
      *
-     * @param resume Identify the resume to match.
-     * @param jobDescription Identify the job description to match.
-     * @param index Optionally, specify an index to search in. If not specified, will search in all indexes.
-     * @param searchExpression Add keywords to the search criteria.
-     * @param jobTitlesWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param yearsExperienceWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param locationsWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param languagesWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param skillsWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param educationWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param searchExpressionWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param socCodesWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param managementLevelWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the matching score between a resume and a job description along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResumeSearchMatch>> getResumeSearchMatchWithResponseAsync(
-            String resume,
-            String jobDescription,
-            String index,
-            String searchExpression,
-            Float jobTitlesWeight,
-            Float yearsExperienceWeight,
-            Float locationsWeight,
-            Float languagesWeight,
-            Float skillsWeight,
-            Float educationWeight,
-            Float searchExpressionWeight,
-            Float socCodesWeight,
-            Float managementLevelWeight) {
-        final String accept = "application/json";
-        return service.getResumeSearchMatch(
-                this.getHost(),
-                resume,
-                jobDescription,
-                index,
-                searchExpression,
-                jobTitlesWeight,
-                yearsExperienceWeight,
-                locationsWeight,
-                languagesWeight,
-                skillsWeight,
-                educationWeight,
-                searchExpressionWeight,
-                socCodesWeight,
-                managementLevelWeight,
-                accept);
-    }
-
-    /**
-     * Get the matching score between a resume and a job description. The score ranges between 0 and 1, with 0 being not
-     * a match at all, and 1 being perfect match.&lt;br/&gt; Note, this score will not directly match the score returned
-     * from POST [/resume_search/details/{identifier}](#post-/resume_search/details/-identifier-).
-     *
-     * @param resume Identify the resume to match.
-     * @param jobDescription Identify the job description to match.
-     * @param index Optionally, specify an index to search in. If not specified, will search in all indexes.
-     * @param searchExpression Add keywords to the search criteria.
-     * @param jobTitlesWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param yearsExperienceWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param locationsWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param languagesWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param skillsWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param educationWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param searchExpressionWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param socCodesWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param managementLevelWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the matching score between a resume and a job description on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResumeSearchMatch> getResumeSearchMatchAsync(
-            String resume,
-            String jobDescription,
-            String index,
-            String searchExpression,
-            Float jobTitlesWeight,
-            Float yearsExperienceWeight,
-            Float locationsWeight,
-            Float languagesWeight,
-            Float skillsWeight,
-            Float educationWeight,
-            Float searchExpressionWeight,
-            Float socCodesWeight,
-            Float managementLevelWeight) {
-        return getResumeSearchMatchWithResponseAsync(
-                        resume,
-                        jobDescription,
-                        index,
-                        searchExpression,
-                        jobTitlesWeight,
-                        yearsExperienceWeight,
-                        locationsWeight,
-                        languagesWeight,
-                        skillsWeight,
-                        educationWeight,
-                        searchExpressionWeight,
-                        socCodesWeight,
-                        managementLevelWeight)
-                .flatMap(
-                        (Response<ResumeSearchMatch> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Get the matching score between a resume and a job description. The score ranges between 0 and 1, with 0 being not
-     * a match at all, and 1 being perfect match.&lt;br/&gt; Note, this score will not directly match the score returned
-     * from POST [/resume_search/details/{identifier}](#post-/resume_search/details/-identifier-).
-     *
-     * @param resume Identify the resume to match.
-     * @param jobDescription Identify the job description to match.
-     * @param index Optionally, specify an index to search in. If not specified, will search in all indexes.
-     * @param searchExpression Add keywords to the search criteria.
-     * @param jobTitlesWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param yearsExperienceWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param locationsWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param languagesWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param skillsWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param educationWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param searchExpressionWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param socCodesWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @param managementLevelWeight How important is this criteria to the matching score, range from 0 to 1.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the matching score between a resume and a job description.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResumeSearchMatch getResumeSearchMatch(
-            String resume,
-            String jobDescription,
-            String index,
-            String searchExpression,
-            Float jobTitlesWeight,
-            Float yearsExperienceWeight,
-            Float locationsWeight,
-            Float languagesWeight,
-            Float skillsWeight,
-            Float educationWeight,
-            Float searchExpressionWeight,
-            Float socCodesWeight,
-            Float managementLevelWeight) {
-        return getResumeSearchMatchAsync(
-                        resume,
-                        jobDescription,
-                        index,
-                        searchExpression,
-                        jobTitlesWeight,
-                        yearsExperienceWeight,
-                        locationsWeight,
-                        languagesWeight,
-                        skillsWeight,
-                        educationWeight,
-                        searchExpressionWeight,
-                        socCodesWeight,
-                        managementLevelWeight)
-                .block();
-    }
-
-    /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResumeSearchConfig>> getResumeSearchConfigWithResponseAsync() {
-        final String accept = "application/json";
-        return service.getResumeSearchConfig(this.getHost(), accept);
-    }
-
-    /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResumeSearchConfig> getResumeSearchConfigAsync() {
-        return getResumeSearchConfigWithResponseAsync()
-                .flatMap(
-                        (Response<ResumeSearchConfig> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResumeSearchConfig getResumeSearchConfig() {
-        return getResumeSearchConfigAsync().block();
-    }
-
-    /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @param body The body parameter.
+     * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2109,16 +1861,16 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResumeSearchConfig>> updateResumeSearchConfigWithResponseAsync(ResumeSearchConfig body) {
+    public Mono<Response<Invoice>> getInvoiceWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.updateResumeSearchConfig(this.getHost(), body, accept);
+        return service.getInvoice(this.getHost(), identifier, accept);
     }
 
     /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
+     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
      *
-     * @param body The body parameter.
+     * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2126,10 +1878,10 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResumeSearchConfig> updateResumeSearchConfigAsync(ResumeSearchConfig body) {
-        return updateResumeSearchConfigWithResponseAsync(body)
+    public Mono<Invoice> getInvoiceAsync(String identifier) {
+        return getInvoiceWithResponseAsync(identifier)
                 .flatMap(
-                        (Response<ResumeSearchConfig> res) -> {
+                        (Response<Invoice> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -2139,10 +1891,10 @@ public final class AffindaAPI {
     }
 
     /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable resume search
-     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
+     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
      *
-     * @param body The body parameter.
+     * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2150,192 +1902,56 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResumeSearchConfig updateResumeSearchConfig(ResumeSearchConfig body) {
-        return updateResumeSearchConfigAsync(body).block();
+    public Invoice getInvoice(String identifier) {
+        return getInvoiceAsync(identifier).block();
     }
 
     /**
-     * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
-     * parameter `config_override` can be passed to override the user-level configurations of the embeddable resume
-     * search tool.
+     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
+     * used in any tailored customer models.
      *
-     * @param body The body parameter.
+     * @param identifier Invoice identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResumeSearchEmbed>> createResumeSearchEmbedUrlWithResponseAsync(
-            Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+    public Mono<Response<Void>> deleteInvoiceWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.createResumeSearchEmbedUrl(this.getHost(), body, accept);
+        return service.deleteInvoice(this.getHost(), identifier, accept);
     }
 
     /**
-     * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
-     * parameter `config_override` can be passed to override the user-level configurations of the embeddable resume
-     * search tool.
+     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
+     * used in any tailored customer models.
      *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResumeSearchEmbed> createResumeSearchEmbedUrlAsync(
-            Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
-        return createResumeSearchEmbedUrlWithResponseAsync(body)
-                .flatMap(
-                        (Response<ResumeSearchEmbed> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
-     * parameter `config_override` can be passed to override the user-level configurations of the embeddable resume
-     * search tool.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResumeSearchEmbed createResumeSearchEmbedUrl(
-            Paths2T1Oc0ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
-        return createResumeSearchEmbedUrlAsync(body).block();
-    }
-
-    /**
-     * Provided one or more job titles, get related suggestions for your search.
-     *
-     * @param jobTitles Job title to query suggestions for.
+     * @param identifier Invoice identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of Get200ApplicationJsonItemsItem along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<List<String>>> getResumeSearchSuggestionJobTitleWithResponseAsync(List<String> jobTitles) {
-        final String accept = "application/json";
-        List<String> jobTitlesConverted =
-                Optional.ofNullable(jobTitles)
-                        .map(Collection::stream)
-                        .orElseGet(Stream::empty)
-                        .map((item) -> Objects.toString(item, ""))
-                        .collect(Collectors.toList());
-        return service.getResumeSearchSuggestionJobTitle(this.getHost(), jobTitlesConverted, accept);
+    public Mono<Void> deleteInvoiceAsync(String identifier) {
+        return deleteInvoiceWithResponseAsync(identifier).flatMap((Response<Void> res) -> Mono.empty());
     }
 
     /**
-     * Provided one or more job titles, get related suggestions for your search.
+     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
+     * used in any tailored customer models.
      *
-     * @param jobTitles Job title to query suggestions for.
+     * @param identifier Invoice identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of Get200ApplicationJsonItemsItem on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<List<String>> getResumeSearchSuggestionJobTitleAsync(List<String> jobTitles) {
-        return getResumeSearchSuggestionJobTitleWithResponseAsync(jobTitles)
-                .flatMap(
-                        (Response<List<String>> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Provided one or more job titles, get related suggestions for your search.
-     *
-     * @param jobTitles Job title to query suggestions for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of Get200ApplicationJsonItemsItem.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<String> getResumeSearchSuggestionJobTitle(List<String> jobTitles) {
-        return getResumeSearchSuggestionJobTitleAsync(jobTitles).block();
-    }
-
-    /**
-     * Provided one or more skills, get related suggestions for your search.
-     *
-     * @param skills Skill to query suggestions for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of String along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<List<String>>> getResumeSearchSuggestionSkillWithResponseAsync(List<String> skills) {
-        final String accept = "application/json";
-        List<String> skillsConverted =
-                Optional.ofNullable(skills)
-                        .map(Collection::stream)
-                        .orElseGet(Stream::empty)
-                        .map((item) -> Objects.toString(item, ""))
-                        .collect(Collectors.toList());
-        return service.getResumeSearchSuggestionSkill(this.getHost(), skillsConverted, accept);
-    }
-
-    /**
-     * Provided one or more skills, get related suggestions for your search.
-     *
-     * @param skills Skill to query suggestions for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of String on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<List<String>> getResumeSearchSuggestionSkillAsync(List<String> skills) {
-        return getResumeSearchSuggestionSkillWithResponseAsync(skills)
-                .flatMap(
-                        (Response<List<String>> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Provided one or more skills, get related suggestions for your search.
-     *
-     * @param skills Skill to query suggestions for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of String.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<String> getResumeSearchSuggestionSkill(List<String> skills) {
-        return getResumeSearchSuggestionSkillAsync(skills).block();
+    public void deleteInvoice(String identifier) {
+        deleteInvoiceAsync(identifier).block();
     }
 
     /**
@@ -2810,7 +2426,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<JobDescriptionSearchEmbed>> createJobDescriptionSearchEmbedUrlWithResponseAsync(
-            PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+            Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
         final String accept = "application/json";
         return service.createJobDescriptionSearchEmbedUrl(this.getHost(), body, accept);
     }
@@ -2829,7 +2445,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<JobDescriptionSearchEmbed> createJobDescriptionSearchEmbedUrlAsync(
-            PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+            Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
         return createJobDescriptionSearchEmbedUrlWithResponseAsync(body)
                 .flatMap(
                         (Response<JobDescriptionSearchEmbed> res) -> {
@@ -2855,8 +2471,615 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public JobDescriptionSearchEmbed createJobDescriptionSearchEmbedUrl(
-            PathsFqn8P8JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+            Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
         return createJobDescriptionSearchEmbedUrlAsync(body).block();
+    }
+
+    /**
+     * Searches through parsed resumes. Users have 3 options to create a search:&lt;br /&gt;&lt;br /&gt; 1. Match to a
+     * job description - a parsed job description is used to find candidates that suit it&lt;br /&gt; 2. Match to a
+     * resume - a parsed resume is used to find other candidates that have similar attributes&lt;br /&gt; 3. Search
+     * using custom criteria&lt;br /&gt;&lt;br /&gt; Users should only populate 1 of jobDescription, resume or the
+     * custom criteria.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResumeSearch>> createResumeSearchWithResponseAsync(
+            ResumeSearchParameters body, Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.createResumeSearch(this.getHost(), offset, limit, body, accept);
+    }
+
+    /**
+     * Searches through parsed resumes. Users have 3 options to create a search:&lt;br /&gt;&lt;br /&gt; 1. Match to a
+     * job description - a parsed job description is used to find candidates that suit it&lt;br /&gt; 2. Match to a
+     * resume - a parsed resume is used to find other candidates that have similar attributes&lt;br /&gt; 3. Search
+     * using custom criteria&lt;br /&gt;&lt;br /&gt; Users should only populate 1 of jobDescription, resume or the
+     * custom criteria.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResumeSearch> createResumeSearchAsync(ResumeSearchParameters body, Integer offset, Integer limit) {
+        return createResumeSearchWithResponseAsync(body, offset, limit)
+                .flatMap(
+                        (Response<ResumeSearch> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Searches through parsed resumes. Users have 3 options to create a search:&lt;br /&gt;&lt;br /&gt; 1. Match to a
+     * job description - a parsed job description is used to find candidates that suit it&lt;br /&gt; 2. Match to a
+     * resume - a parsed resume is used to find other candidates that have similar attributes&lt;br /&gt; 3. Search
+     * using custom criteria&lt;br /&gt;&lt;br /&gt; Users should only populate 1 of jobDescription, resume or the
+     * custom criteria.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResumeSearch createResumeSearch(ResumeSearchParameters body, Integer offset, Integer limit) {
+        return createResumeSearchAsync(body, offset, limit).block();
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this resume. The `identifier` is the unique ID returned via the
+     * [/resume_search](#post-/resume_search) endpoint.
+     *
+     * @param identifier Resume identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResumeSearchDetail>> getResumeSearchDetailWithResponseAsync(
+            String identifier, ResumeSearchParameters body) {
+        final String accept = "application/json";
+        return service.getResumeSearchDetail(this.getHost(), identifier, body, accept);
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this resume. The `identifier` is the unique ID returned via the
+     * [/resume_search](#post-/resume_search) endpoint.
+     *
+     * @param identifier Resume identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResumeSearchDetail> getResumeSearchDetailAsync(String identifier, ResumeSearchParameters body) {
+        return getResumeSearchDetailWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<ResumeSearchDetail> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this resume. The `identifier` is the unique ID returned via the
+     * [/resume_search](#post-/resume_search) endpoint.
+     *
+     * @param identifier Resume identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResumeSearchDetail getResumeSearchDetail(String identifier, ResumeSearchParameters body) {
+        return getResumeSearchDetailAsync(identifier, body).block();
+    }
+
+    /**
+     * Get the matching score between a resume and a job description. The score ranges between 0 and 1, with 0 being not
+     * a match at all, and 1 being perfect match.&lt;br/&gt; Note, this score will not directly match the score returned
+     * from POST [/resume_search/details/{identifier}](#post-/resume_search/details/-identifier-).
+     *
+     * @param resume Identify the resume to match.
+     * @param jobDescription Identify the job description to match.
+     * @param index Optionally, specify an index to search in. If not specified, will search in all indexes.
+     * @param searchExpression Add keywords to the search criteria.
+     * @param jobTitlesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param yearsExperienceWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param locationsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param languagesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param skillsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param educationWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param searchExpressionWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param socCodesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param managementLevelWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the matching score between a resume and a job description along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResumeSearchMatch>> getResumeSearchMatchWithResponseAsync(
+            String resume,
+            String jobDescription,
+            String index,
+            String searchExpression,
+            Float jobTitlesWeight,
+            Float yearsExperienceWeight,
+            Float locationsWeight,
+            Float languagesWeight,
+            Float skillsWeight,
+            Float educationWeight,
+            Float searchExpressionWeight,
+            Float socCodesWeight,
+            Float managementLevelWeight) {
+        final String accept = "application/json";
+        return service.getResumeSearchMatch(
+                this.getHost(),
+                resume,
+                jobDescription,
+                index,
+                searchExpression,
+                jobTitlesWeight,
+                yearsExperienceWeight,
+                locationsWeight,
+                languagesWeight,
+                skillsWeight,
+                educationWeight,
+                searchExpressionWeight,
+                socCodesWeight,
+                managementLevelWeight,
+                accept);
+    }
+
+    /**
+     * Get the matching score between a resume and a job description. The score ranges between 0 and 1, with 0 being not
+     * a match at all, and 1 being perfect match.&lt;br/&gt; Note, this score will not directly match the score returned
+     * from POST [/resume_search/details/{identifier}](#post-/resume_search/details/-identifier-).
+     *
+     * @param resume Identify the resume to match.
+     * @param jobDescription Identify the job description to match.
+     * @param index Optionally, specify an index to search in. If not specified, will search in all indexes.
+     * @param searchExpression Add keywords to the search criteria.
+     * @param jobTitlesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param yearsExperienceWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param locationsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param languagesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param skillsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param educationWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param searchExpressionWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param socCodesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param managementLevelWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the matching score between a resume and a job description on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResumeSearchMatch> getResumeSearchMatchAsync(
+            String resume,
+            String jobDescription,
+            String index,
+            String searchExpression,
+            Float jobTitlesWeight,
+            Float yearsExperienceWeight,
+            Float locationsWeight,
+            Float languagesWeight,
+            Float skillsWeight,
+            Float educationWeight,
+            Float searchExpressionWeight,
+            Float socCodesWeight,
+            Float managementLevelWeight) {
+        return getResumeSearchMatchWithResponseAsync(
+                        resume,
+                        jobDescription,
+                        index,
+                        searchExpression,
+                        jobTitlesWeight,
+                        yearsExperienceWeight,
+                        locationsWeight,
+                        languagesWeight,
+                        skillsWeight,
+                        educationWeight,
+                        searchExpressionWeight,
+                        socCodesWeight,
+                        managementLevelWeight)
+                .flatMap(
+                        (Response<ResumeSearchMatch> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Get the matching score between a resume and a job description. The score ranges between 0 and 1, with 0 being not
+     * a match at all, and 1 being perfect match.&lt;br/&gt; Note, this score will not directly match the score returned
+     * from POST [/resume_search/details/{identifier}](#post-/resume_search/details/-identifier-).
+     *
+     * @param resume Identify the resume to match.
+     * @param jobDescription Identify the job description to match.
+     * @param index Optionally, specify an index to search in. If not specified, will search in all indexes.
+     * @param searchExpression Add keywords to the search criteria.
+     * @param jobTitlesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param yearsExperienceWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param locationsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param languagesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param skillsWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param educationWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param searchExpressionWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param socCodesWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @param managementLevelWeight How important is this criteria to the matching score, range from 0 to 1.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the matching score between a resume and a job description.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResumeSearchMatch getResumeSearchMatch(
+            String resume,
+            String jobDescription,
+            String index,
+            String searchExpression,
+            Float jobTitlesWeight,
+            Float yearsExperienceWeight,
+            Float locationsWeight,
+            Float languagesWeight,
+            Float skillsWeight,
+            Float educationWeight,
+            Float searchExpressionWeight,
+            Float socCodesWeight,
+            Float managementLevelWeight) {
+        return getResumeSearchMatchAsync(
+                        resume,
+                        jobDescription,
+                        index,
+                        searchExpression,
+                        jobTitlesWeight,
+                        yearsExperienceWeight,
+                        locationsWeight,
+                        languagesWeight,
+                        skillsWeight,
+                        educationWeight,
+                        searchExpressionWeight,
+                        socCodesWeight,
+                        managementLevelWeight)
+                .block();
+    }
+
+    /**
+     * Return configurations such as which fields can be displayed in the logged in user's embeddable resume search
+     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResumeSearchConfig>> getResumeSearchConfigWithResponseAsync() {
+        final String accept = "application/json";
+        return service.getResumeSearchConfig(this.getHost(), accept);
+    }
+
+    /**
+     * Return configurations such as which fields can be displayed in the logged in user's embeddable resume search
+     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResumeSearchConfig> getResumeSearchConfigAsync() {
+        return getResumeSearchConfigWithResponseAsync()
+                .flatMap(
+                        (Response<ResumeSearchConfig> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return configurations such as which fields can be displayed in the logged in user's embeddable resume search
+     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResumeSearchConfig getResumeSearchConfig() {
+        return getResumeSearchConfigAsync().block();
+    }
+
+    /**
+     * Update configurations such as which fields can be displayed in the logged in user's embeddable resume search
+     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResumeSearchConfig>> updateResumeSearchConfigWithResponseAsync(ResumeSearchConfig body) {
+        final String accept = "application/json";
+        return service.updateResumeSearchConfig(this.getHost(), body, accept);
+    }
+
+    /**
+     * Update configurations such as which fields can be displayed in the logged in user's embeddable resume search
+     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResumeSearchConfig> updateResumeSearchConfigAsync(ResumeSearchConfig body) {
+        return updateResumeSearchConfigWithResponseAsync(body)
+                .flatMap(
+                        (Response<ResumeSearchConfig> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update configurations such as which fields can be displayed in the logged in user's embeddable resume search
+     * tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResumeSearchConfig updateResumeSearchConfig(ResumeSearchConfig body) {
+        return updateResumeSearchConfigAsync(body).block();
+    }
+
+    /**
+     * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
+     * parameter `config_override` can be passed to override the user-level configurations of the embeddable resume
+     * search tool.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResumeSearchEmbed>> createResumeSearchEmbedUrlWithResponseAsync(
+            Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+        final String accept = "application/json";
+        return service.createResumeSearchEmbedUrl(this.getHost(), body, accept);
+    }
+
+    /**
+     * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
+     * parameter `config_override` can be passed to override the user-level configurations of the embeddable resume
+     * search tool.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResumeSearchEmbed> createResumeSearchEmbedUrlAsync(
+            Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+        return createResumeSearchEmbedUrlWithResponseAsync(body)
+                .flatMap(
+                        (Response<ResumeSearchEmbed> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create and return a signed URL of the resume search tool which then can be embedded on a web page. An optional
+     * parameter `config_override` can be passed to override the user-level configurations of the embeddable resume
+     * search tool.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResumeSearchEmbed createResumeSearchEmbedUrl(
+            Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+        return createResumeSearchEmbedUrlAsync(body).block();
+    }
+
+    /**
+     * Provided one or more job titles, get related suggestions for your search.
+     *
+     * @param jobTitles Job title to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Get200ApplicationJsonItemsItem along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<String>>> getResumeSearchSuggestionJobTitleWithResponseAsync(List<String> jobTitles) {
+        final String accept = "application/json";
+        List<String> jobTitlesConverted =
+                Optional.ofNullable(jobTitles)
+                        .map(Collection::stream)
+                        .orElseGet(Stream::empty)
+                        .map((item) -> Objects.toString(item, ""))
+                        .collect(Collectors.toList());
+        return service.getResumeSearchSuggestionJobTitle(this.getHost(), jobTitlesConverted, accept);
+    }
+
+    /**
+     * Provided one or more job titles, get related suggestions for your search.
+     *
+     * @param jobTitles Job title to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Get200ApplicationJsonItemsItem on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<String>> getResumeSearchSuggestionJobTitleAsync(List<String> jobTitles) {
+        return getResumeSearchSuggestionJobTitleWithResponseAsync(jobTitles)
+                .flatMap(
+                        (Response<List<String>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Provided one or more job titles, get related suggestions for your search.
+     *
+     * @param jobTitles Job title to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Get200ApplicationJsonItemsItem.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<String> getResumeSearchSuggestionJobTitle(List<String> jobTitles) {
+        return getResumeSearchSuggestionJobTitleAsync(jobTitles).block();
+    }
+
+    /**
+     * Provided one or more skills, get related suggestions for your search.
+     *
+     * @param skills Skill to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of String along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<String>>> getResumeSearchSuggestionSkillWithResponseAsync(List<String> skills) {
+        final String accept = "application/json";
+        List<String> skillsConverted =
+                Optional.ofNullable(skills)
+                        .map(Collection::stream)
+                        .orElseGet(Stream::empty)
+                        .map((item) -> Objects.toString(item, ""))
+                        .collect(Collectors.toList());
+        return service.getResumeSearchSuggestionSkill(this.getHost(), skillsConverted, accept);
+    }
+
+    /**
+     * Provided one or more skills, get related suggestions for your search.
+     *
+     * @param skills Skill to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of String on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<String>> getResumeSearchSuggestionSkillAsync(List<String> skills) {
+        return getResumeSearchSuggestionSkillWithResponseAsync(skills)
+                .flatMap(
+                        (Response<List<String>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Provided one or more skills, get related suggestions for your search.
+     *
+     * @param skills Skill to query suggestions for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of String.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<String> getResumeSearchSuggestionSkill(List<String> skills) {
+        return getResumeSearchSuggestionSkillAsync(skills).block();
     }
 
     /**
@@ -2872,7 +3095,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexesWithResponseAsync(
+    public Mono<Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexesWithResponseAsync(
             Integer offset, Integer limit, Enum2 documentType) {
         final String accept = "application/json";
         return service.getAllIndexes(this.getHost(), offset, limit, documentType, accept);
@@ -2891,11 +3114,11 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema> getAllIndexesAsync(
+    public Mono<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> getAllIndexesAsync(
             Integer offset, Integer limit, Enum2 documentType) {
         return getAllIndexesWithResponseAsync(offset, limit, documentType)
                 .flatMap(
-                        (Response<Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema> res) -> {
+                        (Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -2917,7 +3140,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Paths6Pypg5IndexGetResponses200ContentApplicationJsonSchema getAllIndexes(
+    public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema getAllIndexes(
             Integer offset, Integer limit, Enum2 documentType) {
         return getAllIndexesAsync(offset, limit, documentType).block();
     }
@@ -2933,7 +3156,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema>> createIndexWithResponseAsync(
+    public Mono<Response<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema>> createIndexWithResponseAsync(
             IndexRequestBody body) {
         final String accept = "application/json";
         return service.createIndex(this.getHost(), body, accept);
@@ -2950,10 +3173,11 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema> createIndexAsync(IndexRequestBody body) {
+    public Mono<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema> createIndexAsync(
+            IndexRequestBody body) {
         return createIndexWithResponseAsync(body)
                 .flatMap(
-                        (Response<Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema> res) -> {
+                        (Response<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -2973,7 +3197,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Paths1Mc0Je6IndexPostResponses201ContentApplicationJsonSchema createIndex(IndexRequestBody body) {
+    public Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema createIndex(IndexRequestBody body) {
         return createIndexAsync(body).block();
     }
 
@@ -3033,7 +3257,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema>>
+    public Mono<Response<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema>>
             getAllIndexDocumentsWithResponseAsync(String name) {
         final String accept = "application/json";
         return service.getAllIndexDocuments(this.getHost(), name, accept);
@@ -3050,11 +3274,11 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema> getAllIndexDocumentsAsync(
+    public Mono<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema> getAllIndexDocumentsAsync(
             String name) {
         return getAllIndexDocumentsWithResponseAsync(name)
                 .flatMap(
-                        (Response<PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema> res) -> {
+                        (Response<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -3074,7 +3298,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PathsRvverlIndexNameDocumentsGetResponses200ContentApplicationJsonSchema getAllIndexDocuments(String name) {
+    public PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema getAllIndexDocuments(
+            String name) {
         return getAllIndexDocumentsAsync(name).block();
     }
 
@@ -3090,9 +3315,9 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PathsCoo0XpIndexNameDocumentsPostResponses201ContentApplicationJsonSchema>>
+    public Mono<Response<PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema>>
             createIndexDocumentWithResponseAsync(
-                    String name, PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
+                    String name, PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
         final String accept = "application/json";
         return service.createIndexDocument(this.getHost(), name, body, accept);
     }
@@ -3109,11 +3334,11 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PathsCoo0XpIndexNameDocumentsPostResponses201ContentApplicationJsonSchema> createIndexDocumentAsync(
-            String name, PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
+    public Mono<PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema> createIndexDocumentAsync(
+            String name, PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
         return createIndexDocumentWithResponseAsync(name, body)
                 .flatMap(
-                        (Response<PathsCoo0XpIndexNameDocumentsPostResponses201ContentApplicationJsonSchema> res) -> {
+                        (Response<PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -3134,8 +3359,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PathsCoo0XpIndexNameDocumentsPostResponses201ContentApplicationJsonSchema createIndexDocument(
-            String name, PathsGpptmIndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
+    public PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema createIndexDocument(
+            String name, PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
         return createIndexDocumentAsync(name, body).block();
     }
 
@@ -3185,228 +3410,6 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteIndexDocument(String name, String identifier) {
         deleteIndexDocumentAsync(name, identifier).block();
-    }
-
-    /**
-     * Returns all the invoice summaries for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<GetAllInvoicesResults>> getAllInvoicesWithResponseAsync(Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.getAllInvoices(this.getHost(), offset, limit, accept);
-    }
-
-    /**
-     * Returns all the invoice summaries for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetAllInvoicesResults> getAllInvoicesAsync(Integer offset, Integer limit) {
-        return getAllInvoicesWithResponseAsync(offset, limit)
-                .flatMap(
-                        (Response<GetAllInvoicesResults> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the invoice summaries for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetAllInvoicesResults getAllInvoices(Integer offset, Integer limit) {
-        return getAllInvoicesAsync(offset, limit).block();
-    }
-
-    /**
-     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
-     * results.
-     *
-     * @param body Invoice to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Invoice>> createInvoiceWithResponseAsync(InvoiceRequestBody body) {
-        final String accept = "application/json";
-        return service.createInvoice(this.getHost(), body, accept);
-    }
-
-    /**
-     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
-     * results.
-     *
-     * @param body Invoice to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Invoice> createInvoiceAsync(InvoiceRequestBody body) {
-        return createInvoiceWithResponseAsync(body)
-                .flatMap(
-                        (Response<Invoice> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
-     * results.
-     *
-     * @param body Invoice to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Invoice createInvoice(InvoiceRequestBody body) {
-        return createInvoiceAsync(body).block();
-    }
-
-    /**
-     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Invoice>> getInvoiceWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.getInvoice(this.getHost(), identifier, accept);
-    }
-
-    /**
-     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Invoice> getInvoiceAsync(String identifier) {
-        return getInvoiceWithResponseAsync(identifier)
-                .flatMap(
-                        (Response<Invoice> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Invoice getInvoice(String identifier) {
-        return getInvoiceAsync(identifier).block();
-    }
-
-    /**
-     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
-     * used in any tailored customer models.
-     *
-     * @param identifier Invoice identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteInvoiceWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.deleteInvoice(this.getHost(), identifier, accept);
-    }
-
-    /**
-     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
-     * used in any tailored customer models.
-     *
-     * @param identifier Invoice identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteInvoiceAsync(String identifier) {
-        return deleteInvoiceWithResponseAsync(identifier).flatMap((Response<Void> res) -> Mono.empty());
-    }
-
-    /**
-     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
-     * used in any tailored customer models.
-     *
-     * @param identifier Invoice identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteInvoice(String identifier) {
-        deleteInvoiceAsync(identifier).block();
     }
 
     /**
@@ -3469,7 +3472,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema>> getAllUsersWithResponseAsync(
+    public Mono<Response<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema>> getAllUsersWithResponseAsync(
             Integer offset, Integer limit) {
         final String accept = "application/json";
         return service.getAllUsers(this.getHost(), offset, limit, accept);
@@ -3487,11 +3490,11 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema> getAllUsersAsync(
+    public Mono<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema> getAllUsersAsync(
             Integer offset, Integer limit) {
         return getAllUsersWithResponseAsync(offset, limit)
                 .flatMap(
-                        (Response<PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema> res) -> {
+                        (Response<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -3512,7 +3515,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PathsWjaaeuUsersGetResponses200ContentApplicationJsonSchema getAllUsers(Integer offset, Integer limit) {
+    public Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema getAllUsers(Integer offset, Integer limit) {
         return getAllUsersAsync(offset, limit).block();
     }
 
@@ -3855,7 +3858,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema>>
+    public Mono<Response<PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema>>
             getAllOrganizationMembershipsWithResponseAsync(
                     Integer offset, Integer limit, String organization, OrganizationRole role) {
         final String accept = "application/json";
@@ -3876,12 +3879,12 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema>
+    public Mono<PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema>
             getAllOrganizationMembershipsAsync(
                     Integer offset, Integer limit, String organization, OrganizationRole role) {
         return getAllOrganizationMembershipsWithResponseAsync(offset, limit, organization, role)
                 .flatMap(
-                        (Response<PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema>
+                        (Response<PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema>
                                         res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
@@ -3905,8 +3908,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PathsCkdzu3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema getAllOrganizationMemberships(
-            Integer offset, Integer limit, String organization, OrganizationRole role) {
+    public PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema
+            getAllOrganizationMemberships(Integer offset, Integer limit, String organization, OrganizationRole role) {
         return getAllOrganizationMembershipsAsync(offset, limit, organization, role).block();
     }
 
@@ -4088,7 +4091,7 @@ public final class AffindaAPI {
      *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PathsZt2JhiInvitationsGetResponses200ContentApplicationJsonSchema>>
+    public Mono<Response<Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema>>
             getAllInvitationsWithResponseAsync(
                     Integer offset,
                     Integer limit,
@@ -4114,11 +4117,11 @@ public final class AffindaAPI {
      * @return list of all invitations you created or sent to you on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PathsZt2JhiInvitationsGetResponses200ContentApplicationJsonSchema> getAllInvitationsAsync(
+    public Mono<Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema> getAllInvitationsAsync(
             Integer offset, Integer limit, String organization, InvitationStatus status, OrganizationRole role) {
         return getAllInvitationsWithResponseAsync(offset, limit, organization, status, role)
                 .flatMap(
-                        (Response<PathsZt2JhiInvitationsGetResponses200ContentApplicationJsonSchema> res) -> {
+                        (Response<Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -4142,7 +4145,7 @@ public final class AffindaAPI {
      * @return list of all invitations you created or sent to you.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PathsZt2JhiInvitationsGetResponses200ContentApplicationJsonSchema getAllInvitations(
+    public Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema getAllInvitations(
             Integer offset, Integer limit, String organization, InvitationStatus status, OrganizationRole role) {
         return getAllInvitationsAsync(offset, limit, organization, status, role).block();
     }
@@ -4428,7 +4431,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Invitation>> respondToInvitationWithResponseAsync(
-            String token, PathsW51LnrInvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
+            String token, PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
         final String accept = "application/json";
         return service.respondToInvitation(this.getHost(), token, body, accept);
     }
@@ -4446,7 +4449,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Invitation> respondToInvitationAsync(
-            String token, PathsW51LnrInvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
+            String token, PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
         return respondToInvitationWithResponseAsync(token, body)
                 .flatMap(
                         (Response<Invitation> res) -> {
@@ -4471,7 +4474,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Invitation respondToInvitation(
-            String token, PathsW51LnrInvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
+            String token, PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
         return respondToInvitationAsync(token, body).block();
     }
 
@@ -5347,7 +5350,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PathsAdr1YhWorkspaceMembershipsGetResponses200ContentApplicationJsonSchema>>
+    public Mono<Response<PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema>>
             getAllWorkspaceMembershipsWithResponseAsync(Integer offset, Integer limit, String workspace, String user) {
         final String accept = "application/json";
         return service.getAllWorkspaceMemberships(this.getHost(), offset, limit, workspace, user, accept);
@@ -5367,11 +5370,12 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PathsAdr1YhWorkspaceMembershipsGetResponses200ContentApplicationJsonSchema>
+    public Mono<PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema>
             getAllWorkspaceMembershipsAsync(Integer offset, Integer limit, String workspace, String user) {
         return getAllWorkspaceMembershipsWithResponseAsync(offset, limit, workspace, user)
                 .flatMap(
-                        (Response<PathsAdr1YhWorkspaceMembershipsGetResponses200ContentApplicationJsonSchema> res) -> {
+                        (Response<PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema>
+                                        res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -5394,7 +5398,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PathsAdr1YhWorkspaceMembershipsGetResponses200ContentApplicationJsonSchema getAllWorkspaceMemberships(
+    public PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema getAllWorkspaceMemberships(
             Integer offset, Integer limit, String workspace, String user) {
         return getAllWorkspaceMembershipsAsync(offset, limit, workspace, user).block();
     }

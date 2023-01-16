@@ -2,22 +2,23 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDate;
 
-/** The EnumAnnotationSerializer model. */
+/** The DateAnnotationV2 model. */
 @Fluent
-public final class EnumAnnotationSerializer extends Annotation {
+public final class DateAnnotationV2 extends AnnotationV2 {
     /*
      * The parsed property.
      */
     @JsonProperty(value = "parsed")
-    private String parsed;
+    private LocalDate parsed;
 
     /**
      * Get the parsed property: The parsed property.
      *
      * @return the parsed value.
      */
-    public String getParsed() {
+    public LocalDate getParsed() {
         return this.parsed;
     }
 
@@ -25,9 +26,9 @@ public final class EnumAnnotationSerializer extends Annotation {
      * Set the parsed property: The parsed property.
      *
      * @param parsed the parsed value to set.
-     * @return the EnumAnnotationSerializer object itself.
+     * @return the DateAnnotationV2 object itself.
      */
-    public EnumAnnotationSerializer setParsed(String parsed) {
+    public DateAnnotationV2 setParsed(LocalDate parsed) {
         this.parsed = parsed;
         return this;
     }
