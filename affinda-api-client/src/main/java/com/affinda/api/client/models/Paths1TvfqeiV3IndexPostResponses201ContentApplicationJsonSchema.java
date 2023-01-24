@@ -16,7 +16,7 @@ public final class Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSche
      * The documentType property.
      */
     @JsonProperty(value = "documentType")
-    private Enum5 documentType;
+    private Enum6 documentType;
 
     /**
      * Get the name property: The name property.
@@ -43,7 +43,7 @@ public final class Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSche
      *
      * @return the documentType value.
      */
-    public Enum5 getDocumentType() {
+    public Enum6 getDocumentType() {
         return this.documentType;
     }
 
@@ -53,7 +53,7 @@ public final class Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSche
      * @param documentType the documentType value to set.
      * @return the Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema object itself.
      */
-    public Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema setDocumentType(Enum5 documentType) {
+    public Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema setDocumentType(Enum6 documentType) {
         this.documentType = documentType;
         return this;
     }

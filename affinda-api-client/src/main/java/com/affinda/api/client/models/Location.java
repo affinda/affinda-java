@@ -66,6 +66,18 @@ public class Location {
     @JsonProperty(value = "city", access = JsonProperty.Access.WRITE_ONLY)
     private String city;
 
+    /*
+     * The latitude property.
+     */
+    @JsonProperty(value = "latitude", access = JsonProperty.Access.WRITE_ONLY)
+    private Float latitude;
+
+    /*
+     * The longitude property.
+     */
+    @JsonProperty(value = "longitude", access = JsonProperty.Access.WRITE_ONLY)
+    private Float longitude;
+
     /**
      * Get the formatted property: The formatted property.
      *
@@ -165,5 +177,23 @@ public class Location {
      */
     public String getCity() {
         return this.city;
+    }
+
+    /**
+     * Get the latitude property: The latitude property.
+     *
+     * @return the latitude value.
+     */
+    public Float getLatitude() {
+        return this.latitude;
+    }
+
+    /**
+     * Get the longitude property: The longitude property.
+     *
+     * @return the longitude value.
+     */
+    public Float getLongitude() {
+        return this.longitude;
     }
 }

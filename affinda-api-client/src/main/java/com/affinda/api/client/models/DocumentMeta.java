@@ -7,7 +7,7 @@ import java.util.List;
 
 /** The DocumentMeta model. */
 @Fluent
-public class DocumentMeta {
+public final class DocumentMeta {
     /*
      * Uniquely identify a document.
      */

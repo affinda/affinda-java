@@ -47,7 +47,7 @@ public final class DataPoint {
      * Extractor's ID.
      */
     @JsonProperty(value = "extractor", required = true)
-    private int extractor;
+    private Integer extractor;
 
     /*
      * The multiple property.
@@ -60,12 +60,6 @@ public final class DataPoint {
      */
     @JsonProperty(value = "noRect")
     private Boolean noRect;
-
-    /*
-     * The similarTo property.
-     */
-    @JsonProperty(value = "similarTo", required = true)
-    private List<String> similarTo;
 
     /*
      * The choices property.
@@ -204,7 +198,7 @@ public final class DataPoint {
      *
      * @return the extractor value.
      */
-    public int getExtractor() {
+    public Integer getExtractor() {
         return this.extractor;
     }
 
@@ -214,7 +208,7 @@ public final class DataPoint {
      * @param extractor the extractor value to set.
      * @return the DataPoint object itself.
      */
-    public DataPoint setExtractor(int extractor) {
+    public DataPoint setExtractor(Integer extractor) {
         this.extractor = extractor;
         return this;
     }
@@ -256,26 +250,6 @@ public final class DataPoint {
      */
     public DataPoint setNoRect(Boolean noRect) {
         this.noRect = noRect;
-        return this;
-    }
-
-    /**
-     * Get the similarTo property: The similarTo property.
-     *
-     * @return the similarTo value.
-     */
-    public List<String> getSimilarTo() {
-        return this.similarTo;
-    }
-
-    /**
-     * Set the similarTo property: The similarTo property.
-     *
-     * @param similarTo the similarTo value to set.
-     * @return the DataPoint object itself.
-     */
-    public DataPoint setSimilarTo(List<String> similarTo) {
-        this.similarTo = similarTo;
         return this;
     }
 

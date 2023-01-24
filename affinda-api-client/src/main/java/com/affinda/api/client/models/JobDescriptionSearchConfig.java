@@ -136,6 +136,12 @@ public final class JobDescriptionSearchConfig {
     private List<String> indices;
 
     /*
+     * Controls whether or not the index dropdown is displayed to the user
+     */
+    @JsonProperty(value = "showIndexDropdown")
+    private Boolean showIndexDropdown;
+
+    /*
      * Customize the theme of the embeded search tool.
      */
     @JsonProperty(value = "searchToolTheme")
@@ -578,6 +584,26 @@ public final class JobDescriptionSearchConfig {
      */
     public JobDescriptionSearchConfig setIndices(List<String> indices) {
         this.indices = indices;
+        return this;
+    }
+
+    /**
+     * Get the showIndexDropdown property: Controls whether or not the index dropdown is displayed to the user.
+     *
+     * @return the showIndexDropdown value.
+     */
+    public Boolean isShowIndexDropdown() {
+        return this.showIndexDropdown;
+    }
+
+    /**
+     * Set the showIndexDropdown property: Controls whether or not the index dropdown is displayed to the user.
+     *
+     * @param showIndexDropdown the showIndexDropdown value to set.
+     * @return the JobDescriptionSearchConfig object itself.
+     */
+    public JobDescriptionSearchConfig setShowIndexDropdown(Boolean showIndexDropdown) {
+        this.showIndexDropdown = showIndexDropdown;
         return this;
     }
 

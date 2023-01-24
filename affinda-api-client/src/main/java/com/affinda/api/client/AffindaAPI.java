@@ -11,7 +11,7 @@ import com.affinda.api.client.models.DocumentCollectionUpdate;
 import com.affinda.api.client.models.DocumentCreate;
 import com.affinda.api.client.models.DocumentState;
 import com.affinda.api.client.models.DocumentUpdate;
-import com.affinda.api.client.models.Enum2;
+import com.affinda.api.client.models.Enum3;
 import com.affinda.api.client.models.Extractor;
 import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
@@ -54,6 +54,7 @@ import com.affinda.api.client.models.PathsQ5Os5RV3OrganizationMembershipsGetResp
 import com.affinda.api.client.models.PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.RedactedResume;
 import com.affinda.api.client.models.RedactedResumeRequestBody;
+import com.affinda.api.client.models.Region;
 import com.affinda.api.client.models.RequestErrorException;
 import com.affinda.api.client.models.Resume;
 import com.affinda.api.client.models.ResumeData;
@@ -114,16 +115,16 @@ public final class AffindaAPI {
     /** The proxy service used to perform REST calls. */
     private final AffindaAPIService service;
 
-    /** server parameter. */
-    private final String host;
+    /** region - server parameter. */
+    private final Region region;
 
     /**
-     * Gets server parameter.
+     * Gets region - server parameter.
      *
-     * @return the host value.
+     * @return the region value.
      */
-    public String getHost() {
-        return this.host;
+    public Region getRegion() {
+        return this.region;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -153,25 +154,25 @@ public final class AffindaAPI {
     /**
      * Initializes an instance of AffindaAPI client.
      *
-     * @param host server parameter.
+     * @param region region - server parameter.
      */
-    AffindaAPI(String host) {
+    AffindaAPI(Region region) {
         this(
                 new HttpPipelineBuilder()
                         .policies(new UserAgentPolicy(), new RetryPolicy(), new CookiePolicy())
                         .build(),
                 JacksonAdapter.createDefaultSerializerAdapter(),
-                host);
+                region);
     }
 
     /**
      * Initializes an instance of AffindaAPI client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
-     * @param host server parameter.
+     * @param region region - server parameter.
      */
-    AffindaAPI(HttpPipeline httpPipeline, String host) {
-        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), host);
+    AffindaAPI(HttpPipeline httpPipeline, Region region) {
+        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), region);
     }
 
     /**
@@ -179,17 +180,17 @@ public final class AffindaAPI {
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
-     * @param host server parameter.
+     * @param region region - server parameter.
      */
-    AffindaAPI(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String host) {
+    AffindaAPI(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Region region) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
-        this.host = host;
+        this.region = region;
         this.service = RestProxy.create(AffindaAPIService.class, this.httpPipeline, this.getSerializerAdapter());
     }
 
     /** The interface defining all the services for AffindaAPI to be used by the proxy service to perform REST calls. */
-    @Host("{$host}")
+    @Host("https://{region}.affinda.com")
     @ServiceInterface(name = "AffindaAPI")
     public interface AffindaAPIService {
         @Get("/v2/resumes")
@@ -199,7 +200,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<GetAllDocumentsResultsV2>> getAllResumes(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
@@ -211,7 +212,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Resume>> createResume(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") ResumeRequestBody body,
                 @HeaderParam("Accept") String accept);
 
@@ -219,7 +220,7 @@ public final class AffindaAPI {
         @ExpectedResponses({200, 200, 400, 400, 401, 401, 404, 404})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Object>> getResume(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @QueryParam("format") String format,
                 @HeaderParam("Accept") String accept);
@@ -231,7 +232,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<ResumeData>> updateResumeData(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") ResumeData body,
                 @HeaderParam("Accept") String accept);
@@ -243,7 +244,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteResume(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -254,7 +255,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<GetAllDocumentsResultsV2>> getAllRedactedResumes(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
@@ -266,7 +267,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<RedactedResume>> createRedactedResume(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") RedactedResumeRequestBody body,
                 @HeaderParam("Accept") String accept);
 
@@ -277,7 +278,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<RedactedResume>> getRedactedResume(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -288,7 +289,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteRedactedResume(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -299,7 +300,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<GetAllInvoicesResults>> getAllInvoices(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
@@ -311,7 +312,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Invoice>> createInvoice(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") InvoiceRequestBody body,
                 @HeaderParam("Accept") String accept);
 
@@ -322,7 +323,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Invoice>> getInvoice(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -333,7 +334,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteInvoice(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -344,7 +345,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<GetAllJobDescriptionsResults>> getAllJobDescriptions(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
@@ -356,7 +357,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<JobDescription>> createJobDescription(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") JobDescriptionRequestBody body,
                 @HeaderParam("Accept") String accept);
 
@@ -367,7 +368,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<JobDescription>> getJobDescription(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -378,7 +379,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteJobDescription(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -389,7 +390,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<JobDescriptionSearch>> createJobDescriptionSearch(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @BodyParam("application/json") JobDescriptionSearchParameters body,
@@ -402,7 +403,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<JobDescriptionSearchDetail>> getJobDescriptionSearchDetail(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") JobDescriptionSearchParameters body,
                 @HeaderParam("Accept") String accept);
@@ -414,7 +415,7 @@ public final class AffindaAPI {
                 code = {401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<JobDescriptionSearchConfig>> getJobDescriptionSearchConfig(
-                @HostParam("$host") String host, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region, @HeaderParam("Accept") String accept);
 
         @Patch("/v2/job_description_search/config")
         @ExpectedResponses({200})
@@ -423,7 +424,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<JobDescriptionSearchConfig>> updateJobDescriptionSearchConfig(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") JobDescriptionSearchConfig body,
                 @HeaderParam("Accept") String accept);
 
@@ -434,7 +435,7 @@ public final class AffindaAPI {
                 code = {401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<JobDescriptionSearchEmbed>> createJobDescriptionSearchEmbedUrl(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json")
                         Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
                 @HeaderParam("Accept") String accept);
@@ -446,7 +447,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<ResumeSearch>> createResumeSearch(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @BodyParam("application/json") ResumeSearchParameters body,
@@ -459,7 +460,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<ResumeSearchDetail>> getResumeSearchDetail(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") ResumeSearchParameters body,
                 @HeaderParam("Accept") String accept);
@@ -471,7 +472,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<ResumeSearchMatch>> getResumeSearchMatch(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("resume") String resume,
                 @QueryParam("job_description") String jobDescription,
                 @QueryParam("index") String index,
@@ -494,7 +495,7 @@ public final class AffindaAPI {
                 code = {401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<ResumeSearchConfig>> getResumeSearchConfig(
-                @HostParam("$host") String host, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region, @HeaderParam("Accept") String accept);
 
         @Patch("/v3/resume_search/config")
         @ExpectedResponses({200})
@@ -503,7 +504,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<ResumeSearchConfig>> updateResumeSearchConfig(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") ResumeSearchConfig body,
                 @HeaderParam("Accept") String accept);
 
@@ -514,7 +515,7 @@ public final class AffindaAPI {
                 code = {401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<ResumeSearchEmbed>> createResumeSearchEmbedUrl(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json")
                         Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
                 @HeaderParam("Accept") String accept);
@@ -526,7 +527,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<String>>> getResumeSearchSuggestionJobTitle(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam(value = "job_titles", multipleQueryParams = true) List<String> jobTitles,
                 @HeaderParam("Accept") String accept);
 
@@ -537,7 +538,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<String>>> getResumeSearchSuggestionSkill(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam(value = "skills", multipleQueryParams = true) List<String> skills,
                 @HeaderParam("Accept") String accept);
 
@@ -548,10 +549,10 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexes(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
-                @QueryParam("document_type") Enum2 documentType,
+                @QueryParam("document_type") Enum3 documentType,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/index")
@@ -561,7 +562,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema>> createIndex(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") IndexRequestBody body,
                 @HeaderParam("Accept") String accept);
 
@@ -572,7 +573,9 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteIndex(
-                @HostParam("$host") String host, @PathParam("name") String name, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region,
+                @PathParam("name") String name,
+                @HeaderParam("Accept") String accept);
 
         @Get("/v3/index/{name}/documents")
         @ExpectedResponses({200})
@@ -581,7 +584,9 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema>> getAllIndexDocuments(
-                @HostParam("$host") String host, @PathParam("name") String name, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region,
+                @PathParam("name") String name,
+                @HeaderParam("Accept") String accept);
 
         @Post("/v3/index/{name}/documents")
         @ExpectedResponses({201})
@@ -590,7 +595,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema>> createIndexDocument(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("name") String name,
                 @BodyParam("application/json")
                         PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body,
@@ -603,7 +608,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteIndexDocument(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("name") String name,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
@@ -615,7 +620,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<OccupationGroup>>> listOccupationGroups(
-                @HostParam("$host") String host, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region, @HeaderParam("Accept") String accept);
 
         @Get("/v3/users")
         @ExpectedResponses({200})
@@ -624,7 +629,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema>> getAllUsers(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @HeaderParam("Accept") String accept);
@@ -636,7 +641,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<UserCreateResponse>> createUser(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") UserCreateRequest body,
                 @HeaderParam("Accept") String accept);
 
@@ -647,7 +652,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<Organization>>> getAllOrganizations(
-                @HostParam("$host") String host, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region, @HeaderParam("Accept") String accept);
 
         @Post("/v3/organizations")
         @ExpectedResponses({201})
@@ -656,7 +661,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Organization>> createOrganization(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") OrganizationCreate body,
                 @HeaderParam("Accept") String accept);
 
@@ -667,7 +672,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Organization>> getOrganization(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -679,7 +684,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Organization>> updateOrganization(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("multipart/form-data") String name,
                 @BodyParam("multipart/form-data") Flux<ByteBuffer> avatar,
@@ -694,7 +699,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteOrganization(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -706,7 +711,7 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema>>
                 getAllOrganizationMemberships(
-                        @HostParam("$host") String host,
+                        @HostParam("region") Region region,
                         @QueryParam("offset") Integer offset,
                         @QueryParam("limit") Integer limit,
                         @QueryParam("organization") String organization,
@@ -720,7 +725,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<OrganizationMembership>> getOrganizationMembership(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -731,7 +736,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<OrganizationMembership>> updateOrganizationMembership(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") OrganizationMembershipUpdate body,
                 @HeaderParam("Accept") String accept);
@@ -743,7 +748,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteOrganizationMembership(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -754,7 +759,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema>> getAllInvitations(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @QueryParam("organization") String organization,
@@ -769,7 +774,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Invitation>> createInvitation(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") InvitationCreate body,
                 @HeaderParam("Accept") String accept);
 
@@ -780,7 +785,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Invitation>> getInvitation(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -791,7 +796,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Invitation>> updateInvitation(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") InvitationUpdate body,
                 @HeaderParam("Accept") String accept);
@@ -803,7 +808,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteInvitation(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -814,7 +819,7 @@ public final class AffindaAPI {
                 code = {400})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Invitation>> getInvitationByToken(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("token") String token,
                 @HeaderParam("Accept") String accept);
 
@@ -825,7 +830,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Invitation>> respondToInvitation(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("token") String token,
                 @BodyParam("application/json")
                         PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body,
@@ -838,7 +843,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<Extractor>>> getAllExtractors(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("organization") String organization,
                 @QueryParam("include_public_extractors") Boolean includePublicExtractors,
                 @QueryParam("name") String name,
@@ -852,7 +857,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Extractor>> createExtractor(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") ExtractorCreate body,
                 @HeaderParam("Accept") String accept);
 
@@ -863,7 +868,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Extractor>> getExtractor(
-                @HostParam("$host") String host, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
 
         @Patch("/v3/extractors/{id}")
         @ExpectedResponses({200})
@@ -872,7 +877,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Extractor>> updateExtractorData(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("id") int id,
                 @BodyParam("application/json") ExtractorUpdate body,
                 @HeaderParam("Accept") String accept);
@@ -884,7 +889,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteExtractor(
-                @HostParam("$host") String host, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
 
         @Get("/v3/data_points")
         @ExpectedResponses({200})
@@ -893,7 +898,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<DataPoint>>> getAllDataPoints(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @QueryParam("organization") String organization,
@@ -910,7 +915,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<DataPoint>> createDataPoint(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") DataPointCreate body,
                 @HeaderParam("Accept") String accept);
 
@@ -921,7 +926,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<DataPoint>> getDataPoint(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -932,7 +937,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<DataPoint>> updateDataPointData(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") DataPointUpdate body,
                 @HeaderParam("Accept") String accept);
@@ -944,7 +949,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteDataPoint(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -955,7 +960,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<Workspace>>> getAllWorkspaces(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("organization") String organization,
                 @QueryParam("name") String name,
                 @HeaderParam("Accept") String accept);
@@ -967,7 +972,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Workspace>> createWorkspace(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") WorkspaceCreate body,
                 @HeaderParam("Accept") String accept);
 
@@ -978,7 +983,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Workspace>> getWorkspace(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -989,7 +994,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Workspace>> updateWorkspace(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") WorkspaceUpdate body,
                 @HeaderParam("Accept") String accept);
@@ -1001,7 +1006,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteWorkspace(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -1013,7 +1018,7 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema>>
                 getAllWorkspaceMemberships(
-                        @HostParam("$host") String host,
+                        @HostParam("region") Region region,
                         @QueryParam("offset") Integer offset,
                         @QueryParam("limit") Integer limit,
                         @QueryParam("workspace") String workspace,
@@ -1027,7 +1032,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<WorkspaceMembership>> createWorkspaceMembership(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") WorkspaceMembershipCreate body,
                 @HeaderParam("Accept") String accept);
 
@@ -1038,7 +1043,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<WorkspaceMembership>> getWorkspaceMembership(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -1049,7 +1054,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteWorkspaceMembership(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -1060,7 +1065,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<DocumentCollection>>> getAllCollections(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("workspace") String workspace,
                 @HeaderParam("Accept") String accept);
 
@@ -1071,7 +1076,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<DocumentCollection>> createCollection(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") DocumentCollectionCreate body,
                 @HeaderParam("Accept") String accept);
 
@@ -1082,7 +1087,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<DocumentCollection>> getCollection(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -1093,7 +1098,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<DocumentCollection>> updateCollectionData(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") DocumentCollectionUpdate body,
                 @HeaderParam("Accept") String accept);
@@ -1105,7 +1110,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteCollection(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -1116,7 +1121,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<GetAllDocumentsResults>> getAllDocuments(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @QueryParam("workspace") String workspace,
@@ -1136,7 +1141,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Document>> createDocument(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") DocumentCreate body,
                 @HeaderParam("Accept") String accept);
 
@@ -1147,7 +1152,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Document>> getDocument(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -1158,7 +1163,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Document>> updateDocumentData(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") DocumentUpdate body,
                 @HeaderParam("Accept") String accept);
@@ -1170,7 +1175,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteDocument(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -1181,7 +1186,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<Tag>>> getAllTags(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @QueryParam("limit") Integer limit,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("workspace") String workspace,
@@ -1194,7 +1199,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Tag>> createTag(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @BodyParam("application/json") TagCreate body,
                 @HeaderParam("Accept") String accept);
 
@@ -1205,7 +1210,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Tag>> getTag(
-                @HostParam("$host") String host, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
 
         @Patch("/v3/tags/{id}")
         @ExpectedResponses({200})
@@ -1214,7 +1219,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Tag>> updateTagData(
-                @HostParam("$host") String host,
+                @HostParam("region") Region region,
                 @PathParam("id") int id,
                 @BodyParam("application/json") TagUpdate body,
                 @HeaderParam("Accept") String accept);
@@ -1226,7 +1231,7 @@ public final class AffindaAPI {
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteTag(
-                @HostParam("$host") String host, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
     }
 
     /**
@@ -1243,7 +1248,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<GetAllDocumentsResultsV2>> getAllResumesWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllResumes(this.getHost(), offset, limit, accept);
+        return service.getAllResumes(this.getRegion(), offset, limit, accept);
     }
 
     /**
@@ -1303,7 +1308,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Resume>> createResumeWithResponseAsync(ResumeRequestBody body) {
         final String accept = "application/json";
-        return service.createResume(this.getHost(), body, accept);
+        return service.createResume(this.getRegion(), body, accept);
     }
 
     /**
@@ -1367,7 +1372,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> getResumeWithResponseAsync(String identifier, String format) {
         final String accept = "application/json, application/xml";
-        return service.getResume(this.getHost(), identifier, format, accept);
+        return service.getResume(this.getRegion(), identifier, format, accept);
     }
 
     /**
@@ -1428,7 +1433,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ResumeData>> updateResumeDataWithResponseAsync(String identifier, ResumeData body) {
         final String accept = "application/json";
-        return service.updateResumeData(this.getHost(), identifier, body, accept);
+        return service.updateResumeData(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -1486,7 +1491,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteResumeWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteResume(this.getHost(), identifier, accept);
+        return service.deleteResume(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -1533,7 +1538,7 @@ public final class AffindaAPI {
     public Mono<Response<GetAllDocumentsResultsV2>> getAllRedactedResumesWithResponseAsync(
             Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllRedactedResumes(this.getHost(), offset, limit, accept);
+        return service.getAllRedactedResumes(this.getRegion(), offset, limit, accept);
     }
 
     /**
@@ -1589,7 +1594,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RedactedResume>> createRedactedResumeWithResponseAsync(RedactedResumeRequestBody body) {
         final String accept = "application/json";
-        return service.createRedactedResume(this.getHost(), body, accept);
+        return service.createRedactedResume(this.getRegion(), body, accept);
     }
 
     /**
@@ -1644,7 +1649,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RedactedResume>> getRedactedResumeWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getRedactedResume(this.getHost(), identifier, accept);
+        return service.getRedactedResume(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -1700,7 +1705,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteRedactedResumeWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteRedactedResume(this.getHost(), identifier, accept);
+        return service.deleteRedactedResume(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -1746,7 +1751,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<GetAllInvoicesResults>> getAllInvoicesWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllInvoices(this.getHost(), offset, limit, accept);
+        return service.getAllInvoices(this.getRegion(), offset, limit, accept);
     }
 
     /**
@@ -1804,7 +1809,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Invoice>> createInvoiceWithResponseAsync(InvoiceRequestBody body) {
         final String accept = "application/json";
-        return service.createInvoice(this.getHost(), body, accept);
+        return service.createInvoice(this.getRegion(), body, accept);
     }
 
     /**
@@ -1863,7 +1868,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Invoice>> getInvoiceWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getInvoice(this.getHost(), identifier, accept);
+        return service.getInvoice(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -1920,7 +1925,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteInvoiceWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteInvoice(this.getHost(), identifier, accept);
+        return service.deleteInvoice(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -1969,7 +1974,7 @@ public final class AffindaAPI {
     public Mono<Response<GetAllJobDescriptionsResults>> getAllJobDescriptionsWithResponseAsync(
             Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllJobDescriptions(this.getHost(), offset, limit, accept);
+        return service.getAllJobDescriptions(this.getRegion(), offset, limit, accept);
     }
 
     /**
@@ -2027,7 +2032,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<JobDescription>> createJobDescriptionWithResponseAsync(JobDescriptionRequestBody body) {
         final String accept = "application/json";
-        return service.createJobDescription(this.getHost(), body, accept);
+        return service.createJobDescription(this.getRegion(), body, accept);
     }
 
     /**
@@ -2086,7 +2091,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<JobDescription>> getJobDescriptionWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getJobDescription(this.getHost(), identifier, accept);
+        return service.getJobDescription(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -2142,7 +2147,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteJobDescriptionWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteJobDescription(this.getHost(), identifier, accept);
+        return service.deleteJobDescription(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -2190,7 +2195,7 @@ public final class AffindaAPI {
     public Mono<Response<JobDescriptionSearch>> createJobDescriptionSearchWithResponseAsync(
             JobDescriptionSearchParameters body, Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.createJobDescriptionSearch(this.getHost(), offset, limit, body, accept);
+        return service.createJobDescriptionSearch(this.getRegion(), offset, limit, body, accept);
     }
 
     /**
@@ -2254,7 +2259,7 @@ public final class AffindaAPI {
     public Mono<Response<JobDescriptionSearchDetail>> getJobDescriptionSearchDetailWithResponseAsync(
             String identifier, JobDescriptionSearchParameters body) {
         final String accept = "application/json";
-        return service.getJobDescriptionSearchDetail(this.getHost(), identifier, body, accept);
+        return service.getJobDescriptionSearchDetail(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -2315,7 +2320,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<JobDescriptionSearchConfig>> getJobDescriptionSearchConfigWithResponseAsync() {
         final String accept = "application/json";
-        return service.getJobDescriptionSearchConfig(this.getHost(), accept);
+        return service.getJobDescriptionSearchConfig(this.getRegion(), accept);
     }
 
     /**
@@ -2369,7 +2374,7 @@ public final class AffindaAPI {
     public Mono<Response<JobDescriptionSearchConfig>> updateJobDescriptionSearchConfigWithResponseAsync(
             JobDescriptionSearchConfig body) {
         final String accept = "application/json";
-        return service.updateJobDescriptionSearchConfig(this.getHost(), body, accept);
+        return service.updateJobDescriptionSearchConfig(this.getRegion(), body, accept);
     }
 
     /**
@@ -2428,7 +2433,7 @@ public final class AffindaAPI {
     public Mono<Response<JobDescriptionSearchEmbed>> createJobDescriptionSearchEmbedUrlWithResponseAsync(
             Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
         final String accept = "application/json";
-        return service.createJobDescriptionSearchEmbedUrl(this.getHost(), body, accept);
+        return service.createJobDescriptionSearchEmbedUrl(this.getRegion(), body, accept);
     }
 
     /**
@@ -2495,7 +2500,7 @@ public final class AffindaAPI {
     public Mono<Response<ResumeSearch>> createResumeSearchWithResponseAsync(
             ResumeSearchParameters body, Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.createResumeSearch(this.getHost(), offset, limit, body, accept);
+        return service.createResumeSearch(this.getRegion(), offset, limit, body, accept);
     }
 
     /**
@@ -2565,7 +2570,7 @@ public final class AffindaAPI {
     public Mono<Response<ResumeSearchDetail>> getResumeSearchDetailWithResponseAsync(
             String identifier, ResumeSearchParameters body) {
         final String accept = "application/json";
-        return service.getResumeSearchDetail(this.getHost(), identifier, body, accept);
+        return service.getResumeSearchDetail(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -2654,7 +2659,7 @@ public final class AffindaAPI {
             Float managementLevelWeight) {
         final String accept = "application/json";
         return service.getResumeSearchMatch(
-                this.getHost(),
+                this.getRegion(),
                 resume,
                 jobDescription,
                 index,
@@ -2802,7 +2807,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ResumeSearchConfig>> getResumeSearchConfigWithResponseAsync() {
         final String accept = "application/json";
-        return service.getResumeSearchConfig(this.getHost(), accept);
+        return service.getResumeSearchConfig(this.getRegion(), accept);
     }
 
     /**
@@ -2855,7 +2860,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ResumeSearchConfig>> updateResumeSearchConfigWithResponseAsync(ResumeSearchConfig body) {
         final String accept = "application/json";
-        return service.updateResumeSearchConfig(this.getHost(), body, accept);
+        return service.updateResumeSearchConfig(this.getRegion(), body, accept);
     }
 
     /**
@@ -2914,7 +2919,7 @@ public final class AffindaAPI {
     public Mono<Response<ResumeSearchEmbed>> createResumeSearchEmbedUrlWithResponseAsync(
             Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
         final String accept = "application/json";
-        return service.createResumeSearchEmbedUrl(this.getHost(), body, accept);
+        return service.createResumeSearchEmbedUrl(this.getRegion(), body, accept);
     }
 
     /**
@@ -2981,7 +2986,7 @@ public final class AffindaAPI {
                         .orElseGet(Stream::empty)
                         .map((item) -> Objects.toString(item, ""))
                         .collect(Collectors.toList());
-        return service.getResumeSearchSuggestionJobTitle(this.getHost(), jobTitlesConverted, accept);
+        return service.getResumeSearchSuggestionJobTitle(this.getRegion(), jobTitlesConverted, accept);
     }
 
     /**
@@ -3041,7 +3046,7 @@ public final class AffindaAPI {
                         .orElseGet(Stream::empty)
                         .map((item) -> Objects.toString(item, ""))
                         .collect(Collectors.toList());
-        return service.getResumeSearchSuggestionSkill(this.getHost(), skillsConverted, accept);
+        return service.getResumeSearchSuggestionSkill(this.getRegion(), skillsConverted, accept);
     }
 
     /**
@@ -3096,9 +3101,9 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexesWithResponseAsync(
-            Integer offset, Integer limit, Enum2 documentType) {
+            Integer offset, Integer limit, Enum3 documentType) {
         final String accept = "application/json";
-        return service.getAllIndexes(this.getHost(), offset, limit, documentType, accept);
+        return service.getAllIndexes(this.getRegion(), offset, limit, documentType, accept);
     }
 
     /**
@@ -3115,7 +3120,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> getAllIndexesAsync(
-            Integer offset, Integer limit, Enum2 documentType) {
+            Integer offset, Integer limit, Enum3 documentType) {
         return getAllIndexesWithResponseAsync(offset, limit, documentType)
                 .flatMap(
                         (Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> res) -> {
@@ -3141,7 +3146,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema getAllIndexes(
-            Integer offset, Integer limit, Enum2 documentType) {
+            Integer offset, Integer limit, Enum3 documentType) {
         return getAllIndexesAsync(offset, limit, documentType).block();
     }
 
@@ -3159,7 +3164,7 @@ public final class AffindaAPI {
     public Mono<Response<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema>> createIndexWithResponseAsync(
             IndexRequestBody body) {
         final String accept = "application/json";
-        return service.createIndex(this.getHost(), body, accept);
+        return service.createIndex(this.getRegion(), body, accept);
     }
 
     /**
@@ -3214,7 +3219,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteIndexWithResponseAsync(String name) {
         final String accept = "application/json";
-        return service.deleteIndex(this.getHost(), name, accept);
+        return service.deleteIndex(this.getRegion(), name, accept);
     }
 
     /**
@@ -3260,7 +3265,7 @@ public final class AffindaAPI {
     public Mono<Response<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema>>
             getAllIndexDocumentsWithResponseAsync(String name) {
         final String accept = "application/json";
-        return service.getAllIndexDocuments(this.getHost(), name, accept);
+        return service.getAllIndexDocuments(this.getRegion(), name, accept);
     }
 
     /**
@@ -3319,7 +3324,7 @@ public final class AffindaAPI {
             createIndexDocumentWithResponseAsync(
                     String name, PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema body) {
         final String accept = "application/json";
-        return service.createIndexDocument(this.getHost(), name, body, accept);
+        return service.createIndexDocument(this.getRegion(), name, body, accept);
     }
 
     /**
@@ -3378,7 +3383,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteIndexDocumentWithResponseAsync(String name, String identifier) {
         final String accept = "application/json";
-        return service.deleteIndexDocument(this.getHost(), name, identifier, accept);
+        return service.deleteIndexDocument(this.getRegion(), name, identifier, accept);
     }
 
     /**
@@ -3423,7 +3428,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<List<OccupationGroup>>> listOccupationGroupsWithResponseAsync() {
         final String accept = "application/json";
-        return service.listOccupationGroups(this.getHost(), accept);
+        return service.listOccupationGroups(this.getRegion(), accept);
     }
 
     /**
@@ -3475,7 +3480,7 @@ public final class AffindaAPI {
     public Mono<Response<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema>> getAllUsersWithResponseAsync(
             Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllUsers(this.getHost(), offset, limit, accept);
+        return service.getAllUsers(this.getRegion(), offset, limit, accept);
     }
 
     /**
@@ -3532,7 +3537,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<UserCreateResponse>> createUserWithResponseAsync(UserCreateRequest body) {
         final String accept = "application/json";
-        return service.createUser(this.getHost(), body, accept);
+        return service.createUser(this.getRegion(), body, accept);
     }
 
     /**
@@ -3584,7 +3589,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<List<Organization>>> getAllOrganizationsWithResponseAsync() {
         final String accept = "application/json";
-        return service.getAllOrganizations(this.getHost(), accept);
+        return service.getAllOrganizations(this.getRegion(), accept);
     }
 
     /**
@@ -3634,7 +3639,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Organization>> createOrganizationWithResponseAsync(OrganizationCreate body) {
         final String accept = "application/json";
-        return service.createOrganization(this.getHost(), body, accept);
+        return service.createOrganization(this.getRegion(), body, accept);
     }
 
     /**
@@ -3688,7 +3693,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Organization>> getOrganizationWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getOrganization(this.getHost(), identifier, accept);
+        return service.getOrganization(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -3748,7 +3753,7 @@ public final class AffindaAPI {
             String identifier, String name, Flux<ByteBuffer> avatar, Long contentLength, String resthookSignatureKey) {
         final String accept = "application/json";
         return service.updateOrganization(
-                this.getHost(), identifier, name, avatar, contentLength, resthookSignatureKey, accept);
+                this.getRegion(), identifier, name, avatar, contentLength, resthookSignatureKey, accept);
     }
 
     /**
@@ -3812,7 +3817,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteOrganizationWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteOrganization(this.getHost(), identifier, accept);
+        return service.deleteOrganization(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -3862,7 +3867,7 @@ public final class AffindaAPI {
             getAllOrganizationMembershipsWithResponseAsync(
                     Integer offset, Integer limit, String organization, OrganizationRole role) {
         final String accept = "application/json";
-        return service.getAllOrganizationMemberships(this.getHost(), offset, limit, organization, role, accept);
+        return service.getAllOrganizationMemberships(this.getRegion(), offset, limit, organization, role, accept);
     }
 
     /**
@@ -3927,7 +3932,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<OrganizationMembership>> getOrganizationMembershipWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getOrganizationMembership(this.getHost(), identifier, accept);
+        return service.getOrganizationMembership(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -3983,7 +3988,7 @@ public final class AffindaAPI {
     public Mono<Response<OrganizationMembership>> updateOrganizationMembershipWithResponseAsync(
             String identifier, OrganizationMembershipUpdate body) {
         final String accept = "application/json";
-        return service.updateOrganizationMembership(this.getHost(), identifier, body, accept);
+        return service.updateOrganizationMembership(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -4041,7 +4046,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteOrganizationMembershipWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteOrganizationMembership(this.getHost(), identifier, accept);
+        return service.deleteOrganizationMembership(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -4099,7 +4104,7 @@ public final class AffindaAPI {
                     InvitationStatus status,
                     OrganizationRole role) {
         final String accept = "application/json";
-        return service.getAllInvitations(this.getHost(), offset, limit, organization, status, role, accept);
+        return service.getAllInvitations(this.getRegion(), offset, limit, organization, status, role, accept);
     }
 
     /**
@@ -4163,7 +4168,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Invitation>> createInvitationWithResponseAsync(InvitationCreate body) {
         final String accept = "application/json";
-        return service.createInvitation(this.getHost(), body, accept);
+        return service.createInvitation(this.getRegion(), body, accept);
     }
 
     /**
@@ -4217,7 +4222,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Invitation>> getInvitationWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getInvitation(this.getHost(), identifier, accept);
+        return service.getInvitation(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -4272,7 +4277,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Invitation>> updateInvitationWithResponseAsync(String identifier, InvitationUpdate body) {
         final String accept = "application/json";
-        return service.updateInvitation(this.getHost(), identifier, body, accept);
+        return service.updateInvitation(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -4328,7 +4333,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteInvitationWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteInvitation(this.getHost(), identifier, accept);
+        return service.deleteInvitation(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -4375,7 +4380,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Invitation>> getInvitationByTokenWithResponseAsync(String token) {
         final String accept = "application/json";
-        return service.getInvitationByToken(this.getHost(), token, accept);
+        return service.getInvitationByToken(this.getRegion(), token, accept);
     }
 
     /**
@@ -4433,7 +4438,7 @@ public final class AffindaAPI {
     public Mono<Response<Invitation>> respondToInvitationWithResponseAsync(
             String token, PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
         final String accept = "application/json";
-        return service.respondToInvitation(this.getHost(), token, body, accept);
+        return service.respondToInvitation(this.getRegion(), token, body, accept);
     }
 
     /**
@@ -4496,7 +4501,7 @@ public final class AffindaAPI {
             String organization, Boolean includePublicExtractors, String name, Boolean validatable) {
         final String accept = "application/json";
         return service.getAllExtractors(
-                this.getHost(), organization, includePublicExtractors, name, validatable, accept);
+                this.getRegion(), organization, includePublicExtractors, name, validatable, accept);
     }
 
     /**
@@ -4558,7 +4563,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Extractor>> createExtractorWithResponseAsync(ExtractorCreate body) {
         final String accept = "application/json";
-        return service.createExtractor(this.getHost(), body, accept);
+        return service.createExtractor(this.getRegion(), body, accept);
     }
 
     /**
@@ -4612,7 +4617,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Extractor>> getExtractorWithResponseAsync(int id) {
         final String accept = "application/json";
-        return service.getExtractor(this.getHost(), id, accept);
+        return service.getExtractor(this.getRegion(), id, accept);
     }
 
     /**
@@ -4667,7 +4672,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Extractor>> updateExtractorDataWithResponseAsync(int id, ExtractorUpdate body) {
         final String accept = "application/json";
-        return service.updateExtractorData(this.getHost(), id, body, accept);
+        return service.updateExtractorData(this.getRegion(), id, body, accept);
     }
 
     /**
@@ -4723,7 +4728,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteExtractorWithResponseAsync(int id) {
         final String accept = "application/json";
-        return service.deleteExtractor(this.getHost(), id, accept);
+        return service.deleteExtractor(this.getRegion(), id, accept);
     }
 
     /**
@@ -4782,7 +4787,7 @@ public final class AffindaAPI {
             String annotationContentType) {
         final String accept = "application/json";
         return service.getAllDataPoints(
-                this.getHost(),
+                this.getRegion(),
                 offset,
                 limit,
                 organization,
@@ -4872,7 +4877,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<DataPoint>> createDataPointWithResponseAsync(DataPointCreate body) {
         final String accept = "application/json";
-        return service.createDataPoint(this.getHost(), body, accept);
+        return service.createDataPoint(this.getRegion(), body, accept);
     }
 
     /**
@@ -4926,7 +4931,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<DataPoint>> getDataPointWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getDataPoint(this.getHost(), identifier, accept);
+        return service.getDataPoint(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -4981,7 +4986,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<DataPoint>> updateDataPointDataWithResponseAsync(String identifier, DataPointUpdate body) {
         final String accept = "application/json";
-        return service.updateDataPointData(this.getHost(), identifier, body, accept);
+        return service.updateDataPointData(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -5037,7 +5042,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteDataPointWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteDataPoint(this.getHost(), identifier, accept);
+        return service.deleteDataPoint(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -5083,7 +5088,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<List<Workspace>>> getAllWorkspacesWithResponseAsync(String organization, String name) {
         final String accept = "application/json";
-        return service.getAllWorkspaces(this.getHost(), organization, name, accept);
+        return service.getAllWorkspaces(this.getRegion(), organization, name, accept);
     }
 
     /**
@@ -5139,7 +5144,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Workspace>> createWorkspaceWithResponseAsync(WorkspaceCreate body) {
         final String accept = "application/json";
-        return service.createWorkspace(this.getHost(), body, accept);
+        return service.createWorkspace(this.getRegion(), body, accept);
     }
 
     /**
@@ -5193,7 +5198,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Workspace>> getWorkspaceWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getWorkspace(this.getHost(), identifier, accept);
+        return service.getWorkspace(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -5248,7 +5253,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Workspace>> updateWorkspaceWithResponseAsync(String identifier, WorkspaceUpdate body) {
         final String accept = "application/json";
-        return service.updateWorkspace(this.getHost(), identifier, body, accept);
+        return service.updateWorkspace(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -5304,7 +5309,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteWorkspaceWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteWorkspace(this.getHost(), identifier, accept);
+        return service.deleteWorkspace(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -5353,7 +5358,7 @@ public final class AffindaAPI {
     public Mono<Response<PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema>>
             getAllWorkspaceMembershipsWithResponseAsync(Integer offset, Integer limit, String workspace, String user) {
         final String accept = "application/json";
-        return service.getAllWorkspaceMemberships(this.getHost(), offset, limit, workspace, user, accept);
+        return service.getAllWorkspaceMemberships(this.getRegion(), offset, limit, workspace, user, accept);
     }
 
     /**
@@ -5417,7 +5422,7 @@ public final class AffindaAPI {
     public Mono<Response<WorkspaceMembership>> createWorkspaceMembershipWithResponseAsync(
             WorkspaceMembershipCreate body) {
         final String accept = "application/json";
-        return service.createWorkspaceMembership(this.getHost(), body, accept);
+        return service.createWorkspaceMembership(this.getRegion(), body, accept);
     }
 
     /**
@@ -5471,7 +5476,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<WorkspaceMembership>> getWorkspaceMembershipWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getWorkspaceMembership(this.getHost(), identifier, accept);
+        return service.getWorkspaceMembership(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -5525,7 +5530,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteWorkspaceMembershipWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteWorkspaceMembership(this.getHost(), identifier, accept);
+        return service.deleteWorkspaceMembership(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -5570,7 +5575,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<List<DocumentCollection>>> getAllCollectionsWithResponseAsync(String workspace) {
         final String accept = "application/json";
-        return service.getAllCollections(this.getHost(), workspace, accept);
+        return service.getAllCollections(this.getRegion(), workspace, accept);
     }
 
     /**
@@ -5624,7 +5629,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<DocumentCollection>> createCollectionWithResponseAsync(DocumentCollectionCreate body) {
         final String accept = "application/json";
-        return service.createCollection(this.getHost(), body, accept);
+        return service.createCollection(this.getRegion(), body, accept);
     }
 
     /**
@@ -5678,7 +5683,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<DocumentCollection>> getCollectionWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getCollection(this.getHost(), identifier, accept);
+        return service.getCollection(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -5734,7 +5739,7 @@ public final class AffindaAPI {
     public Mono<Response<DocumentCollection>> updateCollectionDataWithResponseAsync(
             String identifier, DocumentCollectionUpdate body) {
         final String accept = "application/json";
-        return service.updateCollectionData(this.getHost(), identifier, body, accept);
+        return service.updateCollectionData(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -5790,7 +5795,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteCollectionWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteCollection(this.getHost(), identifier, accept);
+        return service.deleteCollection(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -5861,7 +5866,7 @@ public final class AffindaAPI {
         String orderingConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(ordering, CollectionFormat.CSV);
         return service.getAllDocuments(
-                this.getHost(),
+                this.getRegion(),
                 offset,
                 limit,
                 workspace,
@@ -5973,7 +5978,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Document>> createDocumentWithResponseAsync(DocumentCreate body) {
         final String accept = "application/json";
-        return service.createDocument(this.getHost(), body, accept);
+        return service.createDocument(this.getRegion(), body, accept);
     }
 
     /**
@@ -6031,7 +6036,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Document>> getDocumentWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getDocument(this.getHost(), identifier, accept);
+        return service.getDocument(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -6086,7 +6091,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Document>> updateDocumentDataWithResponseAsync(String identifier, DocumentUpdate body) {
         final String accept = "application/json";
-        return service.updateDocumentData(this.getHost(), identifier, body, accept);
+        return service.updateDocumentData(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -6142,7 +6147,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteDocumentWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteDocument(this.getHost(), identifier, accept);
+        return service.deleteDocument(this.getRegion(), identifier, accept);
     }
 
     /**
@@ -6189,7 +6194,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<List<Tag>>> getAllTagsWithResponseAsync(Integer limit, Integer offset, String workspace) {
         final String accept = "application/json";
-        return service.getAllTags(this.getHost(), limit, offset, workspace, accept);
+        return service.getAllTags(this.getRegion(), limit, offset, workspace, accept);
     }
 
     /**
@@ -6247,7 +6252,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Tag>> createTagWithResponseAsync(TagCreate body) {
         final String accept = "application/json";
-        return service.createTag(this.getHost(), body, accept);
+        return service.createTag(this.getRegion(), body, accept);
     }
 
     /**
@@ -6301,7 +6306,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Tag>> getTagWithResponseAsync(int id) {
         final String accept = "application/json";
-        return service.getTag(this.getHost(), id, accept);
+        return service.getTag(this.getRegion(), id, accept);
     }
 
     /**
@@ -6356,7 +6361,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Tag>> updateTagDataWithResponseAsync(int id, TagUpdate body) {
         final String accept = "application/json";
-        return service.updateTagData(this.getHost(), id, body, accept);
+        return service.updateTagData(this.getRegion(), id, body, accept);
     }
 
     /**
@@ -6412,7 +6417,7 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteTagWithResponseAsync(int id) {
         final String accept = "application/json";
-        return service.deleteTag(this.getHost(), id, accept);
+        return service.deleteTag(this.getRegion(), id, accept);
     }
 
     /**

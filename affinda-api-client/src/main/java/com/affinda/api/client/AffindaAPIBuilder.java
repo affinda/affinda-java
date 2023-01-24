@@ -1,5 +1,6 @@
 package com.affinda.api.client;
 
+import com.affinda.api.client.models.Region;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ServiceClientBuilder;
 import com.azure.core.client.traits.ConfigurationTrait;
@@ -160,19 +161,19 @@ public final class AffindaAPIBuilder
     }
 
     /*
-     * server parameter
+     * region - server parameter
      */
-    @Generated private String host;
+    @Generated private Region region;
 
     /**
-     * Sets server parameter.
+     * Sets region - server parameter.
      *
-     * @param host the host value.
+     * @param region the region value.
      * @return the AffindaAPIBuilder.
      */
     @Generated
-    public AffindaAPIBuilder host(String host) {
-        this.host = host;
+    public AffindaAPIBuilder region(Region region) {
+        this.region = region;
         return this;
     }
 
@@ -221,13 +222,13 @@ public final class AffindaAPIBuilder
         if (pipeline == null) {
             this.pipeline = createHttpPipeline();
         }
-        if (host == null) {
-            this.host = "https://api.affinda.com";
+        if (region == null) {
+            this.region = Region.API;
         }
         if (serializerAdapter == null) {
             this.serializerAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         }
-        AffindaAPI client = new AffindaAPI(pipeline, serializerAdapter, host);
+        AffindaAPI client = new AffindaAPI(pipeline, serializerAdapter, region);
         return client;
     }
 

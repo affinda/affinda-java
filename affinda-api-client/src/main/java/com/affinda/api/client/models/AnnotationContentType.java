@@ -39,6 +39,9 @@ public final class AnnotationContentType extends ExpandableStringEnum<Annotation
     /** Static value table for AnnotationContentType. */
     public static final AnnotationContentType TABLE = fromString("table");
 
+    /** Static value cell for AnnotationContentType. */
+    public static final AnnotationContentType CELL = fromString("cell");
+
     /**
      * Creates or finds a AnnotationContentType from its string representation.
      *
