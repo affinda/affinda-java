@@ -42,6 +42,21 @@ public final class AnnotationContentType extends ExpandableStringEnum<Annotation
     /** Static value cell for AnnotationContentType. */
     public static final AnnotationContentType CELL = fromString("cell");
 
+    /** Static value expectedremuneration for AnnotationContentType. */
+    public static final AnnotationContentType EXPECTEDREMUNERATION = fromString("expectedremuneration");
+
+    /** Static value jobtitle for AnnotationContentType. */
+    public static final AnnotationContentType JOBTITLE = fromString("jobtitle");
+
+    /** Static value language for AnnotationContentType. */
+    public static final AnnotationContentType LANGUAGE = fromString("language");
+
+    /** Static value skill for AnnotationContentType. */
+    public static final AnnotationContentType SKILL = fromString("skill");
+
+    /** Static value yearsexperience for AnnotationContentType. */
+    public static final AnnotationContentType YEARSEXPERIENCE = fromString("yearsexperience");
+
     /**
      * Creates or finds a AnnotationContentType from its string representation.
      *
