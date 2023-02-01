@@ -27,6 +27,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 - Remove create_user example as endpoint is deprecated
 
+### Security
+- Updated jackson-databind to 2.13.4 due to CVE-2022-42004
+
 ## [1.0.0] - 2023-01-13
 ### Added
 - Added endpoints: Organization, Membership, Invitation, tags
