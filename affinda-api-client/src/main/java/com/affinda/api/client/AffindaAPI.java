@@ -44,7 +44,6 @@ import com.affinda.api.client.models.Paths15O3Zn5V2JobDescriptionSearchEmbedPost
 import com.affinda.api.client.models.Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema;
-import com.affinda.api.client.models.Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema;
@@ -68,8 +67,6 @@ import com.affinda.api.client.models.ResumeSearchParameters;
 import com.affinda.api.client.models.Tag;
 import com.affinda.api.client.models.TagCreate;
 import com.affinda.api.client.models.TagUpdate;
-import com.affinda.api.client.models.UserCreateRequest;
-import com.affinda.api.client.models.UserCreateResponse;
 import com.affinda.api.client.models.Workspace;
 import com.affinda.api.client.models.WorkspaceCreate;
 import com.affinda.api.client.models.WorkspaceMembership;
@@ -621,29 +618,6 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<OccupationGroup>>> listOccupationGroups(
                 @HostParam("region") Region region, @HeaderParam("Accept") String accept);
-
-        @Get("/v3/users")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema>> getAllUsers(
-                @HostParam("region") Region region,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/v3/users")
-        @ExpectedResponses({201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<UserCreateResponse>> createUser(
-                @HostParam("region") Region region,
-                @BodyParam("application/json") UserCreateRequest body,
-                @HeaderParam("Accept") String accept);
 
         @Get("/v3/organizations")
         @ExpectedResponses({200})
@@ -3463,119 +3437,6 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public List<OccupationGroup> listOccupationGroups() {
         return listOccupationGroupsAsync().block();
-    }
-
-    /**
-     * Returns all the users.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema>> getAllUsersWithResponseAsync(
-            Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.getAllUsers(this.getRegion(), offset, limit, accept);
-    }
-
-    /**
-     * Returns all the users.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema> getAllUsersAsync(
-            Integer offset, Integer limit) {
-        return getAllUsersWithResponseAsync(offset, limit)
-                .flatMap(
-                        (Response<Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the users.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Paths9K2ZxlV3UsersGetResponses200ContentApplicationJsonSchema getAllUsers(Integer offset, Integer limit) {
-        return getAllUsersAsync(offset, limit).block();
-    }
-
-    /**
-     * Create an user as part of your account.
-     *
-     * @param body User to create.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<UserCreateResponse>> createUserWithResponseAsync(UserCreateRequest body) {
-        final String accept = "application/json";
-        return service.createUser(this.getRegion(), body, accept);
-    }
-
-    /**
-     * Create an user as part of your account.
-     *
-     * @param body User to create.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<UserCreateResponse> createUserAsync(UserCreateRequest body) {
-        return createUserWithResponseAsync(body)
-                .flatMap(
-                        (Response<UserCreateResponse> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Create an user as part of your account.
-     *
-     * @param body User to create.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public UserCreateResponse createUser(UserCreateRequest body) {
-        return createUserAsync(body).block();
     }
 
     /**
