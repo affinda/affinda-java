@@ -1106,6 +1106,7 @@ public final class AffindaAPI {
                 @QueryParam("search") String search,
                 @QueryParam("ordering") String ordering,
                 @QueryParam("include_data") Boolean includeData,
+                @QueryParam("exclude") String exclude,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/documents")
@@ -5703,6 +5704,7 @@ public final class AffindaAPI {
      *     fields is supported.
      * @param includeData By default, this endpoint returns only the meta data of the documents. Set this to `true` will
      *     return the detailed data that was parsed, at a performance cost.
+     * @param exclude Exclude some documents from the result.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -5720,12 +5722,15 @@ public final class AffindaAPI {
             DateRange createdDt,
             String search,
             List<Get8ItemsItem> ordering,
-            Boolean includeData) {
+            Boolean includeData,
+            List<String> exclude) {
         final String accept = "application/json";
         String tagsConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
         String orderingConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(ordering, CollectionFormat.CSV);
+        String excludeConverted =
+                JacksonAdapter.createDefaultSerializerAdapter().serializeList(exclude, CollectionFormat.CSV);
         return service.getAllDocuments(
                 this.getRegion(),
                 offset,
@@ -5738,6 +5743,7 @@ public final class AffindaAPI {
                 search,
                 orderingConverted,
                 includeData,
+                excludeConverted,
                 accept);
     }
 
@@ -5756,6 +5762,7 @@ public final class AffindaAPI {
      *     fields is supported.
      * @param includeData By default, this endpoint returns only the meta data of the documents. Set this to `true` will
      *     return the detailed data that was parsed, at a performance cost.
+     * @param exclude Exclude some documents from the result.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -5773,9 +5780,20 @@ public final class AffindaAPI {
             DateRange createdDt,
             String search,
             List<Get8ItemsItem> ordering,
-            Boolean includeData) {
+            Boolean includeData,
+            List<String> exclude) {
         return getAllDocumentsWithResponseAsync(
-                        offset, limit, workspace, collection, state, tags, createdDt, search, ordering, includeData)
+                        offset,
+                        limit,
+                        workspace,
+                        collection,
+                        state,
+                        tags,
+                        createdDt,
+                        search,
+                        ordering,
+                        includeData,
+                        exclude)
                 .flatMap(
                         (Response<GetAllDocumentsResults> res) -> {
                             if (res.getValue() != null) {
@@ -5801,6 +5819,7 @@ public final class AffindaAPI {
      *     fields is supported.
      * @param includeData By default, this endpoint returns only the meta data of the documents. Set this to `true` will
      *     return the detailed data that was parsed, at a performance cost.
+     * @param exclude Exclude some documents from the result.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -5818,9 +5837,20 @@ public final class AffindaAPI {
             DateRange createdDt,
             String search,
             List<Get8ItemsItem> ordering,
-            Boolean includeData) {
+            Boolean includeData,
+            List<String> exclude) {
         return getAllDocumentsAsync(
-                        offset, limit, workspace, collection, state, tags, createdDt, search, ordering, includeData)
+                        offset,
+                        limit,
+                        workspace,
+                        collection,
+                        state,
+                        tags,
+                        createdDt,
+                        search,
+                        ordering,
+                        includeData,
+                        exclude)
                 .block();
     }
 
