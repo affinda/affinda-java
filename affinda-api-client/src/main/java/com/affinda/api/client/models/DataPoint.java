@@ -68,10 +68,10 @@ public final class DataPoint {
     private List<String> similarTo;
 
     /*
-     * The choices property.
+     * The displayEnumValue property.
      */
-    @JsonProperty(value = "choices")
-    private List<DataPointChoicesItem> choices;
+    @JsonProperty(value = "displayEnumValue")
+    private Boolean displayEnumValue;
 
     /*
      * The children property.
@@ -280,22 +280,22 @@ public final class DataPoint {
     }
 
     /**
-     * Get the choices property: The choices property.
+     * Get the displayEnumValue property: The displayEnumValue property.
      *
-     * @return the choices value.
+     * @return the displayEnumValue value.
      */
-    public List<DataPointChoicesItem> getChoices() {
-        return this.choices;
+    public Boolean isDisplayEnumValue() {
+        return this.displayEnumValue;
     }
 
     /**
-     * Set the choices property: The choices property.
+     * Set the displayEnumValue property: The displayEnumValue property.
      *
-     * @param choices the choices value to set.
+     * @param displayEnumValue the displayEnumValue value to set.
      * @return the DataPoint object itself.
      */
-    public DataPoint setChoices(List<DataPointChoicesItem> choices) {
-        this.choices = choices;
+    public DataPoint setDisplayEnumValue(Boolean displayEnumValue) {
+        this.displayEnumValue = displayEnumValue;
         return this;
     }
 

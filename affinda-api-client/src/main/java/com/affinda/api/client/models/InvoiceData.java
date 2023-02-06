@@ -228,7 +228,7 @@ public final class InvoiceData {
      * The currencyCode property.
      */
     @JsonProperty(value = "currencyCode")
-    private EnumAnnotationSerializerV2 currencyCode;
+    private TextAnnotationV2 currencyCode;
 
     /*
      * Dictionary of <any>
@@ -961,7 +961,7 @@ public final class InvoiceData {
      *
      * @return the currencyCode value.
      */
-    public EnumAnnotationSerializerV2 getCurrencyCode() {
+    public TextAnnotationV2 getCurrencyCode() {
         return this.currencyCode;
     }
 
@@ -971,7 +971,7 @@ public final class InvoiceData {
      * @param currencyCode the currencyCode value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCurrencyCode(EnumAnnotationSerializerV2 currencyCode) {
+    public InvoiceData setCurrencyCode(TextAnnotationV2 currencyCode) {
         this.currencyCode = currencyCode;
         return this;
     }

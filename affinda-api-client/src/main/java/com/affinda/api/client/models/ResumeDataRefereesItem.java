@@ -1,7 +1,12 @@
 package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashMap;
+import java.util.Map;
 
 /** The ResumeDataRefereesItem model. */
 @Fluent
@@ -35,6 +40,11 @@ public final class ResumeDataRefereesItem {
      */
     @JsonProperty(value = "position")
     private String position;
+
+    /*
+     * Dictionary of <any>
+     */
+    @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
      * Get the name property: The name property.
@@ -134,5 +144,34 @@ public final class ResumeDataRefereesItem {
     public ResumeDataRefereesItem setPosition(String position) {
         this.position = position;
         return this;
+    }
+
+    /**
+     * Get the additionalProperties property: Dictionary of &lt;any&gt;.
+     *
+     * @return the additionalProperties value.
+     */
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    /**
+     * Set the additionalProperties property: Dictionary of &lt;any&gt;.
+     *
+     * @param additionalProperties the additionalProperties value to set.
+     * @return the ResumeDataRefereesItem object itself.
+     */
+    public ResumeDataRefereesItem setAdditionalProperties(Map<String, Object> additionalProperties) {
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
+    @JsonAnySetter
+    void setAdditionalProperties(String key, Object value) {
+        if (additionalProperties == null) {
+            additionalProperties = new HashMap<>();
+        }
+        additionalProperties.put(key, value);
     }
 }

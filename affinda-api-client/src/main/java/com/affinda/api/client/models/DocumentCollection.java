@@ -81,6 +81,12 @@ public final class DocumentCollection {
     @JsonProperty(value = "confirmedDocsCount")
     private Integer confirmedDocsCount;
 
+    /*
+     * The ingestEmail property.
+     */
+    @JsonProperty(value = "ingestEmail")
+    private String ingestEmail;
+
     /**
      * Get the identifier property: Uniquely identify a collection.
      *
@@ -320,6 +326,26 @@ public final class DocumentCollection {
      */
     public DocumentCollection setConfirmedDocsCount(Integer confirmedDocsCount) {
         this.confirmedDocsCount = confirmedDocsCount;
+        return this;
+    }
+
+    /**
+     * Get the ingestEmail property: The ingestEmail property.
+     *
+     * @return the ingestEmail value.
+     */
+    public String getIngestEmail() {
+        return this.ingestEmail;
+    }
+
+    /**
+     * Set the ingestEmail property: The ingestEmail property.
+     *
+     * @param ingestEmail the ingestEmail value to set.
+     * @return the DocumentCollection object itself.
+     */
+    public DocumentCollection setIngestEmail(String ingestEmail) {
+        this.ingestEmail = ingestEmail;
         return this;
     }
 }

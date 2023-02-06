@@ -48,6 +48,7 @@ import com.affinda.api.client.models.PathsCl024WV3IndexNameDocumentsPostRequestb
 import com.affinda.api.client.models.PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema;
@@ -925,6 +926,20 @@ public final class AffindaAPI {
         Mono<Response<Void>> deleteDataPoint(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/data_point_choices")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema>> getDataPointChoices(
+                @HostParam("region") Region region,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @QueryParam("data_point") String dataPoint,
+                @QueryParam("search") String search,
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/workspaces")
@@ -4934,6 +4949,72 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteDataPoint(String identifier) {
         deleteDataPointAsync(identifier).block();
+    }
+
+    /**
+     * Returns available choices for a specific enum data point.
+     *
+     * @param dataPoint The data point to get choices for.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @param search Filter choices by searching for a substring.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema>>
+            getDataPointChoicesWithResponseAsync(String dataPoint, Integer offset, Integer limit, String search) {
+        final String accept = "application/json";
+        return service.getDataPointChoices(this.getRegion(), offset, limit, dataPoint, search, accept);
+    }
+
+    /**
+     * Returns available choices for a specific enum data point.
+     *
+     * @param dataPoint The data point to get choices for.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @param search Filter choices by searching for a substring.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema> getDataPointChoicesAsync(
+            String dataPoint, Integer offset, Integer limit, String search) {
+        return getDataPointChoicesWithResponseAsync(dataPoint, offset, limit, search)
+                .flatMap(
+                        (Response<PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns available choices for a specific enum data point.
+     *
+     * @param dataPoint The data point to get choices for.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @param search Filter choices by searching for a substring.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema getDataPointChoices(
+            String dataPoint, Integer offset, Integer limit, String search) {
+        return getDataPointChoicesAsync(dataPoint, offset, limit, search).block();
     }
 
     /**
