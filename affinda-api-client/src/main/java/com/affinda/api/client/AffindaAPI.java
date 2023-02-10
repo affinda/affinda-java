@@ -56,6 +56,9 @@ import com.affinda.api.client.models.RedactedResume;
 import com.affinda.api.client.models.RedactedResumeRequestBody;
 import com.affinda.api.client.models.Region;
 import com.affinda.api.client.models.RequestErrorException;
+import com.affinda.api.client.models.ResthookSubscription;
+import com.affinda.api.client.models.ResthookSubscriptionCreate;
+import com.affinda.api.client.models.ResthookSubscriptionUpdate;
 import com.affinda.api.client.models.Resume;
 import com.affinda.api.client.models.ResumeData;
 import com.affinda.api.client.models.ResumeRequestBody;
@@ -619,6 +622,59 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<OccupationGroup>>> listOccupationGroups(
                 @HostParam("region") Region region, @HeaderParam("Accept") String accept);
+
+        @Get("/v3/resthook_subscriptions")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<List<ResthookSubscription>>> getAllResthookSubscriptions(
+                @HostParam("region") Region region,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/resthook_subscriptions")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ResthookSubscription>> createResthookSubscription(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") ResthookSubscriptionCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/resthook_subscriptions/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ResthookSubscription>> getResthookSubscription(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Patch("/v3/resthook_subscriptions/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ResthookSubscription>> updateResthookSubscriptionData(
+                @HostParam("region") Region region,
+                @PathParam("id") int id,
+                @BodyParam("application/json") ResthookSubscriptionUpdate body,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v3/resthook_subscriptions/{id}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteResthookSubscription(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
 
         @Get("/v3/organizations")
         @ExpectedResponses({200})
@@ -3453,6 +3509,276 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public List<OccupationGroup> listOccupationGroups() {
         return listOccupationGroupsAsync().block();
+    }
+
+    /**
+     * Returns your resthook subscriptions.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of ResthookSubscription along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<ResthookSubscription>>> getAllResthookSubscriptionsWithResponseAsync(
+            Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.getAllResthookSubscriptions(this.getRegion(), offset, limit, accept);
+    }
+
+    /**
+     * Returns your resthook subscriptions.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of ResthookSubscription on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<ResthookSubscription>> getAllResthookSubscriptionsAsync(Integer offset, Integer limit) {
+        return getAllResthookSubscriptionsWithResponseAsync(offset, limit)
+                .flatMap(
+                        (Response<List<ResthookSubscription>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns your resthook subscriptions.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of ResthookSubscription.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<ResthookSubscription> getAllResthookSubscriptions(Integer offset, Integer limit) {
+        return getAllResthookSubscriptionsAsync(offset, limit).block();
+    }
+
+    /**
+     * Create a resthook subscriptions.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResthookSubscription>> createResthookSubscriptionWithResponseAsync(
+            ResthookSubscriptionCreate body) {
+        final String accept = "application/json";
+        return service.createResthookSubscription(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Create a resthook subscriptions.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResthookSubscription> createResthookSubscriptionAsync(ResthookSubscriptionCreate body) {
+        return createResthookSubscriptionWithResponseAsync(body)
+                .flatMap(
+                        (Response<ResthookSubscription> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create a resthook subscriptions.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResthookSubscription createResthookSubscription(ResthookSubscriptionCreate body) {
+        return createResthookSubscriptionAsync(body).block();
+    }
+
+    /**
+     * Return a specific resthook subscription.
+     *
+     * @param id Resthook subscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResthookSubscription>> getResthookSubscriptionWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.getResthookSubscription(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Return a specific resthook subscription.
+     *
+     * @param id Resthook subscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResthookSubscription> getResthookSubscriptionAsync(int id) {
+        return getResthookSubscriptionWithResponseAsync(id)
+                .flatMap(
+                        (Response<ResthookSubscription> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return a specific resthook subscription.
+     *
+     * @param id Resthook subscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResthookSubscription getResthookSubscription(int id) {
+        return getResthookSubscriptionAsync(id).block();
+    }
+
+    /**
+     * Update data of a resthook subscription.
+     *
+     * @param id ResthookSubscription's ID.
+     * @param body ResthookSubscription data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResthookSubscription>> updateResthookSubscriptionDataWithResponseAsync(
+            int id, ResthookSubscriptionUpdate body) {
+        final String accept = "application/json";
+        return service.updateResthookSubscriptionData(this.getRegion(), id, body, accept);
+    }
+
+    /**
+     * Update data of a resthook subscription.
+     *
+     * @param id ResthookSubscription's ID.
+     * @param body ResthookSubscription data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResthookSubscription> updateResthookSubscriptionDataAsync(int id, ResthookSubscriptionUpdate body) {
+        return updateResthookSubscriptionDataWithResponseAsync(id, body)
+                .flatMap(
+                        (Response<ResthookSubscription> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update data of a resthook subscription.
+     *
+     * @param id ResthookSubscription's ID.
+     * @param body ResthookSubscription data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResthookSubscription updateResthookSubscriptionData(int id, ResthookSubscriptionUpdate body) {
+        return updateResthookSubscriptionDataAsync(id, body).block();
+    }
+
+    /**
+     * Deletes the specified resthook subscription from the database.
+     *
+     * @param id ResthookSubscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteResthookSubscriptionWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.deleteResthookSubscription(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Deletes the specified resthook subscription from the database.
+     *
+     * @param id ResthookSubscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> deleteResthookSubscriptionAsync(int id) {
+        return deleteResthookSubscriptionWithResponseAsync(id).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Deletes the specified resthook subscription from the database.
+     *
+     * @param id ResthookSubscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteResthookSubscription(int id) {
+        deleteResthookSubscriptionAsync(id).block();
     }
 
     /**

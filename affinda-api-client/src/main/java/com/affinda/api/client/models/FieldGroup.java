@@ -6,7 +6,7 @@ import java.util.List;
 
 /** The FieldGroup model. */
 @Fluent
-public class FieldGroup {
+public final class FieldGroup {
     /*
      * The label property.
      */

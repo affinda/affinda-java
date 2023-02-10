@@ -3,6 +3,7 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /** The Extractor model. */
 @Fluent
@@ -65,7 +66,7 @@ public final class Extractor {
      * The fieldGroups property.
      */
     @JsonProperty(value = "fieldGroups")
-    private ExtractorFieldGroups fieldGroups;
+    private List<FieldGroup> fieldGroups;
 
     /*
      * The createdDt property.
@@ -258,7 +259,7 @@ public final class Extractor {
      *
      * @return the fieldGroups value.
      */
-    public ExtractorFieldGroups getFieldGroups() {
+    public List<FieldGroup> getFieldGroups() {
         return this.fieldGroups;
     }
 
@@ -268,7 +269,7 @@ public final class Extractor {
      * @param fieldGroups the fieldGroups value to set.
      * @return the Extractor object itself.
      */
-    public Extractor setFieldGroups(ExtractorFieldGroups fieldGroups) {
+    public Extractor setFieldGroups(List<FieldGroup> fieldGroups) {
         this.fieldGroups = fieldGroups;
         return this;
     }

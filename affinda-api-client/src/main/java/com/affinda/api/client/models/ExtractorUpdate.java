@@ -2,6 +2,7 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** The ExtractorUpdate model. */
 @Fluent
@@ -40,7 +41,7 @@ public final class ExtractorUpdate {
      * The fieldGroups property.
      */
     @JsonProperty(value = "fieldGroups")
-    private FieldGroups fieldGroups;
+    private List<FieldGroup> fieldGroups;
 
     /**
      * Get the name property: The name property.
@@ -147,7 +148,7 @@ public final class ExtractorUpdate {
      *
      * @return the fieldGroups value.
      */
-    public FieldGroups getFieldGroups() {
+    public List<FieldGroup> getFieldGroups() {
         return this.fieldGroups;
     }
 
@@ -157,7 +158,7 @@ public final class ExtractorUpdate {
      * @param fieldGroups the fieldGroups value to set.
      * @return the ExtractorUpdate object itself.
      */
-    public ExtractorUpdate setFieldGroups(FieldGroups fieldGroups) {
+    public ExtractorUpdate setFieldGroups(List<FieldGroup> fieldGroups) {
         this.fieldGroups = fieldGroups;
         return this;
     }
