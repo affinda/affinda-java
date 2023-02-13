@@ -20,10 +20,10 @@ public final class ExtractorUpdate {
     private String namePlural;
 
     /*
-     * The base extractor's ID.
+     * Uniquely identify an extractor.
      */
     @JsonProperty(value = "baseExtractor")
-    private Integer baseExtractor;
+    private String baseExtractor;
 
     /*
      * The category property.
@@ -84,21 +84,21 @@ public final class ExtractorUpdate {
     }
 
     /**
-     * Get the baseExtractor property: The base extractor's ID.
+     * Get the baseExtractor property: Uniquely identify an extractor.
      *
      * @return the baseExtractor value.
      */
-    public Integer getBaseExtractor() {
+    public String getBaseExtractor() {
         return this.baseExtractor;
     }
 
     /**
-     * Set the baseExtractor property: The base extractor's ID.
+     * Set the baseExtractor property: Uniquely identify an extractor.
      *
      * @param baseExtractor the baseExtractor value to set.
      * @return the ExtractorUpdate object itself.
      */
-    public ExtractorUpdate setBaseExtractor(Integer baseExtractor) {
+    public ExtractorUpdate setBaseExtractor(String baseExtractor) {
         this.baseExtractor = baseExtractor;
         return this;
     }

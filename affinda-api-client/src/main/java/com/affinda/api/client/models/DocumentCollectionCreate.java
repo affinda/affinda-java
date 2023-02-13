@@ -21,10 +21,10 @@ public final class DocumentCollectionCreate {
     private String workspace;
 
     /*
-     * Extractor's ID.
+     * Uniquely identify an extractor.
      */
     @JsonProperty(value = "extractor", required = true)
-    private int extractor;
+    private String extractor;
 
     /*
      * The autoValidationThreshold property.
@@ -98,21 +98,21 @@ public final class DocumentCollectionCreate {
     }
 
     /**
-     * Get the extractor property: Extractor's ID.
+     * Get the extractor property: Uniquely identify an extractor.
      *
      * @return the extractor value.
      */
-    public int getExtractor() {
+    public String getExtractor() {
         return this.extractor;
     }
 
     /**
-     * Set the extractor property: Extractor's ID.
+     * Set the extractor property: Uniquely identify an extractor.
      *
      * @param extractor the extractor value to set.
      * @return the DocumentCollectionCreate object itself.
      */
-    public DocumentCollectionCreate setExtractor(int extractor) {
+    public DocumentCollectionCreate setExtractor(String extractor) {
         this.extractor = extractor;
         return this;
     }

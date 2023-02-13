@@ -51,6 +51,7 @@ import com.affinda.api.client.models.PathsFte27NV3IndexNameDocumentsPostResponse
 import com.affinda.api.client.models.PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.RedactedResume;
 import com.affinda.api.client.models.RedactedResumeRequestBody;
@@ -629,11 +630,12 @@ public final class AffindaAPI {
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<List<ResthookSubscription>>> getAllResthookSubscriptions(
-                @HostParam("region") Region region,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
+        Mono<Response<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>>
+                getAllResthookSubscriptions(
+                        @HostParam("region") Region region,
+                        @QueryParam("offset") Integer offset,
+                        @QueryParam("limit") Integer limit,
+                        @HeaderParam("Accept") String accept);
 
         @Post("/v3/resthook_subscriptions")
         @ExpectedResponses({201})
@@ -892,16 +894,18 @@ public final class AffindaAPI {
                 @BodyParam("application/json") ExtractorCreate body,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/v3/extractors/{id}")
+        @Get("/v3/extractors/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Extractor>> getExtractor(
-                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
 
-        @Patch("/v3/extractors/{id}")
+        @Patch("/v3/extractors/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
@@ -909,18 +913,20 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Extractor>> updateExtractorData(
                 @HostParam("region") Region region,
-                @PathParam("id") int id,
+                @PathParam("identifier") String identifier,
                 @BodyParam("application/json") ExtractorUpdate body,
                 @HeaderParam("Accept") String accept);
 
-        @Delete("/v3/extractors/{id}")
+        @Delete("/v3/extractors/{identifier}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteExtractor(
-                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
 
         @Get("/v3/data_points")
         @ExpectedResponses({200})
@@ -933,7 +939,7 @@ public final class AffindaAPI {
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @QueryParam("organization") String organization,
-                @QueryParam("extractor") Integer extractor,
+                @QueryParam("extractor") String extractor,
                 @QueryParam("slug") String slug,
                 @QueryParam("description") String description,
                 @QueryParam("annotation_content_type") String annotationContentType,
@@ -1178,6 +1184,7 @@ public final class AffindaAPI {
                 @QueryParam("ordering") String ordering,
                 @QueryParam("include_data") Boolean includeData,
                 @QueryParam("exclude") String exclude,
+                @QueryParam("in_review") Boolean inReview,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/documents")
@@ -3520,11 +3527,11 @@ public final class AffindaAPI {
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of ResthookSubscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<List<ResthookSubscription>>> getAllResthookSubscriptionsWithResponseAsync(
-            Integer offset, Integer limit) {
+    public Mono<Response<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>>
+            getAllResthookSubscriptionsWithResponseAsync(Integer offset, Integer limit) {
         final String accept = "application/json";
         return service.getAllResthookSubscriptions(this.getRegion(), offset, limit, accept);
     }
@@ -3538,13 +3545,15 @@ public final class AffindaAPI {
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of ResthookSubscription on successful completion of {@link Mono}.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<List<ResthookSubscription>> getAllResthookSubscriptionsAsync(Integer offset, Integer limit) {
+    public Mono<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>
+            getAllResthookSubscriptionsAsync(Integer offset, Integer limit) {
         return getAllResthookSubscriptionsWithResponseAsync(offset, limit)
                 .flatMap(
-                        (Response<List<ResthookSubscription>> res) -> {
+                        (Response<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>
+                                        res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -3562,10 +3571,11 @@ public final class AffindaAPI {
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of ResthookSubscription.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<ResthookSubscription> getAllResthookSubscriptions(Integer offset, Integer limit) {
+    public PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema getAllResthookSubscriptions(
+            Integer offset, Integer limit) {
         return getAllResthookSubscriptionsAsync(offset, limit).block();
     }
 
@@ -4810,7 +4820,7 @@ public final class AffindaAPI {
     /**
      * Return a specific extractor.
      *
-     * @param id Extractor's ID.
+     * @param identifier Extractor's identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4818,15 +4828,15 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Extractor>> getExtractorWithResponseAsync(int id) {
+    public Mono<Response<Extractor>> getExtractorWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.getExtractor(this.getRegion(), id, accept);
+        return service.getExtractor(this.getRegion(), identifier, accept);
     }
 
     /**
      * Return a specific extractor.
      *
-     * @param id Extractor's ID.
+     * @param identifier Extractor's identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4834,8 +4844,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Extractor> getExtractorAsync(int id) {
-        return getExtractorWithResponseAsync(id)
+    public Mono<Extractor> getExtractorAsync(String identifier) {
+        return getExtractorWithResponseAsync(identifier)
                 .flatMap(
                         (Response<Extractor> res) -> {
                             if (res.getValue() != null) {
@@ -4849,7 +4859,7 @@ public final class AffindaAPI {
     /**
      * Return a specific extractor.
      *
-     * @param id Extractor's ID.
+     * @param identifier Extractor's identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4857,14 +4867,14 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Extractor getExtractor(int id) {
-        return getExtractorAsync(id).block();
+    public Extractor getExtractor(String identifier) {
+        return getExtractorAsync(identifier).block();
     }
 
     /**
      * Update data of an extractor.
      *
-     * @param id Extractor's ID.
+     * @param identifier Extractor's identifier.
      * @param body Extractor data to update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
@@ -4873,15 +4883,15 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Extractor>> updateExtractorDataWithResponseAsync(int id, ExtractorUpdate body) {
+    public Mono<Response<Extractor>> updateExtractorDataWithResponseAsync(String identifier, ExtractorUpdate body) {
         final String accept = "application/json";
-        return service.updateExtractorData(this.getRegion(), id, body, accept);
+        return service.updateExtractorData(this.getRegion(), identifier, body, accept);
     }
 
     /**
      * Update data of an extractor.
      *
-     * @param id Extractor's ID.
+     * @param identifier Extractor's identifier.
      * @param body Extractor data to update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
@@ -4890,8 +4900,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Extractor> updateExtractorDataAsync(int id, ExtractorUpdate body) {
-        return updateExtractorDataWithResponseAsync(id, body)
+    public Mono<Extractor> updateExtractorDataAsync(String identifier, ExtractorUpdate body) {
+        return updateExtractorDataWithResponseAsync(identifier, body)
                 .flatMap(
                         (Response<Extractor> res) -> {
                             if (res.getValue() != null) {
@@ -4905,7 +4915,7 @@ public final class AffindaAPI {
     /**
      * Update data of an extractor.
      *
-     * @param id Extractor's ID.
+     * @param identifier Extractor's identifier.
      * @param body Extractor data to update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
@@ -4914,14 +4924,14 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Extractor updateExtractorData(int id, ExtractorUpdate body) {
-        return updateExtractorDataAsync(id, body).block();
+    public Extractor updateExtractorData(String identifier, ExtractorUpdate body) {
+        return updateExtractorDataAsync(identifier, body).block();
     }
 
     /**
      * Deletes the specified extractor from the database.
      *
-     * @param id Extractor's ID.
+     * @param identifier Extractor's identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4929,15 +4939,15 @@ public final class AffindaAPI {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteExtractorWithResponseAsync(int id) {
+    public Mono<Response<Void>> deleteExtractorWithResponseAsync(String identifier) {
         final String accept = "application/json";
-        return service.deleteExtractor(this.getRegion(), id, accept);
+        return service.deleteExtractor(this.getRegion(), identifier, accept);
     }
 
     /**
      * Deletes the specified extractor from the database.
      *
-     * @param id Extractor's ID.
+     * @param identifier Extractor's identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4945,22 +4955,22 @@ public final class AffindaAPI {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteExtractorAsync(int id) {
-        return deleteExtractorWithResponseAsync(id).flatMap((Response<Void> res) -> Mono.empty());
+    public Mono<Void> deleteExtractorAsync(String identifier) {
+        return deleteExtractorWithResponseAsync(identifier).flatMap((Response<Void> res) -> Mono.empty());
     }
 
     /**
      * Deletes the specified extractor from the database.
      *
-     * @param id Extractor's ID.
+     * @param identifier Extractor's identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteExtractor(int id) {
-        deleteExtractorAsync(id).block();
+    public void deleteExtractor(String identifier) {
+        deleteExtractorAsync(identifier).block();
     }
 
     /**
@@ -4984,7 +4994,7 @@ public final class AffindaAPI {
             Integer offset,
             Integer limit,
             String organization,
-            Integer extractor,
+            String extractor,
             String slug,
             String description,
             String annotationContentType) {
@@ -5022,7 +5032,7 @@ public final class AffindaAPI {
             Integer offset,
             Integer limit,
             String organization,
-            Integer extractor,
+            String extractor,
             String slug,
             String description,
             String annotationContentType) {
@@ -5059,7 +5069,7 @@ public final class AffindaAPI {
             Integer offset,
             Integer limit,
             String organization,
-            Integer extractor,
+            String extractor,
             String slug,
             String description,
             String annotationContentType) {
@@ -6112,6 +6122,7 @@ public final class AffindaAPI {
      * @param includeData By default, this endpoint returns only the meta data of the documents. Set this to `true` will
      *     return the detailed data that was parsed, at a performance cost.
      * @param exclude Exclude some documents from the result.
+     * @param inReview Exclude documents that are currently being reviewed.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -6130,7 +6141,8 @@ public final class AffindaAPI {
             String search,
             List<Get8ItemsItem> ordering,
             Boolean includeData,
-            List<String> exclude) {
+            List<String> exclude,
+            Boolean inReview) {
         final String accept = "application/json";
         String tagsConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
@@ -6151,6 +6163,7 @@ public final class AffindaAPI {
                 orderingConverted,
                 includeData,
                 excludeConverted,
+                inReview,
                 accept);
     }
 
@@ -6170,6 +6183,7 @@ public final class AffindaAPI {
      * @param includeData By default, this endpoint returns only the meta data of the documents. Set this to `true` will
      *     return the detailed data that was parsed, at a performance cost.
      * @param exclude Exclude some documents from the result.
+     * @param inReview Exclude documents that are currently being reviewed.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -6188,7 +6202,8 @@ public final class AffindaAPI {
             String search,
             List<Get8ItemsItem> ordering,
             Boolean includeData,
-            List<String> exclude) {
+            List<String> exclude,
+            Boolean inReview) {
         return getAllDocumentsWithResponseAsync(
                         offset,
                         limit,
@@ -6200,7 +6215,8 @@ public final class AffindaAPI {
                         search,
                         ordering,
                         includeData,
-                        exclude)
+                        exclude,
+                        inReview)
                 .flatMap(
                         (Response<GetAllDocumentsResults> res) -> {
                             if (res.getValue() != null) {
@@ -6227,6 +6243,7 @@ public final class AffindaAPI {
      * @param includeData By default, this endpoint returns only the meta data of the documents. Set this to `true` will
      *     return the detailed data that was parsed, at a performance cost.
      * @param exclude Exclude some documents from the result.
+     * @param inReview Exclude documents that are currently being reviewed.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -6245,7 +6262,8 @@ public final class AffindaAPI {
             String search,
             List<Get8ItemsItem> ordering,
             Boolean includeData,
-            List<String> exclude) {
+            List<String> exclude,
+            Boolean inReview) {
         return getAllDocumentsAsync(
                         offset,
                         limit,
@@ -6257,7 +6275,8 @@ public final class AffindaAPI {
                         search,
                         ordering,
                         includeData,
-                        exclude)
+                        exclude,
+                        inReview)
                 .block();
     }
 

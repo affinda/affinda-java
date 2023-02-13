@@ -20,10 +20,10 @@ public final class ExtractorCreate {
     private String namePlural;
 
     /*
-     * The base extractor's ID.
+     * Uniquely identify an extractor.
      */
     @JsonProperty(value = "baseExtractor")
-    private Integer baseExtractor;
+    private String baseExtractor;
 
     /*
      * Uniquely identify an organization.
@@ -90,21 +90,21 @@ public final class ExtractorCreate {
     }
 
     /**
-     * Get the baseExtractor property: The base extractor's ID.
+     * Get the baseExtractor property: Uniquely identify an extractor.
      *
      * @return the baseExtractor value.
      */
-    public Integer getBaseExtractor() {
+    public String getBaseExtractor() {
         return this.baseExtractor;
     }
 
     /**
-     * Set the baseExtractor property: The base extractor's ID.
+     * Set the baseExtractor property: Uniquely identify an extractor.
      *
      * @param baseExtractor the baseExtractor value to set.
      * @return the ExtractorCreate object itself.
      */
-    public ExtractorCreate setBaseExtractor(Integer baseExtractor) {
+    public ExtractorCreate setBaseExtractor(String baseExtractor) {
         this.baseExtractor = baseExtractor;
         return this;
     }

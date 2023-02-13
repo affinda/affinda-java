@@ -9,13 +9,7 @@ import java.util.List;
 @Fluent
 public final class Extractor {
     /*
-     * Extractor's ID.
-     */
-    @JsonProperty(value = "id", required = true)
-    private int id;
-
-    /*
-     * The identifier property.
+     * Uniquely identify an extractor.
      */
     @JsonProperty(value = "identifier", required = true)
     private String identifier;
@@ -75,27 +69,7 @@ public final class Extractor {
     private OffsetDateTime createdDt;
 
     /**
-     * Get the id property: Extractor's ID.
-     *
-     * @return the id value.
-     */
-    public int getId() {
-        return this.id;
-    }
-
-    /**
-     * Set the id property: Extractor's ID.
-     *
-     * @param id the id value to set.
-     * @return the Extractor object itself.
-     */
-    public Extractor setId(int id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * Get the identifier property: The identifier property.
+     * Get the identifier property: Uniquely identify an extractor.
      *
      * @return the identifier value.
      */
@@ -104,7 +78,7 @@ public final class Extractor {
     }
 
     /**
-     * Set the identifier property: The identifier property.
+     * Set the identifier property: Uniquely identify an extractor.
      *
      * @param identifier the identifier value to set.
      * @return the Extractor object itself.

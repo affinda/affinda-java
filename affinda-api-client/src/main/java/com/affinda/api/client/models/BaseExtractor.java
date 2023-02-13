@@ -8,13 +8,7 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class BaseExtractor {
     /*
-     * The id property.
-     */
-    @JsonProperty(value = "id", required = true)
-    private int id;
-
-    /*
-     * The identifier property.
+     * Uniquely identify an extractor.
      */
     @JsonProperty(value = "identifier", required = true)
     private String identifier;
@@ -50,27 +44,7 @@ public final class BaseExtractor {
     private OffsetDateTime createdDt;
 
     /**
-     * Get the id property: The id property.
-     *
-     * @return the id value.
-     */
-    public int getId() {
-        return this.id;
-    }
-
-    /**
-     * Set the id property: The id property.
-     *
-     * @param id the id value to set.
-     * @return the BaseExtractor object itself.
-     */
-    public BaseExtractor setId(int id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * Get the identifier property: The identifier property.
+     * Get the identifier property: Uniquely identify an extractor.
      *
      * @return the identifier value.
      */
@@ -79,7 +53,7 @@ public final class BaseExtractor {
     }
 
     /**
-     * Set the identifier property: The identifier property.
+     * Set the identifier property: Uniquely identify an extractor.
      *
      * @param identifier the identifier value to set.
      * @return the BaseExtractor object itself.

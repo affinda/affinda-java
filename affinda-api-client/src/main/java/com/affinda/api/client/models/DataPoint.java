@@ -44,10 +44,10 @@ public final class DataPoint {
     private Organization organization;
 
     /*
-     * Extractor's ID.
+     * Uniquely identify an extractor.
      */
     @JsonProperty(value = "extractor", required = true)
-    private Integer extractor;
+    private String extractor;
 
     /*
      * The multiple property.
@@ -200,21 +200,21 @@ public final class DataPoint {
     }
 
     /**
-     * Get the extractor property: Extractor's ID.
+     * Get the extractor property: Uniquely identify an extractor.
      *
      * @return the extractor value.
      */
-    public Integer getExtractor() {
+    public String getExtractor() {
         return this.extractor;
     }
 
     /**
-     * Set the extractor property: Extractor's ID.
+     * Set the extractor property: Uniquely identify an extractor.
      *
      * @param extractor the extractor value to set.
      * @return the DataPoint object itself.
      */
-    public DataPoint setExtractor(Integer extractor) {
+    public DataPoint setExtractor(String extractor) {
         this.extractor = extractor;
         return this;
     }

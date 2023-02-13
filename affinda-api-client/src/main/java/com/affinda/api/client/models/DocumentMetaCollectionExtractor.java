@@ -7,13 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class DocumentMetaCollectionExtractor {
     /*
-     * Extractor's ID.
-     */
-    @JsonProperty(value = "id")
-    private Integer id;
-
-    /*
-     * The identifier property.
+     * Uniquely identify an extractor.
      */
     @JsonProperty(value = "identifier")
     private String identifier;
@@ -25,10 +19,10 @@ public final class DocumentMetaCollectionExtractor {
     private String name;
 
     /*
-     * Base extractor's ID.
+     * Base extractor's identifier.
      */
     @JsonProperty(value = "baseExtractor")
-    private Integer baseExtractor;
+    private String baseExtractor;
 
     /*
      * The validatable property.
@@ -37,27 +31,7 @@ public final class DocumentMetaCollectionExtractor {
     private Boolean validatable;
 
     /**
-     * Get the id property: Extractor's ID.
-     *
-     * @return the id value.
-     */
-    public Integer getId() {
-        return this.id;
-    }
-
-    /**
-     * Set the id property: Extractor's ID.
-     *
-     * @param id the id value to set.
-     * @return the DocumentMetaCollectionExtractor object itself.
-     */
-    public DocumentMetaCollectionExtractor setId(Integer id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * Get the identifier property: The identifier property.
+     * Get the identifier property: Uniquely identify an extractor.
      *
      * @return the identifier value.
      */
@@ -66,7 +40,7 @@ public final class DocumentMetaCollectionExtractor {
     }
 
     /**
-     * Set the identifier property: The identifier property.
+     * Set the identifier property: Uniquely identify an extractor.
      *
      * @param identifier the identifier value to set.
      * @return the DocumentMetaCollectionExtractor object itself.
@@ -97,21 +71,21 @@ public final class DocumentMetaCollectionExtractor {
     }
 
     /**
-     * Get the baseExtractor property: Base extractor's ID.
+     * Get the baseExtractor property: Base extractor's identifier.
      *
      * @return the baseExtractor value.
      */
-    public Integer getBaseExtractor() {
+    public String getBaseExtractor() {
         return this.baseExtractor;
     }
 
     /**
-     * Set the baseExtractor property: Base extractor's ID.
+     * Set the baseExtractor property: Base extractor's identifier.
      *
      * @param baseExtractor the baseExtractor value to set.
      * @return the DocumentMetaCollectionExtractor object itself.
      */
-    public DocumentMetaCollectionExtractor setBaseExtractor(Integer baseExtractor) {
+    public DocumentMetaCollectionExtractor setBaseExtractor(String baseExtractor) {
         this.baseExtractor = baseExtractor;
         return this;
     }

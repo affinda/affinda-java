@@ -8,13 +8,7 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class WorkspaceCollectionsItemExtractor {
     /*
-     * Extractor's ID.
-     */
-    @JsonProperty(value = "id", required = true)
-    private int id;
-
-    /*
-     * The identifier property.
+     * Uniquely identify an extractor.
      */
     @JsonProperty(value = "identifier", required = true)
     private String identifier;
@@ -62,27 +56,7 @@ public final class WorkspaceCollectionsItemExtractor {
     private OffsetDateTime createdDt;
 
     /**
-     * Get the id property: Extractor's ID.
-     *
-     * @return the id value.
-     */
-    public int getId() {
-        return this.id;
-    }
-
-    /**
-     * Set the id property: Extractor's ID.
-     *
-     * @param id the id value to set.
-     * @return the WorkspaceCollectionsItemExtractor object itself.
-     */
-    public WorkspaceCollectionsItemExtractor setId(int id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * Get the identifier property: The identifier property.
+     * Get the identifier property: Uniquely identify an extractor.
      *
      * @return the identifier value.
      */
@@ -91,7 +65,7 @@ public final class WorkspaceCollectionsItemExtractor {
     }
 
     /**
-     * Set the identifier property: The identifier property.
+     * Set the identifier property: Uniquely identify an extractor.
      *
      * @param identifier the identifier value to set.
      * @return the WorkspaceCollectionsItemExtractor object itself.

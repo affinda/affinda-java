@@ -37,10 +37,10 @@ public final class DataPointCreate {
     private String organization;
 
     /*
-     * Extractor's ID.
+     * Uniquely identify an extractor.
      */
     @JsonProperty(value = "extractor", required = true)
-    private int extractor;
+    private String extractor;
 
     /*
      * The multiple property.
@@ -155,21 +155,21 @@ public final class DataPointCreate {
     }
 
     /**
-     * Get the extractor property: Extractor's ID.
+     * Get the extractor property: Uniquely identify an extractor.
      *
      * @return the extractor value.
      */
-    public int getExtractor() {
+    public String getExtractor() {
         return this.extractor;
     }
 
     /**
-     * Set the extractor property: Extractor's ID.
+     * Set the extractor property: Uniquely identify an extractor.
      *
      * @param extractor the extractor value to set.
      * @return the DataPointCreate object itself.
      */
-    public DataPointCreate setExtractor(int extractor) {
+    public DataPointCreate setExtractor(String extractor) {
         this.extractor = extractor;
         return this;
     }
