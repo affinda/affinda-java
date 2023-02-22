@@ -9,7 +9,7 @@ public final class LanguageAnnotationV2 extends AnnotationV2 {
     /*
      * The parsed property.
      */
-    @JsonProperty(value = "parsed")
+    @JsonProperty(value = "parsed", access = JsonProperty.Access.WRITE_ONLY)
     private String parsed;
 
     /**
@@ -19,16 +19,5 @@ public final class LanguageAnnotationV2 extends AnnotationV2 {
      */
     public String getParsed() {
         return this.parsed;
-    }
-
-    /**
-     * Set the parsed property: The parsed property.
-     *
-     * @param parsed the parsed value to set.
-     * @return the LanguageAnnotationV2 object itself.
-     */
-    public LanguageAnnotationV2 setParsed(String parsed) {
-        this.parsed = parsed;
-        return this;
     }
 }

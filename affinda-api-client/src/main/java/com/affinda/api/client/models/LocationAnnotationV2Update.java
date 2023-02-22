@@ -3,21 +3,21 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The JobTitleAnnotation model. */
+/** The LocationAnnotationV2Update model. */
 @Fluent
-public final class JobTitleAnnotation extends AnnotationV2 {
+public final class LocationAnnotationV2Update extends AnnotationV2Base {
     /*
-     * Matching job title to extracted text
+     * The parsed property.
      */
     @JsonProperty(value = "parsed", access = JsonProperty.Access.WRITE_ONLY)
-    private JobTitleParsedParsed parsed;
+    private LocationAnnotationV2UpdateParsed parsed;
 
     /**
-     * Get the parsed property: Matching job title to extracted text.
+     * Get the parsed property: The parsed property.
      *
      * @return the parsed value.
      */
-    public JobTitleParsedParsed getParsed() {
+    public LocationAnnotationV2UpdateParsed getParsed() {
         return this.parsed;
     }
 }

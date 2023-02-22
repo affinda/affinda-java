@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class JobDescription {
     /*
-     * The data property.
+     * A JSON-encoded string of the `JobDescriptionData` object.
      */
     @JsonProperty(value = "data", required = true)
     private JobDescriptionData data;
@@ -25,7 +25,7 @@ public final class JobDescription {
     private Error error;
 
     /**
-     * Get the data property: The data property.
+     * Get the data property: A JSON-encoded string of the `JobDescriptionData` object.
      *
      * @return the data value.
      */
@@ -34,7 +34,7 @@ public final class JobDescription {
     }
 
     /**
-     * Set the data property: The data property.
+     * Set the data property: A JSON-encoded string of the `JobDescriptionData` object.
      *
      * @param data the data value to set.
      * @return the JobDescription object itself.

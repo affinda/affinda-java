@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Years of experience range. */
+/** Matching job title to extracted text. */
 @Fluent
-public final class JobTitleAnnotationParsed {
+public final class JobTitleParsedParsed {
     /*
      * The name property.
      */
@@ -22,7 +22,7 @@ public final class JobTitleAnnotationParsed {
      * The classification property.
      */
     @JsonProperty(value = "classification")
-    private JobTitleAnnotationParsedClassification classification;
+    private JobTitleParsedClassification classification;
 
     /**
      * Get the name property: The name property.
@@ -37,9 +37,9 @@ public final class JobTitleAnnotationParsed {
      * Set the name property: The name property.
      *
      * @param name the name value to set.
-     * @return the JobTitleAnnotationParsed object itself.
+     * @return the JobTitleParsedParsed object itself.
      */
-    public JobTitleAnnotationParsed setName(String name) {
+    public JobTitleParsedParsed setName(String name) {
         this.name = name;
         return this;
     }
@@ -57,9 +57,9 @@ public final class JobTitleAnnotationParsed {
      * Set the managementLevel property: The managementLevel property.
      *
      * @param managementLevel the managementLevel value to set.
-     * @return the JobTitleAnnotationParsed object itself.
+     * @return the JobTitleParsedParsed object itself.
      */
-    public JobTitleAnnotationParsed setManagementLevel(String managementLevel) {
+    public JobTitleParsedParsed setManagementLevel(String managementLevel) {
         this.managementLevel = managementLevel;
         return this;
     }
@@ -69,7 +69,7 @@ public final class JobTitleAnnotationParsed {
      *
      * @return the classification value.
      */
-    public JobTitleAnnotationParsedClassification getClassification() {
+    public JobTitleParsedClassification getClassification() {
         return this.classification;
     }
 
@@ -77,9 +77,9 @@ public final class JobTitleAnnotationParsed {
      * Set the classification property: The classification property.
      *
      * @param classification the classification value to set.
-     * @return the JobTitleAnnotationParsed object itself.
+     * @return the JobTitleParsedParsed object itself.
      */
-    public JobTitleAnnotationParsed setClassification(JobTitleAnnotationParsedClassification classification) {
+    public JobTitleParsedParsed setClassification(JobTitleParsedClassification classification) {
         this.classification = classification;
         return this;
     }

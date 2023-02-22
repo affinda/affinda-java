@@ -9,86 +9,86 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** The Annotation model. */
+/** The AnnotationV2Base model. */
 @Fluent
-public class Annotation {
+public class AnnotationV2Base {
     /*
      * The id property.
      */
-    @JsonProperty(value = "id", required = true)
-    private int id;
+    @JsonProperty(value = "id")
+    private Integer id;
 
     /*
      * The rectangle property.
      */
-    @JsonProperty(value = "rectangle", required = true)
+    @JsonProperty(value = "rectangle")
     private Rectangle rectangle;
 
     /*
      * The rectangles property.
      */
-    @JsonProperty(value = "rectangles", required = true)
+    @JsonProperty(value = "rectangles")
     private List<Rectangle> rectangles;
 
     /*
      * The pageIndex property.
      */
-    @JsonProperty(value = "pageIndex", required = true)
+    @JsonProperty(value = "pageIndex")
     private Integer pageIndex;
 
     /*
      * The raw property.
      */
-    @JsonProperty(value = "raw", required = true)
+    @JsonProperty(value = "raw")
     private String raw;
 
     /*
      * The overall confidence that the model's prediction is correct
      */
-    @JsonProperty(value = "confidence", required = true)
+    @JsonProperty(value = "confidence")
     private Float confidence;
 
     /*
      * The model's confidence that the text has been classified correctly
      */
-    @JsonProperty(value = "classificationConfidence", required = true)
+    @JsonProperty(value = "classificationConfidence")
     private Float classificationConfidence;
 
     /*
      * If the document was submitted as an image, this is the confidence that
      * the text in the image has been correctly read by the model.
      */
-    @JsonProperty(value = "textExtractionConfidence", required = true)
+    @JsonProperty(value = "textExtractionConfidence")
     private Float textExtractionConfidence;
 
     /*
      * The isVerified property.
      */
-    @JsonProperty(value = "isVerified", required = true)
-    private boolean isVerified;
+    @JsonProperty(value = "isVerified")
+    private Boolean isVerified;
 
     /*
      * The isClientVerified property.
      */
-    @JsonProperty(value = "isClientVerified", required = true)
-    private boolean isClientVerified;
+    @JsonProperty(value = "isClientVerified")
+    private Boolean isClientVerified;
 
     /*
      * The isAutoVerified property.
      */
-    @JsonProperty(value = "isAutoVerified", required = true)
-    private boolean isAutoVerified;
+    @JsonProperty(value = "isAutoVerified")
+    private Boolean isAutoVerified;
 
     /*
      * The dataPoint property.
      */
-    @JsonProperty(value = "dataPoint", required = true)
+    @JsonProperty(value = "dataPoint")
     private String dataPoint;
 
     /*
      * The contentType property.
      */
-    @JsonProperty(value = "contentType", required = true)
+    @JsonProperty(value = "contentType")
     private String contentType;
 
     /*
@@ -101,7 +101,7 @@ public class Annotation {
      *
      * @return the id value.
      */
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
@@ -109,9 +109,9 @@ public class Annotation {
      * Set the id property: The id property.
      *
      * @param id the id value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setId(int id) {
+    public AnnotationV2Base setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -129,9 +129,9 @@ public class Annotation {
      * Set the rectangle property: The rectangle property.
      *
      * @param rectangle the rectangle value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setRectangle(Rectangle rectangle) {
+    public AnnotationV2Base setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
         return this;
     }
@@ -149,9 +149,9 @@ public class Annotation {
      * Set the rectangles property: The rectangles property.
      *
      * @param rectangles the rectangles value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setRectangles(List<Rectangle> rectangles) {
+    public AnnotationV2Base setRectangles(List<Rectangle> rectangles) {
         this.rectangles = rectangles;
         return this;
     }
@@ -169,9 +169,9 @@ public class Annotation {
      * Set the pageIndex property: The pageIndex property.
      *
      * @param pageIndex the pageIndex value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setPageIndex(Integer pageIndex) {
+    public AnnotationV2Base setPageIndex(Integer pageIndex) {
         this.pageIndex = pageIndex;
         return this;
     }
@@ -189,9 +189,9 @@ public class Annotation {
      * Set the raw property: The raw property.
      *
      * @param raw the raw value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setRaw(String raw) {
+    public AnnotationV2Base setRaw(String raw) {
         this.raw = raw;
         return this;
     }
@@ -209,9 +209,9 @@ public class Annotation {
      * Set the confidence property: The overall confidence that the model's prediction is correct.
      *
      * @param confidence the confidence value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setConfidence(Float confidence) {
+    public AnnotationV2Base setConfidence(Float confidence) {
         this.confidence = confidence;
         return this;
     }
@@ -229,9 +229,9 @@ public class Annotation {
      * Set the classificationConfidence property: The model's confidence that the text has been classified correctly.
      *
      * @param classificationConfidence the classificationConfidence value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setClassificationConfidence(Float classificationConfidence) {
+    public AnnotationV2Base setClassificationConfidence(Float classificationConfidence) {
         this.classificationConfidence = classificationConfidence;
         return this;
     }
@@ -251,9 +251,9 @@ public class Annotation {
      * the text in the image has been correctly read by the model.
      *
      * @param textExtractionConfidence the textExtractionConfidence value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setTextExtractionConfidence(Float textExtractionConfidence) {
+    public AnnotationV2Base setTextExtractionConfidence(Float textExtractionConfidence) {
         this.textExtractionConfidence = textExtractionConfidence;
         return this;
     }
@@ -263,7 +263,7 @@ public class Annotation {
      *
      * @return the isVerified value.
      */
-    public boolean isVerified() {
+    public Boolean isVerified() {
         return this.isVerified;
     }
 
@@ -271,9 +271,9 @@ public class Annotation {
      * Set the isVerified property: The isVerified property.
      *
      * @param isVerified the isVerified value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setIsVerified(boolean isVerified) {
+    public AnnotationV2Base setIsVerified(Boolean isVerified) {
         this.isVerified = isVerified;
         return this;
     }
@@ -283,7 +283,7 @@ public class Annotation {
      *
      * @return the isClientVerified value.
      */
-    public boolean isClientVerified() {
+    public Boolean isClientVerified() {
         return this.isClientVerified;
     }
 
@@ -291,9 +291,9 @@ public class Annotation {
      * Set the isClientVerified property: The isClientVerified property.
      *
      * @param isClientVerified the isClientVerified value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setIsClientVerified(boolean isClientVerified) {
+    public AnnotationV2Base setIsClientVerified(Boolean isClientVerified) {
         this.isClientVerified = isClientVerified;
         return this;
     }
@@ -303,7 +303,7 @@ public class Annotation {
      *
      * @return the isAutoVerified value.
      */
-    public boolean isAutoVerified() {
+    public Boolean isAutoVerified() {
         return this.isAutoVerified;
     }
 
@@ -311,9 +311,9 @@ public class Annotation {
      * Set the isAutoVerified property: The isAutoVerified property.
      *
      * @param isAutoVerified the isAutoVerified value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setIsAutoVerified(boolean isAutoVerified) {
+    public AnnotationV2Base setIsAutoVerified(Boolean isAutoVerified) {
         this.isAutoVerified = isAutoVerified;
         return this;
     }
@@ -331,9 +331,9 @@ public class Annotation {
      * Set the dataPoint property: The dataPoint property.
      *
      * @param dataPoint the dataPoint value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setDataPoint(String dataPoint) {
+    public AnnotationV2Base setDataPoint(String dataPoint) {
         this.dataPoint = dataPoint;
         return this;
     }
@@ -351,9 +351,9 @@ public class Annotation {
      * Set the contentType property: The contentType property.
      *
      * @param contentType the contentType value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setContentType(String contentType) {
+    public AnnotationV2Base setContentType(String contentType) {
         this.contentType = contentType;
         return this;
     }
@@ -372,9 +372,9 @@ public class Annotation {
      * Set the additionalProperties property: Dictionary of &lt;any&gt;.
      *
      * @param additionalProperties the additionalProperties value to set.
-     * @return the Annotation object itself.
+     * @return the AnnotationV2Base object itself.
      */
-    public Annotation setAdditionalProperties(Map<String, Object> additionalProperties) {
+    public AnnotationV2Base setAdditionalProperties(Map<String, Object> additionalProperties) {
         this.additionalProperties = additionalProperties;
         return this;
     }

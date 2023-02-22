@@ -9,26 +9,15 @@ public final class LocationAnnotationV2 extends AnnotationV2 {
     /*
      * The parsed property.
      */
-    @JsonProperty(value = "parsed")
-    private Location parsed;
+    @JsonProperty(value = "parsed", access = JsonProperty.Access.WRITE_ONLY)
+    private LocationAnnotationV2Parsed parsed;
 
     /**
      * Get the parsed property: The parsed property.
      *
      * @return the parsed value.
      */
-    public Location getParsed() {
+    public LocationAnnotationV2Parsed getParsed() {
         return this.parsed;
-    }
-
-    /**
-     * Set the parsed property: The parsed property.
-     *
-     * @param parsed the parsed value to set.
-     * @return the LocationAnnotationV2 object itself.
-     */
-    public LocationAnnotationV2 setParsed(Location parsed) {
-        this.parsed = parsed;
-        return this;
     }
 }

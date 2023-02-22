@@ -6,115 +6,115 @@ import java.util.List;
 
 /** A JSON-encoded string of the `JobDescriptionData` object. */
 @Fluent
-public final class JobDescriptionData {
+public final class JobDescriptionDataUpdate {
     /*
      * The jobTitle property.
      */
     @JsonProperty(value = "jobTitle")
-    private JobTitleAnnotation jobTitle;
+    private JobTitleAnnotationUpdate jobTitle;
 
     /*
      * The contactEmail property.
      */
     @JsonProperty(value = "contactEmail")
-    private TextAnnotationV2 contactEmail;
+    private TextAnnotationV2Update contactEmail;
 
     /*
      * The contactName property.
      */
     @JsonProperty(value = "contactName")
-    private TextAnnotationV2 contactName;
+    private TextAnnotationV2Update contactName;
 
     /*
      * The contactPhone property.
      */
     @JsonProperty(value = "contactPhone")
-    private TextAnnotationV2 contactPhone;
+    private TextAnnotationV2Update contactPhone;
 
     /*
      * The startDate property.
      */
     @JsonProperty(value = "startDate")
-    private DateAnnotationV2 startDate;
+    private DateAnnotationV2Update startDate;
 
     /*
      * The endDate property.
      */
     @JsonProperty(value = "endDate")
-    private DateAnnotationV2 endDate;
+    private DateAnnotationV2Update endDate;
 
     /*
      * The jobType property.
      */
     @JsonProperty(value = "jobType")
-    private TextAnnotationV2 jobType;
+    private TextAnnotationV2Update jobType;
 
     /*
      * The languages property.
      */
     @JsonProperty(value = "languages")
-    private List<LanguageAnnotationV2> languages;
+    private List<LanguageAnnotationV2Update> languages;
 
     /*
      * The skills property.
      */
     @JsonProperty(value = "skills")
-    private List<SkillAnnotationV2> skills;
+    private List<SkillAnnotationV2Update> skills;
 
     /*
      * The organizationName property.
      */
     @JsonProperty(value = "organizationName")
-    private TextAnnotationV2 organizationName;
+    private TextAnnotationV2Update organizationName;
 
     /*
      * The organizationWebsite property.
      */
     @JsonProperty(value = "organizationWebsite")
-    private TextAnnotationV2 organizationWebsite;
+    private TextAnnotationV2Update organizationWebsite;
 
     /*
      * The educationLevel property.
      */
     @JsonProperty(value = "educationLevel")
-    private TextAnnotationV2 educationLevel;
+    private TextAnnotationV2Update educationLevel;
 
     /*
      * The educationAccreditation property.
      */
     @JsonProperty(value = "educationAccreditation")
-    private TextAnnotationV2 educationAccreditation;
+    private TextAnnotationV2Update educationAccreditation;
 
     /*
      * The expectedRemuneration property.
      */
     @JsonProperty(value = "expectedRemuneration")
-    private ExpectedRemunerationAnnotationV2 expectedRemuneration;
+    private ExpectedRemunerationAnnotationV2Update expectedRemuneration;
 
     /*
      * The location property.
      */
     @JsonProperty(value = "location")
-    private LocationAnnotationV2 location;
+    private LocationAnnotationV2Update location;
 
     /*
      * The certifications property.
      */
     @JsonProperty(value = "certifications")
-    private List<TextAnnotationV2> certifications;
+    private List<TextAnnotationV2Update> certifications;
 
     /*
      * The yearsExperience property.
      */
     @JsonProperty(value = "yearsExperience")
-    private YearsExperienceAnnotationV2 yearsExperience;
+    private YearsExperienceAnnotationV2Update yearsExperience;
 
     /**
      * Get the jobTitle property: The jobTitle property.
      *
      * @return the jobTitle value.
      */
-    public JobTitleAnnotation getJobTitle() {
+    public JobTitleAnnotationUpdate getJobTitle() {
         return this.jobTitle;
     }
 
@@ -122,9 +122,9 @@ public final class JobDescriptionData {
      * Set the jobTitle property: The jobTitle property.
      *
      * @param jobTitle the jobTitle value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setJobTitle(JobTitleAnnotation jobTitle) {
+    public JobDescriptionDataUpdate setJobTitle(JobTitleAnnotationUpdate jobTitle) {
         this.jobTitle = jobTitle;
         return this;
     }
@@ -134,7 +134,7 @@ public final class JobDescriptionData {
      *
      * @return the contactEmail value.
      */
-    public TextAnnotationV2 getContactEmail() {
+    public TextAnnotationV2Update getContactEmail() {
         return this.contactEmail;
     }
 
@@ -142,9 +142,9 @@ public final class JobDescriptionData {
      * Set the contactEmail property: The contactEmail property.
      *
      * @param contactEmail the contactEmail value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setContactEmail(TextAnnotationV2 contactEmail) {
+    public JobDescriptionDataUpdate setContactEmail(TextAnnotationV2Update contactEmail) {
         this.contactEmail = contactEmail;
         return this;
     }
@@ -154,7 +154,7 @@ public final class JobDescriptionData {
      *
      * @return the contactName value.
      */
-    public TextAnnotationV2 getContactName() {
+    public TextAnnotationV2Update getContactName() {
         return this.contactName;
     }
 
@@ -162,9 +162,9 @@ public final class JobDescriptionData {
      * Set the contactName property: The contactName property.
      *
      * @param contactName the contactName value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setContactName(TextAnnotationV2 contactName) {
+    public JobDescriptionDataUpdate setContactName(TextAnnotationV2Update contactName) {
         this.contactName = contactName;
         return this;
     }
@@ -174,7 +174,7 @@ public final class JobDescriptionData {
      *
      * @return the contactPhone value.
      */
-    public TextAnnotationV2 getContactPhone() {
+    public TextAnnotationV2Update getContactPhone() {
         return this.contactPhone;
     }
 
@@ -182,9 +182,9 @@ public final class JobDescriptionData {
      * Set the contactPhone property: The contactPhone property.
      *
      * @param contactPhone the contactPhone value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setContactPhone(TextAnnotationV2 contactPhone) {
+    public JobDescriptionDataUpdate setContactPhone(TextAnnotationV2Update contactPhone) {
         this.contactPhone = contactPhone;
         return this;
     }
@@ -194,7 +194,7 @@ public final class JobDescriptionData {
      *
      * @return the startDate value.
      */
-    public DateAnnotationV2 getStartDate() {
+    public DateAnnotationV2Update getStartDate() {
         return this.startDate;
     }
 
@@ -202,9 +202,9 @@ public final class JobDescriptionData {
      * Set the startDate property: The startDate property.
      *
      * @param startDate the startDate value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setStartDate(DateAnnotationV2 startDate) {
+    public JobDescriptionDataUpdate setStartDate(DateAnnotationV2Update startDate) {
         this.startDate = startDate;
         return this;
     }
@@ -214,7 +214,7 @@ public final class JobDescriptionData {
      *
      * @return the endDate value.
      */
-    public DateAnnotationV2 getEndDate() {
+    public DateAnnotationV2Update getEndDate() {
         return this.endDate;
     }
 
@@ -222,9 +222,9 @@ public final class JobDescriptionData {
      * Set the endDate property: The endDate property.
      *
      * @param endDate the endDate value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setEndDate(DateAnnotationV2 endDate) {
+    public JobDescriptionDataUpdate setEndDate(DateAnnotationV2Update endDate) {
         this.endDate = endDate;
         return this;
     }
@@ -234,7 +234,7 @@ public final class JobDescriptionData {
      *
      * @return the jobType value.
      */
-    public TextAnnotationV2 getJobType() {
+    public TextAnnotationV2Update getJobType() {
         return this.jobType;
     }
 
@@ -242,9 +242,9 @@ public final class JobDescriptionData {
      * Set the jobType property: The jobType property.
      *
      * @param jobType the jobType value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setJobType(TextAnnotationV2 jobType) {
+    public JobDescriptionDataUpdate setJobType(TextAnnotationV2Update jobType) {
         this.jobType = jobType;
         return this;
     }
@@ -254,7 +254,7 @@ public final class JobDescriptionData {
      *
      * @return the languages value.
      */
-    public List<LanguageAnnotationV2> getLanguages() {
+    public List<LanguageAnnotationV2Update> getLanguages() {
         return this.languages;
     }
 
@@ -262,9 +262,9 @@ public final class JobDescriptionData {
      * Set the languages property: The languages property.
      *
      * @param languages the languages value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setLanguages(List<LanguageAnnotationV2> languages) {
+    public JobDescriptionDataUpdate setLanguages(List<LanguageAnnotationV2Update> languages) {
         this.languages = languages;
         return this;
     }
@@ -274,7 +274,7 @@ public final class JobDescriptionData {
      *
      * @return the skills value.
      */
-    public List<SkillAnnotationV2> getSkills() {
+    public List<SkillAnnotationV2Update> getSkills() {
         return this.skills;
     }
 
@@ -282,9 +282,9 @@ public final class JobDescriptionData {
      * Set the skills property: The skills property.
      *
      * @param skills the skills value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setSkills(List<SkillAnnotationV2> skills) {
+    public JobDescriptionDataUpdate setSkills(List<SkillAnnotationV2Update> skills) {
         this.skills = skills;
         return this;
     }
@@ -294,7 +294,7 @@ public final class JobDescriptionData {
      *
      * @return the organizationName value.
      */
-    public TextAnnotationV2 getOrganizationName() {
+    public TextAnnotationV2Update getOrganizationName() {
         return this.organizationName;
     }
 
@@ -302,9 +302,9 @@ public final class JobDescriptionData {
      * Set the organizationName property: The organizationName property.
      *
      * @param organizationName the organizationName value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setOrganizationName(TextAnnotationV2 organizationName) {
+    public JobDescriptionDataUpdate setOrganizationName(TextAnnotationV2Update organizationName) {
         this.organizationName = organizationName;
         return this;
     }
@@ -314,7 +314,7 @@ public final class JobDescriptionData {
      *
      * @return the organizationWebsite value.
      */
-    public TextAnnotationV2 getOrganizationWebsite() {
+    public TextAnnotationV2Update getOrganizationWebsite() {
         return this.organizationWebsite;
     }
 
@@ -322,9 +322,9 @@ public final class JobDescriptionData {
      * Set the organizationWebsite property: The organizationWebsite property.
      *
      * @param organizationWebsite the organizationWebsite value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setOrganizationWebsite(TextAnnotationV2 organizationWebsite) {
+    public JobDescriptionDataUpdate setOrganizationWebsite(TextAnnotationV2Update organizationWebsite) {
         this.organizationWebsite = organizationWebsite;
         return this;
     }
@@ -334,7 +334,7 @@ public final class JobDescriptionData {
      *
      * @return the educationLevel value.
      */
-    public TextAnnotationV2 getEducationLevel() {
+    public TextAnnotationV2Update getEducationLevel() {
         return this.educationLevel;
     }
 
@@ -342,9 +342,9 @@ public final class JobDescriptionData {
      * Set the educationLevel property: The educationLevel property.
      *
      * @param educationLevel the educationLevel value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setEducationLevel(TextAnnotationV2 educationLevel) {
+    public JobDescriptionDataUpdate setEducationLevel(TextAnnotationV2Update educationLevel) {
         this.educationLevel = educationLevel;
         return this;
     }
@@ -354,7 +354,7 @@ public final class JobDescriptionData {
      *
      * @return the educationAccreditation value.
      */
-    public TextAnnotationV2 getEducationAccreditation() {
+    public TextAnnotationV2Update getEducationAccreditation() {
         return this.educationAccreditation;
     }
 
@@ -362,9 +362,9 @@ public final class JobDescriptionData {
      * Set the educationAccreditation property: The educationAccreditation property.
      *
      * @param educationAccreditation the educationAccreditation value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setEducationAccreditation(TextAnnotationV2 educationAccreditation) {
+    public JobDescriptionDataUpdate setEducationAccreditation(TextAnnotationV2Update educationAccreditation) {
         this.educationAccreditation = educationAccreditation;
         return this;
     }
@@ -374,7 +374,7 @@ public final class JobDescriptionData {
      *
      * @return the expectedRemuneration value.
      */
-    public ExpectedRemunerationAnnotationV2 getExpectedRemuneration() {
+    public ExpectedRemunerationAnnotationV2Update getExpectedRemuneration() {
         return this.expectedRemuneration;
     }
 
@@ -382,9 +382,10 @@ public final class JobDescriptionData {
      * Set the expectedRemuneration property: The expectedRemuneration property.
      *
      * @param expectedRemuneration the expectedRemuneration value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setExpectedRemuneration(ExpectedRemunerationAnnotationV2 expectedRemuneration) {
+    public JobDescriptionDataUpdate setExpectedRemuneration(
+            ExpectedRemunerationAnnotationV2Update expectedRemuneration) {
         this.expectedRemuneration = expectedRemuneration;
         return this;
     }
@@ -394,7 +395,7 @@ public final class JobDescriptionData {
      *
      * @return the location value.
      */
-    public LocationAnnotationV2 getLocation() {
+    public LocationAnnotationV2Update getLocation() {
         return this.location;
     }
 
@@ -402,9 +403,9 @@ public final class JobDescriptionData {
      * Set the location property: The location property.
      *
      * @param location the location value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setLocation(LocationAnnotationV2 location) {
+    public JobDescriptionDataUpdate setLocation(LocationAnnotationV2Update location) {
         this.location = location;
         return this;
     }
@@ -414,7 +415,7 @@ public final class JobDescriptionData {
      *
      * @return the certifications value.
      */
-    public List<TextAnnotationV2> getCertifications() {
+    public List<TextAnnotationV2Update> getCertifications() {
         return this.certifications;
     }
 
@@ -422,9 +423,9 @@ public final class JobDescriptionData {
      * Set the certifications property: The certifications property.
      *
      * @param certifications the certifications value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setCertifications(List<TextAnnotationV2> certifications) {
+    public JobDescriptionDataUpdate setCertifications(List<TextAnnotationV2Update> certifications) {
         this.certifications = certifications;
         return this;
     }
@@ -434,7 +435,7 @@ public final class JobDescriptionData {
      *
      * @return the yearsExperience value.
      */
-    public YearsExperienceAnnotationV2 getYearsExperience() {
+    public YearsExperienceAnnotationV2Update getYearsExperience() {
         return this.yearsExperience;
     }
 
@@ -442,9 +443,9 @@ public final class JobDescriptionData {
      * Set the yearsExperience property: The yearsExperience property.
      *
      * @param yearsExperience the yearsExperience value to set.
-     * @return the JobDescriptionData object itself.
+     * @return the JobDescriptionDataUpdate object itself.
      */
-    public JobDescriptionData setYearsExperience(YearsExperienceAnnotationV2 yearsExperience) {
+    public JobDescriptionDataUpdate setYearsExperience(YearsExperienceAnnotationV2Update yearsExperience) {
         this.yearsExperience = yearsExperience;
         return this;
     }

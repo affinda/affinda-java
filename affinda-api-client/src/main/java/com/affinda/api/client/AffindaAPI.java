@@ -28,6 +28,8 @@ import com.affinda.api.client.models.InvitationUpdate;
 import com.affinda.api.client.models.Invoice;
 import com.affinda.api.client.models.InvoiceRequestBody;
 import com.affinda.api.client.models.JobDescription;
+import com.affinda.api.client.models.JobDescriptionData;
+import com.affinda.api.client.models.JobDescriptionDataUpdate;
 import com.affinda.api.client.models.JobDescriptionRequestBody;
 import com.affinda.api.client.models.JobDescriptionSearch;
 import com.affinda.api.client.models.JobDescriptionSearchConfig;
@@ -372,6 +374,18 @@ public final class AffindaAPI {
         Mono<Response<JobDescription>> getJobDescription(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Patch("/v2/job_descriptions/{identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionData>> updateJobDescriptionData(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") JobDescriptionDataUpdate body,
                 @HeaderParam("Accept") String accept);
 
         @Delete("/v2/job_descriptions/{identifier}")
@@ -2073,7 +2087,9 @@ public final class AffindaAPI {
     /**
      * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
      * use with the [/job_descriptions/{identifier}](#get-/job_descriptions/-identifier-) endpoint to check processing
-     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL.
+     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL. In addition, data can be added
+     * directly if users want to upload directly without parsing any resume file. For uploading resume data, the `data`
+     * argument provided must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
      *
      * @param body Job Description to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2091,7 +2107,9 @@ public final class AffindaAPI {
     /**
      * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
      * use with the [/job_descriptions/{identifier}](#get-/job_descriptions/-identifier-) endpoint to check processing
-     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL.
+     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL. In addition, data can be added
+     * directly if users want to upload directly without parsing any resume file. For uploading resume data, the `data`
+     * argument provided must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
      *
      * @param body Job Description to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2116,7 +2134,9 @@ public final class AffindaAPI {
     /**
      * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
      * use with the [/job_descriptions/{identifier}](#get-/job_descriptions/-identifier-) endpoint to check processing
-     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL.
+     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL. In addition, data can be added
+     * directly if users want to upload directly without parsing any resume file. For uploading resume data, the `data`
+     * argument provided must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
      *
      * @param body Job Description to upload, either via fileupload or URL to a file.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2185,6 +2205,68 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public JobDescription getJobDescription(String identifier) {
         return getJobDescriptionAsync(identifier).block();
+    }
+
+    /**
+     * Update data of a job description. The `identifier` is the unique ID returned after POST-ing the job description
+     * via the [/job_descriptions](#post-/job_descriptions) endpoint.
+     *
+     * @param identifier Job description identifier.
+     * @param body Job description data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a JSON-encoded string of the `JobDescriptionData` object along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<JobDescriptionData>> updateJobDescriptionDataWithResponseAsync(
+            String identifier, JobDescriptionDataUpdate body) {
+        final String accept = "application/json";
+        return service.updateJobDescriptionData(this.getRegion(), identifier, body, accept);
+    }
+
+    /**
+     * Update data of a job description. The `identifier` is the unique ID returned after POST-ing the job description
+     * via the [/job_descriptions](#post-/job_descriptions) endpoint.
+     *
+     * @param identifier Job description identifier.
+     * @param body Job description data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a JSON-encoded string of the `JobDescriptionData` object on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<JobDescriptionData> updateJobDescriptionDataAsync(String identifier, JobDescriptionDataUpdate body) {
+        return updateJobDescriptionDataWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<JobDescriptionData> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update data of a job description. The `identifier` is the unique ID returned after POST-ing the job description
+     * via the [/job_descriptions](#post-/job_descriptions) endpoint.
+     *
+     * @param identifier Job description identifier.
+     * @param body Job description data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a JSON-encoded string of the `JobDescriptionData` object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public JobDescriptionData updateJobDescriptionData(String identifier, JobDescriptionDataUpdate body) {
+        return updateJobDescriptionDataAsync(identifier, body).block();
     }
 
     /**

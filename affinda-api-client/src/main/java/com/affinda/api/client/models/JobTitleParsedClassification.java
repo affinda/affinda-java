@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The JobTitleAnnotationParsedClassification model. */
+/** The JobTitleParsedClassification model. */
 @Fluent
-public final class JobTitleAnnotationParsedClassification {
+public final class JobTitleParsedClassification {
     /*
      * The socCode property.
      */
@@ -49,9 +49,9 @@ public final class JobTitleAnnotationParsedClassification {
      * Set the socCode property: The socCode property.
      *
      * @param socCode the socCode value to set.
-     * @return the JobTitleAnnotationParsedClassification object itself.
+     * @return the JobTitleParsedClassification object itself.
      */
-    public JobTitleAnnotationParsedClassification setSocCode(Float socCode) {
+    public JobTitleParsedClassification setSocCode(Float socCode) {
         this.socCode = socCode;
         return this;
     }
@@ -69,9 +69,9 @@ public final class JobTitleAnnotationParsedClassification {
      * Set the title property: The title property.
      *
      * @param title the title value to set.
-     * @return the JobTitleAnnotationParsedClassification object itself.
+     * @return the JobTitleParsedClassification object itself.
      */
-    public JobTitleAnnotationParsedClassification setTitle(String title) {
+    public JobTitleParsedClassification setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -89,9 +89,9 @@ public final class JobTitleAnnotationParsedClassification {
      * Set the minorGroup property: The minorGroup property.
      *
      * @param minorGroup the minorGroup value to set.
-     * @return the JobTitleAnnotationParsedClassification object itself.
+     * @return the JobTitleParsedClassification object itself.
      */
-    public JobTitleAnnotationParsedClassification setMinorGroup(String minorGroup) {
+    public JobTitleParsedClassification setMinorGroup(String minorGroup) {
         this.minorGroup = minorGroup;
         return this;
     }
@@ -109,9 +109,9 @@ public final class JobTitleAnnotationParsedClassification {
      * Set the subMajorGroup property: The subMajorGroup property.
      *
      * @param subMajorGroup the subMajorGroup value to set.
-     * @return the JobTitleAnnotationParsedClassification object itself.
+     * @return the JobTitleParsedClassification object itself.
      */
-    public JobTitleAnnotationParsedClassification setSubMajorGroup(String subMajorGroup) {
+    public JobTitleParsedClassification setSubMajorGroup(String subMajorGroup) {
         this.subMajorGroup = subMajorGroup;
         return this;
     }
@@ -129,9 +129,9 @@ public final class JobTitleAnnotationParsedClassification {
      * Set the majorGroup property: The majorGroup property.
      *
      * @param majorGroup the majorGroup value to set.
-     * @return the JobTitleAnnotationParsedClassification object itself.
+     * @return the JobTitleParsedClassification object itself.
      */
-    public JobTitleAnnotationParsedClassification setMajorGroup(String majorGroup) {
+    public JobTitleParsedClassification setMajorGroup(String majorGroup) {
         this.majorGroup = majorGroup;
         return this;
     }

@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The JobTitleAnnotation model. */
+/** The JobTitleAnnotationUpdate model. */
 @Fluent
-public final class JobTitleAnnotation extends AnnotationV2 {
+public final class JobTitleAnnotationUpdate extends AnnotationV2Base {
     /*
      * Matching job title to extracted text
      */
