@@ -3,21 +3,21 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema model. */
+/** The InvitationResponse model. */
 @Fluent
-public final class PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema {
+public final class InvitationResponse {
     /*
      * The status property.
      */
     @JsonProperty(value = "status")
-    private PatchContentSchemaStatus status;
+    private InvitationResponseStatus status;
 
     /**
      * Get the status property: The status property.
      *
      * @return the status value.
      */
-    public PatchContentSchemaStatus getStatus() {
+    public InvitationResponseStatus getStatus() {
         return this.status;
     }
 
@@ -25,10 +25,9 @@ public final class PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicati
      * Set the status property: The status property.
      *
      * @param status the status value to set.
-     * @return the PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema object itself.
+     * @return the InvitationResponse object itself.
      */
-    public PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema setStatus(
-            PatchContentSchemaStatus status) {
+    public InvitationResponse setStatus(InvitationResponseStatus status) {
         this.status = status;
         return this;
     }

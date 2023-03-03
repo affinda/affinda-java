@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema model. */
+/** The PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema model. */
 @Fluent
-public final class Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema {
+public final class PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema {
     /*
      * The configOverride property.
      */
@@ -25,9 +25,9 @@ public final class Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContent
      * Set the configOverride property: The configOverride property.
      *
      * @param configOverride the configOverride value to set.
-     * @return the Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema object itself.
+     * @return the PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema object itself.
      */
-    public Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema setConfigOverride(
+    public PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema setConfigOverride(
             JobDescriptionSearchConfig configOverride) {
         this.configOverride = configOverride;
         return this;

@@ -6,7 +6,7 @@ import java.util.List;
 
 /** A JSON-encoded string of the `JobDescriptionData` object. */
 @Fluent
-public final class JobDescriptionData {
+public class JobDescriptionData {
     /*
      * The jobTitle property.
      */

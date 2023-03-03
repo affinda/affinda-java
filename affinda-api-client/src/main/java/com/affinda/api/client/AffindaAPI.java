@@ -17,20 +17,12 @@ import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
 import com.affinda.api.client.models.Get8ItemsItem;
 import com.affinda.api.client.models.GetAllDocumentsResults;
-import com.affinda.api.client.models.GetAllDocumentsResultsV2;
-import com.affinda.api.client.models.GetAllInvoicesResults;
-import com.affinda.api.client.models.GetAllJobDescriptionsResults;
 import com.affinda.api.client.models.IndexRequestBody;
 import com.affinda.api.client.models.Invitation;
 import com.affinda.api.client.models.InvitationCreate;
+import com.affinda.api.client.models.InvitationResponse;
 import com.affinda.api.client.models.InvitationStatus;
 import com.affinda.api.client.models.InvitationUpdate;
-import com.affinda.api.client.models.Invoice;
-import com.affinda.api.client.models.InvoiceRequestBody;
-import com.affinda.api.client.models.JobDescription;
-import com.affinda.api.client.models.JobDescriptionData;
-import com.affinda.api.client.models.JobDescriptionDataUpdate;
-import com.affinda.api.client.models.JobDescriptionRequestBody;
 import com.affinda.api.client.models.JobDescriptionSearch;
 import com.affinda.api.client.models.JobDescriptionSearchConfig;
 import com.affinda.api.client.models.JobDescriptionSearchDetail;
@@ -42,29 +34,23 @@ import com.affinda.api.client.models.OrganizationCreate;
 import com.affinda.api.client.models.OrganizationMembership;
 import com.affinda.api.client.models.OrganizationMembershipUpdate;
 import com.affinda.api.client.models.OrganizationRole;
-import com.affinda.api.client.models.Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
-import com.affinda.api.client.models.PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema;
-import com.affinda.api.client.models.RedactedResume;
-import com.affinda.api.client.models.RedactedResumeRequestBody;
 import com.affinda.api.client.models.Region;
 import com.affinda.api.client.models.RequestErrorException;
 import com.affinda.api.client.models.ResthookSubscription;
 import com.affinda.api.client.models.ResthookSubscriptionCreate;
 import com.affinda.api.client.models.ResthookSubscriptionUpdate;
-import com.affinda.api.client.models.Resume;
-import com.affinda.api.client.models.ResumeData;
-import com.affinda.api.client.models.ResumeRequestBody;
 import com.affinda.api.client.models.ResumeSearch;
 import com.affinda.api.client.models.ResumeSearchConfig;
 import com.affinda.api.client.models.ResumeSearchDetail;
@@ -197,265 +183,6 @@ public final class AffindaAPI {
     @Host("https://{region}.affinda.com")
     @ServiceInterface(name = "AffindaAPI")
     public interface AffindaAPIService {
-        @Get("/v2/resumes")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<GetAllDocumentsResultsV2>> getAllResumes(
-                @HostParam("region") Region region,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/v2/resumes")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Resume>> createResume(
-                @HostParam("region") Region region,
-                @BodyParam("application/json") ResumeRequestBody body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/v2/resumes/{identifier}")
-        @ExpectedResponses({200, 200, 400, 400, 401, 401, 404, 404})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> getResume(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @QueryParam("format") String format,
-                @HeaderParam("Accept") String accept);
-
-        @Patch("/v2/resumes/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<ResumeData>> updateResumeData(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @BodyParam("application/json") ResumeData body,
-                @HeaderParam("Accept") String accept);
-
-        @Delete("/v2/resumes/{identifier}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Void>> deleteResume(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/v2/redacted_resumes")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<GetAllDocumentsResultsV2>> getAllRedactedResumes(
-                @HostParam("region") Region region,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/v2/redacted_resumes")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<RedactedResume>> createRedactedResume(
-                @HostParam("region") Region region,
-                @BodyParam("application/json") RedactedResumeRequestBody body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/v2/redacted_resumes/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<RedactedResume>> getRedactedResume(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Delete("/v2/redacted_resumes/{identifier}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Void>> deleteRedactedResume(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/v2/invoices")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<GetAllInvoicesResults>> getAllInvoices(
-                @HostParam("region") Region region,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/v2/invoices")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Invoice>> createInvoice(
-                @HostParam("region") Region region,
-                @BodyParam("application/json") InvoiceRequestBody body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/v2/invoices/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Invoice>> getInvoice(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Delete("/v2/invoices/{identifier}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Void>> deleteInvoice(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/v2/job_descriptions")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<GetAllJobDescriptionsResults>> getAllJobDescriptions(
-                @HostParam("region") Region region,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/v2/job_descriptions")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescription>> createJobDescription(
-                @HostParam("region") Region region,
-                @BodyParam("application/json") JobDescriptionRequestBody body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/v2/job_descriptions/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescription>> getJobDescription(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Patch("/v2/job_descriptions/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionData>> updateJobDescriptionData(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @BodyParam("application/json") JobDescriptionDataUpdate body,
-                @HeaderParam("Accept") String accept);
-
-        @Delete("/v2/job_descriptions/{identifier}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Void>> deleteJobDescription(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/v2/job_description_search")
-        @ExpectedResponses({201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearch>> createJobDescriptionSearch(
-                @HostParam("region") Region region,
-                @QueryParam("offset") Integer offset,
-                @QueryParam("limit") Integer limit,
-                @BodyParam("application/json") JobDescriptionSearchParameters body,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/v2/job_description_search/details/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearchDetail>> getJobDescriptionSearchDetail(
-                @HostParam("region") Region region,
-                @PathParam("identifier") String identifier,
-                @BodyParam("application/json") JobDescriptionSearchParameters body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/v2/job_description_search/config")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearchConfig>> getJobDescriptionSearchConfig(
-                @HostParam("region") Region region, @HeaderParam("Accept") String accept);
-
-        @Patch("/v2/job_description_search/config")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearchConfig>> updateJobDescriptionSearchConfig(
-                @HostParam("region") Region region,
-                @BodyParam("application/json") JobDescriptionSearchConfig body,
-                @HeaderParam("Accept") String accept);
-
-        @Post("/v2/job_description_search/embed")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<JobDescriptionSearchEmbed>> createJobDescriptionSearchEmbedUrl(
-                @HostParam("region") Region region,
-                @BodyParam("application/json")
-                        Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
-                @HeaderParam("Accept") String accept);
-
         @Post("/v3/resume_search")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
@@ -558,6 +285,63 @@ public final class AffindaAPI {
                 @QueryParam(value = "skills", multipleQueryParams = true) List<String> skills,
                 @HeaderParam("Accept") String accept);
 
+        @Post("/v3/job_description_search")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearch>> createJobDescriptionSearch(
+                @HostParam("region") Region region,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @BodyParam("application/json") JobDescriptionSearchParameters body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/job_description_search/details/{identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearchDetail>> getJobDescriptionSearchDetail(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") JobDescriptionSearchParameters body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/job_description_search/config")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearchConfig>> getJobDescriptionSearchConfig(
+                @HostParam("region") Region region, @HeaderParam("Accept") String accept);
+
+        @Patch("/v3/job_description_search/config")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearchConfig>> updateJobDescriptionSearchConfig(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") JobDescriptionSearchConfig body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/job_description_search/embed")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<JobDescriptionSearchEmbed>> createJobDescriptionSearchEmbedUrl(
+                @HostParam("region") Region region,
+                @BodyParam("application/json")
+                        PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body,
+                @HeaderParam("Accept") String accept);
+
         @Get("/v3/index")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
@@ -637,60 +421,6 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<List<OccupationGroup>>> listOccupationGroups(
                 @HostParam("region") Region region, @HeaderParam("Accept") String accept);
-
-        @Get("/v3/resthook_subscriptions")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>>
-                getAllResthookSubscriptions(
-                        @HostParam("region") Region region,
-                        @QueryParam("offset") Integer offset,
-                        @QueryParam("limit") Integer limit,
-                        @HeaderParam("Accept") String accept);
-
-        @Post("/v3/resthook_subscriptions")
-        @ExpectedResponses({201})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<ResthookSubscription>> createResthookSubscription(
-                @HostParam("region") Region region,
-                @BodyParam("application/json") ResthookSubscriptionCreate body,
-                @HeaderParam("Accept") String accept);
-
-        @Get("/v3/resthook_subscriptions/{id}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<ResthookSubscription>> getResthookSubscription(
-                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
-
-        @Patch("/v3/resthook_subscriptions/{id}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<ResthookSubscription>> updateResthookSubscriptionData(
-                @HostParam("region") Region region,
-                @PathParam("id") int id,
-                @BodyParam("application/json") ResthookSubscriptionUpdate body,
-                @HeaderParam("Accept") String accept);
-
-        @Delete("/v3/resthook_subscriptions/{id}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Void>> deleteResthookSubscription(
-                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
 
         @Get("/v3/organizations")
         @ExpectedResponses({200})
@@ -879,8 +609,7 @@ public final class AffindaAPI {
         Mono<Response<Invitation>> respondToInvitation(
                 @HostParam("region") Region region,
                 @PathParam("token") String token,
-                @BodyParam("application/json")
-                        PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body,
+                @BodyParam("application/json") InvitationResponse body,
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/extractors")
@@ -925,7 +654,7 @@ public final class AffindaAPI {
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Extractor>> updateExtractorData(
+        Mono<Response<Extractor>> updateExtractor(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") ExtractorUpdate body,
@@ -987,7 +716,7 @@ public final class AffindaAPI {
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<DataPoint>> updateDataPointData(
+        Mono<Response<DataPoint>> updateDataPoint(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") DataPointUpdate body,
@@ -1162,7 +891,7 @@ public final class AffindaAPI {
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<DocumentCollection>> updateCollectionData(
+        Mono<Response<DocumentCollection>> updateCollection(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") DocumentCollectionUpdate body,
@@ -1229,7 +958,7 @@ public final class AffindaAPI {
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Document>> updateDocumentData(
+        Mono<Response<Document>> updateDocument(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") DocumentUpdate body,
@@ -1285,7 +1014,7 @@ public final class AffindaAPI {
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Tag>> updateTagData(
+        Mono<Response<Tag>> updateTag(
                 @HostParam("region") Region region,
                 @PathParam("id") int id,
                 @BodyParam("application/json") TagUpdate body,
@@ -1299,1320 +1028,60 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteTag(
                 @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
-    }
 
-    /**
-     * Returns all the resume summaries for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<GetAllDocumentsResultsV2>> getAllResumesWithResponseAsync(Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.getAllResumes(this.getRegion(), offset, limit, accept);
-    }
-
-    /**
-     * Returns all the resume summaries for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetAllDocumentsResultsV2> getAllResumesAsync(Integer offset, Integer limit) {
-        return getAllResumesWithResponseAsync(offset, limit)
-                .flatMap(
-                        (Response<GetAllDocumentsResultsV2> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the resume summaries for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetAllDocumentsResultsV2 getAllResumes(Integer offset, Integer limit) {
-        return getAllResumesAsync(offset, limit).block();
-    }
-
-    /**
-     * Uploads a resume for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/resumes/{identifier}](#get-/resumes/-identifier-) endpoint to check processing status and retrieve
-     * results.&lt;br/&gt; Resumes can be uploaded as a file or a URL. In addition, data can be added directly if users
-     * want to upload directly without parsing any resume file. For uploading resume data, the `data` argument provided
-     * must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
-     *
-     * @param body Resume to upload, either via file upload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Resume>> createResumeWithResponseAsync(ResumeRequestBody body) {
-        final String accept = "application/json";
-        return service.createResume(this.getRegion(), body, accept);
-    }
-
-    /**
-     * Uploads a resume for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/resumes/{identifier}](#get-/resumes/-identifier-) endpoint to check processing status and retrieve
-     * results.&lt;br/&gt; Resumes can be uploaded as a file or a URL. In addition, data can be added directly if users
-     * want to upload directly without parsing any resume file. For uploading resume data, the `data` argument provided
-     * must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
-     *
-     * @param body Resume to upload, either via file upload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Resume> createResumeAsync(ResumeRequestBody body) {
-        return createResumeWithResponseAsync(body)
-                .flatMap(
-                        (Response<Resume> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Uploads a resume for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/resumes/{identifier}](#get-/resumes/-identifier-) endpoint to check processing status and retrieve
-     * results.&lt;br/&gt; Resumes can be uploaded as a file or a URL. In addition, data can be added directly if users
-     * want to upload directly without parsing any resume file. For uploading resume data, the `data` argument provided
-     * must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
-     *
-     * @param body Resume to upload, either via file upload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Resume createResume(ResumeRequestBody body) {
-        return createResumeAsync(body).block();
-    }
-
-    /**
-     * Returns all the parse results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/resumes](#post-/resumes) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @param format Set this to "hr-xml" to get the response in HR-XML format. Currently the only supported value for
-     *     this parameter is "hr-xml".
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getResumeWithResponseAsync(String identifier, String format) {
-        final String accept = "application/json, application/xml";
-        return service.getResume(this.getRegion(), identifier, format, accept);
-    }
-
-    /**
-     * Returns all the parse results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/resumes](#post-/resumes) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @param format Set this to "hr-xml" to get the response in HR-XML format. Currently the only supported value for
-     *     this parameter is "hr-xml".
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getResumeAsync(String identifier, String format) {
-        return getResumeWithResponseAsync(identifier, format)
-                .flatMap(
-                        (Response<Object> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the parse results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/resumes](#post-/resumes) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @param format Set this to "hr-xml" to get the response in HR-XML format. Currently the only supported value for
-     *     this parameter is "hr-xml".
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getResume(String identifier, String format) {
-        return getResumeAsync(identifier, format).block();
-    }
-
-    /**
-     * Update data of a parsed resume. The `identifier` is the unique ID returned after POST-ing the resume via the
-     * [/resumes](#post-/resumes) endpoint.
-     *
-     * @param identifier Resume identifier.
-     * @param body Resume data to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a JSON-encoded string of the `ResumeData` object along with {@link Response} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResumeData>> updateResumeDataWithResponseAsync(String identifier, ResumeData body) {
-        final String accept = "application/json";
-        return service.updateResumeData(this.getRegion(), identifier, body, accept);
-    }
-
-    /**
-     * Update data of a parsed resume. The `identifier` is the unique ID returned after POST-ing the resume via the
-     * [/resumes](#post-/resumes) endpoint.
-     *
-     * @param identifier Resume identifier.
-     * @param body Resume data to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a JSON-encoded string of the `ResumeData` object on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResumeData> updateResumeDataAsync(String identifier, ResumeData body) {
-        return updateResumeDataWithResponseAsync(identifier, body)
-                .flatMap(
-                        (Response<ResumeData> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Update data of a parsed resume. The `identifier` is the unique ID returned after POST-ing the resume via the
-     * [/resumes](#post-/resumes) endpoint.
-     *
-     * @param identifier Resume identifier.
-     * @param body Resume data to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a JSON-encoded string of the `ResumeData` object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResumeData updateResumeData(String identifier, ResumeData body) {
-        return updateResumeDataAsync(identifier, body).block();
-    }
-
-    /**
-     * Deletes the specified resume from the database.
-     *
-     * @param identifier Resume identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteResumeWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.deleteResume(this.getRegion(), identifier, accept);
-    }
-
-    /**
-     * Deletes the specified resume from the database.
-     *
-     * @param identifier Resume identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteResumeAsync(String identifier) {
-        return deleteResumeWithResponseAsync(identifier).flatMap((Response<Void> res) -> Mono.empty());
-    }
-
-    /**
-     * Deletes the specified resume from the database.
-     *
-     * @param identifier Resume identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteResume(String identifier) {
-        deleteResumeAsync(identifier).block();
-    }
-
-    /**
-     * Returns all the redacted resume information for that resume.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<GetAllDocumentsResultsV2>> getAllRedactedResumesWithResponseAsync(
-            Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.getAllRedactedResumes(this.getRegion(), offset, limit, accept);
-    }
-
-    /**
-     * Returns all the redacted resume information for that resume.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetAllDocumentsResultsV2> getAllRedactedResumesAsync(Integer offset, Integer limit) {
-        return getAllRedactedResumesWithResponseAsync(offset, limit)
-                .flatMap(
-                        (Response<GetAllDocumentsResultsV2> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the redacted resume information for that resume.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetAllDocumentsResultsV2 getAllRedactedResumes(Integer offset, Integer limit) {
-        return getAllRedactedResumesAsync(offset, limit).block();
-    }
-
-    /**
-     * Uploads a resume for redacting.
-     *
-     * @param body Resume to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<RedactedResume>> createRedactedResumeWithResponseAsync(RedactedResumeRequestBody body) {
-        final String accept = "application/json";
-        return service.createRedactedResume(this.getRegion(), body, accept);
-    }
-
-    /**
-     * Uploads a resume for redacting.
-     *
-     * @param body Resume to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<RedactedResume> createRedactedResumeAsync(RedactedResumeRequestBody body) {
-        return createRedactedResumeWithResponseAsync(body)
-                .flatMap(
-                        (Response<RedactedResume> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Uploads a resume for redacting.
-     *
-     * @param body Resume to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RedactedResume createRedactedResume(RedactedResumeRequestBody body) {
-        return createRedactedResumeAsync(body).block();
-    }
-
-    /**
-     * Returns all the redaction results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/redacted_resumes](#post-/redacted_resumes) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<RedactedResume>> getRedactedResumeWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.getRedactedResume(this.getRegion(), identifier, accept);
-    }
-
-    /**
-     * Returns all the redaction results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/redacted_resumes](#post-/redacted_resumes) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<RedactedResume> getRedactedResumeAsync(String identifier) {
-        return getRedactedResumeWithResponseAsync(identifier)
-                .flatMap(
-                        (Response<RedactedResume> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the redaction results for that resume if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/redacted_resumes](#post-/redacted_resumes) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RedactedResume getRedactedResume(String identifier) {
-        return getRedactedResumeAsync(identifier).block();
-    }
-
-    /**
-     * Deletes the specified resume from the database.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteRedactedResumeWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.deleteRedactedResume(this.getRegion(), identifier, accept);
-    }
-
-    /**
-     * Deletes the specified resume from the database.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteRedactedResumeAsync(String identifier) {
-        return deleteRedactedResumeWithResponseAsync(identifier).flatMap((Response<Void> res) -> Mono.empty());
-    }
-
-    /**
-     * Deletes the specified resume from the database.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteRedactedResume(String identifier) {
-        deleteRedactedResumeAsync(identifier).block();
-    }
-
-    /**
-     * Returns all the invoice summaries for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<GetAllInvoicesResults>> getAllInvoicesWithResponseAsync(Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.getAllInvoices(this.getRegion(), offset, limit, accept);
-    }
-
-    /**
-     * Returns all the invoice summaries for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetAllInvoicesResults> getAllInvoicesAsync(Integer offset, Integer limit) {
-        return getAllInvoicesWithResponseAsync(offset, limit)
-                .flatMap(
-                        (Response<GetAllInvoicesResults> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the invoice summaries for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetAllInvoicesResults getAllInvoices(Integer offset, Integer limit) {
-        return getAllInvoicesAsync(offset, limit).block();
-    }
-
-    /**
-     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
-     * results.
-     *
-     * @param body Invoice to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Invoice>> createInvoiceWithResponseAsync(InvoiceRequestBody body) {
-        final String accept = "application/json";
-        return service.createInvoice(this.getRegion(), body, accept);
-    }
-
-    /**
-     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
-     * results.
-     *
-     * @param body Invoice to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Invoice> createInvoiceAsync(InvoiceRequestBody body) {
-        return createInvoiceWithResponseAsync(body)
-                .flatMap(
-                        (Response<Invoice> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Uploads an invoice for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/invoices/{identifier}](#get-/invoices/-identifier-) endpoint to check processing status and retrieve
-     * results.
-     *
-     * @param body Invoice to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Invoice createInvoice(InvoiceRequestBody body) {
-        return createInvoiceAsync(body).block();
-    }
-
-    /**
-     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Invoice>> getInvoiceWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.getInvoice(this.getRegion(), identifier, accept);
-    }
-
-    /**
-     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Invoice> getInvoiceAsync(String identifier) {
-        return getInvoiceWithResponseAsync(identifier)
-                .flatMap(
-                        (Response<Invoice> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the parse results for that invoice if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the invoice via the [/invoices](#post-/invoices) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Invoice getInvoice(String identifier) {
-        return getInvoiceAsync(identifier).block();
-    }
-
-    /**
-     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
-     * used in any tailored customer models.
-     *
-     * @param identifier Invoice identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteInvoiceWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.deleteInvoice(this.getRegion(), identifier, accept);
-    }
-
-    /**
-     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
-     * used in any tailored customer models.
-     *
-     * @param identifier Invoice identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteInvoiceAsync(String identifier) {
-        return deleteInvoiceWithResponseAsync(identifier).flatMap((Response<Void> res) -> Mono.empty());
-    }
-
-    /**
-     * Delete the specified invoice from the database. Note, any invoices deleted from the database will no longer be
-     * used in any tailored customer models.
-     *
-     * @param identifier Invoice identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteInvoice(String identifier) {
-        deleteInvoiceAsync(identifier).block();
-    }
-
-    /**
-     * Returns all the job descriptions for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<GetAllJobDescriptionsResults>> getAllJobDescriptionsWithResponseAsync(
-            Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.getAllJobDescriptions(this.getRegion(), offset, limit, accept);
-    }
-
-    /**
-     * Returns all the job descriptions for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetAllJobDescriptionsResults> getAllJobDescriptionsAsync(Integer offset, Integer limit) {
-        return getAllJobDescriptionsWithResponseAsync(offset, limit)
-                .flatMap(
-                        (Response<GetAllJobDescriptionsResults> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the job descriptions for that user, limited to 300 per page.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetAllJobDescriptionsResults getAllJobDescriptions(Integer offset, Integer limit) {
-        return getAllJobDescriptionsAsync(offset, limit).block();
-    }
-
-    /**
-     * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
-     * use with the [/job_descriptions/{identifier}](#get-/job_descriptions/-identifier-) endpoint to check processing
-     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL. In addition, data can be added
-     * directly if users want to upload directly without parsing any resume file. For uploading resume data, the `data`
-     * argument provided must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
-     *
-     * @param body Job Description to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<JobDescription>> createJobDescriptionWithResponseAsync(JobDescriptionRequestBody body) {
-        final String accept = "application/json";
-        return service.createJobDescription(this.getRegion(), body, accept);
-    }
-
-    /**
-     * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
-     * use with the [/job_descriptions/{identifier}](#get-/job_descriptions/-identifier-) endpoint to check processing
-     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL. In addition, data can be added
-     * directly if users want to upload directly without parsing any resume file. For uploading resume data, the `data`
-     * argument provided must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
-     *
-     * @param body Job Description to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<JobDescription> createJobDescriptionAsync(JobDescriptionRequestBody body) {
-        return createJobDescriptionWithResponseAsync(body)
-                .flatMap(
-                        (Response<JobDescription> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Uploads a job description for parsing. When successful, returns an `identifier` in the response for subsequent
-     * use with the [/job_descriptions/{identifier}](#get-/job_descriptions/-identifier-) endpoint to check processing
-     * status and retrieve results. Job Descriptions can be uploaded as a file or a URL. In addition, data can be added
-     * directly if users want to upload directly without parsing any resume file. For uploading resume data, the `data`
-     * argument provided must be a JSON-encoded string. Data uploads will not impact upon parsing credits.
-     *
-     * @param body Job Description to upload, either via fileupload or URL to a file.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobDescription createJobDescription(JobDescriptionRequestBody body) {
-        return createJobDescriptionAsync(body).block();
-    }
-
-    /**
-     * Returns all the results for that job description if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/job_descriptions](#post-/job_descriptions) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<JobDescription>> getJobDescriptionWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.getJobDescription(this.getRegion(), identifier, accept);
-    }
-
-    /**
-     * Returns all the results for that job description if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/job_descriptions](#post-/job_descriptions) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<JobDescription> getJobDescriptionAsync(String identifier) {
-        return getJobDescriptionWithResponseAsync(identifier)
-                .flatMap(
-                        (Response<JobDescription> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns all the results for that job description if processing is completed. The `identifier` is the unique ID
-     * returned after POST-ing the resume via the [/job_descriptions](#post-/job_descriptions) endpoint.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobDescription getJobDescription(String identifier) {
-        return getJobDescriptionAsync(identifier).block();
-    }
-
-    /**
-     * Update data of a job description. The `identifier` is the unique ID returned after POST-ing the job description
-     * via the [/job_descriptions](#post-/job_descriptions) endpoint.
-     *
-     * @param identifier Job description identifier.
-     * @param body Job description data to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a JSON-encoded string of the `JobDescriptionData` object along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<JobDescriptionData>> updateJobDescriptionDataWithResponseAsync(
-            String identifier, JobDescriptionDataUpdate body) {
-        final String accept = "application/json";
-        return service.updateJobDescriptionData(this.getRegion(), identifier, body, accept);
-    }
-
-    /**
-     * Update data of a job description. The `identifier` is the unique ID returned after POST-ing the job description
-     * via the [/job_descriptions](#post-/job_descriptions) endpoint.
-     *
-     * @param identifier Job description identifier.
-     * @param body Job description data to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a JSON-encoded string of the `JobDescriptionData` object on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<JobDescriptionData> updateJobDescriptionDataAsync(String identifier, JobDescriptionDataUpdate body) {
-        return updateJobDescriptionDataWithResponseAsync(identifier, body)
-                .flatMap(
-                        (Response<JobDescriptionData> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Update data of a job description. The `identifier` is the unique ID returned after POST-ing the job description
-     * via the [/job_descriptions](#post-/job_descriptions) endpoint.
-     *
-     * @param identifier Job description identifier.
-     * @param body Job description data to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a JSON-encoded string of the `JobDescriptionData` object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobDescriptionData updateJobDescriptionData(String identifier, JobDescriptionDataUpdate body) {
-        return updateJobDescriptionDataAsync(identifier, body).block();
-    }
-
-    /**
-     * Deletes the specified job description from the database.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteJobDescriptionWithResponseAsync(String identifier) {
-        final String accept = "application/json";
-        return service.deleteJobDescription(this.getRegion(), identifier, accept);
-    }
-
-    /**
-     * Deletes the specified job description from the database.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteJobDescriptionAsync(String identifier) {
-        return deleteJobDescriptionWithResponseAsync(identifier).flatMap((Response<Void> res) -> Mono.empty());
-    }
-
-    /**
-     * Deletes the specified job description from the database.
-     *
-     * @param identifier Document identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteJobDescription(String identifier) {
-        deleteJobDescriptionAsync(identifier).block();
-    }
-
-    /**
-     * Searches through parsed job descriptions. You can search with custom criterias or a resume.
-     *
-     * @param body Search parameters.
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<JobDescriptionSearch>> createJobDescriptionSearchWithResponseAsync(
-            JobDescriptionSearchParameters body, Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.createJobDescriptionSearch(this.getRegion(), offset, limit, body, accept);
-    }
-
-    /**
-     * Searches through parsed job descriptions. You can search with custom criterias or a resume.
-     *
-     * @param body Search parameters.
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<JobDescriptionSearch> createJobDescriptionSearchAsync(
-            JobDescriptionSearchParameters body, Integer offset, Integer limit) {
-        return createJobDescriptionSearchWithResponseAsync(body, offset, limit)
-                .flatMap(
-                        (Response<JobDescriptionSearch> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Searches through parsed job descriptions. You can search with custom criterias or a resume.
-     *
-     * @param body Search parameters.
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobDescriptionSearch createJobDescriptionSearch(
-            JobDescriptionSearchParameters body, Integer offset, Integer limit) {
-        return createJobDescriptionSearchAsync(body, offset, limit).block();
-    }
-
-    /**
-     * This contains more detailed information about the matching score of the search criteria, or which search criteria
-     * is missing in this job description. The `identifier` is the unique ID returned via the
-     * [/job_description_search](#post-/job_description_search) endpoint.
-     *
-     * @param identifier Job Description identifier.
-     * @param body Search parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<JobDescriptionSearchDetail>> getJobDescriptionSearchDetailWithResponseAsync(
-            String identifier, JobDescriptionSearchParameters body) {
-        final String accept = "application/json";
-        return service.getJobDescriptionSearchDetail(this.getRegion(), identifier, body, accept);
-    }
-
-    /**
-     * This contains more detailed information about the matching score of the search criteria, or which search criteria
-     * is missing in this job description. The `identifier` is the unique ID returned via the
-     * [/job_description_search](#post-/job_description_search) endpoint.
-     *
-     * @param identifier Job Description identifier.
-     * @param body Search parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<JobDescriptionSearchDetail> getJobDescriptionSearchDetailAsync(
-            String identifier, JobDescriptionSearchParameters body) {
-        return getJobDescriptionSearchDetailWithResponseAsync(identifier, body)
-                .flatMap(
-                        (Response<JobDescriptionSearchDetail> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * This contains more detailed information about the matching score of the search criteria, or which search criteria
-     * is missing in this job description. The `identifier` is the unique ID returned via the
-     * [/job_description_search](#post-/job_description_search) endpoint.
-     *
-     * @param identifier Job Description identifier.
-     * @param body Search parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobDescriptionSearchDetail getJobDescriptionSearchDetail(
-            String identifier, JobDescriptionSearchParameters body) {
-        return getJobDescriptionSearchDetailAsync(identifier, body).block();
-    }
-
-    /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<JobDescriptionSearchConfig>> getJobDescriptionSearchConfigWithResponseAsync() {
-        final String accept = "application/json";
-        return service.getJobDescriptionSearchConfig(this.getRegion(), accept);
-    }
-
-    /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<JobDescriptionSearchConfig> getJobDescriptionSearchConfigAsync() {
-        return getJobDescriptionSearchConfigWithResponseAsync()
-                .flatMap(
-                        (Response<JobDescriptionSearchConfig> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Return configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobDescriptionSearchConfig getJobDescriptionSearchConfig() {
-        return getJobDescriptionSearchConfigAsync().block();
-    }
-
-    /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<JobDescriptionSearchConfig>> updateJobDescriptionSearchConfigWithResponseAsync(
-            JobDescriptionSearchConfig body) {
-        final String accept = "application/json";
-        return service.updateJobDescriptionSearchConfig(this.getRegion(), body, accept);
-    }
-
-    /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<JobDescriptionSearchConfig> updateJobDescriptionSearchConfigAsync(JobDescriptionSearchConfig body) {
-        return updateJobDescriptionSearchConfigWithResponseAsync(body)
-                .flatMap(
-                        (Response<JobDescriptionSearchConfig> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Update configurations such as which fields can be displayed in the logged in user's embeddable job description
-     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobDescriptionSearchConfig updateJobDescriptionSearchConfig(JobDescriptionSearchConfig body) {
-        return updateJobDescriptionSearchConfigAsync(body).block();
-    }
-
-    /**
-     * Create and return a signed URL of the job description search tool which then can be embedded on a web page. An
-     * optional parameter `config_override` can be passed to override the user-level configurations of the embeddable
-     * search tool.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<JobDescriptionSearchEmbed>> createJobDescriptionSearchEmbedUrlWithResponseAsync(
-            Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
-        final String accept = "application/json";
-        return service.createJobDescriptionSearchEmbedUrl(this.getRegion(), body, accept);
-    }
-
-    /**
-     * Create and return a signed URL of the job description search tool which then can be embedded on a web page. An
-     * optional parameter `config_override` can be passed to override the user-level configurations of the embeddable
-     * search tool.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<JobDescriptionSearchEmbed> createJobDescriptionSearchEmbedUrlAsync(
-            Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
-        return createJobDescriptionSearchEmbedUrlWithResponseAsync(body)
-                .flatMap(
-                        (Response<JobDescriptionSearchEmbed> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Create and return a signed URL of the job description search tool which then can be embedded on a web page. An
-     * optional parameter `config_override` can be passed to override the user-level configurations of the embeddable
-     * search tool.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobDescriptionSearchEmbed createJobDescriptionSearchEmbedUrl(
-            Paths15O3Zn5V2JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
-        return createJobDescriptionSearchEmbedUrlAsync(body).block();
+        @Get("/v3/resthook_subscriptions")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>>
+                getAllResthookSubscriptions(
+                        @HostParam("region") Region region,
+                        @QueryParam("offset") Integer offset,
+                        @QueryParam("limit") Integer limit,
+                        @HeaderParam("Accept") String accept);
+
+        @Post("/v3/resthook_subscriptions")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ResthookSubscription>> createResthookSubscription(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") ResthookSubscriptionCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/resthook_subscriptions/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ResthookSubscription>> getResthookSubscription(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Patch("/v3/resthook_subscriptions/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ResthookSubscription>> updateResthookSubscription(
+                @HostParam("region") Region region,
+                @PathParam("id") int id,
+                @BodyParam("application/json") ResthookSubscriptionUpdate body,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v3/resthook_subscriptions/{id}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteResthookSubscription(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
     }
 
     /**
@@ -3223,6 +1692,307 @@ public final class AffindaAPI {
     }
 
     /**
+     * Searches through parsed job descriptions. You can search with custom criterias or a resume.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<JobDescriptionSearch>> createJobDescriptionSearchWithResponseAsync(
+            JobDescriptionSearchParameters body, Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.createJobDescriptionSearch(this.getRegion(), offset, limit, body, accept);
+    }
+
+    /**
+     * Searches through parsed job descriptions. You can search with custom criterias or a resume.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<JobDescriptionSearch> createJobDescriptionSearchAsync(
+            JobDescriptionSearchParameters body, Integer offset, Integer limit) {
+        return createJobDescriptionSearchWithResponseAsync(body, offset, limit)
+                .flatMap(
+                        (Response<JobDescriptionSearch> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Searches through parsed job descriptions. You can search with custom criterias or a resume.
+     *
+     * @param body Search parameters.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public JobDescriptionSearch createJobDescriptionSearch(
+            JobDescriptionSearchParameters body, Integer offset, Integer limit) {
+        return createJobDescriptionSearchAsync(body, offset, limit).block();
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this job description. The `identifier` is the unique ID returned via the
+     * [/job_description_search](#post-/job_description_search) endpoint.
+     *
+     * @param identifier Job Description identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<JobDescriptionSearchDetail>> getJobDescriptionSearchDetailWithResponseAsync(
+            String identifier, JobDescriptionSearchParameters body) {
+        final String accept = "application/json";
+        return service.getJobDescriptionSearchDetail(this.getRegion(), identifier, body, accept);
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this job description. The `identifier` is the unique ID returned via the
+     * [/job_description_search](#post-/job_description_search) endpoint.
+     *
+     * @param identifier Job Description identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<JobDescriptionSearchDetail> getJobDescriptionSearchDetailAsync(
+            String identifier, JobDescriptionSearchParameters body) {
+        return getJobDescriptionSearchDetailWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<JobDescriptionSearchDetail> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * This contains more detailed information about the matching score of the search criteria, or which search criteria
+     * is missing in this job description. The `identifier` is the unique ID returned via the
+     * [/job_description_search](#post-/job_description_search) endpoint.
+     *
+     * @param identifier Job Description identifier.
+     * @param body Search parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public JobDescriptionSearchDetail getJobDescriptionSearchDetail(
+            String identifier, JobDescriptionSearchParameters body) {
+        return getJobDescriptionSearchDetailAsync(identifier, body).block();
+    }
+
+    /**
+     * Return configurations such as which fields can be displayed in the logged in user's embeddable job description
+     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<JobDescriptionSearchConfig>> getJobDescriptionSearchConfigWithResponseAsync() {
+        final String accept = "application/json";
+        return service.getJobDescriptionSearchConfig(this.getRegion(), accept);
+    }
+
+    /**
+     * Return configurations such as which fields can be displayed in the logged in user's embeddable job description
+     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<JobDescriptionSearchConfig> getJobDescriptionSearchConfigAsync() {
+        return getJobDescriptionSearchConfigWithResponseAsync()
+                .flatMap(
+                        (Response<JobDescriptionSearchConfig> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return configurations such as which fields can be displayed in the logged in user's embeddable job description
+     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public JobDescriptionSearchConfig getJobDescriptionSearchConfig() {
+        return getJobDescriptionSearchConfigAsync().block();
+    }
+
+    /**
+     * Update configurations such as which fields can be displayed in the logged in user's embeddable job description
+     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<JobDescriptionSearchConfig>> updateJobDescriptionSearchConfigWithResponseAsync(
+            JobDescriptionSearchConfig body) {
+        final String accept = "application/json";
+        return service.updateJobDescriptionSearchConfig(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Update configurations such as which fields can be displayed in the logged in user's embeddable job description
+     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<JobDescriptionSearchConfig> updateJobDescriptionSearchConfigAsync(JobDescriptionSearchConfig body) {
+        return updateJobDescriptionSearchConfigWithResponseAsync(body)
+                .flatMap(
+                        (Response<JobDescriptionSearchConfig> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update configurations such as which fields can be displayed in the logged in user's embeddable job description
+     * search tool, what are their weights, what is the maximum number of results that can be returned, etc.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public JobDescriptionSearchConfig updateJobDescriptionSearchConfig(JobDescriptionSearchConfig body) {
+        return updateJobDescriptionSearchConfigAsync(body).block();
+    }
+
+    /**
+     * Create and return a signed URL of the job description search tool which then can be embedded on a web page. An
+     * optional parameter `config_override` can be passed to override the user-level configurations of the embeddable
+     * search tool.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<JobDescriptionSearchEmbed>> createJobDescriptionSearchEmbedUrlWithResponseAsync(
+            PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+        final String accept = "application/json";
+        return service.createJobDescriptionSearchEmbedUrl(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Create and return a signed URL of the job description search tool which then can be embedded on a web page. An
+     * optional parameter `config_override` can be passed to override the user-level configurations of the embeddable
+     * search tool.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<JobDescriptionSearchEmbed> createJobDescriptionSearchEmbedUrlAsync(
+            PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+        return createJobDescriptionSearchEmbedUrlWithResponseAsync(body)
+                .flatMap(
+                        (Response<JobDescriptionSearchEmbed> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create and return a signed URL of the job description search tool which then can be embedded on a web page. An
+     * optional parameter `config_override` can be passed to override the user-level configurations of the embeddable
+     * search tool.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public JobDescriptionSearchEmbed createJobDescriptionSearchEmbedUrl(
+            PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema body) {
+        return createJobDescriptionSearchEmbedUrlAsync(body).block();
+    }
+
+    /**
      * Returns all the indexes.
      *
      * @param offset The number of documents to skip before starting to collect the result set.
@@ -3598,279 +2368,6 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public List<OccupationGroup> listOccupationGroups() {
         return listOccupationGroupsAsync().block();
-    }
-
-    /**
-     * Returns your resthook subscriptions.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>>
-            getAllResthookSubscriptionsWithResponseAsync(Integer offset, Integer limit) {
-        final String accept = "application/json";
-        return service.getAllResthookSubscriptions(this.getRegion(), offset, limit, accept);
-    }
-
-    /**
-     * Returns your resthook subscriptions.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>
-            getAllResthookSubscriptionsAsync(Integer offset, Integer limit) {
-        return getAllResthookSubscriptionsWithResponseAsync(offset, limit)
-                .flatMap(
-                        (Response<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>
-                                        res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns your resthook subscriptions.
-     *
-     * @param offset The number of documents to skip before starting to collect the result set.
-     * @param limit The numbers of results to return.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema getAllResthookSubscriptions(
-            Integer offset, Integer limit) {
-        return getAllResthookSubscriptionsAsync(offset, limit).block();
-    }
-
-    /**
-     * Create a resthook subscriptions.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResthookSubscription>> createResthookSubscriptionWithResponseAsync(
-            ResthookSubscriptionCreate body) {
-        final String accept = "application/json";
-        return service.createResthookSubscription(this.getRegion(), body, accept);
-    }
-
-    /**
-     * Create a resthook subscriptions.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResthookSubscription> createResthookSubscriptionAsync(ResthookSubscriptionCreate body) {
-        return createResthookSubscriptionWithResponseAsync(body)
-                .flatMap(
-                        (Response<ResthookSubscription> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Create a resthook subscriptions.
-     *
-     * @param body The body parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResthookSubscription createResthookSubscription(ResthookSubscriptionCreate body) {
-        return createResthookSubscriptionAsync(body).block();
-    }
-
-    /**
-     * Return a specific resthook subscription.
-     *
-     * @param id Resthook subscription's ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResthookSubscription>> getResthookSubscriptionWithResponseAsync(int id) {
-        final String accept = "application/json";
-        return service.getResthookSubscription(this.getRegion(), id, accept);
-    }
-
-    /**
-     * Return a specific resthook subscription.
-     *
-     * @param id Resthook subscription's ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResthookSubscription> getResthookSubscriptionAsync(int id) {
-        return getResthookSubscriptionWithResponseAsync(id)
-                .flatMap(
-                        (Response<ResthookSubscription> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Return a specific resthook subscription.
-     *
-     * @param id Resthook subscription's ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResthookSubscription getResthookSubscription(int id) {
-        return getResthookSubscriptionAsync(id).block();
-    }
-
-    /**
-     * Update data of a resthook subscription.
-     *
-     * @param id ResthookSubscription's ID.
-     * @param body ResthookSubscription data to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ResthookSubscription>> updateResthookSubscriptionDataWithResponseAsync(
-            int id, ResthookSubscriptionUpdate body) {
-        final String accept = "application/json";
-        return service.updateResthookSubscriptionData(this.getRegion(), id, body, accept);
-    }
-
-    /**
-     * Update data of a resthook subscription.
-     *
-     * @param id ResthookSubscription's ID.
-     * @param body ResthookSubscription data to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ResthookSubscription> updateResthookSubscriptionDataAsync(int id, ResthookSubscriptionUpdate body) {
-        return updateResthookSubscriptionDataWithResponseAsync(id, body)
-                .flatMap(
-                        (Response<ResthookSubscription> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Update data of a resthook subscription.
-     *
-     * @param id ResthookSubscription's ID.
-     * @param body ResthookSubscription data to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResthookSubscription updateResthookSubscriptionData(int id, ResthookSubscriptionUpdate body) {
-        return updateResthookSubscriptionDataAsync(id, body).block();
-    }
-
-    /**
-     * Deletes the specified resthook subscription from the database.
-     *
-     * @param id ResthookSubscription's ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteResthookSubscriptionWithResponseAsync(int id) {
-        final String accept = "application/json";
-        return service.deleteResthookSubscription(this.getRegion(), id, accept);
-    }
-
-    /**
-     * Deletes the specified resthook subscription from the database.
-     *
-     * @param id ResthookSubscription's ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteResthookSubscriptionAsync(int id) {
-        return deleteResthookSubscriptionWithResponseAsync(id).flatMap((Response<Void> res) -> Mono.empty());
-    }
-
-    /**
-     * Deletes the specified resthook subscription from the database.
-     *
-     * @param id ResthookSubscription's ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteResthookSubscription(int id) {
-        deleteResthookSubscriptionAsync(id).block();
     }
 
     /**
@@ -4730,8 +3227,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Invitation>> respondToInvitationWithResponseAsync(
-            String token, PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
+    public Mono<Response<Invitation>> respondToInvitationWithResponseAsync(String token, InvitationResponse body) {
         final String accept = "application/json";
         return service.respondToInvitation(this.getRegion(), token, body, accept);
     }
@@ -4748,8 +3244,7 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Invitation> respondToInvitationAsync(
-            String token, PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
+    public Mono<Invitation> respondToInvitationAsync(String token, InvitationResponse body) {
         return respondToInvitationWithResponseAsync(token, body)
                 .flatMap(
                         (Response<Invitation> res) -> {
@@ -4773,8 +3268,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Invitation respondToInvitation(
-            String token, PathsCtl5TcV3InvitationsTokenPatchRequestbodyContentApplicationJsonSchema body) {
+    public Invitation respondToInvitation(String token, InvitationResponse body) {
         return respondToInvitationAsync(token, body).block();
     }
 
@@ -4965,9 +3459,9 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Extractor>> updateExtractorDataWithResponseAsync(String identifier, ExtractorUpdate body) {
+    public Mono<Response<Extractor>> updateExtractorWithResponseAsync(String identifier, ExtractorUpdate body) {
         final String accept = "application/json";
-        return service.updateExtractorData(this.getRegion(), identifier, body, accept);
+        return service.updateExtractor(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -4982,8 +3476,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Extractor> updateExtractorDataAsync(String identifier, ExtractorUpdate body) {
-        return updateExtractorDataWithResponseAsync(identifier, body)
+    public Mono<Extractor> updateExtractorAsync(String identifier, ExtractorUpdate body) {
+        return updateExtractorWithResponseAsync(identifier, body)
                 .flatMap(
                         (Response<Extractor> res) -> {
                             if (res.getValue() != null) {
@@ -5006,8 +3500,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Extractor updateExtractorData(String identifier, ExtractorUpdate body) {
-        return updateExtractorDataAsync(identifier, body).block();
+    public Extractor updateExtractor(String identifier, ExtractorUpdate body) {
+        return updateExtractorAsync(identifier, body).block();
     }
 
     /**
@@ -5279,9 +3773,9 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<DataPoint>> updateDataPointDataWithResponseAsync(String identifier, DataPointUpdate body) {
+    public Mono<Response<DataPoint>> updateDataPointWithResponseAsync(String identifier, DataPointUpdate body) {
         final String accept = "application/json";
-        return service.updateDataPointData(this.getRegion(), identifier, body, accept);
+        return service.updateDataPoint(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -5296,8 +3790,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<DataPoint> updateDataPointDataAsync(String identifier, DataPointUpdate body) {
-        return updateDataPointDataWithResponseAsync(identifier, body)
+    public Mono<DataPoint> updateDataPointAsync(String identifier, DataPointUpdate body) {
+        return updateDataPointWithResponseAsync(identifier, body)
                 .flatMap(
                         (Response<DataPoint> res) -> {
                             if (res.getValue() != null) {
@@ -5320,8 +3814,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataPoint updateDataPointData(String identifier, DataPointUpdate body) {
-        return updateDataPointDataAsync(identifier, body).block();
+    public DataPoint updateDataPoint(String identifier, DataPointUpdate body) {
+        return updateDataPointAsync(identifier, body).block();
     }
 
     /**
@@ -6097,10 +4591,10 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<DocumentCollection>> updateCollectionDataWithResponseAsync(
+    public Mono<Response<DocumentCollection>> updateCollectionWithResponseAsync(
             String identifier, DocumentCollectionUpdate body) {
         final String accept = "application/json";
-        return service.updateCollectionData(this.getRegion(), identifier, body, accept);
+        return service.updateCollection(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -6115,8 +4609,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<DocumentCollection> updateCollectionDataAsync(String identifier, DocumentCollectionUpdate body) {
-        return updateCollectionDataWithResponseAsync(identifier, body)
+    public Mono<DocumentCollection> updateCollectionAsync(String identifier, DocumentCollectionUpdate body) {
+        return updateCollectionWithResponseAsync(identifier, body)
                 .flatMap(
                         (Response<DocumentCollection> res) -> {
                             if (res.getValue() != null) {
@@ -6139,8 +4633,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DocumentCollection updateCollectionData(String identifier, DocumentCollectionUpdate body) {
-        return updateCollectionDataAsync(identifier, body).block();
+    public DocumentCollection updateCollection(String identifier, DocumentCollectionUpdate body) {
+        return updateCollectionAsync(identifier, body).block();
     }
 
     /**
@@ -6196,7 +4690,7 @@ public final class AffindaAPI {
      * @param workspace Filter by workspace.
      * @param collection Filter by collection.
      * @param state Filter by the document's state.
-     * @param tags Filter by tags.
+     * @param tags Filter by tag's IDs.
      * @param createdDt Filter by created datetime.
      * @param search Partial, case-insensitive match with file name or tag name.
      * @param ordering Sort the result set. A "-" at the beginning denotes DESC sort, e.g. -created_dt. Sort by multiple
@@ -6257,7 +4751,7 @@ public final class AffindaAPI {
      * @param workspace Filter by workspace.
      * @param collection Filter by collection.
      * @param state Filter by the document's state.
-     * @param tags Filter by tags.
+     * @param tags Filter by tag's IDs.
      * @param createdDt Filter by created datetime.
      * @param search Partial, case-insensitive match with file name or tag name.
      * @param ordering Sort the result set. A "-" at the beginning denotes DESC sort, e.g. -created_dt. Sort by multiple
@@ -6317,7 +4811,7 @@ public final class AffindaAPI {
      * @param workspace Filter by workspace.
      * @param collection Filter by collection.
      * @param state Filter by the document's state.
-     * @param tags Filter by tags.
+     * @param tags Filter by tag's IDs.
      * @param createdDt Filter by created datetime.
      * @param search Partial, case-insensitive match with file name or tag name.
      * @param ordering Sort the result set. A "-" at the beginning denotes DESC sort, e.g. -created_dt. Sort by multiple
@@ -6488,9 +4982,9 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Document>> updateDocumentDataWithResponseAsync(String identifier, DocumentUpdate body) {
+    public Mono<Response<Document>> updateDocumentWithResponseAsync(String identifier, DocumentUpdate body) {
         final String accept = "application/json";
-        return service.updateDocumentData(this.getRegion(), identifier, body, accept);
+        return service.updateDocument(this.getRegion(), identifier, body, accept);
     }
 
     /**
@@ -6505,8 +4999,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Document> updateDocumentDataAsync(String identifier, DocumentUpdate body) {
-        return updateDocumentDataWithResponseAsync(identifier, body)
+    public Mono<Document> updateDocumentAsync(String identifier, DocumentUpdate body) {
+        return updateDocumentWithResponseAsync(identifier, body)
                 .flatMap(
                         (Response<Document> res) -> {
                             if (res.getValue() != null) {
@@ -6529,8 +5023,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Document updateDocumentData(String identifier, DocumentUpdate body) {
-        return updateDocumentDataAsync(identifier, body).block();
+    public Document updateDocument(String identifier, DocumentUpdate body) {
+        return updateDocumentAsync(identifier, body).block();
     }
 
     /**
@@ -6758,9 +5252,9 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Tag>> updateTagDataWithResponseAsync(int id, TagUpdate body) {
+    public Mono<Response<Tag>> updateTagWithResponseAsync(int id, TagUpdate body) {
         final String accept = "application/json";
-        return service.updateTagData(this.getRegion(), id, body, accept);
+        return service.updateTag(this.getRegion(), id, body, accept);
     }
 
     /**
@@ -6775,8 +5269,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Tag> updateTagDataAsync(int id, TagUpdate body) {
-        return updateTagDataWithResponseAsync(id, body)
+    public Mono<Tag> updateTagAsync(int id, TagUpdate body) {
+        return updateTagWithResponseAsync(id, body)
                 .flatMap(
                         (Response<Tag> res) -> {
                             if (res.getValue() != null) {
@@ -6799,8 +5293,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Tag updateTagData(int id, TagUpdate body) {
-        return updateTagDataAsync(id, body).block();
+    public Tag updateTag(int id, TagUpdate body) {
+        return updateTagAsync(id, body).block();
     }
 
     /**
@@ -6846,5 +5340,278 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteTag(int id) {
         deleteTagAsync(id).block();
+    }
+
+    /**
+     * Returns your resthook subscriptions.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>>
+            getAllResthookSubscriptionsWithResponseAsync(Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.getAllResthookSubscriptions(this.getRegion(), offset, limit, accept);
+    }
+
+    /**
+     * Returns your resthook subscriptions.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>
+            getAllResthookSubscriptionsAsync(Integer offset, Integer limit) {
+        return getAllResthookSubscriptionsWithResponseAsync(offset, limit)
+                .flatMap(
+                        (Response<PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema>
+                                        res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns your resthook subscriptions.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema getAllResthookSubscriptions(
+            Integer offset, Integer limit) {
+        return getAllResthookSubscriptionsAsync(offset, limit).block();
+    }
+
+    /**
+     * Create a resthook subscriptions.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResthookSubscription>> createResthookSubscriptionWithResponseAsync(
+            ResthookSubscriptionCreate body) {
+        final String accept = "application/json";
+        return service.createResthookSubscription(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Create a resthook subscriptions.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResthookSubscription> createResthookSubscriptionAsync(ResthookSubscriptionCreate body) {
+        return createResthookSubscriptionWithResponseAsync(body)
+                .flatMap(
+                        (Response<ResthookSubscription> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create a resthook subscriptions.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResthookSubscription createResthookSubscription(ResthookSubscriptionCreate body) {
+        return createResthookSubscriptionAsync(body).block();
+    }
+
+    /**
+     * Return a specific resthook subscription.
+     *
+     * @param id Resthook subscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResthookSubscription>> getResthookSubscriptionWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.getResthookSubscription(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Return a specific resthook subscription.
+     *
+     * @param id Resthook subscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResthookSubscription> getResthookSubscriptionAsync(int id) {
+        return getResthookSubscriptionWithResponseAsync(id)
+                .flatMap(
+                        (Response<ResthookSubscription> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return a specific resthook subscription.
+     *
+     * @param id Resthook subscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResthookSubscription getResthookSubscription(int id) {
+        return getResthookSubscriptionAsync(id).block();
+    }
+
+    /**
+     * Update data of a resthook subscription.
+     *
+     * @param id ResthookSubscription's ID.
+     * @param body ResthookSubscription data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResthookSubscription>> updateResthookSubscriptionWithResponseAsync(
+            int id, ResthookSubscriptionUpdate body) {
+        final String accept = "application/json";
+        return service.updateResthookSubscription(this.getRegion(), id, body, accept);
+    }
+
+    /**
+     * Update data of a resthook subscription.
+     *
+     * @param id ResthookSubscription's ID.
+     * @param body ResthookSubscription data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResthookSubscription> updateResthookSubscriptionAsync(int id, ResthookSubscriptionUpdate body) {
+        return updateResthookSubscriptionWithResponseAsync(id, body)
+                .flatMap(
+                        (Response<ResthookSubscription> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update data of a resthook subscription.
+     *
+     * @param id ResthookSubscription's ID.
+     * @param body ResthookSubscription data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResthookSubscription updateResthookSubscription(int id, ResthookSubscriptionUpdate body) {
+        return updateResthookSubscriptionAsync(id, body).block();
+    }
+
+    /**
+     * Deletes the specified resthook subscription from the database.
+     *
+     * @param id ResthookSubscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteResthookSubscriptionWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.deleteResthookSubscription(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Deletes the specified resthook subscription from the database.
+     *
+     * @param id ResthookSubscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> deleteResthookSubscriptionAsync(int id) {
+        return deleteResthookSubscriptionWithResponseAsync(id).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Deletes the specified resthook subscription from the database.
+     *
+     * @param id ResthookSubscription's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteResthookSubscription(int id) {
+        deleteResthookSubscriptionAsync(id).block();
     }
 }

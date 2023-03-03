@@ -7,7 +7,7 @@ import java.util.Map;
 
 /** The InvoiceData model. */
 @Fluent
-public final class InvoiceData {
+public class InvoiceData {
     /*
      * The tables property.
      */

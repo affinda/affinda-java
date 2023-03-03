@@ -177,6 +177,12 @@ public final class DocumentMeta {
     @JsonProperty(value = "tags")
     private List<Tag> tags;
 
+    /*
+     * The confirmedBy property.
+     */
+    @JsonProperty(value = "confirmedBy")
+    private User confirmedBy;
+
     /**
      * Get the identifier property: Uniquely identify a document.
      *
@@ -726,6 +732,26 @@ public final class DocumentMeta {
      */
     public DocumentMeta setTags(List<Tag> tags) {
         this.tags = tags;
+        return this;
+    }
+
+    /**
+     * Get the confirmedBy property: The confirmedBy property.
+     *
+     * @return the confirmedBy value.
+     */
+    public User getConfirmedBy() {
+        return this.confirmedBy;
+    }
+
+    /**
+     * Set the confirmedBy property: The confirmedBy property.
+     *
+     * @param confirmedBy the confirmedBy value to set.
+     * @return the DocumentMeta object itself.
+     */
+    public DocumentMeta setConfirmedBy(User confirmedBy) {
+        this.confirmedBy = confirmedBy;
         return this;
     }
 }

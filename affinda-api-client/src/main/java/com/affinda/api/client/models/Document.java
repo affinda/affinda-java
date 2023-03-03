@@ -5,14 +5,27 @@ import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.io.IOException;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 
 /** The Document model. */
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "extractor",
+        defaultImpl = Document.class)
+@JsonTypeName("Document")
+@JsonSubTypes({
+    @JsonSubTypes.Type(name = "resume", value = ResumeDocument.class),
+    @JsonSubTypes.Type(name = "invoice", value = InvoiceDocument.class),
+    @JsonSubTypes.Type(name = "job-description", value = JobDescriptionDocument.class)
+})
 @Fluent
-public final class Document {
+public class Document {
     /*
      * The meta property.
      */
@@ -20,10 +33,10 @@ public final class Document {
     private DocumentMeta meta;
 
     /*
-     * Dictionary of <any>
+     * The data property.
      */
     @JsonProperty(value = "data")
-    private Map<String, Object> data;
+    private Object data;
 
     /*
      * The error property.
@@ -52,21 +65,21 @@ public final class Document {
     }
 
     /**
-     * Get the data property: Dictionary of &lt;any&gt;.
+     * Get the data property: The data property.
      *
      * @return the data value.
      */
-    public Map<String, Object> getData() {
+    public Object getData() {
         return this.data;
     }
 
     /**
-     * Set the data property: Dictionary of &lt;any&gt;.
+     * Set the data property: The data property.
      *
      * @param data the data value to set.
      * @return the Document object itself.
      */
-    public Document setData(Map<String, Object> data) {
+    public Document setData(Object data) {
         this.data = data;
         return this;
     }
@@ -94,16 +107,16 @@ public final class Document {
     private static SerializerAdapter sharedSerializerAdapter = null;
     
     private static SerializerAdapter getSharedSerializerAdapter() {
-        // Race conditions don't matter, so no need to synchronise
+        // Race conditions don't matter here, so no need to synchronise
         if (sharedSerializerAdapter == null) {
             sharedSerializerAdapter = JacksonAdapter.createDefaultSerializerAdapter();
         }
         return sharedSerializerAdapter;
     }
     
-    private <T> T convertToClass(Class<T> clazz) throws IOException {
+    private <T> T convertDataToClass(Class<T> clazz) throws IOException {
         return (T) getSharedSerializerAdapter().deserialize(
-            getSharedSerializerAdapter().serialize(this, SerializerEncoding.JSON),
+            getSharedSerializerAdapter().serialize(this.getData(), SerializerEncoding.JSON),
             clazz,
             SerializerEncoding.JSON
         );
@@ -122,37 +135,51 @@ public final class Document {
         return this.getMeta().getCollection().getExtractor().getIdentifier().equals(expected);
     }
     
-    public Invoice asInvoice() throws IOException {
+    /**
+     * Convert {@link #getData() this.data} to {@link InvoiceData}.
+     *
+     * @throws IllegalStateException if document type is not <code>invoice</code>
+     * @return This Document's <code>data</code> as <code>InvoiceData</code>
+     */
+    public InvoiceData asInvoice() throws IOException {
         if (!this.validateDocumentType("invoice")) {
             throw new IllegalStateException("Document does not appear to be an invoice.");
         }
-        final Invoice invoice = (Invoice) this.convertToClass(Invoice.class);
-        invoice.getMeta().setIsVerified(this.getMeta().isConfirmed());
-        if (this.getMeta().getConfirmedDt() != null) {
-            invoice.setClientVerifiedDt(
-                this.getMeta().getConfirmedDt()
-                    .withOffsetSameInstant(ZoneOffset.UTC)
-                    .format(DateTimeFormatter.ISO_OFFSET_DATE)
-            );
+        if (this.getData() == null) {
+            return null;
         }
-        return invoice;
+        return (InvoiceData) this.convertDataToClass(InvoiceData.class);
     }
     
-    public JobDescription asJobDescription() throws IOException {
+    /**
+     * Convert {@link #getData() this.data} to {@link JobDescriptionData}.
+     *
+     * @throws IllegalStateException if document type is not <code>job-description</code>
+     * @return This Document's <code>data</code> as <code>JobDescriptionData</code>
+     */
+    public JobDescriptionData asJobDescription() throws IOException {
         if (!this.validateDocumentType("job-description")) {
             throw new IllegalStateException("Document does not appear to be a job description.");
         }
-        final JobDescription jobDescription = (JobDescription) this.convertToClass(JobDescription.class);
-        jobDescription.getMeta().setIsVerified(this.getMeta().isConfirmed());
-        return jobDescription;
+        if (this.getData() == null) {
+            return null;
+        }
+        return (JobDescriptionData) this.convertDataToClass(JobDescriptionData.class);
     }
     
-    public Resume asResume() throws IOException {
+    /**
+     * Convert {@link #getData() this.data} to {@link ResumeData}.
+     *
+     * @throws IllegalStateException if document type is not <code>resume</code>
+     * @return This Document's <code>data</code> as <code>ResumeData</code>
+     */
+    public ResumeData asResume() throws IOException {
         if (!this.validateDocumentType("resume")) {
             throw new IllegalStateException("Document does not appear to be a resume.");
         }
-        final Resume resume = (Resume) this.convertToClass(Resume.class);
-        resume.getMeta().setIsVerified(this.getMeta().isConfirmed());
-        return resume;
+        if (this.getData() == null) {
+            return null;
+        }
+        return (ResumeData) this.convertDataToClass(ResumeData.class);
     }
 }
