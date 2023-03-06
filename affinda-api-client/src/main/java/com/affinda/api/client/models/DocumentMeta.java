@@ -181,7 +181,7 @@ public final class DocumentMeta {
      * The confirmedBy property.
      */
     @JsonProperty(value = "confirmedBy")
-    private User confirmedBy;
+    private UserNullable confirmedBy;
 
     /**
      * Get the identifier property: Uniquely identify a document.
@@ -740,7 +740,7 @@ public final class DocumentMeta {
      *
      * @return the confirmedBy value.
      */
-    public User getConfirmedBy() {
+    public UserNullable getConfirmedBy() {
         return this.confirmedBy;
     }
 
@@ -750,7 +750,7 @@ public final class DocumentMeta {
      * @param confirmedBy the confirmedBy value to set.
      * @return the DocumentMeta object itself.
      */
-    public DocumentMeta setConfirmedBy(User confirmedBy) {
+    public DocumentMeta setConfirmedBy(UserNullable confirmedBy) {
         this.confirmedBy = confirmedBy;
         return this;
     }

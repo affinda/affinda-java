@@ -29,7 +29,7 @@ public final class GetAllDocumentsResults {
      * The results property.
      */
     @JsonProperty(value = "results", required = true)
-    private List<Document> results;
+    private List<GetAllDocumentsResultsItem> results;
 
     /**
      * Get the count property: Number of documents in result.
@@ -96,7 +96,7 @@ public final class GetAllDocumentsResults {
      *
      * @return the results value.
      */
-    public List<Document> getResults() {
+    public List<GetAllDocumentsResultsItem> getResults() {
         return this.results;
     }
 
@@ -106,7 +106,7 @@ public final class GetAllDocumentsResults {
      * @param results the results value to set.
      * @return the GetAllDocumentsResults object itself.
      */
-    public GetAllDocumentsResults setResults(List<Document> results) {
+    public GetAllDocumentsResults setResults(List<GetAllDocumentsResultsItem> results) {
         this.results = results;
         return this;
     }

@@ -24,6 +24,12 @@ public final class DataPointChoice {
     @JsonProperty(value = "value", required = true)
     private String value;
 
+    /*
+     * The description property.
+     */
+    @JsonProperty(value = "description")
+    private String description;
+
     /**
      * Get the id property: The id property.
      *
@@ -81,6 +87,26 @@ public final class DataPointChoice {
      */
     public DataPointChoice setValue(String value) {
         this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the description property: The description property.
+     *
+     * @return the description value.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Set the description property: The description property.
+     *
+     * @param description the description value to set.
+     * @return the DataPointChoice object itself.
+     */
+    public DataPointChoice setDescription(String description) {
+        this.description = description;
         return this;
     }
 }
