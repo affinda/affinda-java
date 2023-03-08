@@ -651,6 +651,17 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteResthookSubscription(
                 @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Post("/v2/resthook_subscriptions/activate")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ResthookSubscription>> activateResthookSubscription(
+                @HostParam("region") Region region,
+                @HeaderParam("X-Hook-Secret") String xHookSecret,
+                @HeaderParam("Accept") String accept);
     }
 
     /**
@@ -3024,7 +3035,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * Create a resthook subscriptions.
+     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * header. You need to response to this request with a 200 status code to confirm your subscribe intention. Then,
+     * you need to use the `X-Hook-Secret` to activate the subscription using the
+     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. For more information, see
+     * our help article here - [How do I create a
+     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3041,7 +3057,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * Create a resthook subscriptions.
+     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * header. You need to response to this request with a 200 status code to confirm your subscribe intention. Then,
+     * you need to use the `X-Hook-Secret` to activate the subscription using the
+     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. For more information, see
+     * our help article here - [How do I create a
+     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3064,7 +3085,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * Create a resthook subscriptions.
+     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * header. You need to response to this request with a 200 status code to confirm your subscribe intention. Then,
+     * you need to use the `X-Hook-Secret` to activate the subscription using the
+     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. For more information, see
+     * our help article here - [How do I create a
+     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3233,5 +3259,65 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteResthookSubscription(int id) {
         deleteResthookSubscriptionAsync(id).block();
+    }
+
+    /**
+     * After creating a subscription, we'll send a POST request to your target URL with a `X-Hook-Secret` header. You
+     * should response to this with a 200 status code, and use the value of the `X-Hook-Secret` header that you received
+     * to activate the subscription using this endpoint.
+     *
+     * @param xHookSecret The secret received when creating a subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResthookSubscription>> activateResthookSubscriptionWithResponseAsync(String xHookSecret) {
+        final String accept = "application/json";
+        return service.activateResthookSubscription(this.getRegion(), xHookSecret, accept);
+    }
+
+    /**
+     * After creating a subscription, we'll send a POST request to your target URL with a `X-Hook-Secret` header. You
+     * should response to this with a 200 status code, and use the value of the `X-Hook-Secret` header that you received
+     * to activate the subscription using this endpoint.
+     *
+     * @param xHookSecret The secret received when creating a subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResthookSubscription> activateResthookSubscriptionAsync(String xHookSecret) {
+        return activateResthookSubscriptionWithResponseAsync(xHookSecret)
+                .flatMap(
+                        (Response<ResthookSubscription> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * After creating a subscription, we'll send a POST request to your target URL with a `X-Hook-Secret` header. You
+     * should response to this with a 200 status code, and use the value of the `X-Hook-Secret` header that you received
+     * to activate the subscription using this endpoint.
+     *
+     * @param xHookSecret The secret received when creating a subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResthookSubscription activateResthookSubscription(String xHookSecret) {
+        return activateResthookSubscriptionAsync(xHookSecret).block();
     }
 }

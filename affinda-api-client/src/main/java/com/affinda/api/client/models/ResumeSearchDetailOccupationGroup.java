@@ -17,7 +17,7 @@ public final class ResumeSearchDetailOccupationGroup {
      * The value property.
      */
     @JsonProperty(value = "value")
-    private List<ResumeSearchDetailOccupationGroupValueItem> value;
+    private List<OccupationGroupSearchResult> value;
 
     /**
      * Get the missing property: The missing property.
@@ -44,7 +44,7 @@ public final class ResumeSearchDetailOccupationGroup {
      *
      * @return the value value.
      */
-    public List<ResumeSearchDetailOccupationGroupValueItem> getValue() {
+    public List<OccupationGroupSearchResult> getValue() {
         return this.value;
     }
 
@@ -54,7 +54,7 @@ public final class ResumeSearchDetailOccupationGroup {
      * @param value the value value to set.
      * @return the ResumeSearchDetailOccupationGroup object itself.
      */
-    public ResumeSearchDetailOccupationGroup setValue(List<ResumeSearchDetailOccupationGroupValueItem> value) {
+    public ResumeSearchDetailOccupationGroup setValue(List<OccupationGroupSearchResult> value) {
         this.value = value;
         return this;
     }

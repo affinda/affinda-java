@@ -154,6 +154,12 @@ public final class ResumeData {
     private String rawText;
 
     /*
+     * Redacted version of the text in the resume, removing PII.
+     */
+    @JsonProperty(value = "redactedText")
+    private String redactedText;
+
+    /*
      * A JSON-encoded string of the `ResumeData` object.
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
@@ -539,6 +545,26 @@ public final class ResumeData {
      */
     public ResumeData setRawText(String rawText) {
         this.rawText = rawText;
+        return this;
+    }
+
+    /**
+     * Get the redactedText property: Redacted version of the text in the resume, removing PII.
+     *
+     * @return the redactedText value.
+     */
+    public String getRedactedText() {
+        return this.redactedText;
+    }
+
+    /**
+     * Set the redactedText property: Redacted version of the text in the resume, removing PII.
+     *
+     * @param redactedText the redactedText value to set.
+     * @return the ResumeData object itself.
+     */
+    public ResumeData setRedactedText(String redactedText) {
+        this.redactedText = redactedText;
         return this;
     }
 

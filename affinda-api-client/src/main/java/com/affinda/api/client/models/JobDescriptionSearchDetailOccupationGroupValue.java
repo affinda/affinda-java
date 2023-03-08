@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The JobDescriptionSearchDetailOccupationGroupValueItem model. */
+/** The JobDescriptionSearchDetailOccupationGroupValue model. */
 @Fluent
-public final class JobDescriptionSearchDetailOccupationGroupValueItem extends OccupationGroup {
+public final class JobDescriptionSearchDetailOccupationGroupValue extends OccupationGroup {
     /*
      * The match property.
      */
@@ -25,9 +25,9 @@ public final class JobDescriptionSearchDetailOccupationGroupValueItem extends Oc
      * Set the match property: The match property.
      *
      * @param match the match value to set.
-     * @return the JobDescriptionSearchDetailOccupationGroupValueItem object itself.
+     * @return the JobDescriptionSearchDetailOccupationGroupValue object itself.
      */
-    public JobDescriptionSearchDetailOccupationGroupValueItem setMatch(Boolean match) {
+    public JobDescriptionSearchDetailOccupationGroupValue setMatch(Boolean match) {
         this.match = match;
         return this;
     }
