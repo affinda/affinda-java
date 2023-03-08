@@ -39,6 +39,12 @@ public final class DocumentUpdate {
     private Boolean isRejected;
 
     /*
+     * The isArchived property.
+     */
+    @JsonProperty(value = "isArchived")
+    private Boolean isArchived;
+
+    /*
      * Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for
      * Chinese.
      */
@@ -144,6 +150,26 @@ public final class DocumentUpdate {
      */
     public DocumentUpdate setIsRejected(Boolean isRejected) {
         this.isRejected = isRejected;
+        return this;
+    }
+
+    /**
+     * Get the isArchived property: The isArchived property.
+     *
+     * @return the isArchived value.
+     */
+    public Boolean isArchived() {
+        return this.isArchived;
+    }
+
+    /**
+     * Set the isArchived property: The isArchived property.
+     *
+     * @param isArchived the isArchived value to set.
+     * @return the DocumentUpdate object itself.
+     */
+    public DocumentUpdate setIsArchived(Boolean isArchived) {
+        this.isArchived = isArchived;
         return this;
     }
 

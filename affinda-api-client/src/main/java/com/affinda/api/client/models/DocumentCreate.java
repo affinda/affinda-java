@@ -17,7 +17,7 @@ public final class DocumentCreate {
     private Flux<ByteBuffer> file;
 
     /*
-     * URL to a resume to download and process
+     * URL to download the document.
      */
     @JsonProperty(value = "url")
     private String url;
@@ -68,6 +68,14 @@ public final class DocumentCreate {
     @JsonProperty(value = "language")
     private String language;
 
+    /*
+     * If "true", parsing will fail when the uploaded document is duplicate of
+     * an existing document. If "false" (default), will parse the document
+     * normally whether its a duplicate or not.
+     */
+    @JsonProperty(value = "rejectDuplicates")
+    private Boolean rejectDuplicates;
+
     /**
      * Get the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      *
@@ -89,7 +97,7 @@ public final class DocumentCreate {
     }
 
     /**
-     * Get the url property: URL to a resume to download and process.
+     * Get the url property: URL to download the document.
      *
      * @return the url value.
      */
@@ -98,7 +106,7 @@ public final class DocumentCreate {
     }
 
     /**
-     * Set the url property: URL to a resume to download and process.
+     * Set the url property: URL to download the document.
      *
      * @param url the url value to set.
      * @return the DocumentCreate object itself.
@@ -249,6 +257,28 @@ public final class DocumentCreate {
      */
     public DocumentCreate setLanguage(String language) {
         this.language = language;
+        return this;
+    }
+
+    /**
+     * Get the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
+     * existing document. If "false" (default), will parse the document normally whether its a duplicate or not.
+     *
+     * @return the rejectDuplicates value.
+     */
+    public Boolean isRejectDuplicates() {
+        return this.rejectDuplicates;
+    }
+
+    /**
+     * Set the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
+     * existing document. If "false" (default), will parse the document normally whether its a duplicate or not.
+     *
+     * @param rejectDuplicates the rejectDuplicates value to set.
+     * @return the DocumentCreate object itself.
+     */
+    public DocumentCreate setRejectDuplicates(Boolean rejectDuplicates) {
+        this.rejectDuplicates = rejectDuplicates;
         return this;
     }
 }

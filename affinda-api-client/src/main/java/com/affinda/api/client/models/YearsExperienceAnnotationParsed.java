@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Years of experience range. */
 @Fluent
-public final class YearsExperienceAnnotationV2Parsed {
+public final class YearsExperienceAnnotationParsed {
     /*
      * Minimum years of experience
      */
@@ -31,9 +31,9 @@ public final class YearsExperienceAnnotationV2Parsed {
      * Set the minimum property: Minimum years of experience.
      *
      * @param minimum the minimum value to set.
-     * @return the YearsExperienceAnnotationV2Parsed object itself.
+     * @return the YearsExperienceAnnotationParsed object itself.
      */
-    public YearsExperienceAnnotationV2Parsed setMinimum(Float minimum) {
+    public YearsExperienceAnnotationParsed setMinimum(Float minimum) {
         this.minimum = minimum;
         return this;
     }
@@ -51,9 +51,9 @@ public final class YearsExperienceAnnotationV2Parsed {
      * Set the maximum property: Maximum years of experience.
      *
      * @param maximum the maximum value to set.
-     * @return the YearsExperienceAnnotationV2Parsed object itself.
+     * @return the YearsExperienceAnnotationParsed object itself.
      */
-    public YearsExperienceAnnotationV2Parsed setMaximum(Float maximum) {
+    public YearsExperienceAnnotationParsed setMaximum(Float maximum) {
         this.maximum = maximum;
         return this;
     }

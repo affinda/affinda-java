@@ -4,9 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 
-/** The DateAnnotationV2 model. */
+/** The DateAnnotation model. */
 @Fluent
-public final class DateAnnotationV2 extends AnnotationV2 {
+public final class DateAnnotation extends Annotation {
     /*
      * The parsed property.
      */
@@ -26,9 +26,9 @@ public final class DateAnnotationV2 extends AnnotationV2 {
      * Set the parsed property: The parsed property.
      *
      * @param parsed the parsed value to set.
-     * @return the DateAnnotationV2 object itself.
+     * @return the DateAnnotation object itself.
      */
-    public DateAnnotationV2 setParsed(LocalDate parsed) {
+    public DateAnnotation setParsed(LocalDate parsed) {
         this.parsed = parsed;
         return this;
     }

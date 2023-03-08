@@ -6,7 +6,8 @@ import java.util.List;
 
 /** The PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema model. */
 @Fluent
-public final class PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema extends ListResult {
+public final class PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema
+        extends PaginatedResponse {
     /*
      * The results property.
      */

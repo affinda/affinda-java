@@ -12,3 +12,15 @@ Java Client Library for Affinda Resume Parser API
 
 
 Generated using [autorest](https://github.com/Azure/autorest) and [autorest.java](https://github.com/Azure/autorest.java).
+
+
+API Version Compatibility
+-------------------------
+
+The Affinda API is currently on `v3`, with breaking changes meant the release of new versions of the client library.
+Please see below for which versions are compatible with which API version.
+
+| Affinda API version | `affinda-java` versions |
+|---------------------|-------------------------|
+| v2                  | 0.1.0 - 2.x.x           |
+| v3                  | \>= 3.x.x               |

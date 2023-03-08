@@ -183,6 +183,13 @@ public final class DocumentMeta {
     @JsonProperty(value = "confirmedBy")
     private UserNullable confirmedBy;
 
+    /*
+     * If the document is created via email ingestion, this field stores the
+     * email file's URL.
+     */
+    @JsonProperty(value = "sourceEmail")
+    private String sourceEmail;
+
     /**
      * Get the identifier property: Uniquely identify a document.
      *
@@ -752,6 +759,28 @@ public final class DocumentMeta {
      */
     public DocumentMeta setConfirmedBy(UserNullable confirmedBy) {
         this.confirmedBy = confirmedBy;
+        return this;
+    }
+
+    /**
+     * Get the sourceEmail property: If the document is created via email ingestion, this field stores the email file's
+     * URL.
+     *
+     * @return the sourceEmail value.
+     */
+    public String getSourceEmail() {
+        return this.sourceEmail;
+    }
+
+    /**
+     * Set the sourceEmail property: If the document is created via email ingestion, this field stores the email file's
+     * URL.
+     *
+     * @param sourceEmail the sourceEmail value to set.
+     * @return the DocumentMeta object itself.
+     */
+    public DocumentMeta setSourceEmail(String sourceEmail) {
+        this.sourceEmail = sourceEmail;
         return this;
     }
 }

@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Error model. */
+/** The DocumentError model. */
 @Fluent
-public final class Error {
+public final class DocumentError {
     /*
      * The errorCode property.
      */
@@ -31,9 +31,9 @@ public final class Error {
      * Set the errorCode property: The errorCode property.
      *
      * @param errorCode the errorCode value to set.
-     * @return the Error object itself.
+     * @return the DocumentError object itself.
      */
-    public Error setErrorCode(String errorCode) {
+    public DocumentError setErrorCode(String errorCode) {
         this.errorCode = errorCode;
         return this;
     }
@@ -51,9 +51,9 @@ public final class Error {
      * Set the errorDetail property: The errorDetail property.
      *
      * @param errorDetail the errorDetail value to set.
-     * @return the Error object itself.
+     * @return the DocumentError object itself.
      */
-    public Error setErrorDetail(String errorDetail) {
+    public DocumentError setErrorDetail(String errorDetail) {
         this.errorDetail = errorDetail;
         return this;
     }

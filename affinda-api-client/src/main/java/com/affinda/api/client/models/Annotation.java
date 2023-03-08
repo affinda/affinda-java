@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** The AnnotationV2 model. */
+/** The Annotation model. */
 @Fluent
-public class AnnotationV2 {
+public class Annotation {
     /*
      * The id property.
      */
@@ -19,7 +19,7 @@ public class AnnotationV2 {
     private int id;
 
     /*
-     * The rectangle property.
+     * x/y coordinates for the rectangular bounding box containing the data
      */
     @JsonProperty(value = "rectangle", required = true)
     private Rectangle rectangle;
@@ -31,13 +31,13 @@ public class AnnotationV2 {
     private List<Rectangle> rectangles;
 
     /*
-     * The pageIndex property.
+     * The page number within the document, starting from 0.
      */
     @JsonProperty(value = "pageIndex", required = true)
     private Integer pageIndex;
 
     /*
-     * The raw property.
+     * Raw data extracted from the before any post-processing
      */
     @JsonProperty(value = "raw", required = true)
     private String raw;
@@ -56,25 +56,26 @@ public class AnnotationV2 {
 
     /*
      * If the document was submitted as an image, this is the confidence that
-     * the text in the image has been correctly read by the model.
+     * the text in the image has been correctly read by the model
      */
     @JsonProperty(value = "textExtractionConfidence", required = true)
     private Float textExtractionConfidence;
 
     /*
-     * The isVerified property.
+     * Indicates whether the data has been validated, either by a human using
+     * our validation tool or through auto-validation rules
      */
     @JsonProperty(value = "isVerified", required = true)
     private boolean isVerified;
 
     /*
-     * The isClientVerified property.
+     * Indicates whether the data has been validated by a human
      */
     @JsonProperty(value = "isClientVerified", required = true)
     private boolean isClientVerified;
 
     /*
-     * The isAutoVerified property.
+     * Indicates whether the data has been auto-validated
      */
     @JsonProperty(value = "isAutoVerified", required = true)
     private boolean isAutoVerified;
@@ -82,7 +83,7 @@ public class AnnotationV2 {
     /*
      * The dataPoint property.
      */
-    @JsonProperty(value = "dataPoint")
+    @JsonProperty(value = "dataPoint", required = true)
     private String dataPoint;
 
     /*
@@ -109,15 +110,15 @@ public class AnnotationV2 {
      * Set the id property: The id property.
      *
      * @param id the id value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setId(int id) {
+    public Annotation setId(int id) {
         this.id = id;
         return this;
     }
 
     /**
-     * Get the rectangle property: The rectangle property.
+     * Get the rectangle property: x/y coordinates for the rectangular bounding box containing the data.
      *
      * @return the rectangle value.
      */
@@ -126,12 +127,12 @@ public class AnnotationV2 {
     }
 
     /**
-     * Set the rectangle property: The rectangle property.
+     * Set the rectangle property: x/y coordinates for the rectangular bounding box containing the data.
      *
      * @param rectangle the rectangle value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setRectangle(Rectangle rectangle) {
+    public Annotation setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
         return this;
     }
@@ -149,15 +150,15 @@ public class AnnotationV2 {
      * Set the rectangles property: The rectangles property.
      *
      * @param rectangles the rectangles value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setRectangles(List<Rectangle> rectangles) {
+    public Annotation setRectangles(List<Rectangle> rectangles) {
         this.rectangles = rectangles;
         return this;
     }
 
     /**
-     * Get the pageIndex property: The pageIndex property.
+     * Get the pageIndex property: The page number within the document, starting from 0.
      *
      * @return the pageIndex value.
      */
@@ -166,18 +167,18 @@ public class AnnotationV2 {
     }
 
     /**
-     * Set the pageIndex property: The pageIndex property.
+     * Set the pageIndex property: The page number within the document, starting from 0.
      *
      * @param pageIndex the pageIndex value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setPageIndex(Integer pageIndex) {
+    public Annotation setPageIndex(Integer pageIndex) {
         this.pageIndex = pageIndex;
         return this;
     }
 
     /**
-     * Get the raw property: The raw property.
+     * Get the raw property: Raw data extracted from the before any post-processing.
      *
      * @return the raw value.
      */
@@ -186,12 +187,12 @@ public class AnnotationV2 {
     }
 
     /**
-     * Set the raw property: The raw property.
+     * Set the raw property: Raw data extracted from the before any post-processing.
      *
      * @param raw the raw value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setRaw(String raw) {
+    public Annotation setRaw(String raw) {
         this.raw = raw;
         return this;
     }
@@ -209,9 +210,9 @@ public class AnnotationV2 {
      * Set the confidence property: The overall confidence that the model's prediction is correct.
      *
      * @param confidence the confidence value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setConfidence(Float confidence) {
+    public Annotation setConfidence(Float confidence) {
         this.confidence = confidence;
         return this;
     }
@@ -229,9 +230,9 @@ public class AnnotationV2 {
      * Set the classificationConfidence property: The model's confidence that the text has been classified correctly.
      *
      * @param classificationConfidence the classificationConfidence value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setClassificationConfidence(Float classificationConfidence) {
+    public Annotation setClassificationConfidence(Float classificationConfidence) {
         this.classificationConfidence = classificationConfidence;
         return this;
     }
@@ -251,15 +252,16 @@ public class AnnotationV2 {
      * the text in the image has been correctly read by the model.
      *
      * @param textExtractionConfidence the textExtractionConfidence value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setTextExtractionConfidence(Float textExtractionConfidence) {
+    public Annotation setTextExtractionConfidence(Float textExtractionConfidence) {
         this.textExtractionConfidence = textExtractionConfidence;
         return this;
     }
 
     /**
-     * Get the isVerified property: The isVerified property.
+     * Get the isVerified property: Indicates whether the data has been validated, either by a human using our
+     * validation tool or through auto-validation rules.
      *
      * @return the isVerified value.
      */
@@ -268,18 +270,19 @@ public class AnnotationV2 {
     }
 
     /**
-     * Set the isVerified property: The isVerified property.
+     * Set the isVerified property: Indicates whether the data has been validated, either by a human using our
+     * validation tool or through auto-validation rules.
      *
      * @param isVerified the isVerified value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setIsVerified(boolean isVerified) {
+    public Annotation setIsVerified(boolean isVerified) {
         this.isVerified = isVerified;
         return this;
     }
 
     /**
-     * Get the isClientVerified property: The isClientVerified property.
+     * Get the isClientVerified property: Indicates whether the data has been validated by a human.
      *
      * @return the isClientVerified value.
      */
@@ -288,18 +291,18 @@ public class AnnotationV2 {
     }
 
     /**
-     * Set the isClientVerified property: The isClientVerified property.
+     * Set the isClientVerified property: Indicates whether the data has been validated by a human.
      *
      * @param isClientVerified the isClientVerified value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setIsClientVerified(boolean isClientVerified) {
+    public Annotation setIsClientVerified(boolean isClientVerified) {
         this.isClientVerified = isClientVerified;
         return this;
     }
 
     /**
-     * Get the isAutoVerified property: The isAutoVerified property.
+     * Get the isAutoVerified property: Indicates whether the data has been auto-validated.
      *
      * @return the isAutoVerified value.
      */
@@ -308,12 +311,12 @@ public class AnnotationV2 {
     }
 
     /**
-     * Set the isAutoVerified property: The isAutoVerified property.
+     * Set the isAutoVerified property: Indicates whether the data has been auto-validated.
      *
      * @param isAutoVerified the isAutoVerified value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setIsAutoVerified(boolean isAutoVerified) {
+    public Annotation setIsAutoVerified(boolean isAutoVerified) {
         this.isAutoVerified = isAutoVerified;
         return this;
     }
@@ -331,9 +334,9 @@ public class AnnotationV2 {
      * Set the dataPoint property: The dataPoint property.
      *
      * @param dataPoint the dataPoint value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setDataPoint(String dataPoint) {
+    public Annotation setDataPoint(String dataPoint) {
         this.dataPoint = dataPoint;
         return this;
     }
@@ -351,9 +354,9 @@ public class AnnotationV2 {
      * Set the contentType property: The contentType property.
      *
      * @param contentType the contentType value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setContentType(String contentType) {
+    public Annotation setContentType(String contentType) {
         this.contentType = contentType;
         return this;
     }
@@ -372,9 +375,9 @@ public class AnnotationV2 {
      * Set the additionalProperties property: Dictionary of &lt;any&gt;.
      *
      * @param additionalProperties the additionalProperties value to set.
-     * @return the AnnotationV2 object itself.
+     * @return the Annotation object itself.
      */
-    public AnnotationV2 setAdditionalProperties(Map<String, Object> additionalProperties) {
+    public Annotation setAdditionalProperties(Map<String, Object> additionalProperties) {
         this.additionalProperties = additionalProperties;
         return this;
     }

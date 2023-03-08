@@ -9,6 +9,7 @@ import com.affinda.api.client.models.DocumentCollection;
 import com.affinda.api.client.models.DocumentCollectionCreate;
 import com.affinda.api.client.models.DocumentCollectionUpdate;
 import com.affinda.api.client.models.DocumentCreate;
+import com.affinda.api.client.models.DocumentFormat;
 import com.affinda.api.client.models.DocumentState;
 import com.affinda.api.client.models.DocumentUpdate;
 import com.affinda.api.client.models.Enum3;
@@ -16,7 +17,6 @@ import com.affinda.api.client.models.Extractor;
 import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
 import com.affinda.api.client.models.Get8ItemsItem;
-import com.affinda.api.client.models.GetAllDocumentsResults;
 import com.affinda.api.client.models.IndexRequestBody;
 import com.affinda.api.client.models.Invitation;
 import com.affinda.api.client.models.InvitationCreate;
@@ -43,6 +43,7 @@ import com.affinda.api.client.models.PathsFte27NV3IndexNameDocumentsPostResponse
 import com.affinda.api.client.models.PathsM3DzbgV3JobDescriptionSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsQ5Os5RV3OrganizationMembershipsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsVz5Kj2V3ResthookSubscriptionsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsZ1JuagV3WorkspaceMembershipsGetResponses200ContentApplicationJsonSchema;
@@ -914,7 +915,7 @@ public final class AffindaAPI {
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<GetAllDocumentsResults>> getAllDocuments(
+        Mono<Response<PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema>> getAllDocuments(
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
@@ -950,6 +951,7 @@ public final class AffindaAPI {
         Mono<Response<Document>> getDocument(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
+                @QueryParam("format") DocumentFormat format,
                 @HeaderParam("Accept") String accept);
 
         @Patch("/v3/documents/{identifier}")
@@ -1082,6 +1084,17 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteResthookSubscription(
                 @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Post("/v3/resthook_subscriptions/activate")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ResthookSubscription>> activateResthookSubscription(
+                @HostParam("region") Region region,
+                @HeaderParam("X-Hook-Secret") String xHookSecret,
+                @HeaderParam("Accept") String accept);
     }
 
     /**
@@ -4706,19 +4719,20 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<GetAllDocumentsResults>> getAllDocumentsWithResponseAsync(
-            Integer offset,
-            Integer limit,
-            String workspace,
-            String collection,
-            DocumentState state,
-            List<Integer> tags,
-            DateRange createdDt,
-            String search,
-            List<Get8ItemsItem> ordering,
-            Boolean includeData,
-            List<String> exclude,
-            Boolean inReview) {
+    public Mono<Response<PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema>>
+            getAllDocumentsWithResponseAsync(
+                    Integer offset,
+                    Integer limit,
+                    String workspace,
+                    String collection,
+                    DocumentState state,
+                    List<Integer> tags,
+                    DateRange createdDt,
+                    String search,
+                    List<Get8ItemsItem> ordering,
+                    Boolean includeData,
+                    List<String> exclude,
+                    Boolean inReview) {
         final String accept = "application/json";
         String tagsConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
@@ -4767,7 +4781,7 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<GetAllDocumentsResults> getAllDocumentsAsync(
+    public Mono<PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema> getAllDocumentsAsync(
             Integer offset,
             Integer limit,
             String workspace,
@@ -4794,7 +4808,7 @@ public final class AffindaAPI {
                         exclude,
                         inReview)
                 .flatMap(
-                        (Response<GetAllDocumentsResults> res) -> {
+                        (Response<PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -4827,7 +4841,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetAllDocumentsResults getAllDocuments(
+    public PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema getAllDocuments(
             Integer offset,
             Integer limit,
             String workspace,
@@ -4858,7 +4872,7 @@ public final class AffindaAPI {
 
     /**
      * Uploads a document for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/documents/{identifier}](#get-/documents/-identifier-) endpoint to check processing status and retrieve
+     * the [/documents/{identifier}](#get-/v3/documents/-identifier-) endpoint to check processing status and retrieve
      * results.&lt;br/&gt;.
      *
      * @param body Document to upload, either via file upload or URL to a file.
@@ -4876,7 +4890,7 @@ public final class AffindaAPI {
 
     /**
      * Uploads a document for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/documents/{identifier}](#get-/documents/-identifier-) endpoint to check processing status and retrieve
+     * the [/documents/{identifier}](#get-/v3/documents/-identifier-) endpoint to check processing status and retrieve
      * results.&lt;br/&gt;.
      *
      * @param body Document to upload, either via file upload or URL to a file.
@@ -4901,7 +4915,7 @@ public final class AffindaAPI {
 
     /**
      * Uploads a document for parsing. When successful, returns an `identifier` in the response for subsequent use with
-     * the [/documents/{identifier}](#get-/documents/-identifier-) endpoint to check processing status and retrieve
+     * the [/documents/{identifier}](#get-/v3/documents/-identifier-) endpoint to check processing status and retrieve
      * results.&lt;br/&gt;.
      *
      * @param body Document to upload, either via file upload or URL to a file.
@@ -4920,6 +4934,7 @@ public final class AffindaAPI {
      * Return a specific document.
      *
      * @param identifier Document's identifier.
+     * @param format Specify which format you want the response to be. Default is "json".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4927,15 +4942,16 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Document>> getDocumentWithResponseAsync(String identifier) {
+    public Mono<Response<Document>> getDocumentWithResponseAsync(String identifier, DocumentFormat format) {
         final String accept = "application/json";
-        return service.getDocument(this.getRegion(), identifier, accept);
+        return service.getDocument(this.getRegion(), identifier, format, accept);
     }
 
     /**
      * Return a specific document.
      *
      * @param identifier Document's identifier.
+     * @param format Specify which format you want the response to be. Default is "json".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4943,8 +4959,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Document> getDocumentAsync(String identifier) {
-        return getDocumentWithResponseAsync(identifier)
+    public Mono<Document> getDocumentAsync(String identifier, DocumentFormat format) {
+        return getDocumentWithResponseAsync(identifier, format)
                 .flatMap(
                         (Response<Document> res) -> {
                             if (res.getValue() != null) {
@@ -4959,6 +4975,7 @@ public final class AffindaAPI {
      * Return a specific document.
      *
      * @param identifier Document's identifier.
+     * @param format Specify which format you want the response to be. Default is "json".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4966,8 +4983,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Document getDocument(String identifier) {
-        return getDocumentAsync(identifier).block();
+    public Document getDocument(String identifier, DocumentFormat format) {
+        return getDocumentAsync(identifier, format).block();
     }
 
     /**
@@ -5404,7 +5421,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * Create a resthook subscriptions.
+     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * header. You need to response to this request with a 200 status code to confirm your subscribe intention. Then,
+     * you need to use the `X-Hook-Secret` to activate the subscription using the
+     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. For more information, see
+     * our help article here - [How do I create a
+     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -5421,7 +5443,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * Create a resthook subscriptions.
+     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * header. You need to response to this request with a 200 status code to confirm your subscribe intention. Then,
+     * you need to use the `X-Hook-Secret` to activate the subscription using the
+     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. For more information, see
+     * our help article here - [How do I create a
+     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -5444,7 +5471,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * Create a resthook subscriptions.
+     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * header. You need to response to this request with a 200 status code to confirm your subscribe intention. Then,
+     * you need to use the `X-Hook-Secret` to activate the subscription using the
+     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. For more information, see
+     * our help article here - [How do I create a
+     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -5613,5 +5645,65 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteResthookSubscription(int id) {
         deleteResthookSubscriptionAsync(id).block();
+    }
+
+    /**
+     * After creating a subscription, we'll send a POST request to your target URL with a `X-Hook-Secret` header. You
+     * should response to this with a 200 status code, and use the value of the `X-Hook-Secret` header that you received
+     * to activate the subscription using this endpoint.
+     *
+     * @param xHookSecret The secret received when creating a subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ResthookSubscription>> activateResthookSubscriptionWithResponseAsync(String xHookSecret) {
+        final String accept = "application/json";
+        return service.activateResthookSubscription(this.getRegion(), xHookSecret, accept);
+    }
+
+    /**
+     * After creating a subscription, we'll send a POST request to your target URL with a `X-Hook-Secret` header. You
+     * should response to this with a 200 status code, and use the value of the `X-Hook-Secret` header that you received
+     * to activate the subscription using this endpoint.
+     *
+     * @param xHookSecret The secret received when creating a subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ResthookSubscription> activateResthookSubscriptionAsync(String xHookSecret) {
+        return activateResthookSubscriptionWithResponseAsync(xHookSecret)
+                .flatMap(
+                        (Response<ResthookSubscription> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * After creating a subscription, we'll send a POST request to your target URL with a `X-Hook-Secret` header. You
+     * should response to this with a 200 status code, and use the value of the `X-Hook-Secret` header that you received
+     * to activate the subscription using this endpoint.
+     *
+     * @param xHookSecret The secret received when creating a subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResthookSubscription activateResthookSubscription(String xHookSecret) {
+        return activateResthookSubscriptionAsync(xHookSecret).block();
     }
 }

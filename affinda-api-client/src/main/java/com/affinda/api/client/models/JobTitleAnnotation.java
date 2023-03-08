@@ -5,19 +5,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The JobTitleAnnotation model. */
 @Fluent
-public final class JobTitleAnnotation extends AnnotationV2 {
+public final class JobTitleAnnotation extends Annotation {
     /*
-     * Matching job title to extracted text
+     * Years of experience range
      */
-    @JsonProperty(value = "parsed", access = JsonProperty.Access.WRITE_ONLY)
-    private JobTitleParsedParsed parsed;
+    @JsonProperty(value = "parsed")
+    private JobTitleAnnotationParsed parsed;
 
     /**
-     * Get the parsed property: Matching job title to extracted text.
+     * Get the parsed property: Years of experience range.
      *
      * @return the parsed value.
      */
-    public JobTitleParsedParsed getParsed() {
+    public JobTitleAnnotationParsed getParsed() {
         return this.parsed;
+    }
+
+    /**
+     * Set the parsed property: Years of experience range.
+     *
+     * @param parsed the parsed value to set.
+     * @return the JobTitleAnnotation object itself.
+     */
+    public JobTitleAnnotation setParsed(JobTitleAnnotationParsed parsed) {
+        this.parsed = parsed;
+        return this;
     }
 }

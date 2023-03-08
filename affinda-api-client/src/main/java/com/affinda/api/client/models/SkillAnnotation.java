@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SkillAnnotationV2 model. */
+/** The SkillAnnotation model. */
 @Fluent
-public final class SkillAnnotationV2 extends AnnotationV2 {
+public final class SkillAnnotation extends Annotation {
     /*
      * The parsed property.
      */
