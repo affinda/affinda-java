@@ -7,7 +7,7 @@ import java.util.Map;
 
 /** The InvoiceData model. */
 @Fluent
-public class InvoiceData {
+public final class InvoiceData {
     /*
      * The tables property.
      */
@@ -18,19 +18,19 @@ public class InvoiceData {
      * The invoiceDate property.
      */
     @JsonProperty(value = "invoiceDate")
-    private DateAnnotationV2 invoiceDate;
+    private DateAnnotation invoiceDate;
 
     /*
      * The invoiceOrderDate property.
      */
     @JsonProperty(value = "invoiceOrderDate")
-    private DateAnnotationV2 invoiceOrderDate;
+    private DateAnnotation invoiceOrderDate;
 
     /*
      * The paymentDateDue property.
      */
     @JsonProperty(value = "paymentDateDue")
-    private DateAnnotationV2 paymentDateDue;
+    private DateAnnotation paymentDateDue;
 
     /*
      * The paymentAmountBase property.
@@ -174,19 +174,19 @@ public class InvoiceData {
      * The customerBillingAddress property.
      */
     @JsonProperty(value = "customerBillingAddress")
-    private LocationAnnotationV2 customerBillingAddress;
+    private LocationAnnotation customerBillingAddress;
 
     /*
      * The customerDeliveryAddress property.
      */
     @JsonProperty(value = "customerDeliveryAddress")
-    private LocationAnnotationV2 customerDeliveryAddress;
+    private LocationAnnotation customerDeliveryAddress;
 
     /*
      * The supplierAddress property.
      */
     @JsonProperty(value = "supplierAddress")
-    private LocationAnnotationV2 supplierAddress;
+    private LocationAnnotation supplierAddress;
 
     /*
      * The customerPhoneNumber property.
@@ -228,7 +228,7 @@ public class InvoiceData {
      * The currencyCode property.
      */
     @JsonProperty(value = "currencyCode")
-    private TextAnnotationV2 currencyCode;
+    private TextAnnotation currencyCode;
 
     /*
      * Dictionary of <any>
@@ -261,7 +261,7 @@ public class InvoiceData {
      *
      * @return the invoiceDate value.
      */
-    public DateAnnotationV2 getInvoiceDate() {
+    public DateAnnotation getInvoiceDate() {
         return this.invoiceDate;
     }
 
@@ -271,7 +271,7 @@ public class InvoiceData {
      * @param invoiceDate the invoiceDate value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setInvoiceDate(DateAnnotationV2 invoiceDate) {
+    public InvoiceData setInvoiceDate(DateAnnotation invoiceDate) {
         this.invoiceDate = invoiceDate;
         return this;
     }
@@ -281,7 +281,7 @@ public class InvoiceData {
      *
      * @return the invoiceOrderDate value.
      */
-    public DateAnnotationV2 getInvoiceOrderDate() {
+    public DateAnnotation getInvoiceOrderDate() {
         return this.invoiceOrderDate;
     }
 
@@ -291,7 +291,7 @@ public class InvoiceData {
      * @param invoiceOrderDate the invoiceOrderDate value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setInvoiceOrderDate(DateAnnotationV2 invoiceOrderDate) {
+    public InvoiceData setInvoiceOrderDate(DateAnnotation invoiceOrderDate) {
         this.invoiceOrderDate = invoiceOrderDate;
         return this;
     }
@@ -301,7 +301,7 @@ public class InvoiceData {
      *
      * @return the paymentDateDue value.
      */
-    public DateAnnotationV2 getPaymentDateDue() {
+    public DateAnnotation getPaymentDateDue() {
         return this.paymentDateDue;
     }
 
@@ -311,7 +311,7 @@ public class InvoiceData {
      * @param paymentDateDue the paymentDateDue value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setPaymentDateDue(DateAnnotationV2 paymentDateDue) {
+    public InvoiceData setPaymentDateDue(DateAnnotation paymentDateDue) {
         this.paymentDateDue = paymentDateDue;
         return this;
     }
@@ -781,7 +781,7 @@ public class InvoiceData {
      *
      * @return the customerBillingAddress value.
      */
-    public LocationAnnotationV2 getCustomerBillingAddress() {
+    public LocationAnnotation getCustomerBillingAddress() {
         return this.customerBillingAddress;
     }
 
@@ -791,7 +791,7 @@ public class InvoiceData {
      * @param customerBillingAddress the customerBillingAddress value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerBillingAddress(LocationAnnotationV2 customerBillingAddress) {
+    public InvoiceData setCustomerBillingAddress(LocationAnnotation customerBillingAddress) {
         this.customerBillingAddress = customerBillingAddress;
         return this;
     }
@@ -801,7 +801,7 @@ public class InvoiceData {
      *
      * @return the customerDeliveryAddress value.
      */
-    public LocationAnnotationV2 getCustomerDeliveryAddress() {
+    public LocationAnnotation getCustomerDeliveryAddress() {
         return this.customerDeliveryAddress;
     }
 
@@ -811,7 +811,7 @@ public class InvoiceData {
      * @param customerDeliveryAddress the customerDeliveryAddress value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCustomerDeliveryAddress(LocationAnnotationV2 customerDeliveryAddress) {
+    public InvoiceData setCustomerDeliveryAddress(LocationAnnotation customerDeliveryAddress) {
         this.customerDeliveryAddress = customerDeliveryAddress;
         return this;
     }
@@ -821,7 +821,7 @@ public class InvoiceData {
      *
      * @return the supplierAddress value.
      */
-    public LocationAnnotationV2 getSupplierAddress() {
+    public LocationAnnotation getSupplierAddress() {
         return this.supplierAddress;
     }
 
@@ -831,7 +831,7 @@ public class InvoiceData {
      * @param supplierAddress the supplierAddress value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setSupplierAddress(LocationAnnotationV2 supplierAddress) {
+    public InvoiceData setSupplierAddress(LocationAnnotation supplierAddress) {
         this.supplierAddress = supplierAddress;
         return this;
     }
@@ -961,7 +961,7 @@ public class InvoiceData {
      *
      * @return the currencyCode value.
      */
-    public TextAnnotationV2 getCurrencyCode() {
+    public TextAnnotation getCurrencyCode() {
         return this.currencyCode;
     }
 
@@ -971,7 +971,7 @@ public class InvoiceData {
      * @param currencyCode the currencyCode value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCurrencyCode(TextAnnotationV2 currencyCode) {
+    public InvoiceData setCurrencyCode(TextAnnotation currencyCode) {
         this.currencyCode = currencyCode;
         return this;
     }

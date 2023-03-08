@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The InvoiceDataBankSortCode model. */
 @Fluent
-public final class InvoiceDataBankSortCode extends TextAnnotationV2 {
+public final class InvoiceDataBankSortCode extends TextAnnotation {
     /*
      * The raw property.
      */

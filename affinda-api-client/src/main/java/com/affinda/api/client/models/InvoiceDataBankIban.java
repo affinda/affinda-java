@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The InvoiceDataBankIban model. */
 @Fluent
-public final class InvoiceDataBankIban extends TextAnnotationV2 {
+public final class InvoiceDataBankIban extends TextAnnotation {
     /*
      * The raw property.
      */

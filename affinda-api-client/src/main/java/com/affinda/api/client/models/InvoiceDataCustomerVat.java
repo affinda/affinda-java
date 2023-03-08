@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The InvoiceDataCustomerVat model. */
 @Fluent
-public final class InvoiceDataCustomerVat extends TextAnnotationV2 {
+public final class InvoiceDataCustomerVat extends TextAnnotation {
     /*
      * The raw property.
      */

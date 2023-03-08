@@ -12,7 +12,7 @@ import java.util.Map;
 
 /** A JSON-encoded string of the `ResumeData` object. */
 @Fluent
-public class ResumeData {
+public final class ResumeData {
     /*
      * The name property.
      */

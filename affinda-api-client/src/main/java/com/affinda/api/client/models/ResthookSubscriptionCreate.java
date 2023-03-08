@@ -19,12 +19,6 @@ public final class ResthookSubscriptionCreate {
     private ResthookEvent event;
 
     /*
-     * The organization property.
-     */
-    @JsonProperty(value = "organization")
-    private String organization;
-
-    /*
      * Version of the resthook subscription. Determines the resthook body being
      * fired.
      */
@@ -68,26 +62,6 @@ public final class ResthookSubscriptionCreate {
      */
     public ResthookSubscriptionCreate setEvent(ResthookEvent event) {
         this.event = event;
-        return this;
-    }
-
-    /**
-     * Get the organization property: The organization property.
-     *
-     * @return the organization value.
-     */
-    public String getOrganization() {
-        return this.organization;
-    }
-
-    /**
-     * Set the organization property: The organization property.
-     *
-     * @param organization the organization value to set.
-     * @return the ResthookSubscriptionCreate object itself.
-     */
-    public ResthookSubscriptionCreate setOrganization(String organization) {
-        this.organization = organization;
         return this;
     }
 

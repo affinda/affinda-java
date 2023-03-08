@@ -19,12 +19,6 @@ public final class ResthookSubscription {
     private ResthookEvent event;
 
     /*
-     * The organization property.
-     */
-    @JsonProperty(value = "organization")
-    private Organization organization;
-
-    /*
      * URL of the resthook's receiver.
      */
     @JsonProperty(value = "targetUrl")
@@ -94,26 +88,6 @@ public final class ResthookSubscription {
      */
     public ResthookSubscription setEvent(ResthookEvent event) {
         this.event = event;
-        return this;
-    }
-
-    /**
-     * Get the organization property: The organization property.
-     *
-     * @return the organization value.
-     */
-    public Organization getOrganization() {
-        return this.organization;
-    }
-
-    /**
-     * Set the organization property: The organization property.
-     *
-     * @param organization the organization value to set.
-     * @return the ResthookSubscription object itself.
-     */
-    public ResthookSubscription setOrganization(Organization organization) {
-        this.organization = organization;
         return this;
     }
 
