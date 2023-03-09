@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.0.0] - 2023-03-09
 ### Added
 - Add resthook subscription endpoints
 - Added PATCH support for Job Descriptions
@@ -19,8 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Remove extractor's `id` field
-- Remove API v2 endpoints
-- Removing v3 endpoints, see newer major release for v3 compatible release
+- Removed v3 endpoints, see newer major release for v3 compatible release
 
 ## [1.1.0] - 2023-02-06
 ### Added
