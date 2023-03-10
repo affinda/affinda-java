@@ -35,7 +35,7 @@ public final class ResumeSearch {
      * The results property.
      */
     @JsonProperty(value = "results")
-    private List<Document> results;
+    private List<ResumeSearchResult> results;
 
     /**
      * Get the count property: Total number of results.
@@ -122,7 +122,7 @@ public final class ResumeSearch {
      *
      * @return the results value.
      */
-    public List<Document> getResults() {
+    public List<ResumeSearchResult> getResults() {
         return this.results;
     }
 
@@ -132,7 +132,7 @@ public final class ResumeSearch {
      * @param results the results value to set.
      * @return the ResumeSearch object itself.
      */
-    public ResumeSearch setResults(List<Document> results) {
+    public ResumeSearch setResults(List<ResumeSearchResult> results) {
         this.results = results;
         return this;
     }
