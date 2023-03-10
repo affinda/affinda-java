@@ -102,6 +102,18 @@ public final class Meta {
     @JsonProperty(value = "ocrConfidence")
     private Float ocrConfidence;
 
+    /*
+     * The createdDt property.
+     */
+    @JsonProperty(value = "createdDt")
+    private OffsetDateTime createdDt;
+
+    /*
+     * The documentType property.
+     */
+    @JsonProperty(value = "documentType")
+    private String documentType;
+
     /**
      * Get the identifier property: Uniquely identify a document.
      *
@@ -397,6 +409,46 @@ public final class Meta {
      */
     public Meta setOcrConfidence(Float ocrConfidence) {
         this.ocrConfidence = ocrConfidence;
+        return this;
+    }
+
+    /**
+     * Get the createdDt property: The createdDt property.
+     *
+     * @return the createdDt value.
+     */
+    public OffsetDateTime getCreatedDt() {
+        return this.createdDt;
+    }
+
+    /**
+     * Set the createdDt property: The createdDt property.
+     *
+     * @param createdDt the createdDt value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setCreatedDt(OffsetDateTime createdDt) {
+        this.createdDt = createdDt;
+        return this;
+    }
+
+    /**
+     * Get the documentType property: The documentType property.
+     *
+     * @return the documentType value.
+     */
+    public String getDocumentType() {
+        return this.documentType;
+    }
+
+    /**
+     * Set the documentType property: The documentType property.
+     *
+     * @param documentType the documentType value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setDocumentType(String documentType) {
+        this.documentType = documentType;
         return this;
     }
 }

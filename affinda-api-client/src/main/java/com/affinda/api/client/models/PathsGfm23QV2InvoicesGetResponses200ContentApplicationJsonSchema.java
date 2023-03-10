@@ -11,14 +11,14 @@ public final class PathsGfm23QV2InvoicesGetResponses200ContentApplicationJsonSch
      * The results property.
      */
     @JsonProperty(value = "results")
-    private List<Invoice> results;
+    private List<Meta> results;
 
     /**
      * Get the results property: The results property.
      *
      * @return the results value.
      */
-    public List<Invoice> getResults() {
+    public List<Meta> getResults() {
         return this.results;
     }
 
@@ -28,7 +28,7 @@ public final class PathsGfm23QV2InvoicesGetResponses200ContentApplicationJsonSch
      * @param results the results value to set.
      * @return the PathsGfm23QV2InvoicesGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public PathsGfm23QV2InvoicesGetResponses200ContentApplicationJsonSchema setResults(List<Invoice> results) {
+    public PathsGfm23QV2InvoicesGetResponses200ContentApplicationJsonSchema setResults(List<Meta> results) {
         this.results = results;
         return this;
     }

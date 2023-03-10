@@ -11,14 +11,14 @@ public final class PathsChbpqfV2JobDescriptionsGetResponses200ContentApplication
      * The results property.
      */
     @JsonProperty(value = "results")
-    private List<JobDescription> results;
+    private List<Meta> results;
 
     /**
      * Get the results property: The results property.
      *
      * @return the results value.
      */
-    public List<JobDescription> getResults() {
+    public List<Meta> getResults() {
         return this.results;
     }
 
@@ -28,8 +28,7 @@ public final class PathsChbpqfV2JobDescriptionsGetResponses200ContentApplication
      * @param results the results value to set.
      * @return the PathsChbpqfV2JobDescriptionsGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public PathsChbpqfV2JobDescriptionsGetResponses200ContentApplicationJsonSchema setResults(
-            List<JobDescription> results) {
+    public PathsChbpqfV2JobDescriptionsGetResponses200ContentApplicationJsonSchema setResults(List<Meta> results) {
         this.results = results;
         return this;
     }

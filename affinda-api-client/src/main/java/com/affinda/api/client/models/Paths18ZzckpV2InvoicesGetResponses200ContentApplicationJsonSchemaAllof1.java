@@ -11,14 +11,14 @@ public class Paths18ZzckpV2InvoicesGetResponses200ContentApplicationJsonSchemaAl
      * The results property.
      */
     @JsonProperty(value = "results")
-    private List<Invoice> results;
+    private List<Meta> results;
 
     /**
      * Get the results property: The results property.
      *
      * @return the results value.
      */
-    public List<Invoice> getResults() {
+    public List<Meta> getResults() {
         return this.results;
     }
 
@@ -28,7 +28,7 @@ public class Paths18ZzckpV2InvoicesGetResponses200ContentApplicationJsonSchemaAl
      * @param results the results value to set.
      * @return the Paths18ZzckpV2InvoicesGetResponses200ContentApplicationJsonSchemaAllof1 object itself.
      */
-    public Paths18ZzckpV2InvoicesGetResponses200ContentApplicationJsonSchemaAllof1 setResults(List<Invoice> results) {
+    public Paths18ZzckpV2InvoicesGetResponses200ContentApplicationJsonSchemaAllof1 setResults(List<Meta> results) {
         this.results = results;
         return this;
     }

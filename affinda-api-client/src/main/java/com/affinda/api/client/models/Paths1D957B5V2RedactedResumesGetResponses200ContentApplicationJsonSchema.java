@@ -11,14 +11,14 @@ public final class Paths1D957B5V2RedactedResumesGetResponses200ContentApplicatio
      * The results property.
      */
     @JsonProperty(value = "results")
-    private List<Resume> results;
+    private List<Meta> results;
 
     /**
      * Get the results property: The results property.
      *
      * @return the results value.
      */
-    public List<Resume> getResults() {
+    public List<Meta> getResults() {
         return this.results;
     }
 
@@ -28,7 +28,7 @@ public final class Paths1D957B5V2RedactedResumesGetResponses200ContentApplicatio
      * @param results the results value to set.
      * @return the Paths1D957B5V2RedactedResumesGetResponses200ContentApplicationJsonSchema object itself.
      */
-    public Paths1D957B5V2RedactedResumesGetResponses200ContentApplicationJsonSchema setResults(List<Resume> results) {
+    public Paths1D957B5V2RedactedResumesGetResponses200ContentApplicationJsonSchema setResults(List<Meta> results) {
         this.results = results;
         return this;
     }
