@@ -6,6 +6,7 @@ import com.affinda.api.client.models.Invoice;
 import com.affinda.api.client.models.InvoiceRequestBody;
 import com.affinda.api.client.models.JobDescription;
 import com.affinda.api.client.models.JobDescriptionData;
+import com.affinda.api.client.models.JobDescriptionDataUpdate;
 import com.affinda.api.client.models.JobDescriptionRequestBody;
 import com.affinda.api.client.models.JobDescriptionSearch;
 import com.affinda.api.client.models.JobDescriptionSearchConfig;
@@ -344,7 +345,7 @@ public final class AffindaAPI {
         Mono<Response<JobDescriptionData>> updateJobDescriptionData(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
-                @BodyParam("application/json") JobDescriptionData body,
+                @BodyParam("application/json") JobDescriptionDataUpdate body,
                 @HeaderParam("Accept") String accept);
 
         @Delete("/v2/job_descriptions/{identifier}")
@@ -1594,7 +1595,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<JobDescriptionData>> updateJobDescriptionDataWithResponseAsync(
-            String identifier, JobDescriptionData body) {
+            String identifier, JobDescriptionDataUpdate body) {
         final String accept = "application/json";
         return service.updateJobDescriptionData(this.getRegion(), identifier, body, accept);
     }
@@ -1612,7 +1613,7 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<JobDescriptionData> updateJobDescriptionDataAsync(String identifier, JobDescriptionData body) {
+    public Mono<JobDescriptionData> updateJobDescriptionDataAsync(String identifier, JobDescriptionDataUpdate body) {
         return updateJobDescriptionDataWithResponseAsync(identifier, body)
                 .flatMap(
                         (Response<JobDescriptionData> res) -> {
@@ -1637,7 +1638,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public JobDescriptionData updateJobDescriptionData(String identifier, JobDescriptionData body) {
+    public JobDescriptionData updateJobDescriptionData(String identifier, JobDescriptionDataUpdate body) {
         return updateJobDescriptionDataAsync(identifier, body).block();
     }
 

@@ -23,6 +23,12 @@ public final class JobDescriptionRequestBody {
     private String url;
 
     /*
+     * A JSON-encoded string of the `JobDescriptionData` object.
+     */
+    @JsonProperty(value = "data")
+    private JobDescriptionDataUpdate data;
+
+    /*
      * A random string that uniquely identify the resource.
      */
     @JsonProperty(value = "identifier")
@@ -101,6 +107,26 @@ public final class JobDescriptionRequestBody {
      */
     public JobDescriptionRequestBody setUrl(String url) {
         this.url = url;
+        return this;
+    }
+
+    /**
+     * Get the data property: A JSON-encoded string of the `JobDescriptionData` object.
+     *
+     * @return the data value.
+     */
+    public JobDescriptionDataUpdate getData() {
+        return this.data;
+    }
+
+    /**
+     * Set the data property: A JSON-encoded string of the `JobDescriptionData` object.
+     *
+     * @param data the data value to set.
+     * @return the JobDescriptionRequestBody object itself.
+     */
+    public JobDescriptionRequestBody setData(JobDescriptionDataUpdate data) {
+        this.data = data;
         return this;
     }
 
