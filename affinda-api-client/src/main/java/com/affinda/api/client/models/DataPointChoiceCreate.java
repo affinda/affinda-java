@@ -4,14 +4,14 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The DataPointChoice model. */
+/** The DataPointChoiceCreate model. */
 @Fluent
-public final class DataPointChoice {
+public final class DataPointChoiceCreate {
     /*
-     * Data point choice's ID
+     * Uniquely identify a data point.
      */
-    @JsonProperty(value = "id", required = true)
-    private int id;
+    @JsonProperty(value = "dataPoint", required = true)
+    private String dataPoint;
 
     /*
      * The label property.
@@ -38,22 +38,22 @@ public final class DataPointChoice {
     private String description;
 
     /**
-     * Get the id property: Data point choice's ID.
+     * Get the dataPoint property: Uniquely identify a data point.
      *
-     * @return the id value.
+     * @return the dataPoint value.
      */
-    public int getId() {
-        return this.id;
+    public String getDataPoint() {
+        return this.dataPoint;
     }
 
     /**
-     * Set the id property: Data point choice's ID.
+     * Set the dataPoint property: Uniquely identify a data point.
      *
-     * @param id the id value to set.
-     * @return the DataPointChoice object itself.
+     * @param dataPoint the dataPoint value to set.
+     * @return the DataPointChoiceCreate object itself.
      */
-    public DataPointChoice setId(int id) {
-        this.id = id;
+    public DataPointChoiceCreate setDataPoint(String dataPoint) {
+        this.dataPoint = dataPoint;
         return this;
     }
 
@@ -70,9 +70,9 @@ public final class DataPointChoice {
      * Set the label property: The label property.
      *
      * @param label the label value to set.
-     * @return the DataPointChoice object itself.
+     * @return the DataPointChoiceCreate object itself.
      */
-    public DataPointChoice setLabel(String label) {
+    public DataPointChoiceCreate setLabel(String label) {
         this.label = label;
         return this;
     }
@@ -90,9 +90,9 @@ public final class DataPointChoice {
      * Set the value property: The value property.
      *
      * @param value the value value to set.
-     * @return the DataPointChoice object itself.
+     * @return the DataPointChoiceCreate object itself.
      */
-    public DataPointChoice setValue(String value) {
+    public DataPointChoiceCreate setValue(String value) {
         this.value = value;
         return this;
     }
@@ -110,9 +110,9 @@ public final class DataPointChoice {
      * Set the synonyms property: The synonyms property.
      *
      * @param synonyms the synonyms value to set.
-     * @return the DataPointChoice object itself.
+     * @return the DataPointChoiceCreate object itself.
      */
-    public DataPointChoice setSynonyms(List<String> synonyms) {
+    public DataPointChoiceCreate setSynonyms(List<String> synonyms) {
         this.synonyms = synonyms;
         return this;
     }
@@ -130,9 +130,9 @@ public final class DataPointChoice {
      * Set the description property: The description property.
      *
      * @param description the description value to set.
-     * @return the DataPointChoice object itself.
+     * @return the DataPointChoiceCreate object itself.
      */
-    public DataPointChoice setDescription(String description) {
+    public DataPointChoiceCreate setDescription(String description) {
         this.description = description;
         return this;
     }

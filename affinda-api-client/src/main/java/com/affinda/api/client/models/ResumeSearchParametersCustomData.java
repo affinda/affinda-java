@@ -7,20 +7,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ResumeSearchParametersCustomData {
     /*
-     * The filterType property.
+     * Data points of "text" type support only "equals" filterType, others
+     * support both "equals" and "range"
      */
     @JsonProperty(value = "filterType", required = true)
     private ResumeSearchParametersCustomDataFilterType filterType;
 
     /*
-     * The dataPoint property.
+     * The data point's slug
      */
     @JsonProperty(value = "dataPoint", required = true)
     private String dataPoint;
 
     /*
-     * 'equals' searches require the 'value' key inside the query, and 'range'
-     * searches require at least one of 'gte' (greater than or equal) and 'lte'
+     * "equals" searches require the "value" key inside the query, and "range"
+     * searches require at least one of "gte" (greater than or equal) and "lte"
      * (less than or equal)
      */
     @JsonProperty(value = "query", required = true)
@@ -39,7 +40,8 @@ public final class ResumeSearchParametersCustomData {
     private Float weight;
 
     /**
-     * Get the filterType property: The filterType property.
+     * Get the filterType property: Data points of "text" type support only "equals" filterType, others support both
+     * "equals" and "range".
      *
      * @return the filterType value.
      */
@@ -48,7 +50,8 @@ public final class ResumeSearchParametersCustomData {
     }
 
     /**
-     * Set the filterType property: The filterType property.
+     * Set the filterType property: Data points of "text" type support only "equals" filterType, others support both
+     * "equals" and "range".
      *
      * @param filterType the filterType value to set.
      * @return the ResumeSearchParametersCustomData object itself.
@@ -59,7 +62,7 @@ public final class ResumeSearchParametersCustomData {
     }
 
     /**
-     * Get the dataPoint property: The dataPoint property.
+     * Get the dataPoint property: The data point's slug.
      *
      * @return the dataPoint value.
      */
@@ -68,7 +71,7 @@ public final class ResumeSearchParametersCustomData {
     }
 
     /**
-     * Set the dataPoint property: The dataPoint property.
+     * Set the dataPoint property: The data point's slug.
      *
      * @param dataPoint the dataPoint value to set.
      * @return the ResumeSearchParametersCustomData object itself.
@@ -79,8 +82,8 @@ public final class ResumeSearchParametersCustomData {
     }
 
     /**
-     * Get the query property: 'equals' searches require the 'value' key inside the query, and 'range' searches require
-     * at least one of 'gte' (greater than or equal) and 'lte' (less than or equal).
+     * Get the query property: "equals" searches require the "value" key inside the query, and "range" searches require
+     * at least one of "gte" (greater than or equal) and "lte" (less than or equal).
      *
      * @return the query value.
      */
@@ -89,8 +92,8 @@ public final class ResumeSearchParametersCustomData {
     }
 
     /**
-     * Set the query property: 'equals' searches require the 'value' key inside the query, and 'range' searches require
-     * at least one of 'gte' (greater than or equal) and 'lte' (less than or equal).
+     * Set the query property: "equals" searches require the "value" key inside the query, and "range" searches require
+     * at least one of "gte" (greater than or equal) and "lte" (less than or equal).
      *
      * @param query the query value to set.
      * @return the ResumeSearchParametersCustomData object itself.
