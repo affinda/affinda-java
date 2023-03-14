@@ -21,6 +21,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public class Document {
     /*
+     * Any object
+     */
+    @JsonProperty(value = "data")
+    private Object data;
+
+    /*
      * The meta property.
      */
     @JsonProperty(value = "meta", required = true)
@@ -31,6 +37,26 @@ public class Document {
      */
     @JsonProperty(value = "error")
     private DocumentError error;
+
+    /**
+     * Get the data property: Any object.
+     *
+     * @return the data value.
+     */
+    public Object getData() {
+        return this.data;
+    }
+
+    /**
+     * Set the data property: Any object.
+     *
+     * @param data the data value to set.
+     * @return the Document object itself.
+     */
+    public Document setData(Object data) {
+        this.data = data;
+        return this;
+    }
 
     /**
      * Get the meta property: The meta property.
