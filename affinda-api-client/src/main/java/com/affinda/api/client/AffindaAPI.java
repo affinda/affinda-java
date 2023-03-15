@@ -753,15 +753,6 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
-        @Get("/v3/occupation_groups")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
-        @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<List<OccupationGroup>>> listOccupationGroups(
-                @HostParam("region") Region region, @HeaderParam("Accept") String accept);
-
         @Get("/v3/invitations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
@@ -909,6 +900,15 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @HeaderParam("X-Hook-Secret") String xHookSecret,
                 @HeaderParam("Accept") String accept);
+
+        @Get("/v3/occupation_groups")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<List<OccupationGroup>>> listOccupationGroups(
+                @HostParam("region") Region region, @HeaderParam("Accept") String accept);
 
         @Post("/v3/job_description_search")
         @ExpectedResponses({201})
@@ -3928,54 +3928,6 @@ public final class AffindaAPI {
     }
 
     /**
-     * Returns the list of searchable occupation groups.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of OccupationGroup along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<List<OccupationGroup>>> listOccupationGroupsWithResponseAsync() {
-        final String accept = "application/json";
-        return service.listOccupationGroups(this.getRegion(), accept);
-    }
-
-    /**
-     * Returns the list of searchable occupation groups.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of OccupationGroup on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<List<OccupationGroup>> listOccupationGroupsAsync() {
-        return listOccupationGroupsWithResponseAsync()
-                .flatMap(
-                        (Response<List<OccupationGroup>> res) -> {
-                            if (res.getValue() != null) {
-                                return Mono.just(res.getValue());
-                            } else {
-                                return Mono.empty();
-                            }
-                        });
-    }
-
-    /**
-     * Returns the list of searchable occupation groups.
-     *
-     * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of OccupationGroup.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<OccupationGroup> listOccupationGroups() {
-        return listOccupationGroupsAsync().block();
-    }
-
-    /**
      * Get list of all invitations you created or sent to you.
      *
      * @param offset The number of documents to skip before starting to collect the result set.
@@ -4721,6 +4673,54 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ResthookSubscription activateResthookSubscription(String xHookSecret) {
         return activateResthookSubscriptionAsync(xHookSecret).block();
+    }
+
+    /**
+     * Returns the list of searchable occupation groups.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of OccupationGroup along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<OccupationGroup>>> listOccupationGroupsWithResponseAsync() {
+        final String accept = "application/json";
+        return service.listOccupationGroups(this.getRegion(), accept);
+    }
+
+    /**
+     * Returns the list of searchable occupation groups.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of OccupationGroup on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<OccupationGroup>> listOccupationGroupsAsync() {
+        return listOccupationGroupsWithResponseAsync()
+                .flatMap(
+                        (Response<List<OccupationGroup>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns the list of searchable occupation groups.
+     *
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of OccupationGroup.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<OccupationGroup> listOccupationGroups() {
+        return listOccupationGroupsAsync().block();
     }
 
     /**
