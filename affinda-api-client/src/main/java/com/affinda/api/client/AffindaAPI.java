@@ -382,12 +382,9 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/documents/{identifier}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = RequestErrorException.class,
-                code = {400, 401})
+        @ExpectedResponses({200, 400, 400, 401, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Document>> getDocument(
+        Mono<Response<Object>> getDocument(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @QueryParam("format") DocumentFormat format,
@@ -2136,13 +2133,12 @@ public final class AffindaAPI {
      * @param format Specify which format you want the response to be. Default is "json".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Document>> getDocumentWithResponseAsync(String identifier, DocumentFormat format) {
-        final String accept = "application/json";
+    public Mono<Response<Object>> getDocumentWithResponseAsync(String identifier, DocumentFormat format) {
+        final String accept = "application/json, application/xml";
         return service.getDocument(this.getRegion(), identifier, format, accept);
     }
 
@@ -2153,15 +2149,14 @@ public final class AffindaAPI {
      * @param format Specify which format you want the response to be. Default is "json".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Document> getDocumentAsync(String identifier, DocumentFormat format) {
+    public Mono<Object> getDocumentAsync(String identifier, DocumentFormat format) {
         return getDocumentWithResponseAsync(identifier, format)
                 .flatMap(
-                        (Response<Document> res) -> {
+                        (Response<Object> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -2177,12 +2172,11 @@ public final class AffindaAPI {
      * @param format Specify which format you want the response to be. Default is "json".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Document getDocument(String identifier, DocumentFormat format) {
+    public Object getDocument(String identifier, DocumentFormat format) {
         return getDocumentAsync(identifier, format).block();
     }
 
