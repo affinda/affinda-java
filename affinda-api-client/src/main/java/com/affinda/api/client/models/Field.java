@@ -16,7 +16,7 @@ public final class Field {
     /*
      * The slug property.
      */
-    @JsonProperty(value = "slug", required = true)
+    @JsonProperty(value = "slug")
     private String slug;
 
     /*
