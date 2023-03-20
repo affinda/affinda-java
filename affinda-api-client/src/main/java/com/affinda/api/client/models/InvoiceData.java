@@ -228,7 +228,7 @@ public final class InvoiceData {
      * The currencyCode property.
      */
     @JsonProperty(value = "currencyCode")
-    private TextAnnotation currencyCode;
+    private CurrencyCodeAnnotation currencyCode;
 
     /*
      * Dictionary of <any>
@@ -961,7 +961,7 @@ public final class InvoiceData {
      *
      * @return the currencyCode value.
      */
-    public TextAnnotation getCurrencyCode() {
+    public CurrencyCodeAnnotation getCurrencyCode() {
         return this.currencyCode;
     }
 
@@ -971,7 +971,7 @@ public final class InvoiceData {
      * @param currencyCode the currencyCode value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setCurrencyCode(TextAnnotation currencyCode) {
+    public InvoiceData setCurrencyCode(CurrencyCodeAnnotation currencyCode) {
         this.currencyCode = currencyCode;
         return this;
     }
