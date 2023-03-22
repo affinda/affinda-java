@@ -57,6 +57,9 @@ public final class AnnotationContentType extends ExpandableStringEnum<Annotation
     /** Static value yearsexperience for AnnotationContentType. */
     public static final AnnotationContentType YEARSEXPERIENCE = fromString("yearsexperience");
 
+    /** Static value group for AnnotationContentType. */
+    public static final AnnotationContentType GROUP = fromString("group");
+
     /**
      * Creates or finds a AnnotationContentType from its string representation.
      *
