@@ -28,6 +28,14 @@ public final class WorkspaceUpdate {
     @JsonProperty(value = "rejectInvalidDocuments")
     private Boolean rejectInvalidDocuments;
 
+    /*
+     * If "true", parsing will fail when the uploaded document is duplicate of
+     * an existing document, no credits will be consumed. If "false" (default),
+     * will parse the document normally whether its a duplicate or not.
+     */
+    @JsonProperty(value = "rejectDuplicates")
+    private Boolean rejectDuplicates;
+
     /**
      * Get the name property: The name property.
      *
@@ -89,6 +97,30 @@ public final class WorkspaceUpdate {
      */
     public WorkspaceUpdate setRejectInvalidDocuments(Boolean rejectInvalidDocuments) {
         this.rejectInvalidDocuments = rejectInvalidDocuments;
+        return this;
+    }
+
+    /**
+     * Get the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
+     * existing document, no credits will be consumed. If "false" (default), will parse the document normally whether
+     * its a duplicate or not.
+     *
+     * @return the rejectDuplicates value.
+     */
+    public Boolean isRejectDuplicates() {
+        return this.rejectDuplicates;
+    }
+
+    /**
+     * Set the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
+     * existing document, no credits will be consumed. If "false" (default), will parse the document normally whether
+     * its a duplicate or not.
+     *
+     * @param rejectDuplicates the rejectDuplicates value to set.
+     * @return the WorkspaceUpdate object itself.
+     */
+    public WorkspaceUpdate setRejectDuplicates(Boolean rejectDuplicates) {
+        this.rejectDuplicates = rejectDuplicates;
         return this;
     }
 }

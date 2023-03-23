@@ -48,6 +48,14 @@ public final class Workspace {
     private Boolean rejectInvalidDocuments;
 
     /*
+     * If "true", parsing will fail when the uploaded document is duplicate of
+     * an existing document, no credits will be consumed. If "false" (default),
+     * will parse the document normally whether its a duplicate or not.
+     */
+    @JsonProperty(value = "rejectDuplicates")
+    private Boolean rejectDuplicates;
+
+    /*
      * The members property.
      */
     @JsonProperty(value = "members")
@@ -192,6 +200,30 @@ public final class Workspace {
      */
     public Workspace setRejectInvalidDocuments(Boolean rejectInvalidDocuments) {
         this.rejectInvalidDocuments = rejectInvalidDocuments;
+        return this;
+    }
+
+    /**
+     * Get the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
+     * existing document, no credits will be consumed. If "false" (default), will parse the document normally whether
+     * its a duplicate or not.
+     *
+     * @return the rejectDuplicates value.
+     */
+    public Boolean isRejectDuplicates() {
+        return this.rejectDuplicates;
+    }
+
+    /**
+     * Set the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
+     * existing document, no credits will be consumed. If "false" (default), will parse the document normally whether
+     * its a duplicate or not.
+     *
+     * @param rejectDuplicates the rejectDuplicates value to set.
+     * @return the Workspace object itself.
+     */
+    public Workspace setRejectDuplicates(Boolean rejectDuplicates) {
+        this.rejectDuplicates = rejectDuplicates;
         return this;
     }
 
