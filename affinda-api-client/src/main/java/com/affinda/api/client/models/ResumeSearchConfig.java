@@ -165,6 +165,12 @@ public final class ResumeSearchConfig {
     @JsonProperty(value = "actions")
     private List<ResumeSearchConfigActionsItem> actions;
 
+    /*
+     * Hide the reset/import toolbar.
+     */
+    @JsonProperty(value = "hideToolbar")
+    private Boolean hideToolbar;
+
     /**
      * Get the allowPdfDownload property: The allowPdfDownload property.
      *
@@ -662,6 +668,26 @@ public final class ResumeSearchConfig {
      */
     public ResumeSearchConfig setActions(List<ResumeSearchConfigActionsItem> actions) {
         this.actions = actions;
+        return this;
+    }
+
+    /**
+     * Get the hideToolbar property: Hide the reset/import toolbar.
+     *
+     * @return the hideToolbar value.
+     */
+    public Boolean isHideToolbar() {
+        return this.hideToolbar;
+    }
+
+    /**
+     * Set the hideToolbar property: Hide the reset/import toolbar.
+     *
+     * @param hideToolbar the hideToolbar value to set.
+     * @return the ResumeSearchConfig object itself.
+     */
+    public ResumeSearchConfig setHideToolbar(Boolean hideToolbar) {
+        this.hideToolbar = hideToolbar;
         return this;
     }
 }

@@ -165,6 +165,12 @@ public final class JobDescriptionSearchConfig {
     @JsonProperty(value = "actions")
     private List<JobDescriptionSearchConfigActionsItem> actions;
 
+    /*
+     * Hide the reset/import toolbar.
+     */
+    @JsonProperty(value = "hideToolbar")
+    private Boolean hideToolbar;
+
     /**
      * Get the allowPdfDownload property: The allowPdfDownload property.
      *
@@ -662,6 +668,26 @@ public final class JobDescriptionSearchConfig {
      */
     public JobDescriptionSearchConfig setActions(List<JobDescriptionSearchConfigActionsItem> actions) {
         this.actions = actions;
+        return this;
+    }
+
+    /**
+     * Get the hideToolbar property: Hide the reset/import toolbar.
+     *
+     * @return the hideToolbar value.
+     */
+    public Boolean isHideToolbar() {
+        return this.hideToolbar;
+    }
+
+    /**
+     * Set the hideToolbar property: Hide the reset/import toolbar.
+     *
+     * @param hideToolbar the hideToolbar value to set.
+     * @return the JobDescriptionSearchConfig object itself.
+     */
+    public JobDescriptionSearchConfig setHideToolbar(Boolean hideToolbar) {
+        this.hideToolbar = hideToolbar;
         return this;
     }
 }
