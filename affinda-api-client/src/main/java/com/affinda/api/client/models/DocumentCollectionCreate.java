@@ -3,7 +3,6 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import java.util.Map;
 
 /** The DocumentCollectionCreate model. */
 @Fluent
@@ -55,7 +54,7 @@ public final class DocumentCollectionCreate {
      * Extra configurations specific to an extractor.
      */
     @JsonProperty(value = "extractorConfig")
-    private Map<String, Object> extractorConfig;
+    private ExtractorConfig extractorConfig;
 
     /**
      * Get the name property: The name property.
@@ -204,7 +203,7 @@ public final class DocumentCollectionCreate {
      *
      * @return the extractorConfig value.
      */
-    public Map<String, Object> getExtractorConfig() {
+    public ExtractorConfig getExtractorConfig() {
         return this.extractorConfig;
     }
 
@@ -214,7 +213,7 @@ public final class DocumentCollectionCreate {
      * @param extractorConfig the extractorConfig value to set.
      * @return the DocumentCollectionCreate object itself.
      */
-    public DocumentCollectionCreate setExtractorConfig(Map<String, Object> extractorConfig) {
+    public DocumentCollectionCreate setExtractorConfig(ExtractorConfig extractorConfig) {
         this.extractorConfig = extractorConfig;
         return this;
     }
