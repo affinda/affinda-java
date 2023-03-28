@@ -81,7 +81,8 @@ public final class DocumentCollection {
     private Integer confirmedDocsCount;
 
     /*
-     * The ingestEmail property.
+     * When you send email to this address, any document attached in the body
+     * will be uploaded to this collection.
      */
     @JsonProperty(value = "ingestEmail")
     private String ingestEmail;
@@ -329,7 +330,8 @@ public final class DocumentCollection {
     }
 
     /**
-     * Get the ingestEmail property: The ingestEmail property.
+     * Get the ingestEmail property: When you send email to this address, any document attached in the body will be
+     * uploaded to this collection.
      *
      * @return the ingestEmail value.
      */
@@ -338,7 +340,8 @@ public final class DocumentCollection {
     }
 
     /**
-     * Set the ingestEmail property: The ingestEmail property.
+     * Set the ingestEmail property: When you send email to this address, any document attached in the body will be
+     * uploaded to this collection.
      *
      * @param ingestEmail the ingestEmail value to set.
      * @return the DocumentCollection object itself.

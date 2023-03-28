@@ -2,6 +2,7 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** The WorkspaceCreate model. */
 @Fluent
@@ -41,6 +42,13 @@ public final class WorkspaceCreate {
      */
     @JsonProperty(value = "rejectDuplicates")
     private Boolean rejectDuplicates;
+
+    /*
+     * If specified, only emails from these addresses will be ingested for
+     * parsing. Wild cards are allowed, e.g. "*@eyefind.info".
+     */
+    @JsonProperty(value = "whitelistIngestAddresses")
+    private List<String> whitelistIngestAddresses;
 
     /**
      * Get the organization property: Uniquely identify an organization.
@@ -147,6 +155,28 @@ public final class WorkspaceCreate {
      */
     public WorkspaceCreate setRejectDuplicates(Boolean rejectDuplicates) {
         this.rejectDuplicates = rejectDuplicates;
+        return this;
+    }
+
+    /**
+     * Get the whitelistIngestAddresses property: If specified, only emails from these addresses will be ingested for
+     * parsing. Wild cards are allowed, e.g. "*@eyefind.info".
+     *
+     * @return the whitelistIngestAddresses value.
+     */
+    public List<String> getWhitelistIngestAddresses() {
+        return this.whitelistIngestAddresses;
+    }
+
+    /**
+     * Set the whitelistIngestAddresses property: If specified, only emails from these addresses will be ingested for
+     * parsing. Wild cards are allowed, e.g. "*@eyefind.info".
+     *
+     * @param whitelistIngestAddresses the whitelistIngestAddresses value to set.
+     * @return the WorkspaceCreate object itself.
+     */
+    public WorkspaceCreate setWhitelistIngestAddresses(List<String> whitelistIngestAddresses) {
+        this.whitelistIngestAddresses = whitelistIngestAddresses;
         return this;
     }
 }

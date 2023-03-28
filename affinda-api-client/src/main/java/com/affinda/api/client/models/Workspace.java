@@ -74,10 +74,18 @@ public final class Workspace {
     private Integer confirmedDocsCount;
 
     /*
-     * The ingestEmail property.
+     * When you send email to this address, any document attached in the body
+     * will be uploaded to this workspace.
      */
     @JsonProperty(value = "ingestEmail")
     private String ingestEmail;
+
+    /*
+     * If specified, only emails from these addresses will be ingested for
+     * parsing. Wild cards are allowed, e.g. "*@eyefind.info".
+     */
+    @JsonProperty(value = "whitelistIngestAddresses")
+    private List<String> whitelistIngestAddresses;
 
     /**
      * Get the identifier property: Uniquely identify a workspace.
@@ -288,7 +296,8 @@ public final class Workspace {
     }
 
     /**
-     * Get the ingestEmail property: The ingestEmail property.
+     * Get the ingestEmail property: When you send email to this address, any document attached in the body will be
+     * uploaded to this workspace.
      *
      * @return the ingestEmail value.
      */
@@ -297,13 +306,36 @@ public final class Workspace {
     }
 
     /**
-     * Set the ingestEmail property: The ingestEmail property.
+     * Set the ingestEmail property: When you send email to this address, any document attached in the body will be
+     * uploaded to this workspace.
      *
      * @param ingestEmail the ingestEmail value to set.
      * @return the Workspace object itself.
      */
     public Workspace setIngestEmail(String ingestEmail) {
         this.ingestEmail = ingestEmail;
+        return this;
+    }
+
+    /**
+     * Get the whitelistIngestAddresses property: If specified, only emails from these addresses will be ingested for
+     * parsing. Wild cards are allowed, e.g. "*@eyefind.info".
+     *
+     * @return the whitelistIngestAddresses value.
+     */
+    public List<String> getWhitelistIngestAddresses() {
+        return this.whitelistIngestAddresses;
+    }
+
+    /**
+     * Set the whitelistIngestAddresses property: If specified, only emails from these addresses will be ingested for
+     * parsing. Wild cards are allowed, e.g. "*@eyefind.info".
+     *
+     * @param whitelistIngestAddresses the whitelistIngestAddresses value to set.
+     * @return the Workspace object itself.
+     */
+    public Workspace setWhitelistIngestAddresses(List<String> whitelistIngestAddresses) {
+        this.whitelistIngestAddresses = whitelistIngestAddresses;
         return this;
     }
 }

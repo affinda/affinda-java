@@ -2,6 +2,7 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** The WorkspaceUpdate model. */
 @Fluent
@@ -35,6 +36,13 @@ public final class WorkspaceUpdate {
      */
     @JsonProperty(value = "rejectDuplicates")
     private Boolean rejectDuplicates;
+
+    /*
+     * If specified, only emails from these addresses will be ingested for
+     * parsing. Wild cards are allowed, e.g. "*@eyefind.info".
+     */
+    @JsonProperty(value = "whitelistIngestAddresses")
+    private List<String> whitelistIngestAddresses;
 
     /**
      * Get the name property: The name property.
@@ -121,6 +129,28 @@ public final class WorkspaceUpdate {
      */
     public WorkspaceUpdate setRejectDuplicates(Boolean rejectDuplicates) {
         this.rejectDuplicates = rejectDuplicates;
+        return this;
+    }
+
+    /**
+     * Get the whitelistIngestAddresses property: If specified, only emails from these addresses will be ingested for
+     * parsing. Wild cards are allowed, e.g. "*@eyefind.info".
+     *
+     * @return the whitelistIngestAddresses value.
+     */
+    public List<String> getWhitelistIngestAddresses() {
+        return this.whitelistIngestAddresses;
+    }
+
+    /**
+     * Set the whitelistIngestAddresses property: If specified, only emails from these addresses will be ingested for
+     * parsing. Wild cards are allowed, e.g. "*@eyefind.info".
+     *
+     * @param whitelistIngestAddresses the whitelistIngestAddresses value to set.
+     * @return the WorkspaceUpdate object itself.
+     */
+    public WorkspaceUpdate setWhitelistIngestAddresses(List<String> whitelistIngestAddresses) {
+        this.whitelistIngestAddresses = whitelistIngestAddresses;
         return this;
     }
 }
