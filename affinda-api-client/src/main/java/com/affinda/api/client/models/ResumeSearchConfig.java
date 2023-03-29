@@ -163,7 +163,7 @@ public final class ResumeSearchConfig {
      * A list of actions to show in the dropdown in the embedded search tool
      */
     @JsonProperty(value = "actions")
-    private List<ResumeSearchConfigActionsItem> actions;
+    private List<SearchConfigAction> actions;
 
     /*
      * Hide the reset/import toolbar.
@@ -656,7 +656,7 @@ public final class ResumeSearchConfig {
      *
      * @return the actions value.
      */
-    public List<ResumeSearchConfigActionsItem> getActions() {
+    public List<SearchConfigAction> getActions() {
         return this.actions;
     }
 
@@ -666,7 +666,7 @@ public final class ResumeSearchConfig {
      * @param actions the actions value to set.
      * @return the ResumeSearchConfig object itself.
      */
-    public ResumeSearchConfig setActions(List<ResumeSearchConfigActionsItem> actions) {
+    public ResumeSearchConfig setActions(List<SearchConfigAction> actions) {
         this.actions = actions;
         return this;
     }

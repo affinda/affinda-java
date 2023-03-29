@@ -163,7 +163,7 @@ public final class JobDescriptionSearchConfig {
      * A list of actions to show in the dropdown in the embedded search tool
      */
     @JsonProperty(value = "actions")
-    private List<JobDescriptionSearchConfigActionsItem> actions;
+    private List<SearchConfigAction> actions;
 
     /*
      * Hide the reset/import toolbar.
@@ -656,7 +656,7 @@ public final class JobDescriptionSearchConfig {
      *
      * @return the actions value.
      */
-    public List<JobDescriptionSearchConfigActionsItem> getActions() {
+    public List<SearchConfigAction> getActions() {
         return this.actions;
     }
 
@@ -666,7 +666,7 @@ public final class JobDescriptionSearchConfig {
      * @param actions the actions value to set.
      * @return the JobDescriptionSearchConfig object itself.
      */
-    public JobDescriptionSearchConfig setActions(List<JobDescriptionSearchConfigActionsItem> actions) {
+    public JobDescriptionSearchConfig setActions(List<SearchConfigAction> actions) {
         this.actions = actions;
         return this;
     }

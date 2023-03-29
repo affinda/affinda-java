@@ -3,19 +3,19 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ResumeSearchConfigActionsItem model. */
+/** The SearchConfigAction model. */
 @Fluent
-public final class ResumeSearchConfigActionsItem {
+public final class SearchConfigAction {
     /*
      * Human readable label to display in the UI
      */
-    @JsonProperty(value = "label")
+    @JsonProperty(value = "label", required = true)
     private String label;
 
     /*
      * Name of the event to be triggered
      */
-    @JsonProperty(value = "eventName")
+    @JsonProperty(value = "eventName", required = true)
     private String eventName;
 
     /**
@@ -31,9 +31,9 @@ public final class ResumeSearchConfigActionsItem {
      * Set the label property: Human readable label to display in the UI.
      *
      * @param label the label value to set.
-     * @return the ResumeSearchConfigActionsItem object itself.
+     * @return the SearchConfigAction object itself.
      */
-    public ResumeSearchConfigActionsItem setLabel(String label) {
+    public SearchConfigAction setLabel(String label) {
         this.label = label;
         return this;
     }
@@ -51,9 +51,9 @@ public final class ResumeSearchConfigActionsItem {
      * Set the eventName property: Name of the event to be triggered.
      *
      * @param eventName the eventName value to set.
-     * @return the ResumeSearchConfigActionsItem object itself.
+     * @return the SearchConfigAction object itself.
      */
-    public ResumeSearchConfigActionsItem setEventName(String eventName) {
+    public SearchConfigAction setEventName(String eventName) {
         this.eventName = eventName;
         return this;
     }
