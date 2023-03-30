@@ -27,7 +27,7 @@ public class AnnotationV2Base {
     /*
      * The rectangles property.
      */
-    @JsonProperty(value = "rectangles")
+    @JsonProperty(value = "rectangles", access = JsonProperty.Access.WRITE_ONLY)
     private List<Rectangle> rectangles;
 
     /*
@@ -143,17 +143,6 @@ public class AnnotationV2Base {
      */
     public List<Rectangle> getRectangles() {
         return this.rectangles;
-    }
-
-    /**
-     * Set the rectangles property: The rectangles property.
-     *
-     * @param rectangles the rectangles value to set.
-     * @return the AnnotationV2Base object itself.
-     */
-    public AnnotationV2Base setRectangles(List<Rectangle> rectangles) {
-        this.rectangles = rectangles;
-        return this;
     }
 
     /**
