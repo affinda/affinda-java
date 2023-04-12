@@ -25,6 +25,12 @@ public final class EducationDates {
     @JsonProperty(value = "startDate")
     private LocalDate startDate;
 
+    /*
+     * The rawText property.
+     */
+    @JsonProperty(value = "rawText")
+    private String rawText;
+
     /**
      * Get the completionDate property: The completionDate property.
      *
@@ -82,6 +88,26 @@ public final class EducationDates {
      */
     public EducationDates setStartDate(LocalDate startDate) {
         this.startDate = startDate;
+        return this;
+    }
+
+    /**
+     * Get the rawText property: The rawText property.
+     *
+     * @return the rawText value.
+     */
+    public String getRawText() {
+        return this.rawText;
+    }
+
+    /**
+     * Set the rawText property: The rawText property.
+     *
+     * @param rawText the rawText value to set.
+     * @return the EducationDates object itself.
+     */
+    public EducationDates setRawText(String rawText) {
+        this.rawText = rawText;
         return this;
     }
 }

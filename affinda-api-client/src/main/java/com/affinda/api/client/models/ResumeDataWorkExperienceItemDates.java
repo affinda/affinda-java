@@ -31,6 +31,12 @@ public final class ResumeDataWorkExperienceItemDates {
     @JsonProperty(value = "isCurrent")
     private Boolean isCurrent;
 
+    /*
+     * The rawText property.
+     */
+    @JsonProperty(value = "rawText")
+    private String rawText;
+
     /**
      * Get the startDate property: The startDate property.
      *
@@ -108,6 +114,26 @@ public final class ResumeDataWorkExperienceItemDates {
      */
     public ResumeDataWorkExperienceItemDates setIsCurrent(Boolean isCurrent) {
         this.isCurrent = isCurrent;
+        return this;
+    }
+
+    /**
+     * Get the rawText property: The rawText property.
+     *
+     * @return the rawText value.
+     */
+    public String getRawText() {
+        return this.rawText;
+    }
+
+    /**
+     * Set the rawText property: The rawText property.
+     *
+     * @param rawText the rawText value to set.
+     * @return the ResumeDataWorkExperienceItemDates object itself.
+     */
+    public ResumeDataWorkExperienceItemDates setRawText(String rawText) {
+        this.rawText = rawText;
         return this;
     }
 }
