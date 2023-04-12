@@ -28,7 +28,7 @@ public class OccupationGroupSearchResult {
     /*
      * The children property.
      */
-    @JsonProperty(value = "children", required = true)
+    @JsonProperty(value = "children")
     private List<OccupationGroup> children;
 
     /*

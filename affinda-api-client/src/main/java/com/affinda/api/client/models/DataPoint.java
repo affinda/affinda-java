@@ -32,7 +32,7 @@ public final class DataPoint {
     private String description;
 
     /*
-     * The annotationContentType property.
+     * The different data types of annotations
      */
     @JsonProperty(value = "annotationContentType", required = true)
     private AnnotationContentType annotationContentType;
@@ -160,7 +160,7 @@ public final class DataPoint {
     }
 
     /**
-     * Get the annotationContentType property: The annotationContentType property.
+     * Get the annotationContentType property: The different data types of annotations.
      *
      * @return the annotationContentType value.
      */
@@ -169,7 +169,7 @@ public final class DataPoint {
     }
 
     /**
-     * Set the annotationContentType property: The annotationContentType property.
+     * Set the annotationContentType property: The different data types of annotations.
      *
      * @param annotationContentType the annotationContentType value to set.
      * @return the DataPoint object itself.

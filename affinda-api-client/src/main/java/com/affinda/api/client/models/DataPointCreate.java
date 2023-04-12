@@ -25,7 +25,7 @@ public final class DataPointCreate {
     private String description;
 
     /*
-     * The annotationContentType property.
+     * The different data types of annotations
      */
     @JsonProperty(value = "annotationContentType", required = true)
     private AnnotationContentType annotationContentType;
@@ -115,7 +115,7 @@ public final class DataPointCreate {
     }
 
     /**
-     * Get the annotationContentType property: The annotationContentType property.
+     * Get the annotationContentType property: The different data types of annotations.
      *
      * @return the annotationContentType value.
      */
@@ -124,7 +124,7 @@ public final class DataPointCreate {
     }
 
     /**
-     * Set the annotationContentType property: The annotationContentType property.
+     * Set the annotationContentType property: The different data types of annotations.
      *
      * @param annotationContentType the annotationContentType value to set.
      * @return the DataPointCreate object itself.

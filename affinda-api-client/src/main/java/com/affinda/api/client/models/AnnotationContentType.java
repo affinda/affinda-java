@@ -60,6 +60,9 @@ public final class AnnotationContentType extends ExpandableStringEnum<Annotation
     /** Static value group for AnnotationContentType. */
     public static final AnnotationContentType GROUP = fromString("group");
 
+    /** Static value table_deprecated for AnnotationContentType. */
+    public static final AnnotationContentType TABLE_DEPRECATED = fromString("table_deprecated");
+
     /**
      * Creates or finds a AnnotationContentType from its string representation.
      *

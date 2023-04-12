@@ -1,5 +1,9 @@
 package com.affinda.api.client;
 
+import com.affinda.api.client.models.Annotation;
+import com.affinda.api.client.models.AnnotationBatchUpdate;
+import com.affinda.api.client.models.AnnotationCreate;
+import com.affinda.api.client.models.AnnotationUpdate;
 import com.affinda.api.client.models.DataPoint;
 import com.affinda.api.client.models.DataPointChoice;
 import com.affinda.api.client.models.DataPointChoiceCreate;
@@ -12,6 +16,7 @@ import com.affinda.api.client.models.DocumentCollection;
 import com.affinda.api.client.models.DocumentCollectionCreate;
 import com.affinda.api.client.models.DocumentCollectionUpdate;
 import com.affinda.api.client.models.DocumentCreate;
+import com.affinda.api.client.models.DocumentEditRequest;
 import com.affinda.api.client.models.DocumentFormat;
 import com.affinda.api.client.models.DocumentState;
 import com.affinda.api.client.models.DocumentUpdate;
@@ -31,6 +36,7 @@ import com.affinda.api.client.models.JobDescriptionSearchConfig;
 import com.affinda.api.client.models.JobDescriptionSearchDetail;
 import com.affinda.api.client.models.JobDescriptionSearchEmbed;
 import com.affinda.api.client.models.JobDescriptionSearchParameters;
+import com.affinda.api.client.models.Meta;
 import com.affinda.api.client.models.OccupationGroup;
 import com.affinda.api.client.models.Organization;
 import com.affinda.api.client.models.OrganizationCreate;
@@ -39,6 +45,7 @@ import com.affinda.api.client.models.OrganizationMembershipUpdate;
 import com.affinda.api.client.models.OrganizationRole;
 import com.affinda.api.client.models.Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
+import com.affinda.api.client.models.Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema;
@@ -413,6 +420,18 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
+        @Post("/v3/validate/{identifier}/split")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<List<Meta>>> editDocumentPages(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") DocumentEditRequest body,
+                @HeaderParam("Accept") String accept);
+
         @Get("/v3/extractors")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
@@ -588,6 +607,91 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteDataPointChoice(
                 @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Get("/v3/annotations")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema>> getAllAnnotations(
+                @HostParam("region") Region region,
+                @QueryParam("document") String document,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/annotations")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Annotation>> createAnnotation(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") AnnotationCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/annotations/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Annotation>> getAnnotation(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Patch("/v3/annotations/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Annotation>> updateAnnotation(
+                @HostParam("region") Region region,
+                @PathParam("id") int id,
+                @BodyParam("application/json") AnnotationUpdate body,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v3/annotations/{id}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteAnnotation(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Post("/v3/annotations/batch_create")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<List<Annotation>>> batchCreateAnnotations(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") List<AnnotationCreate> body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/annotations/batch_update")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<List<Annotation>>> batchUpdateAnnotations(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") List<AnnotationBatchUpdate> body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/annotations/batch_delete")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> batchDeleteAnnotations(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") List<Integer> body,
+                @HeaderParam("Accept") String accept);
 
         @Get("/v3/tags")
         @ExpectedResponses({200})
@@ -2283,6 +2387,69 @@ public final class AffindaAPI {
     }
 
     /**
+     * Split / merge / rotate / delete pages of a document. Documents with multiple pages can be into multiple
+     * documents, or merged into one document. Each page can also be rotated. Edit operations will trigger re-parsing of
+     * the documents involved.
+     *
+     * @param identifier Document's identifier.
+     * @param body Describe how the pages should be edited.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Meta along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<Meta>>> editDocumentPagesWithResponseAsync(String identifier, DocumentEditRequest body) {
+        final String accept = "application/json";
+        return service.editDocumentPages(this.getRegion(), identifier, body, accept);
+    }
+
+    /**
+     * Split / merge / rotate / delete pages of a document. Documents with multiple pages can be into multiple
+     * documents, or merged into one document. Each page can also be rotated. Edit operations will trigger re-parsing of
+     * the documents involved.
+     *
+     * @param identifier Document's identifier.
+     * @param body Describe how the pages should be edited.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Meta on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<Meta>> editDocumentPagesAsync(String identifier, DocumentEditRequest body) {
+        return editDocumentPagesWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<List<Meta>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Split / merge / rotate / delete pages of a document. Documents with multiple pages can be into multiple
+     * documents, or merged into one document. Each page can also be rotated. Edit operations will trigger re-parsing of
+     * the documents involved.
+     *
+     * @param identifier Document's identifier.
+     * @param body Describe how the pages should be edited.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Meta.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<Meta> editDocumentPages(String identifier, DocumentEditRequest body) {
+        return editDocumentPagesAsync(identifier, body).block();
+    }
+
+    /**
      * Returns your custom extractors as well as Affinda's off-the-shelf extractors.
      *
      * @param organization Filter by organization.
@@ -3147,6 +3314,425 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteDataPointChoice(int id) {
         deleteDataPointChoiceAsync(id).block();
+    }
+
+    /**
+     * Returns your annotations.
+     *
+     * @param document Filter by document.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema>>
+            getAllAnnotationsWithResponseAsync(String document) {
+        final String accept = "application/json";
+        return service.getAllAnnotations(this.getRegion(), document, accept);
+    }
+
+    /**
+     * Returns your annotations.
+     *
+     * @param document Filter by document.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema> getAllAnnotationsAsync(
+            String document) {
+        return getAllAnnotationsWithResponseAsync(document)
+                .flatMap(
+                        (Response<Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns your annotations.
+     *
+     * @param document Filter by document.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema getAllAnnotations(String document) {
+        return getAllAnnotationsAsync(document).block();
+    }
+
+    /**
+     * Create a annotation.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Annotation>> createAnnotationWithResponseAsync(AnnotationCreate body) {
+        final String accept = "application/json";
+        return service.createAnnotation(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Create a annotation.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Annotation> createAnnotationAsync(AnnotationCreate body) {
+        return createAnnotationWithResponseAsync(body)
+                .flatMap(
+                        (Response<Annotation> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create a annotation.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Annotation createAnnotation(AnnotationCreate body) {
+        return createAnnotationAsync(body).block();
+    }
+
+    /**
+     * Return a specific annotation.
+     *
+     * @param id Annotation's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Annotation>> getAnnotationWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.getAnnotation(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Return a specific annotation.
+     *
+     * @param id Annotation's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Annotation> getAnnotationAsync(int id) {
+        return getAnnotationWithResponseAsync(id)
+                .flatMap(
+                        (Response<Annotation> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return a specific annotation.
+     *
+     * @param id Annotation's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Annotation getAnnotation(int id) {
+        return getAnnotationAsync(id).block();
+    }
+
+    /**
+     * Update data of an annotation.
+     *
+     * @param id Annotation's ID.
+     * @param body Annotation data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Annotation>> updateAnnotationWithResponseAsync(int id, AnnotationUpdate body) {
+        final String accept = "application/json";
+        return service.updateAnnotation(this.getRegion(), id, body, accept);
+    }
+
+    /**
+     * Update data of an annotation.
+     *
+     * @param id Annotation's ID.
+     * @param body Annotation data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Annotation> updateAnnotationAsync(int id, AnnotationUpdate body) {
+        return updateAnnotationWithResponseAsync(id, body)
+                .flatMap(
+                        (Response<Annotation> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update data of an annotation.
+     *
+     * @param id Annotation's ID.
+     * @param body Annotation data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Annotation updateAnnotation(int id, AnnotationUpdate body) {
+        return updateAnnotationAsync(id, body).block();
+    }
+
+    /**
+     * Deletes the specified annotation from the database.
+     *
+     * @param id Annotation's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteAnnotationWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.deleteAnnotation(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Deletes the specified annotation from the database.
+     *
+     * @param id Annotation's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> deleteAnnotationAsync(int id) {
+        return deleteAnnotationWithResponseAsync(id).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Deletes the specified annotation from the database.
+     *
+     * @param id Annotation's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteAnnotation(int id) {
+        deleteAnnotationAsync(id).block();
+    }
+
+    /**
+     * Batch create annotations.
+     *
+     * @param body Array of AnnotationCreate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Annotation along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<Annotation>>> batchCreateAnnotationsWithResponseAsync(List<AnnotationCreate> body) {
+        final String accept = "application/json";
+        return service.batchCreateAnnotations(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Batch create annotations.
+     *
+     * @param body Array of AnnotationCreate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Annotation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<Annotation>> batchCreateAnnotationsAsync(List<AnnotationCreate> body) {
+        return batchCreateAnnotationsWithResponseAsync(body)
+                .flatMap(
+                        (Response<List<Annotation>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Batch create annotations.
+     *
+     * @param body Array of AnnotationCreate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Annotation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<Annotation> batchCreateAnnotations(List<AnnotationCreate> body) {
+        return batchCreateAnnotationsAsync(body).block();
+    }
+
+    /**
+     * Batch update annotations.
+     *
+     * @param body Array of AnnotationBatchUpdate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Annotation along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<Annotation>>> batchUpdateAnnotationsWithResponseAsync(List<AnnotationBatchUpdate> body) {
+        final String accept = "application/json";
+        return service.batchUpdateAnnotations(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Batch update annotations.
+     *
+     * @param body Array of AnnotationBatchUpdate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Annotation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<Annotation>> batchUpdateAnnotationsAsync(List<AnnotationBatchUpdate> body) {
+        return batchUpdateAnnotationsWithResponseAsync(body)
+                .flatMap(
+                        (Response<List<Annotation>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Batch update annotations.
+     *
+     * @param body Array of AnnotationBatchUpdate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of Annotation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<Annotation> batchUpdateAnnotations(List<AnnotationBatchUpdate> body) {
+        return batchUpdateAnnotationsAsync(body).block();
+    }
+
+    /**
+     * Batch delete annotations.
+     *
+     * @param body Array of annotation IDs to be deleted.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> batchDeleteAnnotationsWithResponseAsync(List<Integer> body) {
+        final String accept = "application/json";
+        return service.batchDeleteAnnotations(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Batch delete annotations.
+     *
+     * @param body Array of annotation IDs to be deleted.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> batchDeleteAnnotationsAsync(List<Integer> body) {
+        return batchDeleteAnnotationsWithResponseAsync(body).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Batch delete annotations.
+     *
+     * @param body Array of annotation IDs to be deleted.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void batchDeleteAnnotations(List<Integer> body) {
+        batchDeleteAnnotationsAsync(body).block();
     }
 
     /**

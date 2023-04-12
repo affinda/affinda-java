@@ -13,7 +13,7 @@ import java.util.Map;
 @Fluent
 public class Annotation {
     /*
-     * The id property.
+     * Annotation's ID
      */
     @JsonProperty(value = "id", required = true)
     private int id;
@@ -25,10 +25,17 @@ public class Annotation {
     private Rectangle rectangle;
 
     /*
-     * The rectangles property.
+     * x/y coordinates for the rectangles containing the data. An annotation
+     * can be contained within multiple rectangles.
      */
     @JsonProperty(value = "rectangles", required = true)
     private List<Rectangle> rectangles;
+
+    /*
+     * Uniquely identify a document.
+     */
+    @JsonProperty(value = "document")
+    private String document;
 
     /*
      * The page number within the document, starting from 0.
@@ -81,16 +88,16 @@ public class Annotation {
     private boolean isAutoVerified;
 
     /*
-     * The dataPoint property.
+     * Data point's identifier
      */
     @JsonProperty(value = "dataPoint", required = true)
     private String dataPoint;
 
     /*
-     * The contentType property.
+     * The different data types of annotations
      */
     @JsonProperty(value = "contentType", required = true)
-    private String contentType;
+    private AnnotationContentType contentType;
 
     /*
      * Dictionary of <any>
@@ -98,7 +105,7 @@ public class Annotation {
     @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
-     * Get the id property: The id property.
+     * Get the id property: Annotation's ID.
      *
      * @return the id value.
      */
@@ -107,7 +114,7 @@ public class Annotation {
     }
 
     /**
-     * Set the id property: The id property.
+     * Set the id property: Annotation's ID.
      *
      * @param id the id value to set.
      * @return the Annotation object itself.
@@ -138,7 +145,8 @@ public class Annotation {
     }
 
     /**
-     * Get the rectangles property: The rectangles property.
+     * Get the rectangles property: x/y coordinates for the rectangles containing the data. An annotation can be
+     * contained within multiple rectangles.
      *
      * @return the rectangles value.
      */
@@ -147,13 +155,34 @@ public class Annotation {
     }
 
     /**
-     * Set the rectangles property: The rectangles property.
+     * Set the rectangles property: x/y coordinates for the rectangles containing the data. An annotation can be
+     * contained within multiple rectangles.
      *
      * @param rectangles the rectangles value to set.
      * @return the Annotation object itself.
      */
     public Annotation setRectangles(List<Rectangle> rectangles) {
         this.rectangles = rectangles;
+        return this;
+    }
+
+    /**
+     * Get the document property: Uniquely identify a document.
+     *
+     * @return the document value.
+     */
+    public String getDocument() {
+        return this.document;
+    }
+
+    /**
+     * Set the document property: Uniquely identify a document.
+     *
+     * @param document the document value to set.
+     * @return the Annotation object itself.
+     */
+    public Annotation setDocument(String document) {
+        this.document = document;
         return this;
     }
 
@@ -322,7 +351,7 @@ public class Annotation {
     }
 
     /**
-     * Get the dataPoint property: The dataPoint property.
+     * Get the dataPoint property: Data point's identifier.
      *
      * @return the dataPoint value.
      */
@@ -331,7 +360,7 @@ public class Annotation {
     }
 
     /**
-     * Set the dataPoint property: The dataPoint property.
+     * Set the dataPoint property: Data point's identifier.
      *
      * @param dataPoint the dataPoint value to set.
      * @return the Annotation object itself.
@@ -342,21 +371,21 @@ public class Annotation {
     }
 
     /**
-     * Get the contentType property: The contentType property.
+     * Get the contentType property: The different data types of annotations.
      *
      * @return the contentType value.
      */
-    public String getContentType() {
+    public AnnotationContentType getContentType() {
         return this.contentType;
     }
 
     /**
-     * Set the contentType property: The contentType property.
+     * Set the contentType property: The different data types of annotations.
      *
      * @param contentType the contentType value to set.
      * @return the Annotation object itself.
      */
-    public Annotation setContentType(String contentType) {
+    public Annotation setContentType(AnnotationContentType contentType) {
         this.contentType = contentType;
         return this;
     }

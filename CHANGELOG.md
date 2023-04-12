@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Make search config action fields required
 
+### Changed
+- rawText is now not nullable
+
 ## [3.3.0] - 2023-03-28
 ### Added
 - Adding group annotation content type
