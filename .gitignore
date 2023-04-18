@@ -23,8 +23,7 @@
 hs_err_pid*
 
 */target/*
-.idea/libraries/
-.idea/azure/
+.idea
 
 build_state.json
 
