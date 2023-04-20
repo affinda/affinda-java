@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Make search config action fields required
+- Allow rejectDuplicates to be null
 
 ### Changed
 - rawText is now not nullable

@@ -171,6 +171,12 @@ public final class ResumeSearchConfig {
     @JsonProperty(value = "hideToolbar")
     private Boolean hideToolbar;
 
+    /*
+     * The customFieldsConfig property.
+     */
+    @JsonProperty(value = "customFieldsConfig")
+    private List<CustomFieldConfig> customFieldsConfig;
+
     /**
      * Get the allowPdfDownload property: The allowPdfDownload property.
      *
@@ -688,6 +694,26 @@ public final class ResumeSearchConfig {
      */
     public ResumeSearchConfig setHideToolbar(Boolean hideToolbar) {
         this.hideToolbar = hideToolbar;
+        return this;
+    }
+
+    /**
+     * Get the customFieldsConfig property: The customFieldsConfig property.
+     *
+     * @return the customFieldsConfig value.
+     */
+    public List<CustomFieldConfig> getCustomFieldsConfig() {
+        return this.customFieldsConfig;
+    }
+
+    /**
+     * Set the customFieldsConfig property: The customFieldsConfig property.
+     *
+     * @param customFieldsConfig the customFieldsConfig value to set.
+     * @return the ResumeSearchConfig object itself.
+     */
+    public ResumeSearchConfig setCustomFieldsConfig(List<CustomFieldConfig> customFieldsConfig) {
+        this.customFieldsConfig = customFieldsConfig;
         return this;
     }
 }

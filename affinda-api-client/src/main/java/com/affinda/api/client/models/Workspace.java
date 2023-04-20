@@ -49,8 +49,9 @@ public final class Workspace {
 
     /*
      * If "true", parsing will fail when the uploaded document is duplicate of
-     * an existing document, no credits will be consumed. If "false" (default),
-     * will parse the document normally whether its a duplicate or not.
+     * an existing document, no credits will be consumed. If "false", will
+     * parse the document normally whether its a duplicate or not. If not
+     * provided, will fallback to the workspace settings.
      */
     @JsonProperty(value = "rejectDuplicates")
     private Boolean rejectDuplicates;
@@ -213,8 +214,8 @@ public final class Workspace {
 
     /**
      * Get the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
-     * existing document, no credits will be consumed. If "false" (default), will parse the document normally whether
-     * its a duplicate or not.
+     * existing document, no credits will be consumed. If "false", will parse the document normally whether its a
+     * duplicate or not. If not provided, will fallback to the workspace settings.
      *
      * @return the rejectDuplicates value.
      */
@@ -224,8 +225,8 @@ public final class Workspace {
 
     /**
      * Set the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
-     * existing document, no credits will be consumed. If "false" (default), will parse the document normally whether
-     * its a duplicate or not.
+     * existing document, no credits will be consumed. If "false", will parse the document normally whether its a
+     * duplicate or not. If not provided, will fallback to the workspace settings.
      *
      * @param rejectDuplicates the rejectDuplicates value to set.
      * @return the Workspace object itself.

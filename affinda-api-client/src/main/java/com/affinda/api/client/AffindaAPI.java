@@ -389,9 +389,12 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/documents/{identifier}")
-        @ExpectedResponses({200, 400, 400, 401, 401})
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> getDocument(
+        Mono<Response<Document>> getDocument(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @QueryParam("format") DocumentFormat format,
@@ -506,6 +509,8 @@ public final class AffindaAPI {
                 @QueryParam("slug") String slug,
                 @QueryParam("description") String description,
                 @QueryParam("annotation_content_type") String annotationContentType,
+                @QueryParam("include_child") Boolean includeChild,
+                @QueryParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/data_points")
@@ -2237,11 +2242,12 @@ public final class AffindaAPI {
      * @param format Specify which format you want the response to be. Default is "json".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getDocumentWithResponseAsync(String identifier, DocumentFormat format) {
+    public Mono<Response<Document>> getDocumentWithResponseAsync(String identifier, DocumentFormat format) {
         final String accept = "application/json, application/xml";
         return service.getDocument(this.getRegion(), identifier, format, accept);
     }
@@ -2253,14 +2259,15 @@ public final class AffindaAPI {
      * @param format Specify which format you want the response to be. Default is "json".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getDocumentAsync(String identifier, DocumentFormat format) {
+    public Mono<Document> getDocumentAsync(String identifier, DocumentFormat format) {
         return getDocumentWithResponseAsync(identifier, format)
                 .flatMap(
-                        (Response<Object> res) -> {
+                        (Response<Document> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -2276,11 +2283,12 @@ public final class AffindaAPI {
      * @param format Specify which format you want the response to be. Default is "json".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getDocument(String identifier, DocumentFormat format) {
+    public Document getDocument(String identifier, DocumentFormat format) {
         return getDocumentAsync(identifier, format).block();
     }
 
@@ -2736,6 +2744,9 @@ public final class AffindaAPI {
      * @param slug Filter by slug.
      * @param description Filter by description.
      * @param annotationContentType Filter by annotation content type, e.g. text, integer, float, date, etc.
+     * @param includeChild Whether to show child data points at the top level. &lt;br /&gt; By default child data points
+     *     are shown nested inside their parent so they are excluded from the top level.
+     * @param identifier Filter by specific identifiers.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2750,8 +2761,12 @@ public final class AffindaAPI {
             String extractor,
             String slug,
             String description,
-            String annotationContentType) {
+            String annotationContentType,
+            Boolean includeChild,
+            List<String> identifier) {
         final String accept = "application/json";
+        String identifierConverted =
+                JacksonAdapter.createDefaultSerializerAdapter().serializeList(identifier, CollectionFormat.CSV);
         return service.getAllDataPoints(
                 this.getRegion(),
                 offset,
@@ -2761,6 +2776,8 @@ public final class AffindaAPI {
                 slug,
                 description,
                 annotationContentType,
+                includeChild,
+                identifierConverted,
                 accept);
     }
 
@@ -2774,6 +2791,9 @@ public final class AffindaAPI {
      * @param slug Filter by slug.
      * @param description Filter by description.
      * @param annotationContentType Filter by annotation content type, e.g. text, integer, float, date, etc.
+     * @param includeChild Whether to show child data points at the top level. &lt;br /&gt; By default child data points
+     *     are shown nested inside their parent so they are excluded from the top level.
+     * @param identifier Filter by specific identifiers.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2788,9 +2808,19 @@ public final class AffindaAPI {
             String extractor,
             String slug,
             String description,
-            String annotationContentType) {
+            String annotationContentType,
+            Boolean includeChild,
+            List<String> identifier) {
         return getAllDataPointsWithResponseAsync(
-                        offset, limit, organization, extractor, slug, description, annotationContentType)
+                        offset,
+                        limit,
+                        organization,
+                        extractor,
+                        slug,
+                        description,
+                        annotationContentType,
+                        includeChild,
+                        identifier)
                 .flatMap(
                         (Response<List<DataPoint>> res) -> {
                             if (res.getValue() != null) {
@@ -2811,6 +2841,9 @@ public final class AffindaAPI {
      * @param slug Filter by slug.
      * @param description Filter by description.
      * @param annotationContentType Filter by annotation content type, e.g. text, integer, float, date, etc.
+     * @param includeChild Whether to show child data points at the top level. &lt;br /&gt; By default child data points
+     *     are shown nested inside their parent so they are excluded from the top level.
+     * @param identifier Filter by specific identifiers.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2825,8 +2858,19 @@ public final class AffindaAPI {
             String extractor,
             String slug,
             String description,
-            String annotationContentType) {
-        return getAllDataPointsAsync(offset, limit, organization, extractor, slug, description, annotationContentType)
+            String annotationContentType,
+            Boolean includeChild,
+            List<String> identifier) {
+        return getAllDataPointsAsync(
+                        offset,
+                        limit,
+                        organization,
+                        extractor,
+                        slug,
+                        description,
+                        annotationContentType,
+                        includeChild,
+                        identifier)
                 .block();
     }
 
