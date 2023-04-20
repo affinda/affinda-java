@@ -165,6 +165,12 @@ public final class JobDescriptionSearchConfig {
     @JsonProperty(value = "actions")
     private List<JobDescriptionSearchConfigActionsItem> actions;
 
+    /*
+     * The customFieldsConfig property.
+     */
+    @JsonProperty(value = "customFieldsConfig")
+    private List<CustomFieldConfig> customFieldsConfig;
+
     /**
      * Get the allowPdfDownload property: The allowPdfDownload property.
      *
@@ -662,6 +668,26 @@ public final class JobDescriptionSearchConfig {
      */
     public JobDescriptionSearchConfig setActions(List<JobDescriptionSearchConfigActionsItem> actions) {
         this.actions = actions;
+        return this;
+    }
+
+    /**
+     * Get the customFieldsConfig property: The customFieldsConfig property.
+     *
+     * @return the customFieldsConfig value.
+     */
+    public List<CustomFieldConfig> getCustomFieldsConfig() {
+        return this.customFieldsConfig;
+    }
+
+    /**
+     * Set the customFieldsConfig property: The customFieldsConfig property.
+     *
+     * @param customFieldsConfig the customFieldsConfig value to set.
+     * @return the JobDescriptionSearchConfig object itself.
+     */
+    public JobDescriptionSearchConfig setCustomFieldsConfig(List<CustomFieldConfig> customFieldsConfig) {
+        this.customFieldsConfig = customFieldsConfig;
         return this;
     }
 }

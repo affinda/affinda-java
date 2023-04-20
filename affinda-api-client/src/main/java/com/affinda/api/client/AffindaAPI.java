@@ -181,9 +181,12 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Get("/v2/resumes/{identifier}")
-        @ExpectedResponses({200, 200, 400, 400, 401, 401, 404, 404})
+        @ExpectedResponses({200, 200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401, 404})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Object>> getResume(
+        Mono<Response<Resume>> getResume(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @QueryParam("format") String format,
@@ -800,11 +803,12 @@ public final class AffindaAPI {
      *     this parameter is "hr-xml".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Object>> getResumeWithResponseAsync(String identifier, String format) {
+    public Mono<Response<Resume>> getResumeWithResponseAsync(String identifier, String format) {
         final String accept = "application/json, application/xml";
         return service.getResume(this.getRegion(), identifier, format, accept);
     }
@@ -818,14 +822,15 @@ public final class AffindaAPI {
      *     this parameter is "hr-xml".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Object> getResumeAsync(String identifier, String format) {
+    public Mono<Resume> getResumeAsync(String identifier, String format) {
         return getResumeWithResponseAsync(identifier, format)
                 .flatMap(
-                        (Response<Object> res) -> {
+                        (Response<Resume> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -843,11 +848,12 @@ public final class AffindaAPI {
      *     this parameter is "hr-xml".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getResume(String identifier, String format) {
+    public Resume getResume(String identifier, String format) {
         return getResumeAsync(identifier, format).block();
     }
 

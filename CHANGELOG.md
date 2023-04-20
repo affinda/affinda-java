@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Bump jackson-databind version due to CVE-2022-42003
 
+### Fixed
+- Allow rejectDuplicates to be null
+
 ## [2.2.1] - 2023-03-30
 ### Changed
 - "Rectangles" attribute in Annotation updates to readonly
