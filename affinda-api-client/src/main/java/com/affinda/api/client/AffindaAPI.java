@@ -20,7 +20,7 @@ import com.affinda.api.client.models.DocumentEditRequest;
 import com.affinda.api.client.models.DocumentFormat;
 import com.affinda.api.client.models.DocumentState;
 import com.affinda.api.client.models.DocumentUpdate;
-import com.affinda.api.client.models.Enum16;
+import com.affinda.api.client.models.Enum17;
 import com.affinda.api.client.models.Extractor;
 import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
@@ -71,6 +71,7 @@ import com.affinda.api.client.models.ResumeSearchParameters;
 import com.affinda.api.client.models.Tag;
 import com.affinda.api.client.models.TagCreate;
 import com.affinda.api.client.models.TagUpdate;
+import com.affinda.api.client.models.ValidationToolConfig;
 import com.affinda.api.client.models.Workspace;
 import com.affinda.api.client.models.WorkspaceCreate;
 import com.affinda.api.client.models.WorkspaceMembership;
@@ -797,6 +798,7 @@ public final class AffindaAPI {
                 @BodyParam("multipart/form-data") Flux<ByteBuffer> avatar,
                 @HeaderParam("Content-Length") Long contentLength,
                 @BodyParam("multipart/form-data") String resthookSignatureKey,
+                @BodyParam("multipart/form-data") ValidationToolConfig validationToolConfig,
                 @HeaderParam("Accept") String accept);
 
         @Delete("/v3/organizations/{identifier}")
@@ -1083,7 +1085,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
-                @QueryParam("document_type") Enum16 documentType,
+                @QueryParam("document_type") Enum17 documentType,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/index")
@@ -4213,6 +4215,7 @@ public final class AffindaAPI {
      * @param avatar Upload avatar for the organization.
      * @param contentLength The contentLength parameter.
      * @param resthookSignatureKey Used to sign webhook payloads so you can verify their integrity.
+     * @param validationToolConfig Configuration of the embeddable validation tool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4221,10 +4224,22 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Organization>> updateOrganizationWithResponseAsync(
-            String identifier, String name, Flux<ByteBuffer> avatar, Long contentLength, String resthookSignatureKey) {
+            String identifier,
+            String name,
+            Flux<ByteBuffer> avatar,
+            Long contentLength,
+            String resthookSignatureKey,
+            ValidationToolConfig validationToolConfig) {
         final String accept = "application/json";
         return service.updateOrganization(
-                this.getRegion(), identifier, name, avatar, contentLength, resthookSignatureKey, accept);
+                this.getRegion(),
+                identifier,
+                name,
+                avatar,
+                contentLength,
+                resthookSignatureKey,
+                validationToolConfig,
+                accept);
     }
 
     /**
@@ -4235,6 +4250,7 @@ public final class AffindaAPI {
      * @param avatar Upload avatar for the organization.
      * @param contentLength The contentLength parameter.
      * @param resthookSignatureKey Used to sign webhook payloads so you can verify their integrity.
+     * @param validationToolConfig Configuration of the embeddable validation tool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4243,8 +4259,14 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Organization> updateOrganizationAsync(
-            String identifier, String name, Flux<ByteBuffer> avatar, Long contentLength, String resthookSignatureKey) {
-        return updateOrganizationWithResponseAsync(identifier, name, avatar, contentLength, resthookSignatureKey)
+            String identifier,
+            String name,
+            Flux<ByteBuffer> avatar,
+            Long contentLength,
+            String resthookSignatureKey,
+            ValidationToolConfig validationToolConfig) {
+        return updateOrganizationWithResponseAsync(
+                        identifier, name, avatar, contentLength, resthookSignatureKey, validationToolConfig)
                 .flatMap(
                         (Response<Organization> res) -> {
                             if (res.getValue() != null) {
@@ -4263,6 +4285,7 @@ public final class AffindaAPI {
      * @param avatar Upload avatar for the organization.
      * @param contentLength The contentLength parameter.
      * @param resthookSignatureKey Used to sign webhook payloads so you can verify their integrity.
+     * @param validationToolConfig Configuration of the embeddable validation tool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -4271,8 +4294,15 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Organization updateOrganization(
-            String identifier, String name, Flux<ByteBuffer> avatar, Long contentLength, String resthookSignatureKey) {
-        return updateOrganizationAsync(identifier, name, avatar, contentLength, resthookSignatureKey).block();
+            String identifier,
+            String name,
+            Flux<ByteBuffer> avatar,
+            Long contentLength,
+            String resthookSignatureKey,
+            ValidationToolConfig validationToolConfig) {
+        return updateOrganizationAsync(
+                        identifier, name, avatar, contentLength, resthookSignatureKey, validationToolConfig)
+                .block();
     }
 
     /**
@@ -5662,7 +5692,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexesWithResponseAsync(
-            Integer offset, Integer limit, Enum16 documentType) {
+            Integer offset, Integer limit, Enum17 documentType) {
         final String accept = "application/json";
         return service.getAllIndexes(this.getRegion(), offset, limit, documentType, accept);
     }
@@ -5681,7 +5711,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> getAllIndexesAsync(
-            Integer offset, Integer limit, Enum16 documentType) {
+            Integer offset, Integer limit, Enum17 documentType) {
         return getAllIndexesWithResponseAsync(offset, limit, documentType)
                 .flatMap(
                         (Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> res) -> {
@@ -5707,7 +5737,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema getAllIndexes(
-            Integer offset, Integer limit, Enum16 documentType) {
+            Integer offset, Integer limit, Enum17 documentType) {
         return getAllIndexesAsync(offset, limit, documentType).block();
     }
 

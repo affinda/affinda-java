@@ -26,6 +26,12 @@ public final class OrganizationUpdate {
     @JsonProperty(value = "resthookSignatureKey")
     private String resthookSignatureKey;
 
+    /*
+     * Configuration of the embeddable validation tool.
+     */
+    @JsonProperty(value = "validationToolConfig")
+    private ValidationToolConfig validationToolConfig;
+
     /**
      * Get the name property: The name property.
      *
@@ -83,6 +89,26 @@ public final class OrganizationUpdate {
      */
     public OrganizationUpdate setResthookSignatureKey(String resthookSignatureKey) {
         this.resthookSignatureKey = resthookSignatureKey;
+        return this;
+    }
+
+    /**
+     * Get the validationToolConfig property: Configuration of the embeddable validation tool.
+     *
+     * @return the validationToolConfig value.
+     */
+    public ValidationToolConfig getValidationToolConfig() {
+        return this.validationToolConfig;
+    }
+
+    /**
+     * Set the validationToolConfig property: Configuration of the embeddable validation tool.
+     *
+     * @param validationToolConfig the validationToolConfig value to set.
+     * @return the OrganizationUpdate object itself.
+     */
+    public OrganizationUpdate setValidationToolConfig(ValidationToolConfig validationToolConfig) {
+        this.validationToolConfig = validationToolConfig;
         return this;
     }
 }

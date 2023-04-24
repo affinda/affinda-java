@@ -42,6 +42,12 @@ public final class Organization {
     @JsonProperty(value = "isTrial")
     private Boolean isTrial;
 
+    /*
+     * Configuration of the embeddable validation tool.
+     */
+    @JsonProperty(value = "validationToolConfig")
+    private OrganizationValidationToolConfig validationToolConfig;
+
     /**
      * Get the identifier property: Uniquely identify an organization.
      *
@@ -159,6 +165,26 @@ public final class Organization {
      */
     public Organization setIsTrial(Boolean isTrial) {
         this.isTrial = isTrial;
+        return this;
+    }
+
+    /**
+     * Get the validationToolConfig property: Configuration of the embeddable validation tool.
+     *
+     * @return the validationToolConfig value.
+     */
+    public OrganizationValidationToolConfig getValidationToolConfig() {
+        return this.validationToolConfig;
+    }
+
+    /**
+     * Set the validationToolConfig property: Configuration of the embeddable validation tool.
+     *
+     * @param validationToolConfig the validationToolConfig value to set.
+     * @return the Organization object itself.
+     */
+    public Organization setValidationToolConfig(OrganizationValidationToolConfig validationToolConfig) {
+        this.validationToolConfig = validationToolConfig;
         return this;
     }
 }
