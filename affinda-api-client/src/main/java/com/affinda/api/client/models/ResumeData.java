@@ -26,6 +26,12 @@ public final class ResumeData {
     private List<String> phoneNumbers;
 
     /*
+     * The phoneNumberDetails property.
+     */
+    @JsonProperty(value = "phoneNumberDetails")
+    private List<ResumeDataPhoneNumberDetailsItem> phoneNumberDetails;
+
+    /*
      * The websites property.
      */
     @JsonProperty(value = "websites")
@@ -201,6 +207,26 @@ public final class ResumeData {
      */
     public ResumeData setPhoneNumbers(List<String> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
+        return this;
+    }
+
+    /**
+     * Get the phoneNumberDetails property: The phoneNumberDetails property.
+     *
+     * @return the phoneNumberDetails value.
+     */
+    public List<ResumeDataPhoneNumberDetailsItem> getPhoneNumberDetails() {
+        return this.phoneNumberDetails;
+    }
+
+    /**
+     * Set the phoneNumberDetails property: The phoneNumberDetails property.
+     *
+     * @param phoneNumberDetails the phoneNumberDetails value to set.
+     * @return the ResumeData object itself.
+     */
+    public ResumeData setPhoneNumberDetails(List<ResumeDataPhoneNumberDetailsItem> phoneNumberDetails) {
+        this.phoneNumberDetails = phoneNumberDetails;
         return this;
     }
 
