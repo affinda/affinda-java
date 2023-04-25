@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
 /** The Document model. */
 @JsonTypeInfo(
@@ -37,6 +38,12 @@ public class Document {
      */
     @JsonProperty(value = "error")
     private DocumentError error;
+
+    /*
+     * The warnings property.
+     */
+    @JsonProperty(value = "warnings")
+    private List<DocumentWarning> warnings;
 
     /**
      * Get the data property: Any object.
@@ -95,6 +102,26 @@ public class Document {
      */
     public Document setError(DocumentError error) {
         this.error = error;
+        return this;
+    }
+
+    /**
+     * Get the warnings property: The warnings property.
+     *
+     * @return the warnings value.
+     */
+    public List<DocumentWarning> getWarnings() {
+        return this.warnings;
+    }
+
+    /**
+     * Set the warnings property: The warnings property.
+     *
+     * @param warnings the warnings value to set.
+     * @return the Document object itself.
+     */
+    public Document setWarnings(List<DocumentWarning> warnings) {
+        this.warnings = warnings;
         return this;
     }
 }

@@ -376,6 +376,9 @@ public final class AffindaAPI {
                 @QueryParam("include_data") Boolean includeData,
                 @QueryParam("exclude") String exclude,
                 @QueryParam("in_review") Boolean inReview,
+                @QueryParam("failed") Boolean failed,
+                @QueryParam("ready") Boolean ready,
+                @QueryParam("validatable") Boolean validatable,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/documents")
@@ -2019,6 +2022,9 @@ public final class AffindaAPI {
      *     return the detailed data that was parsed, at a performance cost.
      * @param exclude Exclude some documents from the result.
      * @param inReview Exclude documents that are currently being reviewed.
+     * @param failed Filter by failed status.
+     * @param ready Filter by ready status.
+     * @param validatable Filter for validatable documents.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2039,7 +2045,10 @@ public final class AffindaAPI {
                     List<Get8ItemsItem> ordering,
                     Boolean includeData,
                     List<String> exclude,
-                    Boolean inReview) {
+                    Boolean inReview,
+                    Boolean failed,
+                    Boolean ready,
+                    Boolean validatable) {
         final String accept = "application/json";
         String tagsConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
@@ -2061,6 +2070,9 @@ public final class AffindaAPI {
                 includeData,
                 excludeConverted,
                 inReview,
+                failed,
+                ready,
+                validatable,
                 accept);
     }
 
@@ -2081,6 +2093,9 @@ public final class AffindaAPI {
      *     return the detailed data that was parsed, at a performance cost.
      * @param exclude Exclude some documents from the result.
      * @param inReview Exclude documents that are currently being reviewed.
+     * @param failed Filter by failed status.
+     * @param ready Filter by ready status.
+     * @param validatable Filter for validatable documents.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2100,7 +2115,10 @@ public final class AffindaAPI {
             List<Get8ItemsItem> ordering,
             Boolean includeData,
             List<String> exclude,
-            Boolean inReview) {
+            Boolean inReview,
+            Boolean failed,
+            Boolean ready,
+            Boolean validatable) {
         return getAllDocumentsWithResponseAsync(
                         offset,
                         limit,
@@ -2113,7 +2131,10 @@ public final class AffindaAPI {
                         ordering,
                         includeData,
                         exclude,
-                        inReview)
+                        inReview,
+                        failed,
+                        ready,
+                        validatable)
                 .flatMap(
                         (Response<PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -2141,6 +2162,9 @@ public final class AffindaAPI {
      *     return the detailed data that was parsed, at a performance cost.
      * @param exclude Exclude some documents from the result.
      * @param inReview Exclude documents that are currently being reviewed.
+     * @param failed Filter by failed status.
+     * @param ready Filter by ready status.
+     * @param validatable Filter for validatable documents.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2160,7 +2184,10 @@ public final class AffindaAPI {
             List<Get8ItemsItem> ordering,
             Boolean includeData,
             List<String> exclude,
-            Boolean inReview) {
+            Boolean inReview,
+            Boolean failed,
+            Boolean ready,
+            Boolean validatable) {
         return getAllDocumentsAsync(
                         offset,
                         limit,
@@ -2173,7 +2200,10 @@ public final class AffindaAPI {
                         ordering,
                         includeData,
                         exclude,
-                        inReview)
+                        inReview,
+                        failed,
+                        ready,
+                        validatable)
                 .block();
     }
 
