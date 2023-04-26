@@ -14,6 +14,18 @@ public final class DataPointChoiceUpdate {
     private String dataPoint;
 
     /*
+     * Uniquely identify an organization.
+     */
+    @JsonProperty(value = "organization")
+    private String organization;
+
+    /*
+     * Uniquely identify a collection.
+     */
+    @JsonProperty(value = "collection")
+    private String collection;
+
+    /*
      * The label property.
      */
     @JsonProperty(value = "label")
@@ -54,6 +66,46 @@ public final class DataPointChoiceUpdate {
      */
     public DataPointChoiceUpdate setDataPoint(String dataPoint) {
         this.dataPoint = dataPoint;
+        return this;
+    }
+
+    /**
+     * Get the organization property: Uniquely identify an organization.
+     *
+     * @return the organization value.
+     */
+    public String getOrganization() {
+        return this.organization;
+    }
+
+    /**
+     * Set the organization property: Uniquely identify an organization.
+     *
+     * @param organization the organization value to set.
+     * @return the DataPointChoiceUpdate object itself.
+     */
+    public DataPointChoiceUpdate setOrganization(String organization) {
+        this.organization = organization;
+        return this;
+    }
+
+    /**
+     * Get the collection property: Uniquely identify a collection.
+     *
+     * @return the collection value.
+     */
+    public String getCollection() {
+        return this.collection;
+    }
+
+    /**
+     * Set the collection property: Uniquely identify a collection.
+     *
+     * @param collection the collection value to set.
+     * @return the DataPointChoiceUpdate object itself.
+     */
+    public DataPointChoiceUpdate setCollection(String collection) {
+        this.collection = collection;
         return this;
     }
 

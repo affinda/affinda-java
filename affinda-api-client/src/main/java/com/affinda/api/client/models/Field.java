@@ -44,6 +44,12 @@ public final class Field {
     private Float autoValidationThreshold;
 
     /*
+     * The showDropdown property.
+     */
+    @JsonProperty(value = "showDropdown")
+    private Boolean showDropdown;
+
+    /*
      * The fields property.
      */
     @JsonProperty(value = "fields")
@@ -166,6 +172,26 @@ public final class Field {
      */
     public Field setAutoValidationThreshold(Float autoValidationThreshold) {
         this.autoValidationThreshold = autoValidationThreshold;
+        return this;
+    }
+
+    /**
+     * Get the showDropdown property: The showDropdown property.
+     *
+     * @return the showDropdown value.
+     */
+    public Boolean isShowDropdown() {
+        return this.showDropdown;
+    }
+
+    /**
+     * Set the showDropdown property: The showDropdown property.
+     *
+     * @param showDropdown the showDropdown value to set.
+     * @return the Field object itself.
+     */
+    public Field setShowDropdown(Boolean showDropdown) {
+        this.showDropdown = showDropdown;
         return this;
     }
 

@@ -573,6 +573,7 @@ public final class AffindaAPI {
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @QueryParam("data_point") String dataPoint,
+                @QueryParam("collection") String collection,
                 @QueryParam("search") String search,
                 @HeaderParam("Accept") String accept);
 
@@ -3120,6 +3121,7 @@ public final class AffindaAPI {
      * Returns available choices for a specific enum data point.
      *
      * @param dataPoint The data point to get choices for.
+     * @param collection The collection to get choices for.
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
      * @param search Filter choices by searching for a substring.
@@ -3131,15 +3133,17 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema>>
-            getDataPointChoicesWithResponseAsync(String dataPoint, Integer offset, Integer limit, String search) {
+            getDataPointChoicesWithResponseAsync(
+                    String dataPoint, String collection, Integer offset, Integer limit, String search) {
         final String accept = "application/json";
-        return service.getDataPointChoices(this.getRegion(), offset, limit, dataPoint, search, accept);
+        return service.getDataPointChoices(this.getRegion(), offset, limit, dataPoint, collection, search, accept);
     }
 
     /**
      * Returns available choices for a specific enum data point.
      *
      * @param dataPoint The data point to get choices for.
+     * @param collection The collection to get choices for.
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
      * @param search Filter choices by searching for a substring.
@@ -3151,8 +3155,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema> getDataPointChoicesAsync(
-            String dataPoint, Integer offset, Integer limit, String search) {
-        return getDataPointChoicesWithResponseAsync(dataPoint, offset, limit, search)
+            String dataPoint, String collection, Integer offset, Integer limit, String search) {
+        return getDataPointChoicesWithResponseAsync(dataPoint, collection, offset, limit, search)
                 .flatMap(
                         (Response<PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -3167,6 +3171,7 @@ public final class AffindaAPI {
      * Returns available choices for a specific enum data point.
      *
      * @param dataPoint The data point to get choices for.
+     * @param collection The collection to get choices for.
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
      * @param search Filter choices by searching for a substring.
@@ -3178,8 +3183,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsMnwxgV3DataPointChoicesGetResponses200ContentApplicationJsonSchema getDataPointChoices(
-            String dataPoint, Integer offset, Integer limit, String search) {
-        return getDataPointChoicesAsync(dataPoint, offset, limit, search).block();
+            String dataPoint, String collection, Integer offset, Integer limit, String search) {
+        return getDataPointChoicesAsync(dataPoint, collection, offset, limit, search).block();
     }
 
     /**
