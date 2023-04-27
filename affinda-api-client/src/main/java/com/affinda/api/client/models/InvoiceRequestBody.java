@@ -44,9 +44,9 @@ public final class InvoiceRequestBody {
 
     /*
      * If "true", parsing will fail when the uploaded document is duplicate of
-     * an existing document. If "false", will parse the document normally
-     * whether its a duplicate or not. If not provided, will fallback to the
-     * workspace settings.
+     * an existing document, no credits will be consumed. If "false", will
+     * parse the document normally whether its a duplicate or not. If not
+     * provided, will fallback to the workspace settings.
      */
     @JsonProperty(value = "rejectDuplicates")
     private Boolean rejectDuplicates;
@@ -169,8 +169,8 @@ public final class InvoiceRequestBody {
 
     /**
      * Get the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
-     * existing document. If "false", will parse the document normally whether its a duplicate or not. If not provided,
-     * will fallback to the workspace settings.
+     * existing document, no credits will be consumed. If "false", will parse the document normally whether its a
+     * duplicate or not. If not provided, will fallback to the workspace settings.
      *
      * @return the rejectDuplicates value.
      */
@@ -180,8 +180,8 @@ public final class InvoiceRequestBody {
 
     /**
      * Set the rejectDuplicates property: If "true", parsing will fail when the uploaded document is duplicate of an
-     * existing document. If "false", will parse the document normally whether its a duplicate or not. If not provided,
-     * will fallback to the workspace settings.
+     * existing document, no credits will be consumed. If "false", will parse the document normally whether its a
+     * duplicate or not. If not provided, will fallback to the workspace settings.
      *
      * @param rejectDuplicates the rejectDuplicates value to set.
      * @return the InvoiceRequestBody object itself.
