@@ -1,8 +1,13 @@
 package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /** The JobDescriptionData model. */
 @Fluent
@@ -108,6 +113,12 @@ public final class JobDescriptionData {
      */
     @JsonProperty(value = "yearsExperience")
     private YearsExperienceAnnotation yearsExperience;
+
+    /*
+     * Dictionary of
+     * components·tk0gmx·schemas·jobdescriptiondata·additionalproperties
+     */
+    @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
      * Get the jobTitle property: The jobTitle property.
@@ -447,5 +458,36 @@ public final class JobDescriptionData {
     public JobDescriptionData setYearsExperience(YearsExperienceAnnotation yearsExperience) {
         this.yearsExperience = yearsExperience;
         return this;
+    }
+
+    /**
+     * Get the additionalProperties property: Dictionary of
+     * components·tk0gmx·schemas·jobdescriptiondata·additionalproperties.
+     *
+     * @return the additionalProperties value.
+     */
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    /**
+     * Set the additionalProperties property: Dictionary of
+     * components·tk0gmx·schemas·jobdescriptiondata·additionalproperties.
+     *
+     * @param additionalProperties the additionalProperties value to set.
+     * @return the JobDescriptionData object itself.
+     */
+    public JobDescriptionData setAdditionalProperties(Map<String, Object> additionalProperties) {
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
+    @JsonAnySetter
+    void setAdditionalProperties(String key, Object value) {
+        if (additionalProperties == null) {
+            additionalProperties = new HashMap<>();
+        }
+        additionalProperties.put(key, value);
     }
 }
