@@ -513,7 +513,6 @@ public final class AffindaAPI {
                 @QueryParam("slug") String slug,
                 @QueryParam("description") String description,
                 @QueryParam("annotation_content_type") String annotationContentType,
-                @QueryParam("include_child") Boolean includeChild,
                 @QueryParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
@@ -2777,8 +2776,6 @@ public final class AffindaAPI {
      * @param slug Filter by slug.
      * @param description Filter by description.
      * @param annotationContentType Filter by annotation content type, e.g. text, integer, float, date, etc.
-     * @param includeChild Whether to show child data points at the top level. &lt;br /&gt; By default child data points
-     *     are shown nested inside their parent so they are excluded from the top level.
      * @param identifier Filter by specific identifiers.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
@@ -2795,7 +2792,6 @@ public final class AffindaAPI {
             String slug,
             String description,
             String annotationContentType,
-            Boolean includeChild,
             List<String> identifier) {
         final String accept = "application/json";
         String identifierConverted =
@@ -2809,7 +2805,6 @@ public final class AffindaAPI {
                 slug,
                 description,
                 annotationContentType,
-                includeChild,
                 identifierConverted,
                 accept);
     }
@@ -2824,8 +2819,6 @@ public final class AffindaAPI {
      * @param slug Filter by slug.
      * @param description Filter by description.
      * @param annotationContentType Filter by annotation content type, e.g. text, integer, float, date, etc.
-     * @param includeChild Whether to show child data points at the top level. &lt;br /&gt; By default child data points
-     *     are shown nested inside their parent so they are excluded from the top level.
      * @param identifier Filter by specific identifiers.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
@@ -2842,18 +2835,9 @@ public final class AffindaAPI {
             String slug,
             String description,
             String annotationContentType,
-            Boolean includeChild,
             List<String> identifier) {
         return getAllDataPointsWithResponseAsync(
-                        offset,
-                        limit,
-                        organization,
-                        extractor,
-                        slug,
-                        description,
-                        annotationContentType,
-                        includeChild,
-                        identifier)
+                        offset, limit, organization, extractor, slug, description, annotationContentType, identifier)
                 .flatMap(
                         (Response<List<DataPoint>> res) -> {
                             if (res.getValue() != null) {
@@ -2874,8 +2858,6 @@ public final class AffindaAPI {
      * @param slug Filter by slug.
      * @param description Filter by description.
      * @param annotationContentType Filter by annotation content type, e.g. text, integer, float, date, etc.
-     * @param includeChild Whether to show child data points at the top level. &lt;br /&gt; By default child data points
-     *     are shown nested inside their parent so they are excluded from the top level.
      * @param identifier Filter by specific identifiers.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
@@ -2892,18 +2874,9 @@ public final class AffindaAPI {
             String slug,
             String description,
             String annotationContentType,
-            Boolean includeChild,
             List<String> identifier) {
         return getAllDataPointsAsync(
-                        offset,
-                        limit,
-                        organization,
-                        extractor,
-                        slug,
-                        description,
-                        annotationContentType,
-                        includeChild,
-                        identifier)
+                        offset, limit, organization, extractor, slug, description, annotationContentType, identifier)
                 .block();
     }
 
