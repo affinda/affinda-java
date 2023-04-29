@@ -2,6 +2,7 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** The JobDescriptionSearchResult model. */
 @Fluent
@@ -83,6 +84,13 @@ public final class JobDescriptionSearchResult {
      */
     @JsonProperty(value = "organizationName", required = true)
     private String organizationName;
+
+    /*
+     * Dictionary of
+     * <components·nqbw24·schemas·customdatasearchscorecomponent·additionalproperties>
+     */
+    @JsonProperty(value = "customData")
+    private Map<String, ComponentsNqbw24SchemasCustomdatasearchscorecomponentAdditionalproperties> customData;
 
     /**
      * Get the identifier property: A random string that uniquely identify the resource.
@@ -341,6 +349,29 @@ public final class JobDescriptionSearchResult {
      */
     public JobDescriptionSearchResult setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
+        return this;
+    }
+
+    /**
+     * Get the customData property: Dictionary of
+     * &lt;components·nqbw24·schemas·customdatasearchscorecomponent·additionalproperties&gt;.
+     *
+     * @return the customData value.
+     */
+    public Map<String, ComponentsNqbw24SchemasCustomdatasearchscorecomponentAdditionalproperties> getCustomData() {
+        return this.customData;
+    }
+
+    /**
+     * Set the customData property: Dictionary of
+     * &lt;components·nqbw24·schemas·customdatasearchscorecomponent·additionalproperties&gt;.
+     *
+     * @param customData the customData value to set.
+     * @return the JobDescriptionSearchResult object itself.
+     */
+    public JobDescriptionSearchResult setCustomData(
+            Map<String, ComponentsNqbw24SchemasCustomdatasearchscorecomponentAdditionalproperties> customData) {
+        this.customData = customData;
         return this;
     }
 }
