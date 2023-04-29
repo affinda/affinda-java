@@ -25,6 +25,12 @@ public final class ResumeDataPhoneNumberDetailsItem {
     private String countryCode;
 
     /*
+     * The internationalCountryCode property.
+     */
+    @JsonProperty(value = "internationalCountryCode")
+    private Integer internationalCountryCode;
+
+    /*
      * The nationalNumber property.
      */
     @JsonProperty(value = "nationalNumber")
@@ -87,6 +93,26 @@ public final class ResumeDataPhoneNumberDetailsItem {
      */
     public ResumeDataPhoneNumberDetailsItem setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+        return this;
+    }
+
+    /**
+     * Get the internationalCountryCode property: The internationalCountryCode property.
+     *
+     * @return the internationalCountryCode value.
+     */
+    public Integer getInternationalCountryCode() {
+        return this.internationalCountryCode;
+    }
+
+    /**
+     * Set the internationalCountryCode property: The internationalCountryCode property.
+     *
+     * @param internationalCountryCode the internationalCountryCode value to set.
+     * @return the ResumeDataPhoneNumberDetailsItem object itself.
+     */
+    public ResumeDataPhoneNumberDetailsItem setInternationalCountryCode(Integer internationalCountryCode) {
+        this.internationalCountryCode = internationalCountryCode;
         return this;
     }
 
