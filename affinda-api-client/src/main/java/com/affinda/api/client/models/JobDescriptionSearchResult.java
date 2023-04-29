@@ -89,7 +89,7 @@ public final class JobDescriptionSearchResult {
      * Dictionary of
      * <components·nqbw24·schemas·customdatasearchscorecomponent·additionalproperties>
      */
-    @JsonProperty(value = "customData")
+    @JsonProperty(value = "customData", required = true)
     private Map<String, ComponentsNqbw24SchemasCustomdatasearchscorecomponentAdditionalproperties> customData;
 
     /**

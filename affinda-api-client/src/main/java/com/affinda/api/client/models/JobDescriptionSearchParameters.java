@@ -181,6 +181,12 @@ public final class JobDescriptionSearchParameters {
     @JsonProperty(value = "managementLevelWeight")
     private Float managementLevelWeight;
 
+    /*
+     * The customData property.
+     */
+    @JsonProperty(value = "customData")
+    private List<SearchParametersCustomData> customData;
+
     /**
      * Get the indices property: The indices property.
      *
@@ -758,6 +764,26 @@ public final class JobDescriptionSearchParameters {
      */
     public JobDescriptionSearchParameters setManagementLevelWeight(Float managementLevelWeight) {
         this.managementLevelWeight = managementLevelWeight;
+        return this;
+    }
+
+    /**
+     * Get the customData property: The customData property.
+     *
+     * @return the customData value.
+     */
+    public List<SearchParametersCustomData> getCustomData() {
+        return this.customData;
+    }
+
+    /**
+     * Set the customData property: The customData property.
+     *
+     * @param customData the customData value to set.
+     * @return the JobDescriptionSearchParameters object itself.
+     */
+    public JobDescriptionSearchParameters setCustomData(List<SearchParametersCustomData> customData) {
+        this.customData = customData;
         return this;
     }
 }
