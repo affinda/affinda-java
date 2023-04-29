@@ -20,7 +20,7 @@ import com.affinda.api.client.models.DocumentEditRequest;
 import com.affinda.api.client.models.DocumentFormat;
 import com.affinda.api.client.models.DocumentState;
 import com.affinda.api.client.models.DocumentUpdate;
-import com.affinda.api.client.models.Enum17;
+import com.affinda.api.client.models.Enum18;
 import com.affinda.api.client.models.Extractor;
 import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
@@ -379,6 +379,7 @@ public final class AffindaAPI {
                 @QueryParam("failed") Boolean failed,
                 @QueryParam("ready") Boolean ready,
                 @QueryParam("validatable") Boolean validatable,
+                @QueryParam("has_challenges") Boolean hasChallenges,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/documents")
@@ -1088,7 +1089,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
-                @QueryParam("document_type") Enum17 documentType,
+                @QueryParam("document_type") Enum18 documentType,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/index")
@@ -2025,6 +2026,7 @@ public final class AffindaAPI {
      * @param failed Filter by failed status.
      * @param ready Filter by ready status.
      * @param validatable Filter for validatable documents.
+     * @param hasChallenges Filter for documents with challenges.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2048,7 +2050,8 @@ public final class AffindaAPI {
                     Boolean inReview,
                     Boolean failed,
                     Boolean ready,
-                    Boolean validatable) {
+                    Boolean validatable,
+                    Boolean hasChallenges) {
         final String accept = "application/json";
         String tagsConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
@@ -2073,6 +2076,7 @@ public final class AffindaAPI {
                 failed,
                 ready,
                 validatable,
+                hasChallenges,
                 accept);
     }
 
@@ -2096,6 +2100,7 @@ public final class AffindaAPI {
      * @param failed Filter by failed status.
      * @param ready Filter by ready status.
      * @param validatable Filter for validatable documents.
+     * @param hasChallenges Filter for documents with challenges.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2118,7 +2123,8 @@ public final class AffindaAPI {
             Boolean inReview,
             Boolean failed,
             Boolean ready,
-            Boolean validatable) {
+            Boolean validatable,
+            Boolean hasChallenges) {
         return getAllDocumentsWithResponseAsync(
                         offset,
                         limit,
@@ -2134,7 +2140,8 @@ public final class AffindaAPI {
                         inReview,
                         failed,
                         ready,
-                        validatable)
+                        validatable,
+                        hasChallenges)
                 .flatMap(
                         (Response<PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -2165,6 +2172,7 @@ public final class AffindaAPI {
      * @param failed Filter by failed status.
      * @param ready Filter by ready status.
      * @param validatable Filter for validatable documents.
+     * @param hasChallenges Filter for documents with challenges.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2187,7 +2195,8 @@ public final class AffindaAPI {
             Boolean inReview,
             Boolean failed,
             Boolean ready,
-            Boolean validatable) {
+            Boolean validatable,
+            Boolean hasChallenges) {
         return getAllDocumentsAsync(
                         offset,
                         limit,
@@ -2203,7 +2212,8 @@ public final class AffindaAPI {
                         inReview,
                         failed,
                         ready,
-                        validatable)
+                        validatable,
+                        hasChallenges)
                 .block();
     }
 
@@ -5700,7 +5710,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexesWithResponseAsync(
-            Integer offset, Integer limit, Enum17 documentType) {
+            Integer offset, Integer limit, Enum18 documentType) {
         final String accept = "application/json";
         return service.getAllIndexes(this.getRegion(), offset, limit, documentType, accept);
     }
@@ -5719,7 +5729,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> getAllIndexesAsync(
-            Integer offset, Integer limit, Enum17 documentType) {
+            Integer offset, Integer limit, Enum18 documentType) {
         return getAllIndexesWithResponseAsync(offset, limit, documentType)
                 .flatMap(
                         (Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> res) -> {
@@ -5745,7 +5755,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema getAllIndexes(
-            Integer offset, Integer limit, Enum17 documentType) {
+            Integer offset, Integer limit, Enum18 documentType) {
         return getAllIndexesAsync(offset, limit, documentType).block();
     }
 
