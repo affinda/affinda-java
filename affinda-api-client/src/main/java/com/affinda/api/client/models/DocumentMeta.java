@@ -184,6 +184,12 @@ public final class DocumentMeta {
     private UserNullable confirmedBy;
 
     /*
+     * The createdBy property.
+     */
+    @JsonProperty(value = "createdBy")
+    private User createdBy;
+
+    /*
      * If the document is created via email ingestion, this field stores the
      * email file's URL.
      */
@@ -759,6 +765,26 @@ public final class DocumentMeta {
      */
     public DocumentMeta setConfirmedBy(UserNullable confirmedBy) {
         this.confirmedBy = confirmedBy;
+        return this;
+    }
+
+    /**
+     * Get the createdBy property: The createdBy property.
+     *
+     * @return the createdBy value.
+     */
+    public User getCreatedBy() {
+        return this.createdBy;
+    }
+
+    /**
+     * Set the createdBy property: The createdBy property.
+     *
+     * @param createdBy the createdBy value to set.
+     * @return the DocumentMeta object itself.
+     */
+    public DocumentMeta setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
         return this;
     }
 
