@@ -8,28 +8,28 @@ import java.util.List;
 @Fluent
 public final class InvoiceDataTablesItem {
     /*
-     * The rows property.
+     * The parsed property.
      */
-    @JsonProperty(value = "rows")
-    private List<RowAnnotation> rows;
+    @JsonProperty(value = "parsed")
+    private List<InvoiceDataTablesPropertiesItemsItem> parsed;
 
     /**
-     * Get the rows property: The rows property.
+     * Get the parsed property: The parsed property.
      *
-     * @return the rows value.
+     * @return the parsed value.
      */
-    public List<RowAnnotation> getRows() {
-        return this.rows;
+    public List<InvoiceDataTablesPropertiesItemsItem> getParsed() {
+        return this.parsed;
     }
 
     /**
-     * Set the rows property: The rows property.
+     * Set the parsed property: The parsed property.
      *
-     * @param rows the rows value to set.
+     * @param parsed the parsed value to set.
      * @return the InvoiceDataTablesItem object itself.
      */
-    public InvoiceDataTablesItem setRows(List<RowAnnotation> rows) {
-        this.rows = rows;
+    public InvoiceDataTablesItem setParsed(List<InvoiceDataTablesPropertiesItemsItem> parsed) {
+        this.parsed = parsed;
         return this;
     }
 }
