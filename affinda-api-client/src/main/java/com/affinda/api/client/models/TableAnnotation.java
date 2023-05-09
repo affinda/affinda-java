@@ -2,23 +2,22 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/** The InvoiceDataTablesItem model. */
+/** The TableAnnotation model. */
 @Fluent
-public final class InvoiceDataTablesItem {
+public final class TableAnnotation extends Annotation {
     /*
      * The parsed property.
      */
     @JsonProperty(value = "parsed")
-    private List<InvoiceDataTablesPropertiesItemsItem> parsed;
+    private TableAnnotationParsed parsed;
 
     /**
      * Get the parsed property: The parsed property.
      *
      * @return the parsed value.
      */
-    public List<InvoiceDataTablesPropertiesItemsItem> getParsed() {
+    public TableAnnotationParsed getParsed() {
         return this.parsed;
     }
 
@@ -26,9 +25,9 @@ public final class InvoiceDataTablesItem {
      * Set the parsed property: The parsed property.
      *
      * @param parsed the parsed value to set.
-     * @return the InvoiceDataTablesItem object itself.
+     * @return the TableAnnotation object itself.
      */
-    public InvoiceDataTablesItem setParsed(List<InvoiceDataTablesPropertiesItemsItem> parsed) {
+    public TableAnnotation setParsed(TableAnnotationParsed parsed) {
         this.parsed = parsed;
         return this;
     }

@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Allow custom job description fields to be nullable
 - Make "pdf" property in SearchResults nullable
 - Nest line item table rows correctly.
+- Nest line item table rows correctly.
 
 ### Removed
 - Remove `include_child` filter from `/data_points` endpoint

@@ -12,7 +12,7 @@ public final class InvoiceData {
      * The tables property.
      */
     @JsonProperty(value = "tables")
-    private List<InvoiceDataTablesItem> tables;
+    private List<TableAnnotation> tables;
 
     /*
      * The invoiceDate property.
@@ -241,7 +241,7 @@ public final class InvoiceData {
      *
      * @return the tables value.
      */
-    public List<InvoiceDataTablesItem> getTables() {
+    public List<TableAnnotation> getTables() {
         return this.tables;
     }
 
@@ -251,7 +251,7 @@ public final class InvoiceData {
      * @param tables the tables value to set.
      * @return the InvoiceData object itself.
      */
-    public InvoiceData setTables(List<InvoiceDataTablesItem> tables) {
+    public InvoiceData setTables(List<TableAnnotation> tables) {
         this.tables = tables;
         return this;
     }

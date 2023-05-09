@@ -4,9 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The InvoiceDataTablesPropertiesItemsItem model. */
+/** The TableAnnotationParsed model. */
 @Fluent
-public final class InvoiceDataTablesPropertiesItemsItem {
+public final class TableAnnotationParsed {
     /*
      * The rows property.
      */
@@ -26,9 +26,9 @@ public final class InvoiceDataTablesPropertiesItemsItem {
      * Set the rows property: The rows property.
      *
      * @param rows the rows value to set.
-     * @return the InvoiceDataTablesPropertiesItemsItem object itself.
+     * @return the TableAnnotationParsed object itself.
      */
-    public InvoiceDataTablesPropertiesItemsItem setRows(List<RowAnnotation> rows) {
+    public TableAnnotationParsed setRows(List<RowAnnotation> rows) {
         this.rows = rows;
         return this;
     }
