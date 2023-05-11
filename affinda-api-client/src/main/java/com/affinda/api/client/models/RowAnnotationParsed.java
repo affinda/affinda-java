@@ -64,7 +64,7 @@ public final class RowAnnotationParsed {
      * The itemTaxTotal property.
      */
     @JsonProperty(value = "itemTaxTotal")
-    private TextAnnotation itemTaxTotal;
+    private FloatAnnotation itemTaxTotal;
 
     /*
      * The itemTotal property.
@@ -263,7 +263,7 @@ public final class RowAnnotationParsed {
      *
      * @return the itemTaxTotal value.
      */
-    public TextAnnotation getItemTaxTotal() {
+    public FloatAnnotation getItemTaxTotal() {
         return this.itemTaxTotal;
     }
 
@@ -273,7 +273,7 @@ public final class RowAnnotationParsed {
      * @param itemTaxTotal the itemTaxTotal value to set.
      * @return the RowAnnotationParsed object itself.
      */
-    public RowAnnotationParsed setItemTaxTotal(TextAnnotation itemTaxTotal) {
+    public RowAnnotationParsed setItemTaxTotal(FloatAnnotation itemTaxTotal) {
         this.itemTaxTotal = itemTaxTotal;
         return this;
     }

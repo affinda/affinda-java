@@ -4,6 +4,8 @@ import com.affinda.api.client.models.Annotation;
 import com.affinda.api.client.models.AnnotationBatchUpdate;
 import com.affinda.api.client.models.AnnotationCreate;
 import com.affinda.api.client.models.AnnotationUpdate;
+import com.affinda.api.client.models.BatchAddTagRequest;
+import com.affinda.api.client.models.BatchRemoveTagRequest;
 import com.affinda.api.client.models.DataPoint;
 import com.affinda.api.client.models.DataPointChoice;
 import com.affinda.api.client.models.DataPointChoiceCreate;
@@ -426,6 +428,28 @@ public final class AffindaAPI {
         Mono<Response<Void>> deleteDocument(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/documents/batch_add_tag")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> batchAddTag(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") BatchAddTagRequest body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/documents/batch_remove_tag")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> batchRemoveTag(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") BatchRemoveTagRequest body,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/validate/{identifier}/split")
@@ -2437,7 +2461,97 @@ public final class AffindaAPI {
     }
 
     /**
-     * Split / merge / rotate / delete pages of a document. Documents with multiple pages can be into multiple
+     * Add a tag to documents. Tags are used to group documents together. Tags can be used to filter documents.
+     *
+     * @param body Specify the tag and the documents to tag.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> batchAddTagWithResponseAsync(BatchAddTagRequest body) {
+        final String accept = "application/json";
+        return service.batchAddTag(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Add a tag to documents. Tags are used to group documents together. Tags can be used to filter documents.
+     *
+     * @param body Specify the tag and the documents to tag.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> batchAddTagAsync(BatchAddTagRequest body) {
+        return batchAddTagWithResponseAsync(body).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Add a tag to documents. Tags are used to group documents together. Tags can be used to filter documents.
+     *
+     * @param body Specify the tag and the documents to tag.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void batchAddTag(BatchAddTagRequest body) {
+        batchAddTagAsync(body).block();
+    }
+
+    /**
+     * Remove a tag from documents.
+     *
+     * @param body Specify the tag and the documents to remove the tag from.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> batchRemoveTagWithResponseAsync(BatchRemoveTagRequest body) {
+        final String accept = "application/json";
+        return service.batchRemoveTag(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Remove a tag from documents.
+     *
+     * @param body Specify the tag and the documents to remove the tag from.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> batchRemoveTagAsync(BatchRemoveTagRequest body) {
+        return batchRemoveTagWithResponseAsync(body).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Remove a tag from documents.
+     *
+     * @param body Specify the tag and the documents to remove the tag from.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void batchRemoveTag(BatchRemoveTagRequest body) {
+        batchRemoveTagAsync(body).block();
+    }
+
+    /**
+     * Split / merge / rotate / delete pages of a document. Documents with multiple pages can be splitted into multiple
      * documents, or merged into one document. Each page can also be rotated. Edit operations will trigger re-parsing of
      * the documents involved.
      *
@@ -2456,7 +2570,7 @@ public final class AffindaAPI {
     }
 
     /**
-     * Split / merge / rotate / delete pages of a document. Documents with multiple pages can be into multiple
+     * Split / merge / rotate / delete pages of a document. Documents with multiple pages can be splitted into multiple
      * documents, or merged into one document. Each page can also be rotated. Edit operations will trigger re-parsing of
      * the documents involved.
      *
@@ -2482,7 +2596,7 @@ public final class AffindaAPI {
     }
 
     /**
-     * Split / merge / rotate / delete pages of a document. Documents with multiple pages can be into multiple
+     * Split / merge / rotate / delete pages of a document. Documents with multiple pages can be splitted into multiple
      * documents, or merged into one document. Each page can also be rotated. Edit operations will trigger re-parsing of
      * the documents involved.
      *

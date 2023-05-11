@@ -9,6 +9,9 @@ Document API - Collection
 Document API - Document
 -----------------------
 
+Document API - Tag
+------------------
+
 Document API - Extractor
 ------------------------
 
@@ -17,9 +20,6 @@ Document API - Data Point
 
 Document API - Annotation
 -------------------------
-
-Document API - Tag
-------------------
 
 Organization API - Organization
 -------------------------------
