@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add custom data to job description search results
 - Add international_country_code to phone number details
 - Endpoints for add/remove tag for documents
+- Identifier field in DocumentUpdate model
 
 ### Changed
 - Provide additional filters for data point choices, and allow data point choices to be specified for any existing text field.

@@ -51,6 +51,12 @@ public final class DocumentUpdate {
     @JsonProperty(value = "language")
     private String language;
 
+    /*
+     * Specify a custom identifier for the document.
+     */
+    @JsonProperty(value = "identifier")
+    private String identifier;
+
     /**
      * Get the collection property: Uniquely identify a collection.
      *
@@ -190,6 +196,26 @@ public final class DocumentUpdate {
      */
     public DocumentUpdate setLanguage(String language) {
         this.language = language;
+        return this;
+    }
+
+    /**
+     * Get the identifier property: Specify a custom identifier for the document.
+     *
+     * @return the identifier value.
+     */
+    public String getIdentifier() {
+        return this.identifier;
+    }
+
+    /**
+     * Set the identifier property: Specify a custom identifier for the document.
+     *
+     * @param identifier the identifier value to set.
+     * @return the DocumentUpdate object itself.
+     */
+    public DocumentUpdate setIdentifier(String identifier) {
+        this.identifier = identifier;
         return this;
     }
 }
