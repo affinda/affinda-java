@@ -77,6 +77,12 @@ public final class DocumentCreate {
     @JsonProperty(value = "rejectDuplicates")
     private Boolean rejectDuplicates;
 
+    /*
+     * A JSON representation of the RegionBias object.
+     */
+    @JsonProperty(value = "regionBias")
+    private String regionBias;
+
     /**
      * Get the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      *
@@ -282,6 +288,26 @@ public final class DocumentCreate {
      */
     public DocumentCreate setRejectDuplicates(Boolean rejectDuplicates) {
         this.rejectDuplicates = rejectDuplicates;
+        return this;
+    }
+
+    /**
+     * Get the regionBias property: A JSON representation of the RegionBias object.
+     *
+     * @return the regionBias value.
+     */
+    public String getRegionBias() {
+        return this.regionBias;
+    }
+
+    /**
+     * Set the regionBias property: A JSON representation of the RegionBias object.
+     *
+     * @param regionBias the regionBias value to set.
+     * @return the DocumentCreate object itself.
+     */
+    public DocumentCreate setRegionBias(String regionBias) {
+        this.regionBias = regionBias;
         return this;
     }
 }

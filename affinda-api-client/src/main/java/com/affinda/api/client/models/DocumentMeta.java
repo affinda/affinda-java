@@ -196,6 +196,12 @@ public final class DocumentMeta {
     @JsonProperty(value = "sourceEmail")
     private String sourceEmail;
 
+    /*
+     * The regionBias property.
+     */
+    @JsonProperty(value = "regionBias")
+    private RegionBias regionBias;
+
     /**
      * Get the identifier property: Uniquely identify a document.
      *
@@ -807,6 +813,26 @@ public final class DocumentMeta {
      */
     public DocumentMeta setSourceEmail(String sourceEmail) {
         this.sourceEmail = sourceEmail;
+        return this;
+    }
+
+    /**
+     * Get the regionBias property: The regionBias property.
+     *
+     * @return the regionBias value.
+     */
+    public RegionBias getRegionBias() {
+        return this.regionBias;
+    }
+
+    /**
+     * Set the regionBias property: The regionBias property.
+     *
+     * @param regionBias the regionBias value to set.
+     * @return the DocumentMeta object itself.
+     */
+    public DocumentMeta setRegionBias(RegionBias regionBias) {
+        this.regionBias = regionBias;
         return this;
     }
 }

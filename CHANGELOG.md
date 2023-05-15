@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add international_country_code to phone number details
 - Endpoints for add/remove tag for documents
 - Identifier field in DocumentUpdate model
+- Allow setting `region_bias` when uploading document
 
 ### Changed
 - Provide additional filters for data point choices, and allow data point choices to be specified for any existing text field.
