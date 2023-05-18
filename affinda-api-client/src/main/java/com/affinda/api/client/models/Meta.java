@@ -114,6 +114,12 @@ public final class Meta {
     @JsonProperty(value = "documentType")
     private String documentType;
 
+    /*
+     * The regionBias property.
+     */
+    @JsonProperty(value = "regionBias")
+    private RegionBias regionBias;
+
     /**
      * Get the identifier property: Uniquely identify a document.
      *
@@ -449,6 +455,26 @@ public final class Meta {
      */
     public Meta setDocumentType(String documentType) {
         this.documentType = documentType;
+        return this;
+    }
+
+    /**
+     * Get the regionBias property: The regionBias property.
+     *
+     * @return the regionBias value.
+     */
+    public RegionBias getRegionBias() {
+        return this.regionBias;
+    }
+
+    /**
+     * Set the regionBias property: The regionBias property.
+     *
+     * @param regionBias the regionBias value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setRegionBias(RegionBias regionBias) {
+        this.regionBias = regionBias;
         return this;
     }
 }

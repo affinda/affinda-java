@@ -71,6 +71,12 @@ public final class ResumeRequestBody {
     @JsonProperty(value = "expiryTime")
     private OffsetDateTime expiryTime;
 
+    /*
+     * A JSON representation of the RegionBias object.
+     */
+    @JsonProperty(value = "regionBias")
+    private String regionBias;
+
     /**
      * Get the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      *
@@ -256,6 +262,26 @@ public final class ResumeRequestBody {
      */
     public ResumeRequestBody setExpiryTime(OffsetDateTime expiryTime) {
         this.expiryTime = expiryTime;
+        return this;
+    }
+
+    /**
+     * Get the regionBias property: A JSON representation of the RegionBias object.
+     *
+     * @return the regionBias value.
+     */
+    public String getRegionBias() {
+        return this.regionBias;
+    }
+
+    /**
+     * Set the regionBias property: A JSON representation of the RegionBias object.
+     *
+     * @param regionBias the regionBias value to set.
+     * @return the ResumeRequestBody object itself.
+     */
+    public ResumeRequestBody setRegionBias(String regionBias) {
+        this.regionBias = regionBias;
         return this;
     }
 }
