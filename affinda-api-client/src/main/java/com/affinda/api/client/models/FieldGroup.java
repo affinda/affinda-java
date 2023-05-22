@@ -17,7 +17,7 @@ public final class FieldGroup {
      * The fields property.
      */
     @JsonProperty(value = "fields", required = true)
-    private List<Field> fields;
+    private List<FieldDeprecated> fields;
 
     /**
      * Get the label property: The label property.
@@ -44,7 +44,7 @@ public final class FieldGroup {
      *
      * @return the fields value.
      */
-    public List<Field> getFields() {
+    public List<FieldDeprecated> getFields() {
         return this.fields;
     }
 
@@ -54,7 +54,7 @@ public final class FieldGroup {
      * @param fields the fields value to set.
      * @return the FieldGroup object itself.
      */
-    public FieldGroup setFields(List<Field> fields) {
+    public FieldGroup setFields(List<FieldDeprecated> fields) {
         this.fields = fields;
         return this;
     }

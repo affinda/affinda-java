@@ -115,13 +115,6 @@ public final class JobDescriptionData {
     private YearsExperienceAnnotation yearsExperience;
 
     /*
-     * All of the raw text of the parsed job description, example is shortened
-     * for readability
-     */
-    @JsonProperty(value = "rawText")
-    private String rawText;
-
-    /*
      * Dictionary of
      * components·tk0gmx·schemas·jobdescriptiondata·additionalproperties
      */
@@ -464,28 +457,6 @@ public final class JobDescriptionData {
      */
     public JobDescriptionData setYearsExperience(YearsExperienceAnnotation yearsExperience) {
         this.yearsExperience = yearsExperience;
-        return this;
-    }
-
-    /**
-     * Get the rawText property: All of the raw text of the parsed job description, example is shortened for
-     * readability.
-     *
-     * @return the rawText value.
-     */
-    public String getRawText() {
-        return this.rawText;
-    }
-
-    /**
-     * Set the rawText property: All of the raw text of the parsed job description, example is shortened for
-     * readability.
-     *
-     * @param rawText the rawText value to set.
-     * @return the JobDescriptionData object itself.
-     */
-    public JobDescriptionData setRawText(String rawText) {
-        this.rawText = rawText;
         return this;
     }
 

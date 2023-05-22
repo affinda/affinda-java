@@ -4,9 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The Field model. */
+/** The FieldDeprecated model. */
 @Fluent
-public final class Field {
+public final class FieldDeprecated {
     /*
      * The label property.
      */
@@ -14,7 +14,13 @@ public final class Field {
     private String label;
 
     /*
-     * Data point identifier
+     * The slug property.
+     */
+    @JsonProperty(value = "slug")
+    private String slug;
+
+    /*
+     * The dataPoint property.
      */
     @JsonProperty(value = "dataPoint", required = true)
     private String dataPoint;
@@ -24,6 +30,12 @@ public final class Field {
      */
     @JsonProperty(value = "mandatory")
     private Boolean mandatory;
+
+    /*
+     * The disabled property.
+     */
+    @JsonProperty(value = "disabled")
+    private Boolean disabled;
 
     /*
      * The autoValidationThreshold property.
@@ -41,7 +53,7 @@ public final class Field {
      * The fields property.
      */
     @JsonProperty(value = "fields")
-    private List<Field> fields;
+    private List<FieldDeprecated> fields;
 
     /**
      * Get the label property: The label property.
@@ -56,15 +68,35 @@ public final class Field {
      * Set the label property: The label property.
      *
      * @param label the label value to set.
-     * @return the Field object itself.
+     * @return the FieldDeprecated object itself.
      */
-    public Field setLabel(String label) {
+    public FieldDeprecated setLabel(String label) {
         this.label = label;
         return this;
     }
 
     /**
-     * Get the dataPoint property: Data point identifier.
+     * Get the slug property: The slug property.
+     *
+     * @return the slug value.
+     */
+    public String getSlug() {
+        return this.slug;
+    }
+
+    /**
+     * Set the slug property: The slug property.
+     *
+     * @param slug the slug value to set.
+     * @return the FieldDeprecated object itself.
+     */
+    public FieldDeprecated setSlug(String slug) {
+        this.slug = slug;
+        return this;
+    }
+
+    /**
+     * Get the dataPoint property: The dataPoint property.
      *
      * @return the dataPoint value.
      */
@@ -73,12 +105,12 @@ public final class Field {
     }
 
     /**
-     * Set the dataPoint property: Data point identifier.
+     * Set the dataPoint property: The dataPoint property.
      *
      * @param dataPoint the dataPoint value to set.
-     * @return the Field object itself.
+     * @return the FieldDeprecated object itself.
      */
-    public Field setDataPoint(String dataPoint) {
+    public FieldDeprecated setDataPoint(String dataPoint) {
         this.dataPoint = dataPoint;
         return this;
     }
@@ -96,10 +128,30 @@ public final class Field {
      * Set the mandatory property: The mandatory property.
      *
      * @param mandatory the mandatory value to set.
-     * @return the Field object itself.
+     * @return the FieldDeprecated object itself.
      */
-    public Field setMandatory(Boolean mandatory) {
+    public FieldDeprecated setMandatory(Boolean mandatory) {
         this.mandatory = mandatory;
+        return this;
+    }
+
+    /**
+     * Get the disabled property: The disabled property.
+     *
+     * @return the disabled value.
+     */
+    public Boolean isDisabled() {
+        return this.disabled;
+    }
+
+    /**
+     * Set the disabled property: The disabled property.
+     *
+     * @param disabled the disabled value to set.
+     * @return the FieldDeprecated object itself.
+     */
+    public FieldDeprecated setDisabled(Boolean disabled) {
+        this.disabled = disabled;
         return this;
     }
 
@@ -116,9 +168,9 @@ public final class Field {
      * Set the autoValidationThreshold property: The autoValidationThreshold property.
      *
      * @param autoValidationThreshold the autoValidationThreshold value to set.
-     * @return the Field object itself.
+     * @return the FieldDeprecated object itself.
      */
-    public Field setAutoValidationThreshold(Float autoValidationThreshold) {
+    public FieldDeprecated setAutoValidationThreshold(Float autoValidationThreshold) {
         this.autoValidationThreshold = autoValidationThreshold;
         return this;
     }
@@ -136,9 +188,9 @@ public final class Field {
      * Set the showDropdown property: The showDropdown property.
      *
      * @param showDropdown the showDropdown value to set.
-     * @return the Field object itself.
+     * @return the FieldDeprecated object itself.
      */
-    public Field setShowDropdown(Boolean showDropdown) {
+    public FieldDeprecated setShowDropdown(Boolean showDropdown) {
         this.showDropdown = showDropdown;
         return this;
     }
@@ -148,7 +200,7 @@ public final class Field {
      *
      * @return the fields value.
      */
-    public List<Field> getFields() {
+    public List<FieldDeprecated> getFields() {
         return this.fields;
     }
 
@@ -156,9 +208,9 @@ public final class Field {
      * Set the fields property: The fields property.
      *
      * @param fields the fields value to set.
-     * @return the Field object itself.
+     * @return the FieldDeprecated object itself.
      */
-    public Field setFields(List<Field> fields) {
+    public FieldDeprecated setFields(List<FieldDeprecated> fields) {
         this.fields = fields;
         return this;
     }
