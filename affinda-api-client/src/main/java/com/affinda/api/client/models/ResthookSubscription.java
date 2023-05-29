@@ -9,52 +9,52 @@ public final class ResthookSubscription {
     /*
      * Resthook subscription's ID.
      */
-    @JsonProperty(value = "id")
-    private Integer id;
+    @JsonProperty(value = "id", required = true)
+    private int id;
 
     /*
      * The event name to subscribe to.
      */
-    @JsonProperty(value = "event")
+    @JsonProperty(value = "event", required = true)
     private ResthookEvent event;
 
     /*
      * The organization property.
      */
-    @JsonProperty(value = "organization")
+    @JsonProperty(value = "organization", required = true)
     private Organization organization;
 
     /*
      * URL of the resthook's receiver.
      */
-    @JsonProperty(value = "targetUrl")
+    @JsonProperty(value = "targetUrl", required = true)
     private String targetUrl;
 
     /*
      * Resthooks only fire for active subscriptions.
      */
-    @JsonProperty(value = "active")
-    private Boolean active;
+    @JsonProperty(value = "active", required = true)
+    private boolean active;
 
     /*
      * Resthook subscriptions can be auto deactivated if the receiver
      * continuously returns error status code over a period of time.
      */
-    @JsonProperty(value = "autoDeactivated")
-    private Boolean autoDeactivated;
+    @JsonProperty(value = "autoDeactivated", required = true)
+    private boolean autoDeactivated;
 
     /*
      * The reason for the subscription being auto deactivated. May contains the
      * error response that the receiver returned.
      */
-    @JsonProperty(value = "autoDeactivateReason")
+    @JsonProperty(value = "autoDeactivateReason", required = true)
     private String autoDeactivateReason;
 
     /*
      * Version of the resthook subscription. Determines the resthook body being
      * fired.
      */
-    @JsonProperty(value = "version")
+    @JsonProperty(value = "version", required = true)
     private ResthookSubscriptionVersion version;
 
     /**
@@ -62,7 +62,7 @@ public final class ResthookSubscription {
      *
      * @return the id value.
      */
-    public Integer getId() {
+    public int getId() {
         return this.id;
     }
 
@@ -72,7 +72,7 @@ public final class ResthookSubscription {
      * @param id the id value to set.
      * @return the ResthookSubscription object itself.
      */
-    public ResthookSubscription setId(Integer id) {
+    public ResthookSubscription setId(int id) {
         this.id = id;
         return this;
     }
@@ -142,7 +142,7 @@ public final class ResthookSubscription {
      *
      * @return the active value.
      */
-    public Boolean isActive() {
+    public boolean isActive() {
         return this.active;
     }
 
@@ -152,7 +152,7 @@ public final class ResthookSubscription {
      * @param active the active value to set.
      * @return the ResthookSubscription object itself.
      */
-    public ResthookSubscription setActive(Boolean active) {
+    public ResthookSubscription setActive(boolean active) {
         this.active = active;
         return this;
     }
@@ -163,7 +163,7 @@ public final class ResthookSubscription {
      *
      * @return the autoDeactivated value.
      */
-    public Boolean isAutoDeactivated() {
+    public boolean isAutoDeactivated() {
         return this.autoDeactivated;
     }
 
@@ -174,7 +174,7 @@ public final class ResthookSubscription {
      * @param autoDeactivated the autoDeactivated value to set.
      * @return the ResthookSubscription object itself.
      */
-    public ResthookSubscription setAutoDeactivated(Boolean autoDeactivated) {
+    public ResthookSubscription setAutoDeactivated(boolean autoDeactivated) {
         this.autoDeactivated = autoDeactivated;
         return this;
     }

@@ -44,12 +44,6 @@ public final class DocumentCollection {
     private List<FieldGroup> fields;
 
     /*
-     * The fieldsLayout property.
-     */
-    @JsonProperty(value = "fieldsLayout")
-    private FieldsLayout fieldsLayout;
-
-    /*
      * The fieldsConfigured property.
      */
     @JsonProperty(value = "fieldsConfigured")
@@ -210,26 +204,6 @@ public final class DocumentCollection {
      */
     public DocumentCollection setFields(List<FieldGroup> fields) {
         this.fields = fields;
-        return this;
-    }
-
-    /**
-     * Get the fieldsLayout property: The fieldsLayout property.
-     *
-     * @return the fieldsLayout value.
-     */
-    public FieldsLayout getFieldsLayout() {
-        return this.fieldsLayout;
-    }
-
-    /**
-     * Set the fieldsLayout property: The fieldsLayout property.
-     *
-     * @param fieldsLayout the fieldsLayout value to set.
-     * @return the DocumentCollection object itself.
-     */
-    public DocumentCollection setFieldsLayout(FieldsLayout fieldsLayout) {
-        this.fieldsLayout = fieldsLayout;
         return this;
     }
 

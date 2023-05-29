@@ -14,7 +14,13 @@ public final class Field {
     private String label;
 
     /*
-     * Data point identifier
+     * The slug property.
+     */
+    @JsonProperty(value = "slug")
+    private String slug;
+
+    /*
+     * The dataPoint property.
      */
     @JsonProperty(value = "dataPoint", required = true)
     private String dataPoint;
@@ -24,6 +30,12 @@ public final class Field {
      */
     @JsonProperty(value = "mandatory")
     private Boolean mandatory;
+
+    /*
+     * The disabled property.
+     */
+    @JsonProperty(value = "disabled")
+    private Boolean disabled;
 
     /*
      * The autoValidationThreshold property.
@@ -64,7 +76,27 @@ public final class Field {
     }
 
     /**
-     * Get the dataPoint property: Data point identifier.
+     * Get the slug property: The slug property.
+     *
+     * @return the slug value.
+     */
+    public String getSlug() {
+        return this.slug;
+    }
+
+    /**
+     * Set the slug property: The slug property.
+     *
+     * @param slug the slug value to set.
+     * @return the Field object itself.
+     */
+    public Field setSlug(String slug) {
+        this.slug = slug;
+        return this;
+    }
+
+    /**
+     * Get the dataPoint property: The dataPoint property.
      *
      * @return the dataPoint value.
      */
@@ -73,7 +105,7 @@ public final class Field {
     }
 
     /**
-     * Set the dataPoint property: Data point identifier.
+     * Set the dataPoint property: The dataPoint property.
      *
      * @param dataPoint the dataPoint value to set.
      * @return the Field object itself.
@@ -100,6 +132,26 @@ public final class Field {
      */
     public Field setMandatory(Boolean mandatory) {
         this.mandatory = mandatory;
+        return this;
+    }
+
+    /**
+     * Get the disabled property: The disabled property.
+     *
+     * @return the disabled value.
+     */
+    public Boolean isDisabled() {
+        return this.disabled;
+    }
+
+    /**
+     * Set the disabled property: The disabled property.
+     *
+     * @param disabled the disabled value to set.
+     * @return the Field object itself.
+     */
+    public Field setDisabled(Boolean disabled) {
+        this.disabled = disabled;
         return this;
     }
 
