@@ -799,8 +799,6 @@ public final class AffindaAPI {
      * returned after POST-ing the resume via the [/resumes](#post-/resumes) endpoint.
      *
      * @param identifier Document identifier.
-     * @param format Set this to "hr-xml" to get the response in HR-XML format. Currently the only supported value for
-     *     this parameter is "hr-xml".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 404.
@@ -808,7 +806,8 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Resume>> getResumeWithResponseAsync(String identifier, String format) {
+    public Mono<Response<Resume>> getResumeWithResponseAsync(String identifier) {
+        final String format = "hr-xml";
         final String accept = "application/json, application/xml";
         return service.getResume(this.getRegion(), identifier, format, accept);
     }
@@ -818,8 +817,6 @@ public final class AffindaAPI {
      * returned after POST-ing the resume via the [/resumes](#post-/resumes) endpoint.
      *
      * @param identifier Document identifier.
-     * @param format Set this to "hr-xml" to get the response in HR-XML format. Currently the only supported value for
-     *     this parameter is "hr-xml".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 404.
@@ -827,8 +824,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Resume> getResumeAsync(String identifier, String format) {
-        return getResumeWithResponseAsync(identifier, format)
+    public Mono<Resume> getResumeAsync(String identifier) {
+        return getResumeWithResponseAsync(identifier)
                 .flatMap(
                         (Response<Resume> res) -> {
                             if (res.getValue() != null) {
@@ -844,8 +841,6 @@ public final class AffindaAPI {
      * returned after POST-ing the resume via the [/resumes](#post-/resumes) endpoint.
      *
      * @param identifier Document identifier.
-     * @param format Set this to "hr-xml" to get the response in HR-XML format. Currently the only supported value for
-     *     this parameter is "hr-xml".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 404.
@@ -853,8 +848,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Resume getResume(String identifier, String format) {
-        return getResumeAsync(identifier, format).block();
+    public Resume getResume(String identifier) {
+        return getResumeAsync(identifier).block();
     }
 
     /**
