@@ -4,8 +4,14 @@ import com.affinda.api.client.models.Annotation;
 import com.affinda.api.client.models.AnnotationBatchUpdate;
 import com.affinda.api.client.models.AnnotationCreate;
 import com.affinda.api.client.models.AnnotationUpdate;
+import com.affinda.api.client.models.ApiUserCreate;
+import com.affinda.api.client.models.ApiUserUpdate;
+import com.affinda.api.client.models.ApiUserWithKey;
+import com.affinda.api.client.models.ApiUserWithoutKey;
 import com.affinda.api.client.models.BatchAddTagRequest;
 import com.affinda.api.client.models.BatchRemoveTagRequest;
+import com.affinda.api.client.models.DataField;
+import com.affinda.api.client.models.DataFieldCreate;
 import com.affinda.api.client.models.DataPoint;
 import com.affinda.api.client.models.DataPointChoice;
 import com.affinda.api.client.models.DataPointChoiceCreate;
@@ -49,6 +55,7 @@ import com.affinda.api.client.models.Paths18Wh2VcV3InvitationsGetResponses200Con
 import com.affinda.api.client.models.Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema;
+import com.affinda.api.client.models.Paths26Civ0V3ApiUsersGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsFte27NV3IndexNameDocumentsPostResponses201ContentApplicationJsonSchema;
@@ -356,6 +363,18 @@ public final class AffindaAPI {
         Mono<Response<Void>> deleteCollection(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/collections/{identifier}/create_data_field")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<DataField>> createDataFieldForCollection(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") DataFieldCreate body,
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/documents")
@@ -1275,6 +1294,67 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam(value = "skills", multipleQueryParams = true) List<String> skills,
                 @HeaderParam("Accept") String accept);
+
+        @Get("/v3/api_users")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Paths26Civ0V3ApiUsersGetResponses200ContentApplicationJsonSchema>> getAllApiUsers(
+                @HostParam("region") Region region,
+                @QueryParam("organization") String organization,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/api_users")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ApiUserWithKey>> createApiUser(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") ApiUserCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/api_users/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ApiUserWithoutKey>> getApiUser(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Patch("/v3/api_users/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ApiUserWithoutKey>> updateApiUser(
+                @HostParam("region") Region region,
+                @PathParam("id") int id,
+                @BodyParam("application/json") ApiUserUpdate body,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v3/api_users/{id}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteApiUser(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Post("/v3/api_users/{id}/regenerate_api_key")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ApiUserWithKey>> regenerateApiKeyForApiUser(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
     }
 
     /**
@@ -2028,6 +2108,64 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteCollection(String identifier) {
         deleteCollectionAsync(identifier).block();
+    }
+
+    /**
+     * Create data field for a collection along with a new data point.
+     *
+     * @param identifier Collection's identifier.
+     * @param body The data field and data point to be created.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<DataField>> createDataFieldForCollectionWithResponseAsync(
+            String identifier, DataFieldCreate body) {
+        final String accept = "application/json";
+        return service.createDataFieldForCollection(this.getRegion(), identifier, body, accept);
+    }
+
+    /**
+     * Create data field for a collection along with a new data point.
+     *
+     * @param identifier Collection's identifier.
+     * @param body The data field and data point to be created.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<DataField> createDataFieldForCollectionAsync(String identifier, DataFieldCreate body) {
+        return createDataFieldForCollectionWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<DataField> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create data field for a collection along with a new data point.
+     *
+     * @param identifier Collection's identifier.
+     * @param body The data field and data point to be created.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataField createDataFieldForCollection(String identifier, DataFieldCreate body) {
+        return createDataFieldForCollectionAsync(identifier, body).block();
     }
 
     /**
@@ -6748,5 +6886,325 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public List<String> getResumeSearchSuggestionSkill(List<String> skills) {
         return getResumeSearchSuggestionSkillAsync(skills).block();
+    }
+
+    /**
+     * Returns your API users.
+     *
+     * @param organization Filter by organization.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Paths26Civ0V3ApiUsersGetResponses200ContentApplicationJsonSchema>>
+            getAllApiUsersWithResponseAsync(String organization) {
+        final String accept = "application/json";
+        return service.getAllApiUsers(this.getRegion(), organization, accept);
+    }
+
+    /**
+     * Returns your API users.
+     *
+     * @param organization Filter by organization.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Paths26Civ0V3ApiUsersGetResponses200ContentApplicationJsonSchema> getAllApiUsersAsync(
+            String organization) {
+        return getAllApiUsersWithResponseAsync(organization)
+                .flatMap(
+                        (Response<Paths26Civ0V3ApiUsersGetResponses200ContentApplicationJsonSchema> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns your API users.
+     *
+     * @param organization Filter by organization.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Paths26Civ0V3ApiUsersGetResponses200ContentApplicationJsonSchema getAllApiUsers(String organization) {
+        return getAllApiUsersAsync(organization).block();
+    }
+
+    /**
+     * Create an API user.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ApiUserWithKey>> createApiUserWithResponseAsync(ApiUserCreate body) {
+        final String accept = "application/json";
+        return service.createApiUser(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Create an API user.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ApiUserWithKey> createApiUserAsync(ApiUserCreate body) {
+        return createApiUserWithResponseAsync(body)
+                .flatMap(
+                        (Response<ApiUserWithKey> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create an API user.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiUserWithKey createApiUser(ApiUserCreate body) {
+        return createApiUserAsync(body).block();
+    }
+
+    /**
+     * Return a specific API user.
+     *
+     * @param id API user's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ApiUserWithoutKey>> getApiUserWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.getApiUser(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Return a specific API user.
+     *
+     * @param id API user's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ApiUserWithoutKey> getApiUserAsync(int id) {
+        return getApiUserWithResponseAsync(id)
+                .flatMap(
+                        (Response<ApiUserWithoutKey> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return a specific API user.
+     *
+     * @param id API user's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiUserWithoutKey getApiUser(int id) {
+        return getApiUserAsync(id).block();
+    }
+
+    /**
+     * Update data of an API user.
+     *
+     * @param id API user's ID.
+     * @param body API user to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ApiUserWithoutKey>> updateApiUserWithResponseAsync(int id, ApiUserUpdate body) {
+        final String accept = "application/json";
+        return service.updateApiUser(this.getRegion(), id, body, accept);
+    }
+
+    /**
+     * Update data of an API user.
+     *
+     * @param id API user's ID.
+     * @param body API user to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ApiUserWithoutKey> updateApiUserAsync(int id, ApiUserUpdate body) {
+        return updateApiUserWithResponseAsync(id, body)
+                .flatMap(
+                        (Response<ApiUserWithoutKey> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update data of an API user.
+     *
+     * @param id API user's ID.
+     * @param body API user to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiUserWithoutKey updateApiUser(int id, ApiUserUpdate body) {
+        return updateApiUserAsync(id, body).block();
+    }
+
+    /**
+     * Deletes the specified API user from the database.
+     *
+     * @param id API user's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteApiUserWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.deleteApiUser(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Deletes the specified API user from the database.
+     *
+     * @param id API user's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> deleteApiUserAsync(int id) {
+        return deleteApiUserWithResponseAsync(id).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Deletes the specified API user from the database.
+     *
+     * @param id API user's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteApiUser(int id) {
+        deleteApiUserAsync(id).block();
+    }
+
+    /**
+     * Regenerate API key for an API user.
+     *
+     * @param id API user's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ApiUserWithKey>> regenerateApiKeyForApiUserWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.regenerateApiKeyForApiUser(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Regenerate API key for an API user.
+     *
+     * @param id API user's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ApiUserWithKey> regenerateApiKeyForApiUserAsync(int id) {
+        return regenerateApiKeyForApiUserWithResponseAsync(id)
+                .flatMap(
+                        (Response<ApiUserWithKey> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Regenerate API key for an API user.
+     *
+     * @param id API user's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiUserWithKey regenerateApiKeyForApiUser(int id) {
+        return regenerateApiKeyForApiUserAsync(id).block();
     }
 }

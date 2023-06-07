@@ -38,6 +38,12 @@ public final class DocumentCollectionCreate {
     private List<FieldGroup> fields;
 
     /*
+     * The fieldsLayout property.
+     */
+    @JsonProperty(value = "fieldsLayout")
+    private FieldsLayout fieldsLayout;
+
+    /*
      * The dateFormatPreference property.
      */
     @JsonProperty(value = "dateFormatPreference")
@@ -153,6 +159,26 @@ public final class DocumentCollectionCreate {
      */
     public DocumentCollectionCreate setFields(List<FieldGroup> fields) {
         this.fields = fields;
+        return this;
+    }
+
+    /**
+     * Get the fieldsLayout property: The fieldsLayout property.
+     *
+     * @return the fieldsLayout value.
+     */
+    public FieldsLayout getFieldsLayout() {
+        return this.fieldsLayout;
+    }
+
+    /**
+     * Set the fieldsLayout property: The fieldsLayout property.
+     *
+     * @param fieldsLayout the fieldsLayout value to set.
+     * @return the DocumentCollectionCreate object itself.
+     */
+    public DocumentCollectionCreate setFieldsLayout(FieldsLayout fieldsLayout) {
+        this.fieldsLayout = fieldsLayout;
         return this;
     }
 

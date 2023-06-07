@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Allow setting `region_bias` when uploading document
 - rawText field to JobDescription Model
 - Required fields for resthook subscriptions
+- Add `fieldsLayout` to `Collection` schema
 
 ### Changed
 - Provide additional filters for data point choices, and allow data point choices to be specified for any existing text field.
@@ -31,6 +32,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Update python_requires to be PEP compliant
+
+### Deprecated
+- Deprecate `Collection.fields` in favor of `Collection.fieldsLayout`
 
 ## [3.3.1] - 2023-04-20
 ### Added
