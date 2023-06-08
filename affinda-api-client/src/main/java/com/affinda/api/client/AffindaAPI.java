@@ -553,6 +553,7 @@ public final class AffindaAPI {
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
                 @QueryParam("organization") String organization,
+                @QueryParam("include_public") Boolean includePublic,
                 @QueryParam("extractor") String extractor,
                 @QueryParam("slug") String slug,
                 @QueryParam("description") String description,
@@ -3037,6 +3038,8 @@ public final class AffindaAPI {
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
      * @param organization Filter by organization.
+     * @param includePublic Allows you to include public data points in the response when you're filtering by
+     *     organization.
      * @param extractor Filter by extractor.
      * @param slug Filter by slug.
      * @param description Filter by description.
@@ -3053,6 +3056,7 @@ public final class AffindaAPI {
             Integer offset,
             Integer limit,
             String organization,
+            Boolean includePublic,
             String extractor,
             String slug,
             String description,
@@ -3066,6 +3070,7 @@ public final class AffindaAPI {
                 offset,
                 limit,
                 organization,
+                includePublic,
                 extractor,
                 slug,
                 description,
@@ -3080,6 +3085,8 @@ public final class AffindaAPI {
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
      * @param organization Filter by organization.
+     * @param includePublic Allows you to include public data points in the response when you're filtering by
+     *     organization.
      * @param extractor Filter by extractor.
      * @param slug Filter by slug.
      * @param description Filter by description.
@@ -3096,13 +3103,22 @@ public final class AffindaAPI {
             Integer offset,
             Integer limit,
             String organization,
+            Boolean includePublic,
             String extractor,
             String slug,
             String description,
             String annotationContentType,
             List<String> identifier) {
         return getAllDataPointsWithResponseAsync(
-                        offset, limit, organization, extractor, slug, description, annotationContentType, identifier)
+                        offset,
+                        limit,
+                        organization,
+                        includePublic,
+                        extractor,
+                        slug,
+                        description,
+                        annotationContentType,
+                        identifier)
                 .flatMap(
                         (Response<List<DataPoint>> res) -> {
                             if (res.getValue() != null) {
@@ -3119,6 +3135,8 @@ public final class AffindaAPI {
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
      * @param organization Filter by organization.
+     * @param includePublic Allows you to include public data points in the response when you're filtering by
+     *     organization.
      * @param extractor Filter by extractor.
      * @param slug Filter by slug.
      * @param description Filter by description.
@@ -3135,13 +3153,22 @@ public final class AffindaAPI {
             Integer offset,
             Integer limit,
             String organization,
+            Boolean includePublic,
             String extractor,
             String slug,
             String description,
             String annotationContentType,
             List<String> identifier) {
         return getAllDataPointsAsync(
-                        offset, limit, organization, extractor, slug, description, annotationContentType, identifier)
+                        offset,
+                        limit,
+                        organization,
+                        includePublic,
+                        extractor,
+                        slug,
+                        description,
+                        annotationContentType,
+                        identifier)
                 .block();
     }
 
