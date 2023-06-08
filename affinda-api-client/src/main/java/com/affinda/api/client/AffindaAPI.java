@@ -1,6 +1,6 @@
 package com.affinda.api.client;
 
-import com.affinda.api.client.models.Enum3;
+import com.affinda.api.client.models.Enum4;
 import com.affinda.api.client.models.IndexRequestBody;
 import com.affinda.api.client.models.Invoice;
 import com.affinda.api.client.models.InvoiceRequestBody;
@@ -531,7 +531,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
-                @QueryParam("document_type") Enum3 documentType,
+                @QueryParam("document_type") Enum4 documentType,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v2/index")
@@ -2610,7 +2610,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Paths18Iqsr4V2IndexGetResponses200ContentApplicationJsonSchema>>
-            getAllIndexesWithResponseAsync(Integer offset, Integer limit, Enum3 documentType) {
+            getAllIndexesWithResponseAsync(Integer offset, Integer limit, Enum4 documentType) {
         final String accept = "application/json";
         return service.getAllIndexes(this.getRegion(), offset, limit, documentType, accept);
     }
@@ -2629,7 +2629,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Paths18Iqsr4V2IndexGetResponses200ContentApplicationJsonSchema> getAllIndexesAsync(
-            Integer offset, Integer limit, Enum3 documentType) {
+            Integer offset, Integer limit, Enum4 documentType) {
         return getAllIndexesWithResponseAsync(offset, limit, documentType)
                 .flatMap(
                         (Response<Paths18Iqsr4V2IndexGetResponses200ContentApplicationJsonSchema> res) -> {
@@ -2655,7 +2655,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Paths18Iqsr4V2IndexGetResponses200ContentApplicationJsonSchema getAllIndexes(
-            Integer offset, Integer limit, Enum3 documentType) {
+            Integer offset, Integer limit, Enum4 documentType) {
         return getAllIndexesAsync(offset, limit, documentType).block();
     }
 
