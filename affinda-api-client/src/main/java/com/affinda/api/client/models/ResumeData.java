@@ -64,8 +64,8 @@ public final class ResumeData {
     /*
      * The languages property.
      */
-    @JsonProperty(value = "languages")
-    private List<ResumeDataLanguagesItem> languages;
+    @JsonProperty(value = "languages", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> languages;
 
     /*
      * The languageCodes property.
@@ -335,19 +335,8 @@ public final class ResumeData {
      *
      * @return the languages value.
      */
-    public List<ResumeDataLanguagesItem> getLanguages() {
+    public List<String> getLanguages() {
         return this.languages;
-    }
-
-    /**
-     * Set the languages property: The languages property.
-     *
-     * @param languages the languages value to set.
-     * @return the ResumeData object itself.
-     */
-    public ResumeData setLanguages(List<ResumeDataLanguagesItem> languages) {
-        this.languages = languages;
-        return this;
     }
 
     /**

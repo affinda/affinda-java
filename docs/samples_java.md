@@ -30,6 +30,9 @@ Organization API - Membership
 Organization API - Invitation
 -----------------------------
 
+Organization API - Users
+------------------------
+
 Webhook API
 -----------
 
@@ -41,6 +44,3 @@ Search & Match API - Embedding
 
 Search & Match API - Indexing
 -----------------------------
-
-Organization API - Users
-------------------------

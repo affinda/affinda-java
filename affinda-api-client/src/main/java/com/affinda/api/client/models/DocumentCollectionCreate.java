@@ -22,8 +22,14 @@ public final class DocumentCollectionCreate {
     /*
      * Uniquely identify an extractor.
      */
-    @JsonProperty(value = "extractor", required = true)
+    @JsonProperty(value = "extractor")
     private String extractor;
+
+    /*
+     * Not applicable, please leave empty.
+     */
+    @JsonProperty(value = "baseExtractor")
+    private String baseExtractor;
 
     /*
      * The autoValidationThreshold property.
@@ -119,6 +125,26 @@ public final class DocumentCollectionCreate {
      */
     public DocumentCollectionCreate setExtractor(String extractor) {
         this.extractor = extractor;
+        return this;
+    }
+
+    /**
+     * Get the baseExtractor property: Not applicable, please leave empty.
+     *
+     * @return the baseExtractor value.
+     */
+    public String getBaseExtractor() {
+        return this.baseExtractor;
+    }
+
+    /**
+     * Set the baseExtractor property: Not applicable, please leave empty.
+     *
+     * @param baseExtractor the baseExtractor value to set.
+     * @return the DocumentCollectionCreate object itself.
+     */
+    public DocumentCollectionCreate setBaseExtractor(String baseExtractor) {
+        this.baseExtractor = baseExtractor;
         return this;
     }
 
