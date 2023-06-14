@@ -236,6 +236,12 @@ public final class InvoiceData {
     @JsonProperty(value = "customFields")
     private Map<String, Object> customFields;
 
+    /*
+     * All of the raw text of the parsed invoice.
+     */
+    @JsonProperty(value = "rawText")
+    private String rawText;
+
     /**
      * Get the tables property: The tables property.
      *
@@ -993,6 +999,26 @@ public final class InvoiceData {
      */
     public InvoiceData setCustomFields(Map<String, Object> customFields) {
         this.customFields = customFields;
+        return this;
+    }
+
+    /**
+     * Get the rawText property: All of the raw text of the parsed invoice.
+     *
+     * @return the rawText value.
+     */
+    public String getRawText() {
+        return this.rawText;
+    }
+
+    /**
+     * Set the rawText property: All of the raw text of the parsed invoice.
+     *
+     * @param rawText the rawText value to set.
+     * @return the InvoiceData object itself.
+     */
+    public InvoiceData setRawText(String rawText) {
+        this.rawText = rawText;
         return this;
     }
 }
