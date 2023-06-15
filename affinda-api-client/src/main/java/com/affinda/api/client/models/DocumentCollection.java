@@ -93,6 +93,12 @@ public final class DocumentCollection {
     @JsonProperty(value = "ingestEmail")
     private String ingestEmail;
 
+    /*
+     * Whether a tailored extractor has been requested for this collection.
+     */
+    @JsonProperty(value = "tailoredExtractorRequested")
+    private Boolean tailoredExtractorRequested;
+
     /**
      * Get the identifier property: Uniquely identify a collection.
      *
@@ -374,6 +380,26 @@ public final class DocumentCollection {
      */
     public DocumentCollection setIngestEmail(String ingestEmail) {
         this.ingestEmail = ingestEmail;
+        return this;
+    }
+
+    /**
+     * Get the tailoredExtractorRequested property: Whether a tailored extractor has been requested for this collection.
+     *
+     * @return the tailoredExtractorRequested value.
+     */
+    public Boolean isTailoredExtractorRequested() {
+        return this.tailoredExtractorRequested;
+    }
+
+    /**
+     * Set the tailoredExtractorRequested property: Whether a tailored extractor has been requested for this collection.
+     *
+     * @param tailoredExtractorRequested the tailoredExtractorRequested value to set.
+     * @return the DocumentCollection object itself.
+     */
+    public DocumentCollection setTailoredExtractorRequested(Boolean tailoredExtractorRequested) {
+        this.tailoredExtractorRequested = tailoredExtractorRequested;
         return this;
     }
 }
