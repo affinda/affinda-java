@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class DataFieldCreateDataPoint {
     /*
-     * The name property.
+     * Name of the data point.
      */
     @JsonProperty(value = "name", required = true)
     private String name;
 
     /*
-     * The slug property.
+     * A camelCase string that will be used as the key in the API response.
      */
     @JsonProperty(value = "slug", required = true)
     private String slug;
@@ -46,7 +46,7 @@ public final class DataFieldCreateDataPoint {
     private Boolean noRect;
 
     /**
-     * Get the name property: The name property.
+     * Get the name property: Name of the data point.
      *
      * @return the name value.
      */
@@ -55,7 +55,7 @@ public final class DataFieldCreateDataPoint {
     }
 
     /**
-     * Set the name property: The name property.
+     * Set the name property: Name of the data point.
      *
      * @param name the name value to set.
      * @return the DataFieldCreateDataPoint object itself.
@@ -66,7 +66,7 @@ public final class DataFieldCreateDataPoint {
     }
 
     /**
-     * Get the slug property: The slug property.
+     * Get the slug property: A camelCase string that will be used as the key in the API response.
      *
      * @return the slug value.
      */
@@ -75,7 +75,7 @@ public final class DataFieldCreateDataPoint {
     }
 
     /**
-     * Set the slug property: The slug property.
+     * Set the slug property: A camelCase string that will be used as the key in the API response.
      *
      * @param slug the slug value to set.
      * @return the DataFieldCreateDataPoint object itself.

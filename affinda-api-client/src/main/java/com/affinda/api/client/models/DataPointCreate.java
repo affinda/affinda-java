@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class DataPointCreate {
     /*
-     * The name property.
+     * Name of the data point.
      */
-    @JsonProperty(value = "name")
+    @JsonProperty(value = "name", required = true)
     private String name;
 
     /*
-     * The slug property.
+     * A camelCase string that will be used as the key in the API response.
      */
     @JsonProperty(value = "slug", required = true)
     private String slug;
@@ -54,8 +54,21 @@ public final class DataPointCreate {
     @JsonProperty(value = "noRect")
     private Boolean noRect;
 
+    /*
+     * If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
+     */
+    @JsonProperty(value = "displayEnumValue")
+    private Boolean displayEnumValue;
+
+    /*
+     * The identifier of the parent data point if applicable.
+     */
+    @JsonProperty(value = "parent")
+    private String parent;
+
     /**
-     * Get the name property: The name property.
+     * Get the name property: Name of the data point.
      *
      * @return the name value.
      */
@@ -64,7 +77,7 @@ public final class DataPointCreate {
     }
 
     /**
-     * Set the name property: The name property.
+     * Set the name property: Name of the data point.
      *
      * @param name the name value to set.
      * @return the DataPointCreate object itself.
@@ -75,7 +88,7 @@ public final class DataPointCreate {
     }
 
     /**
-     * Get the slug property: The slug property.
+     * Get the slug property: A camelCase string that will be used as the key in the API response.
      *
      * @return the slug value.
      */
@@ -84,7 +97,7 @@ public final class DataPointCreate {
     }
 
     /**
-     * Set the slug property: The slug property.
+     * Set the slug property: A camelCase string that will be used as the key in the API response.
      *
      * @param slug the slug value to set.
      * @return the DataPointCreate object itself.
@@ -211,6 +224,48 @@ public final class DataPointCreate {
      */
     public DataPointCreate setNoRect(Boolean noRect) {
         this.noRect = noRect;
+        return this;
+    }
+
+    /**
+     * Get the displayEnumValue property: If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
+     *
+     * @return the displayEnumValue value.
+     */
+    public Boolean isDisplayEnumValue() {
+        return this.displayEnumValue;
+    }
+
+    /**
+     * Set the displayEnumValue property: If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
+     *
+     * @param displayEnumValue the displayEnumValue value to set.
+     * @return the DataPointCreate object itself.
+     */
+    public DataPointCreate setDisplayEnumValue(Boolean displayEnumValue) {
+        this.displayEnumValue = displayEnumValue;
+        return this;
+    }
+
+    /**
+     * Get the parent property: The identifier of the parent data point if applicable.
+     *
+     * @return the parent value.
+     */
+    public String getParent() {
+        return this.parent;
+    }
+
+    /**
+     * Set the parent property: The identifier of the parent data point if applicable.
+     *
+     * @param parent the parent value to set.
+     * @return the DataPointCreate object itself.
+     */
+    public DataPointCreate setParent(String parent) {
+        this.parent = parent;
         return this;
     }
 }

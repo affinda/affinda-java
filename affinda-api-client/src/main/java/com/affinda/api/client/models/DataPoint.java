@@ -14,15 +14,15 @@ public final class DataPoint {
     private String identifier;
 
     /*
-     * The name property.
+     * Name of the data point.
      */
     @JsonProperty(value = "name", required = true)
     private String name;
 
     /*
-     * The slug property.
+     * A camelCase string that will be used as the key in the API response.
      */
-    @JsonProperty(value = "slug")
+    @JsonProperty(value = "slug", required = true)
     private String slug;
 
     /*
@@ -40,7 +40,7 @@ public final class DataPoint {
     /*
      * The organization property.
      */
-    @JsonProperty(value = "organization")
+    @JsonProperty(value = "organization", required = true)
     private Organization organization;
 
     /*
@@ -62,16 +62,17 @@ public final class DataPoint {
     private Boolean noRect;
 
     /*
-     * The similarTo property.
-     */
-    @JsonProperty(value = "similarTo")
-    private List<String> similarTo;
-
-    /*
-     * The displayEnumValue property.
+     * If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
      */
     @JsonProperty(value = "displayEnumValue")
     private Boolean displayEnumValue;
+
+    /*
+     * The identifier of the parent data point if applicable.
+     */
+    @JsonProperty(value = "parent")
+    private String parent;
 
     /*
      * The children property.
@@ -100,7 +101,7 @@ public final class DataPoint {
     }
 
     /**
-     * Get the name property: The name property.
+     * Get the name property: Name of the data point.
      *
      * @return the name value.
      */
@@ -109,7 +110,7 @@ public final class DataPoint {
     }
 
     /**
-     * Set the name property: The name property.
+     * Set the name property: Name of the data point.
      *
      * @param name the name value to set.
      * @return the DataPoint object itself.
@@ -120,7 +121,7 @@ public final class DataPoint {
     }
 
     /**
-     * Get the slug property: The slug property.
+     * Get the slug property: A camelCase string that will be used as the key in the API response.
      *
      * @return the slug value.
      */
@@ -129,7 +130,7 @@ public final class DataPoint {
     }
 
     /**
-     * Set the slug property: The slug property.
+     * Set the slug property: A camelCase string that will be used as the key in the API response.
      *
      * @param slug the slug value to set.
      * @return the DataPoint object itself.
@@ -260,27 +261,8 @@ public final class DataPoint {
     }
 
     /**
-     * Get the similarTo property: The similarTo property.
-     *
-     * @return the similarTo value.
-     */
-    public List<String> getSimilarTo() {
-        return this.similarTo;
-    }
-
-    /**
-     * Set the similarTo property: The similarTo property.
-     *
-     * @param similarTo the similarTo value to set.
-     * @return the DataPoint object itself.
-     */
-    public DataPoint setSimilarTo(List<String> similarTo) {
-        this.similarTo = similarTo;
-        return this;
-    }
-
-    /**
-     * Get the displayEnumValue property: The displayEnumValue property.
+     * Get the displayEnumValue property: If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
      *
      * @return the displayEnumValue value.
      */
@@ -289,13 +271,34 @@ public final class DataPoint {
     }
 
     /**
-     * Set the displayEnumValue property: The displayEnumValue property.
+     * Set the displayEnumValue property: If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
      *
      * @param displayEnumValue the displayEnumValue value to set.
      * @return the DataPoint object itself.
      */
     public DataPoint setDisplayEnumValue(Boolean displayEnumValue) {
         this.displayEnumValue = displayEnumValue;
+        return this;
+    }
+
+    /**
+     * Get the parent property: The identifier of the parent data point if applicable.
+     *
+     * @return the parent value.
+     */
+    public String getParent() {
+        return this.parent;
+    }
+
+    /**
+     * Set the parent property: The identifier of the parent data point if applicable.
+     *
+     * @param parent the parent value to set.
+     * @return the DataPoint object itself.
+     */
+    public DataPoint setParent(String parent) {
+        this.parent = parent;
         return this;
     }
 

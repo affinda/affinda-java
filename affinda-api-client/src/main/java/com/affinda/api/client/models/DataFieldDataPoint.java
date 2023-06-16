@@ -16,13 +16,13 @@ public final class DataFieldDataPoint {
     private String identifier;
 
     /*
-     * The name property.
+     * Name of the data point.
      */
     @JsonProperty(value = "name", required = true)
     private String name;
 
     /*
-     * The slug property.
+     * A camelCase string that will be used as the key in the API response.
      */
     @JsonProperty(value = "slug", required = true)
     private String slug;
@@ -72,7 +72,7 @@ public final class DataFieldDataPoint {
     }
 
     /**
-     * Get the name property: The name property.
+     * Get the name property: Name of the data point.
      *
      * @return the name value.
      */
@@ -81,7 +81,7 @@ public final class DataFieldDataPoint {
     }
 
     /**
-     * Set the name property: The name property.
+     * Set the name property: Name of the data point.
      *
      * @param name the name value to set.
      * @return the DataFieldDataPoint object itself.
@@ -92,7 +92,7 @@ public final class DataFieldDataPoint {
     }
 
     /**
-     * Get the slug property: The slug property.
+     * Get the slug property: A camelCase string that will be used as the key in the API response.
      *
      * @return the slug value.
      */
@@ -101,7 +101,7 @@ public final class DataFieldDataPoint {
     }
 
     /**
-     * Set the slug property: The slug property.
+     * Set the slug property: A camelCase string that will be used as the key in the API response.
      *
      * @param slug the slug value to set.
      * @return the DataFieldDataPoint object itself.
