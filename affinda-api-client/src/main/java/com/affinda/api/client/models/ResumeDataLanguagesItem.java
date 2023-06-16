@@ -6,614 +6,614 @@ import java.util.Collection;
 
 /** Defines values for ResumeDataLanguagesItem. */
 public final class ResumeDataLanguagesItem extends ExpandableStringEnum<ResumeDataLanguagesItem> {
-    /** Static value ainu for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem AINU = fromString("ainu");
+    /** Static value Ainu for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem AINU = fromString("Ainu");
 
-    /** Static value akan for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem AKAN = fromString("akan");
+    /** Static value Akan for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem AKAN = fromString("Akan");
 
-    /** Static value akkadian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem AKKADIAN = fromString("akkadian");
+    /** Static value Akkadian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem AKKADIAN = fromString("Akkadian");
 
-    /** Static value amharic for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem AMHARIC = fromString("amharic");
+    /** Static value Amharic for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem AMHARIC = fromString("Amharic");
 
-    /** Static value anam for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ANAM = fromString("anam");
+    /** Static value Anam for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ANAM = fromString("Anam");
 
-    /** Static value arabic for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ARABIC = fromString("arabic");
+    /** Static value Arabic for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ARABIC = fromString("Arabic");
 
-    /** Static value aramaic for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ARAMAIC = fromString("aramaic");
+    /** Static value Aramaic for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ARAMAIC = fromString("Aramaic");
 
-    /** Static value arem for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem AREM = fromString("arem");
+    /** Static value Arem for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem AREM = fromString("Arem");
 
-    /** Static value armenian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ARMENIAN = fromString("armenian");
+    /** Static value Armenian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ARMENIAN = fromString("Armenian");
 
-    /** Static value awadhi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem AWADHI = fromString("awadhi");
+    /** Static value Awadhi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem AWADHI = fromString("Awadhi");
 
-    /** Static value aymara for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem AYMARA = fromString("aymara");
+    /** Static value Aymara for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem AYMARA = fromString("Aymara");
 
-    /** Static value azari for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem AZARI = fromString("azari");
+    /** Static value Azari for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem AZARI = fromString("Azari");
 
-    /** Static value bagheli for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BAGHELI = fromString("bagheli");
+    /** Static value Bagheli for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BAGHELI = fromString("Bagheli");
 
-    /** Static value bagri for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BAGRI = fromString("bagri");
+    /** Static value Bagri for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BAGRI = fromString("Bagri");
 
-    /** Static value bahasa for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BAHASA = fromString("bahasa");
+    /** Static value Bahasa for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BAHASA = fromString("Bahasa");
 
-    /** Static value bambara for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BAMBARA = fromString("bambara");
+    /** Static value Bambara for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BAMBARA = fromString("Bambara");
 
-    /** Static value bangala for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BANGALA = fromString("bangala");
+    /** Static value Bangala for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BANGALA = fromString("Bangala");
 
-    /** Static value bardi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BARDI = fromString("bardi");
+    /** Static value Bardi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BARDI = fromString("Bardi");
 
-    /** Static value bassa for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BASSA = fromString("bassa");
+    /** Static value Bassa for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BASSA = fromString("Bassa");
 
-    /** Static value batak for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BATAK = fromString("batak");
+    /** Static value Batak for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BATAK = fromString("Batak");
 
-    /** Static value belarusian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BELARUSIAN = fromString("belarusian");
+    /** Static value Belarusian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BELARUSIAN = fromString("Belarusian");
 
-    /** Static value bemba for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BEMBA = fromString("bemba");
+    /** Static value Bemba for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BEMBA = fromString("Bemba");
 
-    /** Static value benga for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BENGA = fromString("benga");
+    /** Static value Benga for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BENGA = fromString("Benga");
 
-    /** Static value bengali for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BENGALI = fromString("bengali");
+    /** Static value Bengali for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BENGALI = fromString("Bengali");
 
-    /** Static value berber for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BERBER = fromString("berber");
+    /** Static value Berber for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BERBER = fromString("Berber");
 
-    /** Static value bhojpuri for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BHOJPURI = fromString("bhojpuri");
+    /** Static value Bhojpuri for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BHOJPURI = fromString("Bhojpuri");
 
-    /** Static value bislama for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BISLAMA = fromString("bislama");
+    /** Static value Bislama for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BISLAMA = fromString("Bislama");
 
-    /** Static value brahui for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BRAHUI = fromString("brahui");
+    /** Static value Brahui for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BRAHUI = fromString("Brahui");
 
-    /** Static value bulgarian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BULGARIAN = fromString("bulgarian");
+    /** Static value Bulgarian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BULGARIAN = fromString("Bulgarian");
 
-    /** Static value bunu for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem BUNU = fromString("bunu");
+    /** Static value Bunu for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem BUNU = fromString("Bunu");
 
-    /** Static value cambodian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CAMBODIAN = fromString("cambodian");
+    /** Static value Cambodian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CAMBODIAN = fromString("Cambodian");
 
-    /** Static value carew for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CAREW = fromString("carew");
+    /** Static value Carew for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CAREW = fromString("Carew");
 
-    /** Static value carib for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CARIB = fromString("carib");
+    /** Static value Carib for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CARIB = fromString("Carib");
 
-    /** Static value catalan for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CATALAN = fromString("catalan");
+    /** Static value Catalan for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CATALAN = fromString("Catalan");
 
-    /** Static value cebuano for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CEBUANO = fromString("cebuano");
+    /** Static value Cebuano for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CEBUANO = fromString("Cebuano");
 
-    /** Static value chakma for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CHAKMA = fromString("chakma");
+    /** Static value Chakma for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CHAKMA = fromString("Chakma");
 
-    /** Static value chamorro for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CHAMORRO = fromString("chamorro");
+    /** Static value Chamorro for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CHAMORRO = fromString("Chamorro");
 
-    /** Static value chango for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CHANGO = fromString("chango");
+    /** Static value Chango for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CHANGO = fromString("Chango");
 
-    /** Static value chewa for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CHEWA = fromString("chewa");
+    /** Static value Chewa for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CHEWA = fromString("Chewa");
 
-    /** Static value croatian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CROATIAN = fromString("croatian");
+    /** Static value Croatian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CROATIAN = fromString("Croatian");
 
-    /** Static value czech for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem CZECH = fromString("czech");
+    /** Static value Czech for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem CZECH = fromString("Czech");
 
-    /** Static value dagbani for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DAGBANI = fromString("dagbani");
+    /** Static value Dagbani for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DAGBANI = fromString("Dagbani");
 
-    /** Static value danish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DANISH = fromString("danish");
+    /** Static value Danish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DANISH = fromString("Danish");
 
-    /** Static value dari for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DARI = fromString("dari");
+    /** Static value Dari for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DARI = fromString("Dari");
 
-    /** Static value dayi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DAYI = fromString("dayi");
+    /** Static value Dayi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DAYI = fromString("Dayi");
 
-    /** Static value dhatki for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DHATKI = fromString("dhatki");
+    /** Static value Dhatki for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DHATKI = fromString("Dhatki");
 
-    /** Static value dhivehi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DHIVEHI = fromString("dhivehi");
+    /** Static value Dhivehi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DHIVEHI = fromString("Dhivehi");
 
-    /** Static value dinka for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DINKA = fromString("dinka");
+    /** Static value Dinka for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DINKA = fromString("Dinka");
 
-    /** Static value dogri for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DOGRI = fromString("dogri");
+    /** Static value Dogri for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DOGRI = fromString("Dogri");
 
-    /** Static value duala for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DUALA = fromString("duala");
+    /** Static value Duala for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DUALA = fromString("Duala");
 
-    /** Static value dutch for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem DUTCH = fromString("dutch");
+    /** Static value Dutch for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem DUTCH = fromString("Dutch");
 
-    /** Static value english for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ENGLISH = fromString("english");
+    /** Static value English for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ENGLISH = fromString("English");
 
-    /** Static value esperanto for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ESPERANTO = fromString("esperanto");
+    /** Static value Esperanto for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ESPERANTO = fromString("Esperanto");
 
-    /** Static value estonian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ESTONIAN = fromString("estonian");
+    /** Static value Estonian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ESTONIAN = fromString("Estonian");
 
-    /** Static value ewondo for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem EWONDO = fromString("ewondo");
+    /** Static value Ewondo for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem EWONDO = fromString("Ewondo");
 
-    /** Static value faroese for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem FAROESE = fromString("faroese");
+    /** Static value Faroese for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem FAROESE = fromString("Faroese");
 
-    /** Static value filipino for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem FILIPINO = fromString("filipino");
+    /** Static value Filipino for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem FILIPINO = fromString("Filipino");
 
-    /** Static value finnish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem FINNISH = fromString("finnish");
+    /** Static value Finnish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem FINNISH = fromString("Finnish");
 
-    /** Static value formula for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem FORMULA = fromString("formula");
+    /** Static value Formula for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem FORMULA = fromString("Formula");
 
-    /** Static value french for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem FRENCH = fromString("french");
+    /** Static value French for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem FRENCH = fromString("French");
 
-    /** Static value frisian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem FRISIAN = fromString("frisian");
+    /** Static value Frisian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem FRISIAN = fromString("Frisian");
 
-    /** Static value friulian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem FRIULIAN = fromString("friulian");
+    /** Static value Friulian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem FRIULIAN = fromString("Friulian");
 
-    /** Static value fula for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem FULA = fromString("fula");
+    /** Static value Fula for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem FULA = fromString("Fula");
 
-    /** Static value gaelic for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem GAELIC = fromString("gaelic");
+    /** Static value Gaelic for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem GAELIC = fromString("Gaelic");
 
-    /** Static value galo for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem GALO = fromString("galo");
+    /** Static value Galo for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem GALO = fromString("Galo");
 
-    /** Static value garhwali for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem GARHWALI = fromString("garhwali");
+    /** Static value Garhwali for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem GARHWALI = fromString("Garhwali");
 
-    /** Static value garifuna for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem GARIFUNA = fromString("garifuna");
+    /** Static value Garifuna for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem GARIFUNA = fromString("Garifuna");
 
-    /** Static value german for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem GERMAN = fromString("german");
+    /** Static value German for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem GERMAN = fromString("German");
 
-    /** Static value gikuyu for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem GIKUYU = fromString("gikuyu");
+    /** Static value Gikuyu for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem GIKUYU = fromString("Gikuyu");
 
-    /** Static value gujarati for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem GUJARATI = fromString("gujarati");
+    /** Static value Gujarati for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem GUJARATI = fromString("Gujarati");
 
-    /** Static value gujerati for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem GUJERATI = fromString("gujerati");
+    /** Static value Gujerati for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem GUJERATI = fromString("Gujerati");
 
-    /** Static value gwere for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem GWERE = fromString("gwere");
+    /** Static value Gwere for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem GWERE = fromString("Gwere");
 
-    /** Static value hawaiian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem HAWAIIAN = fromString("hawaiian");
+    /** Static value Hawaiian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem HAWAIIAN = fromString("Hawaiian");
 
-    /** Static value haya for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem HAYA = fromString("haya");
+    /** Static value Haya for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem HAYA = fromString("Haya");
 
-    /** Static value hebrew for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem HEBREW = fromString("hebrew");
+    /** Static value Hebrew for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem HEBREW = fromString("Hebrew");
 
-    /** Static value hindi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem HINDI = fromString("hindi");
+    /** Static value Hindi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem HINDI = fromString("Hindi");
 
-    /** Static value hmu for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem HMU = fromString("hmu");
+    /** Static value Hmu for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem HMU = fromString("Hmu");
 
-    /** Static value hokkien for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem HOKKIEN = fromString("hokkien");
+    /** Static value Hokkien for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem HOKKIEN = fromString("Hokkien");
 
-    /** Static value hopi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem HOPI = fromString("hopi");
+    /** Static value Hopi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem HOPI = fromString("Hopi");
 
-    /** Static value hungarian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem HUNGARIAN = fromString("hungarian");
+    /** Static value Hungarian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem HUNGARIAN = fromString("Hungarian");
 
-    /** Static value hup for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem HUP = fromString("hup");
+    /** Static value Hup for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem HUP = fromString("Hup");
 
-    /** Static value ibanag for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem IBANAG = fromString("ibanag");
+    /** Static value Ibanag for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem IBANAG = fromString("Ibanag");
 
-    /** Static value igbo for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem IGBO = fromString("igbo");
+    /** Static value Igbo for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem IGBO = fromString("Igbo");
 
-    /** Static value ilokano for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ILOKANO = fromString("ilokano");
+    /** Static value Ilokano for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ILOKANO = fromString("Ilokano");
 
-    /** Static value indonesian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem INDONESIAN = fromString("indonesian");
+    /** Static value Indonesian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem INDONESIAN = fromString("Indonesian");
 
-    /** Static value intermediate for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem INTERMEDIATE = fromString("intermediate");
+    /** Static value Intermediate for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem INTERMEDIATE = fromString("Intermediate");
 
-    /** Static value irish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem IRISH = fromString("irish");
+    /** Static value Irish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem IRISH = fromString("Irish");
 
-    /** Static value italian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ITALIAN = fromString("italian");
+    /** Static value Italian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ITALIAN = fromString("Italian");
 
-    /** Static value japanese for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem JAPANESE = fromString("japanese");
+    /** Static value Japanese for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem JAPANESE = fromString("Japanese");
 
-    /** Static value jiba for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem JIBA = fromString("jiba");
+    /** Static value Jiba for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem JIBA = fromString("Jiba");
 
-    /** Static value kachin for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KACHIN = fromString("kachin");
+    /** Static value Kachin for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KACHIN = fromString("Kachin");
 
-    /** Static value kalenjin for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KALENJIN = fromString("kalenjin");
+    /** Static value Kalenjin for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KALENJIN = fromString("Kalenjin");
 
-    /** Static value kamayo for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KAMAYO = fromString("kamayo");
+    /** Static value Kamayo for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KAMAYO = fromString("Kamayo");
 
-    /** Static value kannada for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KANNADA = fromString("kannada");
+    /** Static value Kannada for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KANNADA = fromString("Kannada");
 
-    /** Static value kaonde for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KAONDE = fromString("kaonde");
+    /** Static value Kaonde for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KAONDE = fromString("Kaonde");
 
-    /** Static value kayan for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KAYAN = fromString("kayan");
+    /** Static value Kayan for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KAYAN = fromString("Kayan");
 
-    /** Static value khandeshi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KHANDESHI = fromString("khandeshi");
+    /** Static value Khandeshi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KHANDESHI = fromString("Khandeshi");
 
-    /** Static value khmer for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KHMER = fromString("khmer");
+    /** Static value Khmer for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KHMER = fromString("Khmer");
 
-    /** Static value kikuyu for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KIKUYU = fromString("kikuyu");
+    /** Static value Kikuyu for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KIKUYU = fromString("Kikuyu");
 
-    /** Static value kodava for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KODAVA = fromString("kodava");
+    /** Static value Kodava for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KODAVA = fromString("Kodava");
 
-    /** Static value koma for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KOMA = fromString("koma");
+    /** Static value Koma for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KOMA = fromString("Koma");
 
-    /** Static value kongo for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KONGO = fromString("kongo");
+    /** Static value Kongo for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KONGO = fromString("Kongo");
 
-    /** Static value konkani for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KONKANI = fromString("konkani");
+    /** Static value Konkani for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KONKANI = fromString("Konkani");
 
-    /** Static value korean for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KOREAN = fromString("korean");
+    /** Static value Korean for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KOREAN = fromString("Korean");
 
-    /** Static value korwa for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KORWA = fromString("korwa");
+    /** Static value Korwa for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KORWA = fromString("Korwa");
 
-    /** Static value kreyol for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KREYOL = fromString("kreyol");
+    /** Static value Kreyol for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KREYOL = fromString("Kreyol");
 
-    /** Static value krio for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KRIO = fromString("krio");
+    /** Static value Krio for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KRIO = fromString("Krio");
 
-    /** Static value kumaoni for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KUMAONI = fromString("kumaoni");
+    /** Static value Kumaoni for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KUMAONI = fromString("Kumaoni");
 
-    /** Static value kurdish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KURDISH = fromString("kurdish");
+    /** Static value Kurdish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KURDISH = fromString("Kurdish");
 
-    /** Static value kurukh for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KURUKH = fromString("kurukh");
+    /** Static value Kurukh for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KURUKH = fromString("Kurukh");
 
-    /** Static value kwa for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem KWA = fromString("kwa");
+    /** Static value Kwa for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem KWA = fromString("Kwa");
 
-    /** Static value ladino for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem LADINO = fromString("ladino");
+    /** Static value Ladino for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem LADINO = fromString("Ladino");
 
-    /** Static value lango for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem LANGO = fromString("lango");
+    /** Static value Lango for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem LANGO = fromString("Lango");
 
-    /** Static value latvian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem LATVIAN = fromString("latvian");
+    /** Static value Latvian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem LATVIAN = fromString("Latvian");
 
-    /** Static value lawa for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem LAWA = fromString("lawa");
+    /** Static value Lawa for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem LAWA = fromString("Lawa");
 
-    /** Static value lingala for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem LINGALA = fromString("lingala");
+    /** Static value Lingala for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem LINGALA = fromString("Lingala");
 
-    /** Static value lithuanian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem LITHUANIAN = fromString("lithuanian");
+    /** Static value Lithuanian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem LITHUANIAN = fromString("Lithuanian");
 
-    /** Static value lule for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem LULE = fromString("lule");
+    /** Static value Lule for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem LULE = fromString("Lule");
 
-    /** Static value luxembourgish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem LUXEMBOURGISH = fromString("luxembourgish");
+    /** Static value Luxembourgish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem LUXEMBOURGISH = fromString("Luxembourgish");
 
-    /** Static value magahi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MAGAHI = fromString("magahi");
+    /** Static value Magahi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MAGAHI = fromString("Magahi");
 
-    /** Static value maithili for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MAITHILI = fromString("maithili");
+    /** Static value Maithili for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MAITHILI = fromString("Maithili");
 
-    /** Static value malay for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MALAY = fromString("malay");
+    /** Static value Malay for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MALAY = fromString("Malay");
 
-    /** Static value malayalam for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MALAYALAM = fromString("malayalam");
+    /** Static value Malayalam for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MALAYALAM = fromString("Malayalam");
 
-    /** Static value malaysian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MALAYSIAN = fromString("malaysian");
+    /** Static value Malaysian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MALAYSIAN = fromString("Malaysian");
 
-    /** Static value malvi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MALVI = fromString("malvi");
+    /** Static value Malvi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MALVI = fromString("Malvi");
 
-    /** Static value maninka for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MANINKA = fromString("maninka");
+    /** Static value Maninka for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MANINKA = fromString("Maninka");
 
-    /** Static value manipuri for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MANIPURI = fromString("manipuri");
+    /** Static value Manipuri for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MANIPURI = fromString("Manipuri");
 
-    /** Static value manx for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MANX = fromString("manx");
+    /** Static value Manx for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MANX = fromString("Manx");
 
-    /** Static value marathi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MARATHI = fromString("marathi");
+    /** Static value Marathi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MARATHI = fromString("Marathi");
 
-    /** Static value mayan for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MAYAN = fromString("mayan");
+    /** Static value Mayan for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MAYAN = fromString("Mayan");
 
-    /** Static value medumba for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MEDUMBA = fromString("medumba");
+    /** Static value Medumba for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MEDUMBA = fromString("Medumba");
 
-    /** Static value memoni for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MEMONI = fromString("memoni");
+    /** Static value Memoni for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MEMONI = fromString("Memoni");
 
-    /** Static value mewari for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MEWARI = fromString("mewari");
+    /** Static value Mewari for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MEWARI = fromString("Mewari");
 
-    /** Static value mizo for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MIZO = fromString("mizo");
+    /** Static value Mizo for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MIZO = fromString("Mizo");
 
-    /** Static value montenegrin for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MONTENEGRIN = fromString("montenegrin");
+    /** Static value Montenegrin for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MONTENEGRIN = fromString("Montenegrin");
 
-    /** Static value mwan for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MWAN = fromString("mwan");
+    /** Static value Mwan for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MWAN = fromString("Mwan");
 
-    /** Static value mwanga for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem MWANGA = fromString("mwanga");
+    /** Static value Mwanga for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem MWANGA = fromString("Mwanga");
 
-    /** Static value ndebele for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem NDEBELE = fromString("ndebele");
+    /** Static value Ndebele for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem NDEBELE = fromString("Ndebele");
 
-    /** Static value nepali for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem NEPALI = fromString("nepali");
+    /** Static value Nepali for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem NEPALI = fromString("Nepali");
 
-    /** Static value nimadi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem NIMADI = fromString("nimadi");
+    /** Static value Nimadi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem NIMADI = fromString("Nimadi");
 
-    /** Static value oriya for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ORIYA = fromString("oriya");
+    /** Static value Oriya for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ORIYA = fromString("Oriya");
 
-    /** Static value oromo for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem OROMO = fromString("oromo");
+    /** Static value Oromo for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem OROMO = fromString("Oromo");
 
-    /** Static value ovambo for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem OVAMBO = fromString("ovambo");
+    /** Static value Ovambo for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem OVAMBO = fromString("Ovambo");
 
-    /** Static value pamona for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem PAMONA = fromString("pamona");
+    /** Static value Pamona for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem PAMONA = fromString("Pamona");
 
-    /** Static value pangasinan for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem PANGASINAN = fromString("pangasinan");
+    /** Static value Pangasinan for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem PANGASINAN = fromString("Pangasinan");
 
-    /** Static value pashto for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem PASHTO = fromString("pashto");
+    /** Static value Pashto for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem PASHTO = fromString("Pashto");
 
-    /** Static value phoenician for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem PHOENICIAN = fromString("phoenician");
+    /** Static value Phoenician for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem PHOENICIAN = fromString("Phoenician");
 
-    /** Static value polish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem POLISH = fromString("polish");
+    /** Static value Polish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem POLISH = fromString("Polish");
 
-    /** Static value portuguese for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem PORTUGUESE = fromString("portuguese");
+    /** Static value Portuguese for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem PORTUGUESE = fromString("Portuguese");
 
-    /** Static value pulaar for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem PULAAR = fromString("pulaar");
+    /** Static value Pulaar for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem PULAAR = fromString("Pulaar");
 
-    /** Static value pular for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem PULAR = fromString("pular");
+    /** Static value Pular for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem PULAR = fromString("Pular");
 
-    /** Static value punjabi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem PUNJABI = fromString("punjabi");
+    /** Static value Punjabi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem PUNJABI = fromString("Punjabi");
 
-    /** Static value quecha for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem QUECHA = fromString("quecha");
+    /** Static value Quecha for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem QUECHA = fromString("Quecha");
 
-    /** Static value rajasthani for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem RAJASTHANI = fromString("rajasthani");
+    /** Static value Rajasthani for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem RAJASTHANI = fromString("Rajasthani");
 
-    /** Static value romanian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem ROMANIAN = fromString("romanian");
+    /** Static value Romanian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem ROMANIAN = fromString("Romanian");
 
-    /** Static value russian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem RUSSIAN = fromString("russian");
+    /** Static value Russian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem RUSSIAN = fromString("Russian");
 
-    /** Static value sakha for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SAKHA = fromString("sakha");
+    /** Static value Sakha for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SAKHA = fromString("Sakha");
 
-    /** Static value sango for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SANGO = fromString("sango");
+    /** Static value Sango for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SANGO = fromString("Sango");
 
-    /** Static value santhali for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SANTHALI = fromString("santhali");
+    /** Static value Santhali for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SANTHALI = fromString("Santhali");
 
-    /** Static value saraiki for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SARAIKI = fromString("saraiki");
+    /** Static value Saraiki for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SARAIKI = fromString("Saraiki");
 
-    /** Static value seim for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SEIM = fromString("seim");
+    /** Static value Seim for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SEIM = fromString("Seim");
 
-    /** Static value shading for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SHADING = fromString("shading");
+    /** Static value Shading for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SHADING = fromString("Shading");
 
-    /** Static value shama for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SHAMA = fromString("shama");
+    /** Static value Shama for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SHAMA = fromString("Shama");
 
-    /** Static value shan for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SHAN = fromString("shan");
+    /** Static value Shan for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SHAN = fromString("Shan");
 
-    /** Static value shona for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SHONA = fromString("shona");
+    /** Static value Shona for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SHONA = fromString("Shona");
 
-    /** Static value silesian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SILESIAN = fromString("silesian");
+    /** Static value Silesian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SILESIAN = fromString("Silesian");
 
-    /** Static value sindhi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SINDHI = fromString("sindhi");
+    /** Static value Sindhi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SINDHI = fromString("Sindhi");
 
-    /** Static value slovak for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SLOVAK = fromString("slovak");
+    /** Static value Slovak for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SLOVAK = fromString("Slovak");
 
-    /** Static value slovene for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SLOVENE = fromString("slovene");
+    /** Static value Slovene for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SLOVENE = fromString("Slovene");
 
-    /** Static value soga for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SOGA = fromString("soga");
+    /** Static value Soga for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SOGA = fromString("Soga");
 
-    /** Static value sogdian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SOGDIAN = fromString("sogdian");
+    /** Static value Sogdian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SOGDIAN = fromString("Sogdian");
 
-    /** Static value sotho for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SOTHO = fromString("sotho");
+    /** Static value Sotho for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SOTHO = fromString("Sotho");
 
-    /** Static value spanish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SPANISH = fromString("spanish");
+    /** Static value Spanish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SPANISH = fromString("Spanish");
 
-    /** Static value sudanese for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SUDANESE = fromString("sudanese");
+    /** Static value Sudanese for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SUDANESE = fromString("Sudanese");
 
-    /** Static value sumerian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SUMERIAN = fromString("sumerian");
+    /** Static value Sumerian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SUMERIAN = fromString("Sumerian");
 
-    /** Static value surajpuri for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SURAJPURI = fromString("surajpuri");
+    /** Static value Surajpuri for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SURAJPURI = fromString("Surajpuri");
 
-    /** Static value surigaonon for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SURIGAONON = fromString("surigaonon");
+    /** Static value Surigaonon for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SURIGAONON = fromString("Surigaonon");
 
-    /** Static value swati for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SWATI = fromString("swati");
+    /** Static value Swati for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SWATI = fromString("Swati");
 
-    /** Static value swazi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SWAZI = fromString("swazi");
+    /** Static value Swazi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SWAZI = fromString("Swazi");
 
-    /** Static value swedish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem SWEDISH = fromString("swedish");
+    /** Static value Swedish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem SWEDISH = fromString("Swedish");
 
-    /** Static value tagalog for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TAGALOG = fromString("tagalog");
+    /** Static value Tagalog for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TAGALOG = fromString("Tagalog");
 
-    /** Static value tamil for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TAMIL = fromString("tamil");
+    /** Static value Tamil for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TAMIL = fromString("Tamil");
 
-    /** Static value tausug for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TAUSUG = fromString("tausug");
+    /** Static value Tausug for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TAUSUG = fromString("Tausug");
 
-    /** Static value telugu for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TELUGU = fromString("telugu");
+    /** Static value Telugu for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TELUGU = fromString("Telugu");
 
-    /** Static value tetum for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TETUM = fromString("tetum");
+    /** Static value Tetum for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TETUM = fromString("Tetum");
 
-    /** Static value tharu for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem THARU = fromString("tharu");
+    /** Static value Tharu for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem THARU = fromString("Tharu");
 
-    /** Static value tibetan for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TIBETAN = fromString("tibetan");
+    /** Static value Tibetan for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TIBETAN = fromString("Tibetan");
 
-    /** Static value tigrinya for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TIGRINYA = fromString("tigrinya");
+    /** Static value Tigrinya for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TIGRINYA = fromString("Tigrinya");
 
-    /** Static value tripuri for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TRIPURI = fromString("tripuri");
+    /** Static value Tripuri for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TRIPURI = fromString("Tripuri");
 
-    /** Static value tswana for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TSWANA = fromString("tswana");
+    /** Static value Tswana for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TSWANA = fromString("Tswana");
 
-    /** Static value tulu for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TULU = fromString("tulu");
+    /** Static value Tulu for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TULU = fromString("Tulu");
 
-    /** Static value turkish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TURKISH = fromString("turkish");
+    /** Static value Turkish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TURKISH = fromString("Turkish");
 
-    /** Static value tuwali for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem TUWALI = fromString("tuwali");
+    /** Static value Tuwali for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem TUWALI = fromString("Tuwali");
 
-    /** Static value ubi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem UBI = fromString("ubi");
+    /** Static value Ubi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem UBI = fromString("Ubi");
 
-    /** Static value ukrainian for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem UKRAINIAN = fromString("ukrainian");
+    /** Static value Ukrainian for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem UKRAINIAN = fromString("Ukrainian");
 
-    /** Static value urdu for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem URDU = fromString("urdu");
+    /** Static value Urdu for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem URDU = fromString("Urdu");
 
-    /** Static value veps for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem VEPS = fromString("veps");
+    /** Static value Veps for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem VEPS = fromString("Veps");
 
-    /** Static value vietnamese for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem VIETNAMESE = fromString("vietnamese");
+    /** Static value Vietnamese for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem VIETNAMESE = fromString("Vietnamese");
 
-    /** Static value wagdi for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem WAGDI = fromString("wagdi");
+    /** Static value Wagdi for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem WAGDI = fromString("Wagdi");
 
-    /** Static value waziri for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem WAZIRI = fromString("waziri");
+    /** Static value Waziri for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem WAZIRI = fromString("Waziri");
 
-    /** Static value xhosa for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem XHOSA = fromString("xhosa");
+    /** Static value Xhosa for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem XHOSA = fromString("Xhosa");
 
-    /** Static value yiddish for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem YIDDISH = fromString("yiddish");
+    /** Static value Yiddish for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem YIDDISH = fromString("Yiddish");
 
-    /** Static value yoruba for ResumeDataLanguagesItem. */
-    public static final ResumeDataLanguagesItem YORUBA = fromString("yoruba");
+    /** Static value Yoruba for ResumeDataLanguagesItem. */
+    public static final ResumeDataLanguagesItem YORUBA = fromString("Yoruba");
 
     /**
      * Creates or finds a ResumeDataLanguagesItem from its string representation.

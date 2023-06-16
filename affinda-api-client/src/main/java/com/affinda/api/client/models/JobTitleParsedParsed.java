@@ -13,6 +13,12 @@ public final class JobTitleParsedParsed {
     private String name;
 
     /*
+     * EMSI id of the normalised job title.
+     */
+    @JsonProperty(value = "emsiId")
+    private String emsiId;
+
+    /*
      * The managementLevel property.
      */
     @JsonProperty(value = "managementLevel")
@@ -41,6 +47,26 @@ public final class JobTitleParsedParsed {
      */
     public JobTitleParsedParsed setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the emsiId property: EMSI id of the normalised job title.
+     *
+     * @return the emsiId value.
+     */
+    public String getEmsiId() {
+        return this.emsiId;
+    }
+
+    /**
+     * Set the emsiId property: EMSI id of the normalised job title.
+     *
+     * @param emsiId the emsiId value to set.
+     * @return the JobTitleParsedParsed object itself.
+     */
+    public JobTitleParsedParsed setEmsiId(String emsiId) {
+        this.emsiId = emsiId;
         return this;
     }
 

@@ -20,6 +20,12 @@ public final class ResumeDataWorkExperienceItemOccupation {
     private String jobTitleNormalized;
 
     /*
+     * EMSI id of the normalised job title.
+     */
+    @JsonProperty(value = "emsiId")
+    private String emsiId;
+
+    /*
      * The managementLevel property.
      */
     @JsonProperty(value = "managementLevel")
@@ -71,6 +77,26 @@ public final class ResumeDataWorkExperienceItemOccupation {
      */
     public ResumeDataWorkExperienceItemOccupation setJobTitleNormalized(String jobTitleNormalized) {
         this.jobTitleNormalized = jobTitleNormalized;
+        return this;
+    }
+
+    /**
+     * Get the emsiId property: EMSI id of the normalised job title.
+     *
+     * @return the emsiId value.
+     */
+    public String getEmsiId() {
+        return this.emsiId;
+    }
+
+    /**
+     * Set the emsiId property: EMSI id of the normalised job title.
+     *
+     * @param emsiId the emsiId value to set.
+     * @return the ResumeDataWorkExperienceItemOccupation object itself.
+     */
+    public ResumeDataWorkExperienceItemOccupation setEmsiId(String emsiId) {
+        this.emsiId = emsiId;
         return this;
     }
 
