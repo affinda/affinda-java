@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.affinda.api</groupId>
     <artifactId>affinda-api-sample</artifactId>
-    <version>3.5.1</version>
+    <version>3.6.0</version>
     <name>Affinda API Sample</name>
     <description>This package contains a sample usage of the Affinda API client</description>
     <url>https://github.com/affinda/affinda-java</url>
@@ -27,9 +27,9 @@
         <dependency>
             <groupId>com.affinda.api</groupId>
             <artifactId>affinda-api-client</artifactId>
-            <version>3.5.1</version>
+            <version>3.6.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../affinda-api-client/target/affinda-api-client-3.5.1.jar</systemPath>
+            <systemPath>${basedir}/../affinda-api-client/target/affinda-api-client-3.6.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.microsoft.rest</groupId>
