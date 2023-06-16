@@ -28,7 +28,7 @@ import com.affinda.api.client.models.DocumentEditRequest;
 import com.affinda.api.client.models.DocumentFormat;
 import com.affinda.api.client.models.DocumentState;
 import com.affinda.api.client.models.DocumentUpdate;
-import com.affinda.api.client.models.Enum18;
+import com.affinda.api.client.models.Enum19;
 import com.affinda.api.client.models.Extractor;
 import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
@@ -447,6 +447,18 @@ public final class AffindaAPI {
         Mono<Response<Void>> deleteDocument(
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/documents/{identifier}/update_data")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Document>> updateDocumentData(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") Object body,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/documents/batch_add_tag")
@@ -1194,7 +1206,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
-                @QueryParam("document_type") Enum18 documentType,
+                @QueryParam("document_type") Enum19 documentType,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/index")
@@ -2600,6 +2612,66 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteDocument(String identifier) {
         deleteDocumentAsync(identifier).block();
+    }
+
+    /**
+     * Update data of a document. Only applicable for resumes and job descriptions. For other document types, please use
+     * the `PATCH /annotations/{id}` endpoint or the `POST /annotations/batch_update` endpoint.
+     *
+     * @param identifier Resume or Job Description identifier.
+     * @param body Resume data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Document>> updateDocumentDataWithResponseAsync(String identifier, Object body) {
+        final String accept = "application/json";
+        return service.updateDocumentData(this.getRegion(), identifier, body, accept);
+    }
+
+    /**
+     * Update data of a document. Only applicable for resumes and job descriptions. For other document types, please use
+     * the `PATCH /annotations/{id}` endpoint or the `POST /annotations/batch_update` endpoint.
+     *
+     * @param identifier Resume or Job Description identifier.
+     * @param body Resume data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Document> updateDocumentDataAsync(String identifier, Object body) {
+        return updateDocumentDataWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<Document> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update data of a document. Only applicable for resumes and job descriptions. For other document types, please use
+     * the `PATCH /annotations/{id}` endpoint or the `POST /annotations/batch_update` endpoint.
+     *
+     * @param identifier Resume or Job Description identifier.
+     * @param body Resume data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Document updateDocumentData(String identifier, Object body) {
+        return updateDocumentDataAsync(identifier, body).block();
     }
 
     /**
@@ -6312,7 +6384,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexesWithResponseAsync(
-            Integer offset, Integer limit, Enum18 documentType) {
+            Integer offset, Integer limit, Enum19 documentType) {
         final String accept = "application/json";
         return service.getAllIndexes(this.getRegion(), offset, limit, documentType, accept);
     }
@@ -6331,7 +6403,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> getAllIndexesAsync(
-            Integer offset, Integer limit, Enum18 documentType) {
+            Integer offset, Integer limit, Enum19 documentType) {
         return getAllIndexesWithResponseAsync(offset, limit, documentType)
                 .flatMap(
                         (Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> res) -> {
@@ -6357,7 +6429,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema getAllIndexes(
-            Integer offset, Integer limit, Enum18 documentType) {
+            Integer offset, Integer limit, Enum19 documentType) {
         return getAllIndexesAsync(offset, limit, documentType).block();
     }
 
