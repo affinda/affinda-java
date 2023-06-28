@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Allow create/update data point's `parent` and `displayEnumValue` property
+- Add xml response to api spec to GET /v3/documenets to match existing functionality
 
 ### Changed
 - Make `slug` and `organization` required when creating data point

@@ -415,7 +415,7 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/documents/{identifier}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
