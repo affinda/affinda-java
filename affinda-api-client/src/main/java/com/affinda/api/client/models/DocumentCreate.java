@@ -23,6 +23,12 @@ public final class DocumentCreate {
     private String url;
 
     /*
+     * Create resume or job description directly from data.
+     */
+    @JsonProperty(value = "data")
+    private Object data;
+
+    /*
      * Uniquely identify a collection.
      */
     @JsonProperty(value = "collection")
@@ -126,6 +132,26 @@ public final class DocumentCreate {
      */
     public DocumentCreate setUrl(String url) {
         this.url = url;
+        return this;
+    }
+
+    /**
+     * Get the data property: Create resume or job description directly from data.
+     *
+     * @return the data value.
+     */
+    public Object getData() {
+        return this.data;
+    }
+
+    /**
+     * Set the data property: Create resume or job description directly from data.
+     *
+     * @param data the data value to set.
+     * @return the DocumentCreate object itself.
+     */
+    public DocumentCreate setData(Object data) {
+        this.data = data;
         return this;
     }
 

@@ -50,6 +50,13 @@ public final class DocumentCollectionUpdate {
     @JsonProperty(value = "extractorConfig")
     private ExtractorConfig extractorConfig;
 
+    /*
+     * Whether to allow OpenAI API to be used to assist in creating a model for
+     * this collection.
+     */
+    @JsonProperty(value = "allowOpenai")
+    private Boolean allowOpenai;
+
     /**
      * Get the name property: The name property.
      *
@@ -189,6 +196,28 @@ public final class DocumentCollectionUpdate {
      */
     public DocumentCollectionUpdate setExtractorConfig(ExtractorConfig extractorConfig) {
         this.extractorConfig = extractorConfig;
+        return this;
+    }
+
+    /**
+     * Get the allowOpenai property: Whether to allow OpenAI API to be used to assist in creating a model for this
+     * collection.
+     *
+     * @return the allowOpenai value.
+     */
+    public Boolean isAllowOpenai() {
+        return this.allowOpenai;
+    }
+
+    /**
+     * Set the allowOpenai property: Whether to allow OpenAI API to be used to assist in creating a model for this
+     * collection.
+     *
+     * @param allowOpenai the allowOpenai value to set.
+     * @return the DocumentCollectionUpdate object itself.
+     */
+    public DocumentCollectionUpdate setAllowOpenai(Boolean allowOpenai) {
+        this.allowOpenai = allowOpenai;
         return this;
     }
 }

@@ -99,6 +99,13 @@ public final class DocumentCollection {
     @JsonProperty(value = "tailoredExtractorRequested")
     private Boolean tailoredExtractorRequested;
 
+    /*
+     * Whether to allow OpenAI API to be used to assist in creating a model for
+     * this collection.
+     */
+    @JsonProperty(value = "allowOpenai")
+    private Boolean allowOpenai;
+
     /**
      * Get the identifier property: Uniquely identify a collection.
      *
@@ -400,6 +407,28 @@ public final class DocumentCollection {
      */
     public DocumentCollection setTailoredExtractorRequested(Boolean tailoredExtractorRequested) {
         this.tailoredExtractorRequested = tailoredExtractorRequested;
+        return this;
+    }
+
+    /**
+     * Get the allowOpenai property: Whether to allow OpenAI API to be used to assist in creating a model for this
+     * collection.
+     *
+     * @return the allowOpenai value.
+     */
+    public Boolean isAllowOpenai() {
+        return this.allowOpenai;
+    }
+
+    /**
+     * Set the allowOpenai property: Whether to allow OpenAI API to be used to assist in creating a model for this
+     * collection.
+     *
+     * @param allowOpenai the allowOpenai value to set.
+     * @return the DocumentCollection object itself.
+     */
+    public DocumentCollection setAllowOpenai(Boolean allowOpenai) {
+        this.allowOpenai = allowOpenai;
         return this;
     }
 }
