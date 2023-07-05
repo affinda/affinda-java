@@ -77,6 +77,12 @@ public final class JobDescriptionRequestBody {
     @JsonProperty(value = "regionBias")
     private String regionBias;
 
+    /*
+     * Explicitly mark this document as low priority.
+     */
+    @JsonProperty(value = "lowPriority")
+    private Boolean lowPriority;
+
     /**
      * Get the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
      *
@@ -282,6 +288,26 @@ public final class JobDescriptionRequestBody {
      */
     public JobDescriptionRequestBody setRegionBias(String regionBias) {
         this.regionBias = regionBias;
+        return this;
+    }
+
+    /**
+     * Get the lowPriority property: Explicitly mark this document as low priority.
+     *
+     * @return the lowPriority value.
+     */
+    public Boolean isLowPriority() {
+        return this.lowPriority;
+    }
+
+    /**
+     * Set the lowPriority property: Explicitly mark this document as low priority.
+     *
+     * @param lowPriority the lowPriority value to set.
+     * @return the JobDescriptionRequestBody object itself.
+     */
+    public JobDescriptionRequestBody setLowPriority(Boolean lowPriority) {
+        this.lowPriority = lowPriority;
         return this;
     }
 }
