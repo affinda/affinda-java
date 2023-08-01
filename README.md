@@ -5,13 +5,35 @@ Java Client Library for Affinda Resume Parser API
 [![license](https://img.shields.io/github/license/affinda/affinda-java)](https://choosealicense.com/licenses/mit/)
 
 
+Generated using [autorest](https://github.com/Azure/autorest) and [autorest.java](https://github.com/Azure/autorest.java).
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/affinda/affinda-java)
 
-- [Installation](#installation)
-- [Quickstart](#quickstart)
+Installation
+------------
 
+### Maven
 
-Generated using [autorest](https://github.com/Azure/autorest) and [autorest.java](https://github.com/Azure/autorest.java).
+```xml
+<dependencies>
+  <dependency>
+    <groupId>com.affinda.api</groupId>
+    <artifactId>affinda-api-client</artifactId>
+    <version>3.6.1</version>
+  </dependency>
+</dependencies>
+```
+
+### Gradle
+
+```
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.affinda.api:affinda-api-client:<version>")
+}
+```
 
 
 API Version Compatibility
