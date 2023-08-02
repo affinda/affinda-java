@@ -2,6 +2,7 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * The data point to be created for this field. If a data point with the same slug and collection already exists, it
@@ -50,6 +51,18 @@ public final class DataFieldDataPoint {
      */
     @JsonProperty(value = "noRect", required = true)
     private boolean noRect;
+
+    /*
+     * The identifier of the parent data point if applicable.
+     */
+    @JsonProperty(value = "parent", required = true)
+    private String parent;
+
+    /*
+     * The children property.
+     */
+    @JsonProperty(value = "children", required = true)
+    private List<DataPoint> children;
 
     /**
      * Get the identifier property: Uniquely identify a data point.
@@ -188,6 +201,46 @@ public final class DataFieldDataPoint {
      */
     public DataFieldDataPoint setNoRect(boolean noRect) {
         this.noRect = noRect;
+        return this;
+    }
+
+    /**
+     * Get the parent property: The identifier of the parent data point if applicable.
+     *
+     * @return the parent value.
+     */
+    public String getParent() {
+        return this.parent;
+    }
+
+    /**
+     * Set the parent property: The identifier of the parent data point if applicable.
+     *
+     * @param parent the parent value to set.
+     * @return the DataFieldDataPoint object itself.
+     */
+    public DataFieldDataPoint setParent(String parent) {
+        this.parent = parent;
+        return this;
+    }
+
+    /**
+     * Get the children property: The children property.
+     *
+     * @return the children value.
+     */
+    public List<DataPoint> getChildren() {
+        return this.children;
+    }
+
+    /**
+     * Set the children property: The children property.
+     *
+     * @param children the children value to set.
+     * @return the DataFieldDataPoint object itself.
+     */
+    public DataFieldDataPoint setChildren(List<DataPoint> children) {
+        this.children = children;
         return this;
     }
 }

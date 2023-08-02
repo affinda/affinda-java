@@ -88,6 +88,13 @@ public final class Workspace {
     @JsonProperty(value = "whitelistIngestAddresses")
     private List<String> whitelistIngestAddresses;
 
+    /*
+     * If true, attempt to split documents if multiple documents are detected
+     * in a single file.
+     */
+    @JsonProperty(value = "splitDocuments")
+    private Boolean splitDocuments;
+
     /**
      * Get the identifier property: Uniquely identify a workspace.
      *
@@ -337,6 +344,28 @@ public final class Workspace {
      */
     public Workspace setWhitelistIngestAddresses(List<String> whitelistIngestAddresses) {
         this.whitelistIngestAddresses = whitelistIngestAddresses;
+        return this;
+    }
+
+    /**
+     * Get the splitDocuments property: If true, attempt to split documents if multiple documents are detected in a
+     * single file.
+     *
+     * @return the splitDocuments value.
+     */
+    public Boolean isSplitDocuments() {
+        return this.splitDocuments;
+    }
+
+    /**
+     * Set the splitDocuments property: If true, attempt to split documents if multiple documents are detected in a
+     * single file.
+     *
+     * @param splitDocuments the splitDocuments value to set.
+     * @return the Workspace object itself.
+     */
+    public Workspace setSplitDocuments(Boolean splitDocuments) {
+        this.splitDocuments = splitDocuments;
         return this;
     }
 }

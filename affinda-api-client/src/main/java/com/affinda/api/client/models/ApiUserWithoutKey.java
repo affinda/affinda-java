@@ -43,6 +43,12 @@ public final class ApiUserWithoutKey {
     @JsonProperty(value = "organizations", required = true)
     private List<ApiUserWithoutKeyOrganizationsItem> organizations;
 
+    /*
+     * The last 4 characters of the API key.
+     */
+    @JsonProperty(value = "apiKeyLastChars")
+    private String apiKeyLastChars;
+
     /**
      * Get the id property: Uniquely identify a user.
      *
@@ -160,6 +166,26 @@ public final class ApiUserWithoutKey {
      */
     public ApiUserWithoutKey setOrganizations(List<ApiUserWithoutKeyOrganizationsItem> organizations) {
         this.organizations = organizations;
+        return this;
+    }
+
+    /**
+     * Get the apiKeyLastChars property: The last 4 characters of the API key.
+     *
+     * @return the apiKeyLastChars value.
+     */
+    public String getApiKeyLastChars() {
+        return this.apiKeyLastChars;
+    }
+
+    /**
+     * Set the apiKeyLastChars property: The last 4 characters of the API key.
+     *
+     * @param apiKeyLastChars the apiKeyLastChars value to set.
+     * @return the ApiUserWithoutKey object itself.
+     */
+    public ApiUserWithoutKey setApiKeyLastChars(String apiKeyLastChars) {
+        this.apiKeyLastChars = apiKeyLastChars;
         return this;
     }
 }

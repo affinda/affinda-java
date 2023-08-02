@@ -49,6 +49,12 @@ public final class ApiUserWithKey {
     @JsonProperty(value = "apiKey", required = true)
     private String apiKey;
 
+    /*
+     * The last 4 characters of the API key.
+     */
+    @JsonProperty(value = "apiKeyLastChars")
+    private String apiKeyLastChars;
+
     /**
      * Get the id property: Uniquely identify a user.
      *
@@ -186,6 +192,26 @@ public final class ApiUserWithKey {
      */
     public ApiUserWithKey setApiKey(String apiKey) {
         this.apiKey = apiKey;
+        return this;
+    }
+
+    /**
+     * Get the apiKeyLastChars property: The last 4 characters of the API key.
+     *
+     * @return the apiKeyLastChars value.
+     */
+    public String getApiKeyLastChars() {
+        return this.apiKeyLastChars;
+    }
+
+    /**
+     * Set the apiKeyLastChars property: The last 4 characters of the API key.
+     *
+     * @param apiKeyLastChars the apiKeyLastChars value to set.
+     * @return the ApiUserWithKey object itself.
+     */
+    public ApiUserWithKey setApiKeyLastChars(String apiKeyLastChars) {
+        this.apiKeyLastChars = apiKeyLastChars;
         return this;
     }
 }

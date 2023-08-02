@@ -2,6 +2,7 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** The field to be created. */
 @Fluent
@@ -29,6 +30,18 @@ public final class DataFieldField {
      */
     @JsonProperty(value = "autoValidationThreshold", required = true)
     private Float autoValidationThreshold;
+
+    /*
+     * The enabledChildFields property.
+     */
+    @JsonProperty(value = "enabledChildFields", required = true)
+    private List<Field> enabledChildFields;
+
+    /*
+     * The disabledChildFields property.
+     */
+    @JsonProperty(value = "disabledChildFields", required = true)
+    private List<Field> disabledChildFields;
 
     /**
      * Get the label property: The label property.
@@ -107,6 +120,46 @@ public final class DataFieldField {
      */
     public DataFieldField setAutoValidationThreshold(Float autoValidationThreshold) {
         this.autoValidationThreshold = autoValidationThreshold;
+        return this;
+    }
+
+    /**
+     * Get the enabledChildFields property: The enabledChildFields property.
+     *
+     * @return the enabledChildFields value.
+     */
+    public List<Field> getEnabledChildFields() {
+        return this.enabledChildFields;
+    }
+
+    /**
+     * Set the enabledChildFields property: The enabledChildFields property.
+     *
+     * @param enabledChildFields the enabledChildFields value to set.
+     * @return the DataFieldField object itself.
+     */
+    public DataFieldField setEnabledChildFields(List<Field> enabledChildFields) {
+        this.enabledChildFields = enabledChildFields;
+        return this;
+    }
+
+    /**
+     * Get the disabledChildFields property: The disabledChildFields property.
+     *
+     * @return the disabledChildFields value.
+     */
+    public List<Field> getDisabledChildFields() {
+        return this.disabledChildFields;
+    }
+
+    /**
+     * Set the disabledChildFields property: The disabledChildFields property.
+     *
+     * @param disabledChildFields the disabledChildFields value to set.
+     * @return the DataFieldField object itself.
+     */
+    public DataFieldField setDisabledChildFields(List<Field> disabledChildFields) {
+        this.disabledChildFields = disabledChildFields;
         return this;
     }
 }

@@ -51,6 +51,13 @@ public final class WorkspaceCreate {
     @JsonProperty(value = "whitelistIngestAddresses")
     private List<String> whitelistIngestAddresses;
 
+    /*
+     * If true, attempt to split documents if multiple documents are detected
+     * in a single file.
+     */
+    @JsonProperty(value = "splitDocuments")
+    private Boolean splitDocuments;
+
     /**
      * Get the organization property: Uniquely identify an organization.
      *
@@ -178,6 +185,28 @@ public final class WorkspaceCreate {
      */
     public WorkspaceCreate setWhitelistIngestAddresses(List<String> whitelistIngestAddresses) {
         this.whitelistIngestAddresses = whitelistIngestAddresses;
+        return this;
+    }
+
+    /**
+     * Get the splitDocuments property: If true, attempt to split documents if multiple documents are detected in a
+     * single file.
+     *
+     * @return the splitDocuments value.
+     */
+    public Boolean isSplitDocuments() {
+        return this.splitDocuments;
+    }
+
+    /**
+     * Set the splitDocuments property: If true, attempt to split documents if multiple documents are detected in a
+     * single file.
+     *
+     * @param splitDocuments the splitDocuments value to set.
+     * @return the WorkspaceCreate object itself.
+     */
+    public WorkspaceCreate setSplitDocuments(Boolean splitDocuments) {
+        this.splitDocuments = splitDocuments;
         return this;
     }
 }

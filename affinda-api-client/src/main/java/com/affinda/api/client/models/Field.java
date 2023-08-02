@@ -38,10 +38,28 @@ public final class Field {
     private Boolean showDropdown;
 
     /*
+     * The enabledChildFields property.
+     */
+    @JsonProperty(value = "enabledChildFields")
+    private List<Field> enabledChildFields;
+
+    /*
+     * The disabledChildFields property.
+     */
+    @JsonProperty(value = "disabledChildFields")
+    private List<Field> disabledChildFields;
+
+    /*
+     * The slug property.
+     */
+    @JsonProperty(value = "slug")
+    private String slug;
+
+    /*
      * The fields property.
      */
     @JsonProperty(value = "fields")
-    private List<Field> fields;
+    private List<Object> fields;
 
     /**
      * Get the label property: The label property.
@@ -144,11 +162,71 @@ public final class Field {
     }
 
     /**
+     * Get the enabledChildFields property: The enabledChildFields property.
+     *
+     * @return the enabledChildFields value.
+     */
+    public List<Field> getEnabledChildFields() {
+        return this.enabledChildFields;
+    }
+
+    /**
+     * Set the enabledChildFields property: The enabledChildFields property.
+     *
+     * @param enabledChildFields the enabledChildFields value to set.
+     * @return the Field object itself.
+     */
+    public Field setEnabledChildFields(List<Field> enabledChildFields) {
+        this.enabledChildFields = enabledChildFields;
+        return this;
+    }
+
+    /**
+     * Get the disabledChildFields property: The disabledChildFields property.
+     *
+     * @return the disabledChildFields value.
+     */
+    public List<Field> getDisabledChildFields() {
+        return this.disabledChildFields;
+    }
+
+    /**
+     * Set the disabledChildFields property: The disabledChildFields property.
+     *
+     * @param disabledChildFields the disabledChildFields value to set.
+     * @return the Field object itself.
+     */
+    public Field setDisabledChildFields(List<Field> disabledChildFields) {
+        this.disabledChildFields = disabledChildFields;
+        return this;
+    }
+
+    /**
+     * Get the slug property: The slug property.
+     *
+     * @return the slug value.
+     */
+    public String getSlug() {
+        return this.slug;
+    }
+
+    /**
+     * Set the slug property: The slug property.
+     *
+     * @param slug the slug value to set.
+     * @return the Field object itself.
+     */
+    public Field setSlug(String slug) {
+        this.slug = slug;
+        return this;
+    }
+
+    /**
      * Get the fields property: The fields property.
      *
      * @return the fields value.
      */
-    public List<Field> getFields() {
+    public List<Object> getFields() {
         return this.fields;
     }
 
@@ -158,7 +236,7 @@ public final class Field {
      * @param fields the fields value to set.
      * @return the Field object itself.
      */
-    public Field setFields(List<Field> fields) {
+    public Field setFields(List<Object> fields) {
         this.fields = fields;
         return this;
     }

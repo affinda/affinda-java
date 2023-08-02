@@ -45,6 +45,12 @@ public final class DataFieldCreateDataPoint {
     @JsonProperty(value = "noRect")
     private Boolean noRect;
 
+    /*
+     * The identifier of the parent data point if applicable.
+     */
+    @JsonProperty(value = "parent")
+    private String parent;
+
     /**
      * Get the name property: Name of the data point.
      *
@@ -162,6 +168,26 @@ public final class DataFieldCreateDataPoint {
      */
     public DataFieldCreateDataPoint setNoRect(Boolean noRect) {
         this.noRect = noRect;
+        return this;
+    }
+
+    /**
+     * Get the parent property: The identifier of the parent data point if applicable.
+     *
+     * @return the parent value.
+     */
+    public String getParent() {
+        return this.parent;
+    }
+
+    /**
+     * Set the parent property: The identifier of the parent data point if applicable.
+     *
+     * @param parent the parent value to set.
+     * @return the DataFieldCreateDataPoint object itself.
+     */
+    public DataFieldCreateDataPoint setParent(String parent) {
+        this.parent = parent;
         return this;
     }
 }

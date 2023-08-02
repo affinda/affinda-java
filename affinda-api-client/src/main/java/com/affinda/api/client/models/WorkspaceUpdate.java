@@ -45,6 +45,13 @@ public final class WorkspaceUpdate {
     @JsonProperty(value = "whitelistIngestAddresses")
     private List<String> whitelistIngestAddresses;
 
+    /*
+     * If true, attempt to split documents if multiple documents are detected
+     * in a single file.
+     */
+    @JsonProperty(value = "splitDocuments")
+    private Boolean splitDocuments;
+
     /**
      * Get the name property: The name property.
      *
@@ -152,6 +159,28 @@ public final class WorkspaceUpdate {
      */
     public WorkspaceUpdate setWhitelistIngestAddresses(List<String> whitelistIngestAddresses) {
         this.whitelistIngestAddresses = whitelistIngestAddresses;
+        return this;
+    }
+
+    /**
+     * Get the splitDocuments property: If true, attempt to split documents if multiple documents are detected in a
+     * single file.
+     *
+     * @return the splitDocuments value.
+     */
+    public Boolean isSplitDocuments() {
+        return this.splitDocuments;
+    }
+
+    /**
+     * Set the splitDocuments property: If true, attempt to split documents if multiple documents are detected in a
+     * single file.
+     *
+     * @param splitDocuments the splitDocuments value to set.
+     * @return the WorkspaceUpdate object itself.
+     */
+    public WorkspaceUpdate setSplitDocuments(Boolean splitDocuments) {
+        this.splitDocuments = splitDocuments;
         return this;
     }
 }

@@ -80,6 +80,8 @@ import com.affinda.api.client.models.ResumeSearchParameters;
 import com.affinda.api.client.models.Tag;
 import com.affinda.api.client.models.TagCreate;
 import com.affinda.api.client.models.TagUpdate;
+import com.affinda.api.client.models.UsageByCollection;
+import com.affinda.api.client.models.UsageByWorkspace;
 import com.affinda.api.client.models.ValidationToolConfig;
 import com.affinda.api.client.models.Workspace;
 import com.affinda.api.client.models.WorkspaceCreate;
@@ -261,6 +263,19 @@ public final class AffindaAPI {
                 @PathParam("identifier") String identifier,
                 @HeaderParam("Accept") String accept);
 
+        @Get("/v3/workspaces/{identifier}/usage")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<List<UsageByWorkspace>>> getUsageByWorkspace(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @QueryParam("start") String start,
+                @QueryParam("end") String end,
+                @HeaderParam("Accept") String accept);
+
         @Get("/v3/workspace_memberships")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
@@ -375,6 +390,19 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") DataFieldCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/collections/{identifier}/usage")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<List<UsageByCollection>>> getUsageByCollection(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @QueryParam("start") String start,
+                @QueryParam("end") String end,
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/documents")
@@ -1638,6 +1666,67 @@ public final class AffindaAPI {
     }
 
     /**
+     * Return monthly credits consumption of a workspace.
+     *
+     * @param identifier Workspace's identifier.
+     * @param start Start date of the period to retrieve. Format: YYYY-MM.
+     * @param end End date of the period to retrieve. Format: YYYY-MM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monthly credits consumption along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<UsageByWorkspace>>> getUsageByWorkspaceWithResponseAsync(
+            String identifier, String start, String end) {
+        final String accept = "application/json";
+        return service.getUsageByWorkspace(this.getRegion(), identifier, start, end, accept);
+    }
+
+    /**
+     * Return monthly credits consumption of a workspace.
+     *
+     * @param identifier Workspace's identifier.
+     * @param start Start date of the period to retrieve. Format: YYYY-MM.
+     * @param end End date of the period to retrieve. Format: YYYY-MM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monthly credits consumption on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<UsageByWorkspace>> getUsageByWorkspaceAsync(String identifier, String start, String end) {
+        return getUsageByWorkspaceWithResponseAsync(identifier, start, end)
+                .flatMap(
+                        (Response<List<UsageByWorkspace>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return monthly credits consumption of a workspace.
+     *
+     * @param identifier Workspace's identifier.
+     * @param start Start date of the period to retrieve. Format: YYYY-MM.
+     * @param end End date of the period to retrieve. Format: YYYY-MM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monthly credits consumption.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<UsageByWorkspace> getUsageByWorkspace(String identifier, String start, String end) {
+        return getUsageByWorkspaceAsync(identifier, start, end).block();
+    }
+
+    /**
      * Returns the memberships of your workspaces.
      *
      * @param offset The number of documents to skip before starting to collect the result set.
@@ -2179,6 +2268,67 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataField createDataFieldForCollection(String identifier, DataFieldCreate body) {
         return createDataFieldForCollectionAsync(identifier, body).block();
+    }
+
+    /**
+     * Return monthly credits consumption of a collection.
+     *
+     * @param identifier Collection's identifier.
+     * @param start Start date of the period to retrieve. Format: YYYY-MM.
+     * @param end End date of the period to retrieve. Format: YYYY-MM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monthly credits consumption along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<UsageByCollection>>> getUsageByCollectionWithResponseAsync(
+            String identifier, String start, String end) {
+        final String accept = "application/json";
+        return service.getUsageByCollection(this.getRegion(), identifier, start, end, accept);
+    }
+
+    /**
+     * Return monthly credits consumption of a collection.
+     *
+     * @param identifier Collection's identifier.
+     * @param start Start date of the period to retrieve. Format: YYYY-MM.
+     * @param end End date of the period to retrieve. Format: YYYY-MM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monthly credits consumption on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<UsageByCollection>> getUsageByCollectionAsync(String identifier, String start, String end) {
+        return getUsageByCollectionWithResponseAsync(identifier, start, end)
+                .flatMap(
+                        (Response<List<UsageByCollection>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return monthly credits consumption of a collection.
+     *
+     * @param identifier Collection's identifier.
+     * @param start Start date of the period to retrieve. Format: YYYY-MM.
+     * @param end End date of the period to retrieve. Format: YYYY-MM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return monthly credits consumption.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<UsageByCollection> getUsageByCollection(String identifier, String start, String end) {
+        return getUsageByCollectionAsync(identifier, start, end).block();
     }
 
     /**
