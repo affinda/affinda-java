@@ -25,6 +25,12 @@ public final class ResthookSubscriptionCreate {
     private String organization;
 
     /*
+     * The workspace property.
+     */
+    @JsonProperty(value = "workspace")
+    private String workspace;
+
+    /*
      * Version of the resthook subscription. Determines the resthook body being
      * fired.
      */
@@ -88,6 +94,26 @@ public final class ResthookSubscriptionCreate {
      */
     public ResthookSubscriptionCreate setOrganization(String organization) {
         this.organization = organization;
+        return this;
+    }
+
+    /**
+     * Get the workspace property: The workspace property.
+     *
+     * @return the workspace value.
+     */
+    public String getWorkspace() {
+        return this.workspace;
+    }
+
+    /**
+     * Set the workspace property: The workspace property.
+     *
+     * @param workspace the workspace value to set.
+     * @return the ResthookSubscriptionCreate object itself.
+     */
+    public ResthookSubscriptionCreate setWorkspace(String workspace) {
+        this.workspace = workspace;
         return this;
     }
 

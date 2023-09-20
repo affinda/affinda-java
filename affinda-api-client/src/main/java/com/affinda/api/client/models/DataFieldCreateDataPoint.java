@@ -51,6 +51,14 @@ public final class DataFieldCreateDataPoint {
     @JsonProperty(value = "parent")
     private String parent;
 
+    /*
+     * If true, the model will not be used to predict this data point. Instead,
+     * the user will be able to manually enter the value in the validation
+     * tool.
+     */
+    @JsonProperty(value = "manualEntry")
+    private Boolean manualEntry;
+
     /**
      * Get the name property: Name of the data point.
      *
@@ -188,6 +196,28 @@ public final class DataFieldCreateDataPoint {
      */
     public DataFieldCreateDataPoint setParent(String parent) {
         this.parent = parent;
+        return this;
+    }
+
+    /**
+     * Get the manualEntry property: If true, the model will not be used to predict this data point. Instead, the user
+     * will be able to manually enter the value in the validation tool.
+     *
+     * @return the manualEntry value.
+     */
+    public Boolean isManualEntry() {
+        return this.manualEntry;
+    }
+
+    /**
+     * Set the manualEntry property: If true, the model will not be used to predict this data point. Instead, the user
+     * will be able to manually enter the value in the validation tool.
+     *
+     * @param manualEntry the manualEntry value to set.
+     * @return the DataFieldCreateDataPoint object itself.
+     */
+    public DataFieldCreateDataPoint setManualEntry(Boolean manualEntry) {
+        this.manualEntry = manualEntry;
         return this;
     }
 }

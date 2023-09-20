@@ -48,6 +48,18 @@ public final class ValidationToolConfig {
     @JsonProperty(value = "hideWarnings")
     private Boolean hideWarnings;
 
+    /*
+     * Disables the page editor after a document has been split once.
+     */
+    @JsonProperty(value = "restrictDocumentSplitting")
+    private Boolean restrictDocumentSplitting;
+
+    /*
+     * Disables currency formatting of decimals values.
+     */
+    @JsonProperty(value = "disableCurrencyFormatting")
+    private Boolean disableCurrencyFormatting;
+
     /**
      * Get the theme property: The theme property.
      *
@@ -185,6 +197,46 @@ public final class ValidationToolConfig {
      */
     public ValidationToolConfig setHideWarnings(Boolean hideWarnings) {
         this.hideWarnings = hideWarnings;
+        return this;
+    }
+
+    /**
+     * Get the restrictDocumentSplitting property: Disables the page editor after a document has been split once.
+     *
+     * @return the restrictDocumentSplitting value.
+     */
+    public Boolean isRestrictDocumentSplitting() {
+        return this.restrictDocumentSplitting;
+    }
+
+    /**
+     * Set the restrictDocumentSplitting property: Disables the page editor after a document has been split once.
+     *
+     * @param restrictDocumentSplitting the restrictDocumentSplitting value to set.
+     * @return the ValidationToolConfig object itself.
+     */
+    public ValidationToolConfig setRestrictDocumentSplitting(Boolean restrictDocumentSplitting) {
+        this.restrictDocumentSplitting = restrictDocumentSplitting;
+        return this;
+    }
+
+    /**
+     * Get the disableCurrencyFormatting property: Disables currency formatting of decimals values.
+     *
+     * @return the disableCurrencyFormatting value.
+     */
+    public Boolean isDisableCurrencyFormatting() {
+        return this.disableCurrencyFormatting;
+    }
+
+    /**
+     * Set the disableCurrencyFormatting property: Disables currency formatting of decimals values.
+     *
+     * @param disableCurrencyFormatting the disableCurrencyFormatting value to set.
+     * @return the ValidationToolConfig object itself.
+     */
+    public ValidationToolConfig setDisableCurrencyFormatting(Boolean disableCurrencyFormatting) {
+        this.disableCurrencyFormatting = disableCurrencyFormatting;
         return this;
     }
 }

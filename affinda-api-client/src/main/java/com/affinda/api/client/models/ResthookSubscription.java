@@ -25,6 +25,12 @@ public final class ResthookSubscription {
     private Organization organization;
 
     /*
+     * The workspace property.
+     */
+    @JsonProperty(value = "workspace", required = true)
+    private ResthookSubscriptionWorkspace workspace;
+
+    /*
      * URL of the resthook's receiver.
      */
     @JsonProperty(value = "targetUrl", required = true)
@@ -114,6 +120,26 @@ public final class ResthookSubscription {
      */
     public ResthookSubscription setOrganization(Organization organization) {
         this.organization = organization;
+        return this;
+    }
+
+    /**
+     * Get the workspace property: The workspace property.
+     *
+     * @return the workspace value.
+     */
+    public ResthookSubscriptionWorkspace getWorkspace() {
+        return this.workspace;
+    }
+
+    /**
+     * Set the workspace property: The workspace property.
+     *
+     * @param workspace the workspace value to set.
+     * @return the ResthookSubscription object itself.
+     */
+    public ResthookSubscription setWorkspace(ResthookSubscriptionWorkspace workspace) {
+        this.workspace = workspace;
         return this;
     }
 

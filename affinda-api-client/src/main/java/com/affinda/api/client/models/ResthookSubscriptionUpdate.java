@@ -19,6 +19,12 @@ public final class ResthookSubscriptionUpdate {
     private String organization;
 
     /*
+     * Uniquely identify a workspace.
+     */
+    @JsonProperty(value = "workspace")
+    private String workspace;
+
+    /*
      * Version of the resthook subscription. Determines the resthook body being
      * fired.
      */
@@ -62,6 +68,26 @@ public final class ResthookSubscriptionUpdate {
      */
     public ResthookSubscriptionUpdate setOrganization(String organization) {
         this.organization = organization;
+        return this;
+    }
+
+    /**
+     * Get the workspace property: Uniquely identify a workspace.
+     *
+     * @return the workspace value.
+     */
+    public String getWorkspace() {
+        return this.workspace;
+    }
+
+    /**
+     * Set the workspace property: Uniquely identify a workspace.
+     *
+     * @param workspace the workspace value to set.
+     * @return the ResthookSubscriptionUpdate object itself.
+     */
+    public ResthookSubscriptionUpdate setWorkspace(String workspace) {
+        this.workspace = workspace;
         return this;
     }
 

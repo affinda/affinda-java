@@ -89,11 +89,15 @@ public final class Workspace {
     private List<String> whitelistIngestAddresses;
 
     /*
-     * If true, attempt to split documents if multiple documents are detected
-     * in a single file.
+     * Option "leave" means no document splitting at all. Option "conservative"
+     * means we don't actually split documents the documents, but will add a
+     * warning to documents that may require a split. Option "recommended"
+     * means we split documents that are highly likely to require a split, and
+     * add warnings to documents that might require one. Option "aggressive"
+     * means we split all documents that are likely to require a split.
      */
-    @JsonProperty(value = "splitDocuments")
-    private Boolean splitDocuments;
+    @JsonProperty(value = "documentSplitter")
+    private WorkspaceSplitDocumentsOptions documentSplitter;
 
     /**
      * Get the identifier property: Uniquely identify a workspace.
@@ -348,24 +352,30 @@ public final class Workspace {
     }
 
     /**
-     * Get the splitDocuments property: If true, attempt to split documents if multiple documents are detected in a
-     * single file.
+     * Get the documentSplitter property: Option "leave" means no document splitting at all. Option "conservative" means
+     * we don't actually split documents the documents, but will add a warning to documents that may require a split.
+     * Option "recommended" means we split documents that are highly likely to require a split, and add warnings to
+     * documents that might require one. Option "aggressive" means we split all documents that are likely to require a
+     * split.
      *
-     * @return the splitDocuments value.
+     * @return the documentSplitter value.
      */
-    public Boolean isSplitDocuments() {
-        return this.splitDocuments;
+    public WorkspaceSplitDocumentsOptions getDocumentSplitter() {
+        return this.documentSplitter;
     }
 
     /**
-     * Set the splitDocuments property: If true, attempt to split documents if multiple documents are detected in a
-     * single file.
+     * Set the documentSplitter property: Option "leave" means no document splitting at all. Option "conservative" means
+     * we don't actually split documents the documents, but will add a warning to documents that may require a split.
+     * Option "recommended" means we split documents that are highly likely to require a split, and add warnings to
+     * documents that might require one. Option "aggressive" means we split all documents that are likely to require a
+     * split.
      *
-     * @param splitDocuments the splitDocuments value to set.
+     * @param documentSplitter the documentSplitter value to set.
      * @return the Workspace object itself.
      */
-    public Workspace setSplitDocuments(Boolean splitDocuments) {
-        this.splitDocuments = splitDocuments;
+    public Workspace setDocumentSplitter(WorkspaceSplitDocumentsOptions documentSplitter) {
+        this.documentSplitter = documentSplitter;
         return this;
     }
 }

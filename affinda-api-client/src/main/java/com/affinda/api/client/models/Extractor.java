@@ -68,6 +68,12 @@ public final class Extractor {
     @JsonProperty(value = "createdDt")
     private OffsetDateTime createdDt;
 
+    /*
+     * The lastTrainedDt property.
+     */
+    @JsonProperty(value = "lastTrainedDt")
+    private OffsetDateTime lastTrainedDt;
+
     /**
      * Get the identifier property: Uniquely identify an extractor.
      *
@@ -265,6 +271,26 @@ public final class Extractor {
      */
     public Extractor setCreatedDt(OffsetDateTime createdDt) {
         this.createdDt = createdDt;
+        return this;
+    }
+
+    /**
+     * Get the lastTrainedDt property: The lastTrainedDt property.
+     *
+     * @return the lastTrainedDt value.
+     */
+    public OffsetDateTime getLastTrainedDt() {
+        return this.lastTrainedDt;
+    }
+
+    /**
+     * Set the lastTrainedDt property: The lastTrainedDt property.
+     *
+     * @param lastTrainedDt the lastTrainedDt value to set.
+     * @return the Extractor object itself.
+     */
+    public Extractor setLastTrainedDt(OffsetDateTime lastTrainedDt) {
+        this.lastTrainedDt = lastTrainedDt;
         return this;
     }
 }

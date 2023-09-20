@@ -80,6 +80,14 @@ public final class DataPoint {
     @JsonProperty(value = "children")
     private List<DataPoint> children;
 
+    /*
+     * If true, the model will not be used to predict this data point. Instead,
+     * the user will be able to manually enter the value in the validation
+     * tool.
+     */
+    @JsonProperty(value = "manualEntry")
+    private Boolean manualEntry;
+
     /**
      * Get the identifier property: Uniquely identify a data point.
      *
@@ -319,6 +327,28 @@ public final class DataPoint {
      */
     public DataPoint setChildren(List<DataPoint> children) {
         this.children = children;
+        return this;
+    }
+
+    /**
+     * Get the manualEntry property: If true, the model will not be used to predict this data point. Instead, the user
+     * will be able to manually enter the value in the validation tool.
+     *
+     * @return the manualEntry value.
+     */
+    public Boolean isManualEntry() {
+        return this.manualEntry;
+    }
+
+    /**
+     * Set the manualEntry property: If true, the model will not be used to predict this data point. Instead, the user
+     * will be able to manually enter the value in the validation tool.
+     *
+     * @param manualEntry the manualEntry value to set.
+     * @return the DataPoint object itself.
+     */
+    public DataPoint setManualEntry(Boolean manualEntry) {
+        this.manualEntry = manualEntry;
         return this;
     }
 }

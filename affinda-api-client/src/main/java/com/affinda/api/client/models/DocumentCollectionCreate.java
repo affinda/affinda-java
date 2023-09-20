@@ -75,6 +75,13 @@ public final class DocumentCollectionCreate {
     @JsonProperty(value = "allowOpenai")
     private Boolean allowOpenai;
 
+    /*
+     * Whether this collection feeds documents into the extractor's training
+     * queue. This setting can only be toggled for custom extractors.
+     */
+    @JsonProperty(value = "trainsExtractor")
+    private Boolean trainsExtractor;
+
     /**
      * Get the name property: The name property.
      *
@@ -296,6 +303,28 @@ public final class DocumentCollectionCreate {
      */
     public DocumentCollectionCreate setAllowOpenai(Boolean allowOpenai) {
         this.allowOpenai = allowOpenai;
+        return this;
+    }
+
+    /**
+     * Get the trainsExtractor property: Whether this collection feeds documents into the extractor's training queue.
+     * This setting can only be toggled for custom extractors.
+     *
+     * @return the trainsExtractor value.
+     */
+    public Boolean isTrainsExtractor() {
+        return this.trainsExtractor;
+    }
+
+    /**
+     * Set the trainsExtractor property: Whether this collection feeds documents into the extractor's training queue.
+     * This setting can only be toggled for custom extractors.
+     *
+     * @param trainsExtractor the trainsExtractor value to set.
+     * @return the DocumentCollectionCreate object itself.
+     */
+    public DocumentCollectionCreate setTrainsExtractor(Boolean trainsExtractor) {
+        this.trainsExtractor = trainsExtractor;
         return this;
     }
 }

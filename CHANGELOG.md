@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set CustomFieldConfig default to 0.5
 - Set CustomFieldConfig default to 0.5
 
+### Added
+- Allow creating workspace-scope webhook
+
 ## [3.6.1] - 2023-06-28
 ### Added
 - Allow create/update data point's `parent` and `displayEnumValue` property
