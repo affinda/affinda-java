@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Allow creating workspace-scope webhook
+- Add "document.rejected" webhook event
 
 ## [3.6.1] - 2023-06-28
 ### Added

@@ -5885,12 +5885,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * After a subscription is successfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
      * header. &lt;br /&gt; You need to response to this request with a 200 status code to confirm your subscribe
      * intention. &lt;br /&gt; Then, you need to use the `X-Hook-Secret` to activate the subscription using the
      * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. &lt;br /&gt; For more
-     * information, see our help article here - [How do I create a
-     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
+     * information and detailed instructions, [see our webhooks documentation
+     * here.](https://docs.affinda.com/docs/webhooks).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -5907,12 +5907,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * After a subscription is successfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
      * header. &lt;br /&gt; You need to response to this request with a 200 status code to confirm your subscribe
      * intention. &lt;br /&gt; Then, you need to use the `X-Hook-Secret` to activate the subscription using the
      * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. &lt;br /&gt; For more
-     * information, see our help article here - [How do I create a
-     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
+     * information and detailed instructions, [see our webhooks documentation
+     * here.](https://docs.affinda.com/docs/webhooks).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -5935,12 +5935,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * After a subscription is successfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
      * header. &lt;br /&gt; You need to response to this request with a 200 status code to confirm your subscribe
      * intention. &lt;br /&gt; Then, you need to use the `X-Hook-Secret` to activate the subscription using the
      * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. &lt;br /&gt; For more
-     * information, see our help article here - [How do I create a
-     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
+     * information and detailed instructions, [see our webhooks documentation
+     * here.](https://docs.affinda.com/docs/webhooks).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
