@@ -184,7 +184,7 @@ public final class AffindaAPI {
         @ExpectedResponses({200, 200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
-                code = {400, 401, 404})
+                code = {400, 401, 403, 404})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Resume>> getResume(
                 @HostParam("region") Region region,
@@ -801,7 +801,7 @@ public final class AffindaAPI {
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 404.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 403, 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -819,7 +819,7 @@ public final class AffindaAPI {
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 404.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 403, 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body on successful completion of {@link Mono}.
      */
@@ -843,7 +843,7 @@ public final class AffindaAPI {
      * @param identifier Document identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
-     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 404.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401, 403, 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
@@ -3037,12 +3037,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
-     * header. You need to response to this request with a 200 status code to confirm your subscribe intention. Then,
-     * you need to use the `X-Hook-Secret` to activate the subscription using the
-     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. For more information, see
-     * our help article here - [How do I create a
-     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
+     * After a subscription is successfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * header. &lt;br /&gt; You need to response to this request with a 200 status code to confirm your subscribe
+     * intention. &lt;br /&gt; Then, you need to use the `X-Hook-Secret` to activate the subscription using the
+     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. &lt;br /&gt; For more
+     * information and detailed instructions, [see our webhooks documentation
+     * here.](https://docs.affinda.com/docs/webhooks).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3059,12 +3059,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
-     * header. You need to response to this request with a 200 status code to confirm your subscribe intention. Then,
-     * you need to use the `X-Hook-Secret` to activate the subscription using the
-     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. For more information, see
-     * our help article here - [How do I create a
-     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
+     * After a subscription is successfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * header. &lt;br /&gt; You need to response to this request with a 200 status code to confirm your subscribe
+     * intention. &lt;br /&gt; Then, you need to use the `X-Hook-Secret` to activate the subscription using the
+     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. &lt;br /&gt; For more
+     * information and detailed instructions, [see our webhooks documentation
+     * here.](https://docs.affinda.com/docs/webhooks).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3087,12 +3087,12 @@ public final class AffindaAPI {
     }
 
     /**
-     * After a subscription is sucessfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
-     * header. You need to response to this request with a 200 status code to confirm your subscribe intention. Then,
-     * you need to use the `X-Hook-Secret` to activate the subscription using the
-     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. For more information, see
-     * our help article here - [How do I create a
-     * webhook?](https://help.affinda.com/hc/en-au/articles/11474095148569-How-do-I-create-a-webhook).
+     * After a subscription is successfully created, we'll send a POST request to your target URL with a `X-Hook-Secret`
+     * header. &lt;br /&gt; You need to response to this request with a 200 status code to confirm your subscribe
+     * intention. &lt;br /&gt; Then, you need to use the `X-Hook-Secret` to activate the subscription using the
+     * [/resthook_subscriptions/activate](#post-/v3/resthook_subscriptions/activate) endpoint. &lt;br /&gt; For more
+     * information and detailed instructions, [see our webhooks documentation
+     * here.](https://docs.affinda.com/docs/webhooks).
      *
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

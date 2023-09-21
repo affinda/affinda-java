@@ -48,6 +48,9 @@ public final class ResthookEvent extends ExpandableStringEnum<ResthookEvent> {
     /** Static value document.classify.completed for ResthookEvent. */
     public static final ResthookEvent DOCUMENT_CLASSIFY_COMPLETED = fromString("document.classify.completed");
 
+    /** Static value document.rejected for ResthookEvent. */
+    public static final ResthookEvent DOCUMENT_REJECTED = fromString("document.rejected");
+
     /**
      * Creates or finds a ResthookEvent from its string representation.
      *
