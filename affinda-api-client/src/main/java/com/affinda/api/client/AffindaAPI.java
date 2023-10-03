@@ -15,6 +15,8 @@ import com.affinda.api.client.models.DataFieldCreate;
 import com.affinda.api.client.models.DataPoint;
 import com.affinda.api.client.models.DataPointChoice;
 import com.affinda.api.client.models.DataPointChoiceCreate;
+import com.affinda.api.client.models.DataPointChoiceReplaceRequest;
+import com.affinda.api.client.models.DataPointChoiceReplaceResponse;
 import com.affinda.api.client.models.DataPointChoiceUpdate;
 import com.affinda.api.client.models.DataPointCreate;
 import com.affinda.api.client.models.DataPointUpdate;
@@ -701,6 +703,17 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<Void>> deleteDataPointChoice(
                 @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Post("/v3/data_point_choices/replace")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<DataPointChoiceReplaceResponse>> replaceDataPointChoices(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") DataPointChoiceReplaceRequest body,
+                @HeaderParam("Accept") String accept);
 
         @Get("/v3/annotations")
         @ExpectedResponses({200})
@@ -3882,6 +3895,67 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteDataPointChoice(int id) {
         deleteDataPointChoiceAsync(id).block();
+    }
+
+    /**
+     * Replace choices of a data point. Existing choices and incoming choices are matched base on their `value`. New
+     * `value` will be created, existing `value` will be updated, and `value` not in incoming choices will be deleted.
+     *
+     * @param body Request body for replacing choices of a data point. Either `collection` or `organization` is
+     *     required.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<DataPointChoiceReplaceResponse>> replaceDataPointChoicesWithResponseAsync(
+            DataPointChoiceReplaceRequest body) {
+        final String accept = "application/json";
+        return service.replaceDataPointChoices(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Replace choices of a data point. Existing choices and incoming choices are matched base on their `value`. New
+     * `value` will be created, existing `value` will be updated, and `value` not in incoming choices will be deleted.
+     *
+     * @param body Request body for replacing choices of a data point. Either `collection` or `organization` is
+     *     required.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<DataPointChoiceReplaceResponse> replaceDataPointChoicesAsync(DataPointChoiceReplaceRequest body) {
+        return replaceDataPointChoicesWithResponseAsync(body)
+                .flatMap(
+                        (Response<DataPointChoiceReplaceResponse> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Replace choices of a data point. Existing choices and incoming choices are matched base on their `value`. New
+     * `value` will be created, existing `value` will be updated, and `value` not in incoming choices will be deleted.
+     *
+     * @param body Request body for replacing choices of a data point. Either `collection` or `organization` is
+     *     required.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataPointChoiceReplaceResponse replaceDataPointChoices(DataPointChoiceReplaceRequest body) {
+        return replaceDataPointChoicesAsync(body).block();
     }
 
     /**
