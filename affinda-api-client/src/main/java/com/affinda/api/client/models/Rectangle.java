@@ -7,6 +7,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class Rectangle {
     /*
+     * The pageIndex property.
+     */
+    @JsonProperty(value = "pageIndex")
+    private Integer pageIndex;
+
+    /*
      * The x0 property.
      */
     @JsonProperty(value = "x0", required = true)
@@ -29,6 +35,26 @@ public final class Rectangle {
      */
     @JsonProperty(value = "y1", required = true)
     private float y1;
+
+    /**
+     * Get the pageIndex property: The pageIndex property.
+     *
+     * @return the pageIndex value.
+     */
+    public Integer getPageIndex() {
+        return this.pageIndex;
+    }
+
+    /**
+     * Set the pageIndex property: The pageIndex property.
+     *
+     * @param pageIndex the pageIndex value to set.
+     * @return the Rectangle object itself.
+     */
+    public Rectangle setPageIndex(Integer pageIndex) {
+        this.pageIndex = pageIndex;
+        return this;
+    }
 
     /**
      * Get the x0 property: The x0 property.

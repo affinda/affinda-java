@@ -36,6 +36,27 @@ public final class JobTitleParsedClassification {
     @JsonProperty(value = "majorGroup")
     private String majorGroup;
 
+    /*
+     * The 4 digit code representing the SOC2020 classification for this job
+     * title
+     */
+    @JsonProperty(value = "minorGroupCode")
+    private Integer minorGroupCode;
+
+    /*
+     * The 4 digit code representing the SOC2020 classification for this job
+     * title
+     */
+    @JsonProperty(value = "subMajorGroupCode")
+    private Integer subMajorGroupCode;
+
+    /*
+     * The 4 digit code representing the SOC2020 classification for this job
+     * title
+     */
+    @JsonProperty(value = "majorGroupCode")
+    private Integer majorGroupCode;
+
     /**
      * Get the socCode property: The socCode property.
      *
@@ -133,6 +154,66 @@ public final class JobTitleParsedClassification {
      */
     public JobTitleParsedClassification setMajorGroup(String majorGroup) {
         this.majorGroup = majorGroup;
+        return this;
+    }
+
+    /**
+     * Get the minorGroupCode property: The 4 digit code representing the SOC2020 classification for this job title.
+     *
+     * @return the minorGroupCode value.
+     */
+    public Integer getMinorGroupCode() {
+        return this.minorGroupCode;
+    }
+
+    /**
+     * Set the minorGroupCode property: The 4 digit code representing the SOC2020 classification for this job title.
+     *
+     * @param minorGroupCode the minorGroupCode value to set.
+     * @return the JobTitleParsedClassification object itself.
+     */
+    public JobTitleParsedClassification setMinorGroupCode(Integer minorGroupCode) {
+        this.minorGroupCode = minorGroupCode;
+        return this;
+    }
+
+    /**
+     * Get the subMajorGroupCode property: The 4 digit code representing the SOC2020 classification for this job title.
+     *
+     * @return the subMajorGroupCode value.
+     */
+    public Integer getSubMajorGroupCode() {
+        return this.subMajorGroupCode;
+    }
+
+    /**
+     * Set the subMajorGroupCode property: The 4 digit code representing the SOC2020 classification for this job title.
+     *
+     * @param subMajorGroupCode the subMajorGroupCode value to set.
+     * @return the JobTitleParsedClassification object itself.
+     */
+    public JobTitleParsedClassification setSubMajorGroupCode(Integer subMajorGroupCode) {
+        this.subMajorGroupCode = subMajorGroupCode;
+        return this;
+    }
+
+    /**
+     * Get the majorGroupCode property: The 4 digit code representing the SOC2020 classification for this job title.
+     *
+     * @return the majorGroupCode value.
+     */
+    public Integer getMajorGroupCode() {
+        return this.majorGroupCode;
+    }
+
+    /**
+     * Set the majorGroupCode property: The 4 digit code representing the SOC2020 classification for this job title.
+     *
+     * @param majorGroupCode the majorGroupCode value to set.
+     * @return the JobTitleParsedClassification object itself.
+     */
+    public JobTitleParsedClassification setMajorGroupCode(Integer majorGroupCode) {
+        this.majorGroupCode = majorGroupCode;
         return this;
     }
 }
