@@ -167,6 +167,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
+                @QueryParam("custom_identifier") String customIdentifier,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v2/resumes")
@@ -225,6 +226,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
+                @QueryParam("custom_identifier") String customIdentifier,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v2/redacted_resumes")
@@ -270,6 +272,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
+                @QueryParam("custom_identifier") String customIdentifier,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v2/invoices")
@@ -315,6 +318,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
+                @QueryParam("custom_identifier") String customIdentifier,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v2/job_descriptions")
@@ -673,6 +677,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -681,9 +686,9 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Paths14VxierV2ResumesGetResponses200ContentApplicationJsonSchema>>
-            getAllResumesWithResponseAsync(Integer offset, Integer limit) {
+            getAllResumesWithResponseAsync(Integer offset, Integer limit, String customIdentifier) {
         final String accept = "application/json";
-        return service.getAllResumes(this.getRegion(), offset, limit, accept);
+        return service.getAllResumes(this.getRegion(), offset, limit, customIdentifier, accept);
     }
 
     /**
@@ -691,6 +696,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -699,8 +705,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Paths14VxierV2ResumesGetResponses200ContentApplicationJsonSchema> getAllResumesAsync(
-            Integer offset, Integer limit) {
-        return getAllResumesWithResponseAsync(offset, limit)
+            Integer offset, Integer limit, String customIdentifier) {
+        return getAllResumesWithResponseAsync(offset, limit, customIdentifier)
                 .flatMap(
                         (Response<Paths14VxierV2ResumesGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -716,6 +722,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -724,8 +731,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Paths14VxierV2ResumesGetResponses200ContentApplicationJsonSchema getAllResumes(
-            Integer offset, Integer limit) {
-        return getAllResumesAsync(offset, limit).block();
+            Integer offset, Integer limit, String customIdentifier) {
+        return getAllResumesAsync(offset, limit, customIdentifier).block();
     }
 
     /**
@@ -963,6 +970,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -971,9 +979,9 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Paths1D957B5V2RedactedResumesGetResponses200ContentApplicationJsonSchema>>
-            getAllRedactedResumesWithResponseAsync(Integer offset, Integer limit) {
+            getAllRedactedResumesWithResponseAsync(Integer offset, Integer limit, String customIdentifier) {
         final String accept = "application/json";
-        return service.getAllRedactedResumes(this.getRegion(), offset, limit, accept);
+        return service.getAllRedactedResumes(this.getRegion(), offset, limit, customIdentifier, accept);
     }
 
     /**
@@ -981,6 +989,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -989,8 +998,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Paths1D957B5V2RedactedResumesGetResponses200ContentApplicationJsonSchema> getAllRedactedResumesAsync(
-            Integer offset, Integer limit) {
-        return getAllRedactedResumesWithResponseAsync(offset, limit)
+            Integer offset, Integer limit, String customIdentifier) {
+        return getAllRedactedResumesWithResponseAsync(offset, limit, customIdentifier)
                 .flatMap(
                         (Response<Paths1D957B5V2RedactedResumesGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -1006,6 +1015,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1014,8 +1024,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Paths1D957B5V2RedactedResumesGetResponses200ContentApplicationJsonSchema getAllRedactedResumes(
-            Integer offset, Integer limit) {
-        return getAllRedactedResumesAsync(offset, limit).block();
+            Integer offset, Integer limit, String customIdentifier) {
+        return getAllRedactedResumesAsync(offset, limit, customIdentifier).block();
     }
 
     /**
@@ -1179,6 +1189,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1187,9 +1198,9 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsGfm23QV2InvoicesGetResponses200ContentApplicationJsonSchema>>
-            getAllInvoicesWithResponseAsync(Integer offset, Integer limit) {
+            getAllInvoicesWithResponseAsync(Integer offset, Integer limit, String customIdentifier) {
         final String accept = "application/json";
-        return service.getAllInvoices(this.getRegion(), offset, limit, accept);
+        return service.getAllInvoices(this.getRegion(), offset, limit, customIdentifier, accept);
     }
 
     /**
@@ -1197,6 +1208,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1205,8 +1217,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsGfm23QV2InvoicesGetResponses200ContentApplicationJsonSchema> getAllInvoicesAsync(
-            Integer offset, Integer limit) {
-        return getAllInvoicesWithResponseAsync(offset, limit)
+            Integer offset, Integer limit, String customIdentifier) {
+        return getAllInvoicesWithResponseAsync(offset, limit, customIdentifier)
                 .flatMap(
                         (Response<PathsGfm23QV2InvoicesGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -1222,6 +1234,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1230,8 +1243,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsGfm23QV2InvoicesGetResponses200ContentApplicationJsonSchema getAllInvoices(
-            Integer offset, Integer limit) {
-        return getAllInvoicesAsync(offset, limit).block();
+            Integer offset, Integer limit, String customIdentifier) {
+        return getAllInvoicesAsync(offset, limit, customIdentifier).block();
     }
 
     /**
@@ -1404,6 +1417,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1412,9 +1426,9 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsChbpqfV2JobDescriptionsGetResponses200ContentApplicationJsonSchema>>
-            getAllJobDescriptionsWithResponseAsync(Integer offset, Integer limit) {
+            getAllJobDescriptionsWithResponseAsync(Integer offset, Integer limit, String customIdentifier) {
         final String accept = "application/json";
-        return service.getAllJobDescriptions(this.getRegion(), offset, limit, accept);
+        return service.getAllJobDescriptions(this.getRegion(), offset, limit, customIdentifier, accept);
     }
 
     /**
@@ -1422,6 +1436,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1430,8 +1445,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsChbpqfV2JobDescriptionsGetResponses200ContentApplicationJsonSchema> getAllJobDescriptionsAsync(
-            Integer offset, Integer limit) {
-        return getAllJobDescriptionsWithResponseAsync(offset, limit)
+            Integer offset, Integer limit, String customIdentifier) {
+        return getAllJobDescriptionsWithResponseAsync(offset, limit, customIdentifier)
                 .flatMap(
                         (Response<PathsChbpqfV2JobDescriptionsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -1447,6 +1462,7 @@ public final class AffindaAPI {
      *
      * @param offset The number of documents to skip before starting to collect the result set.
      * @param limit The numbers of results to return.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -1455,8 +1471,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsChbpqfV2JobDescriptionsGetResponses200ContentApplicationJsonSchema getAllJobDescriptions(
-            Integer offset, Integer limit) {
-        return getAllJobDescriptionsAsync(offset, limit).block();
+            Integer offset, Integer limit, String customIdentifier) {
+        return getAllJobDescriptionsAsync(offset, limit, customIdentifier).block();
     }
 
     /**

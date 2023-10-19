@@ -23,10 +23,17 @@ public final class InvoiceRequestBody {
     private String url;
 
     /*
-     * A random string that uniquely identify the resource.
+     * Deprecated in favor of `customIdentifier`.
      */
     @JsonProperty(value = "identifier")
     private String identifier;
+
+    /*
+     * Specify a custom identifier for the document if you need one, not
+     * required to be unique.
+     */
+    @JsonProperty(value = "customIdentifier")
+    private String customIdentifier;
 
     /*
      * Optional filename of the file
@@ -118,7 +125,7 @@ public final class InvoiceRequestBody {
     }
 
     /**
-     * Get the identifier property: A random string that uniquely identify the resource.
+     * Get the identifier property: Deprecated in favor of `customIdentifier`.
      *
      * @return the identifier value.
      */
@@ -127,13 +134,35 @@ public final class InvoiceRequestBody {
     }
 
     /**
-     * Set the identifier property: A random string that uniquely identify the resource.
+     * Set the identifier property: Deprecated in favor of `customIdentifier`.
      *
      * @param identifier the identifier value to set.
      * @return the InvoiceRequestBody object itself.
      */
     public InvoiceRequestBody setIdentifier(String identifier) {
         this.identifier = identifier;
+        return this;
+    }
+
+    /**
+     * Get the customIdentifier property: Specify a custom identifier for the document if you need one, not required to
+     * be unique.
+     *
+     * @return the customIdentifier value.
+     */
+    public String getCustomIdentifier() {
+        return this.customIdentifier;
+    }
+
+    /**
+     * Set the customIdentifier property: Specify a custom identifier for the document if you need one, not required to
+     * be unique.
+     *
+     * @param customIdentifier the customIdentifier value to set.
+     * @return the InvoiceRequestBody object itself.
+     */
+    public InvoiceRequestBody setCustomIdentifier(String customIdentifier) {
+        this.customIdentifier = customIdentifier;
         return this;
     }
 

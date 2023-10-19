@@ -9,10 +9,17 @@ import java.util.List;
 @Fluent
 public final class Meta {
     /*
-     * Uniquely identify a document.
+     * Unique identifier for the document
      */
     @JsonProperty(value = "identifier")
     private String identifier;
+
+    /*
+     * Optional identifier for the document that you can set to track the
+     * document in the Affinda system.  Is not required to be unique.
+     */
+    @JsonProperty(value = "customIdentifier")
+    private String customIdentifier;
 
     /*
      * Optional filename of the file
@@ -121,7 +128,7 @@ public final class Meta {
     private RegionBias regionBias;
 
     /**
-     * Get the identifier property: Uniquely identify a document.
+     * Get the identifier property: Unique identifier for the document.
      *
      * @return the identifier value.
      */
@@ -130,13 +137,35 @@ public final class Meta {
     }
 
     /**
-     * Set the identifier property: Uniquely identify a document.
+     * Set the identifier property: Unique identifier for the document.
      *
      * @param identifier the identifier value to set.
      * @return the Meta object itself.
      */
     public Meta setIdentifier(String identifier) {
         this.identifier = identifier;
+        return this;
+    }
+
+    /**
+     * Get the customIdentifier property: Optional identifier for the document that you can set to track the document in
+     * the Affinda system. Is not required to be unique.
+     *
+     * @return the customIdentifier value.
+     */
+    public String getCustomIdentifier() {
+        return this.customIdentifier;
+    }
+
+    /**
+     * Set the customIdentifier property: Optional identifier for the document that you can set to track the document in
+     * the Affinda system. Is not required to be unique.
+     *
+     * @param customIdentifier the customIdentifier value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setCustomIdentifier(String customIdentifier) {
+        this.customIdentifier = customIdentifier;
         return this;
     }
 

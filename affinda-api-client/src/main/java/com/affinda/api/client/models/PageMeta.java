@@ -25,6 +25,12 @@ public final class PageMeta {
     private String image;
 
     /*
+     * The URL to the translated image of the page.
+     */
+    @JsonProperty(value = "imageTranslated")
+    private String imageTranslated;
+
+    /*
      * Height of the page's image in px.
      */
     @JsonProperty(value = "height", required = true)
@@ -100,6 +106,26 @@ public final class PageMeta {
      */
     public PageMeta setImage(String image) {
         this.image = image;
+        return this;
+    }
+
+    /**
+     * Get the imageTranslated property: The URL to the translated image of the page.
+     *
+     * @return the imageTranslated value.
+     */
+    public String getImageTranslated() {
+        return this.imageTranslated;
+    }
+
+    /**
+     * Set the imageTranslated property: The URL to the translated image of the page.
+     *
+     * @param imageTranslated the imageTranslated value to set.
+     * @return the PageMeta object itself.
+     */
+    public PageMeta setImageTranslated(String imageTranslated) {
+        this.imageTranslated = imageTranslated;
         return this;
     }
 
