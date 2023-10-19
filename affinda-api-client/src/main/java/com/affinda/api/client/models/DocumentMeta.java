@@ -9,10 +9,17 @@ import java.util.List;
 @Fluent
 public final class DocumentMeta {
     /*
-     * Uniquely identify a document.
+     * Unique identifier for the document
      */
     @JsonProperty(value = "identifier", required = true)
     private String identifier;
+
+    /*
+     * Optional identifier for the document that you can set to track the
+     * document in the Affinda system.  Is not required to be unique.
+     */
+    @JsonProperty(value = "customIdentifier")
+    private String customIdentifier;
 
     /*
      * Optional filename of the file
@@ -203,7 +210,7 @@ public final class DocumentMeta {
     private RegionBias regionBias;
 
     /**
-     * Get the identifier property: Uniquely identify a document.
+     * Get the identifier property: Unique identifier for the document.
      *
      * @return the identifier value.
      */
@@ -212,13 +219,35 @@ public final class DocumentMeta {
     }
 
     /**
-     * Set the identifier property: Uniquely identify a document.
+     * Set the identifier property: Unique identifier for the document.
      *
      * @param identifier the identifier value to set.
      * @return the DocumentMeta object itself.
      */
     public DocumentMeta setIdentifier(String identifier) {
         this.identifier = identifier;
+        return this;
+    }
+
+    /**
+     * Get the customIdentifier property: Optional identifier for the document that you can set to track the document in
+     * the Affinda system. Is not required to be unique.
+     *
+     * @return the customIdentifier value.
+     */
+    public String getCustomIdentifier() {
+        return this.customIdentifier;
+    }
+
+    /**
+     * Set the customIdentifier property: Optional identifier for the document that you can set to track the document in
+     * the Affinda system. Is not required to be unique.
+     *
+     * @param customIdentifier the customIdentifier value to set.
+     * @return the DocumentMeta object itself.
+     */
+    public DocumentMeta setCustomIdentifier(String customIdentifier) {
+        this.customIdentifier = customIdentifier;
         return this;
     }
 

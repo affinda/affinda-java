@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class DocumentMetaChildDocumentsItem {
     /*
-     * Uniquely identify a document.
+     * Unique identifier for the document
      */
     @JsonProperty(value = "identifier")
     private String identifier;
 
     /**
-     * Get the identifier property: Uniquely identify a document.
+     * Get the identifier property: Unique identifier for the document.
      *
      * @return the identifier value.
      */
@@ -22,7 +22,7 @@ public final class DocumentMetaChildDocumentsItem {
     }
 
     /**
-     * Set the identifier property: Uniquely identify a document.
+     * Set the identifier property: Unique identifier for the document.
      *
      * @param identifier the identifier value to set.
      * @return the DocumentMetaChildDocumentsItem object itself.

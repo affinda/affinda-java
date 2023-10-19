@@ -49,16 +49,23 @@ public final class OrganizationValidationToolConfig {
     private Boolean hideWarnings;
 
     /*
-     * Disables the page editor after a document has been split once.
+     * Disable the page editor after a document has been split once.
      */
     @JsonProperty(value = "restrictDocumentSplitting")
     private Boolean restrictDocumentSplitting;
 
     /*
-     * Disables currency formatting of decimals values.
+     * Disable currency formatting of decimals values.
      */
     @JsonProperty(value = "disableCurrencyFormatting")
     private Boolean disableCurrencyFormatting;
+
+    /*
+     * Disable editing document metadata. Makes the collection selector,
+     * filename input and tags editor read only.
+     */
+    @JsonProperty(value = "disableEditDocumentMetadata")
+    private Boolean disableEditDocumentMetadata;
 
     /**
      * Get the theme property: The theme property.
@@ -201,7 +208,7 @@ public final class OrganizationValidationToolConfig {
     }
 
     /**
-     * Get the restrictDocumentSplitting property: Disables the page editor after a document has been split once.
+     * Get the restrictDocumentSplitting property: Disable the page editor after a document has been split once.
      *
      * @return the restrictDocumentSplitting value.
      */
@@ -210,7 +217,7 @@ public final class OrganizationValidationToolConfig {
     }
 
     /**
-     * Set the restrictDocumentSplitting property: Disables the page editor after a document has been split once.
+     * Set the restrictDocumentSplitting property: Disable the page editor after a document has been split once.
      *
      * @param restrictDocumentSplitting the restrictDocumentSplitting value to set.
      * @return the OrganizationValidationToolConfig object itself.
@@ -221,7 +228,7 @@ public final class OrganizationValidationToolConfig {
     }
 
     /**
-     * Get the disableCurrencyFormatting property: Disables currency formatting of decimals values.
+     * Get the disableCurrencyFormatting property: Disable currency formatting of decimals values.
      *
      * @return the disableCurrencyFormatting value.
      */
@@ -230,13 +237,35 @@ public final class OrganizationValidationToolConfig {
     }
 
     /**
-     * Set the disableCurrencyFormatting property: Disables currency formatting of decimals values.
+     * Set the disableCurrencyFormatting property: Disable currency formatting of decimals values.
      *
      * @param disableCurrencyFormatting the disableCurrencyFormatting value to set.
      * @return the OrganizationValidationToolConfig object itself.
      */
     public OrganizationValidationToolConfig setDisableCurrencyFormatting(Boolean disableCurrencyFormatting) {
         this.disableCurrencyFormatting = disableCurrencyFormatting;
+        return this;
+    }
+
+    /**
+     * Get the disableEditDocumentMetadata property: Disable editing document metadata. Makes the collection selector,
+     * filename input and tags editor read only.
+     *
+     * @return the disableEditDocumentMetadata value.
+     */
+    public Boolean isDisableEditDocumentMetadata() {
+        return this.disableEditDocumentMetadata;
+    }
+
+    /**
+     * Set the disableEditDocumentMetadata property: Disable editing document metadata. Makes the collection selector,
+     * filename input and tags editor read only.
+     *
+     * @param disableEditDocumentMetadata the disableEditDocumentMetadata value to set.
+     * @return the OrganizationValidationToolConfig object itself.
+     */
+    public OrganizationValidationToolConfig setDisableEditDocumentMetadata(Boolean disableEditDocumentMetadata) {
+        this.disableEditDocumentMetadata = disableEditDocumentMetadata;
         return this;
     }
 }

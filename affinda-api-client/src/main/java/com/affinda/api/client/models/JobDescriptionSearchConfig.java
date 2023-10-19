@@ -172,6 +172,12 @@ public final class JobDescriptionSearchConfig {
     private Boolean hideToolbar;
 
     /*
+     * Hide the entire side panel.
+     */
+    @JsonProperty(value = "hideSidePanel")
+    private Boolean hideSidePanel;
+
+    /*
      * The customFieldsConfig property.
      */
     @JsonProperty(value = "customFieldsConfig")
@@ -694,6 +700,26 @@ public final class JobDescriptionSearchConfig {
      */
     public JobDescriptionSearchConfig setHideToolbar(Boolean hideToolbar) {
         this.hideToolbar = hideToolbar;
+        return this;
+    }
+
+    /**
+     * Get the hideSidePanel property: Hide the entire side panel.
+     *
+     * @return the hideSidePanel value.
+     */
+    public Boolean isHideSidePanel() {
+        return this.hideSidePanel;
+    }
+
+    /**
+     * Set the hideSidePanel property: Hide the entire side panel.
+     *
+     * @param hideSidePanel the hideSidePanel value to set.
+     * @return the JobDescriptionSearchConfig object itself.
+     */
+    public JobDescriptionSearchConfig setHideSidePanel(Boolean hideSidePanel) {
+        this.hideSidePanel = hideSidePanel;
         return this;
     }
 

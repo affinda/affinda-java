@@ -49,10 +49,17 @@ public final class DocumentCreate {
     private Boolean wait;
 
     /*
-     * Specify a custom identifier for the document.
+     * Deprecated in favor of `customIdentifier`.
      */
     @JsonProperty(value = "identifier")
     private String identifier;
+
+    /*
+     * Specify a custom identifier for the document if you need one, not
+     * required to be unique.
+     */
+    @JsonProperty(value = "customIdentifier")
+    private String customIdentifier;
 
     /*
      * Optional filename of the file
@@ -218,7 +225,7 @@ public final class DocumentCreate {
     }
 
     /**
-     * Get the identifier property: Specify a custom identifier for the document.
+     * Get the identifier property: Deprecated in favor of `customIdentifier`.
      *
      * @return the identifier value.
      */
@@ -227,13 +234,35 @@ public final class DocumentCreate {
     }
 
     /**
-     * Set the identifier property: Specify a custom identifier for the document.
+     * Set the identifier property: Deprecated in favor of `customIdentifier`.
      *
      * @param identifier the identifier value to set.
      * @return the DocumentCreate object itself.
      */
     public DocumentCreate setIdentifier(String identifier) {
         this.identifier = identifier;
+        return this;
+    }
+
+    /**
+     * Get the customIdentifier property: Specify a custom identifier for the document if you need one, not required to
+     * be unique.
+     *
+     * @return the customIdentifier value.
+     */
+    public String getCustomIdentifier() {
+        return this.customIdentifier;
+    }
+
+    /**
+     * Set the customIdentifier property: Specify a custom identifier for the document if you need one, not required to
+     * be unique.
+     *
+     * @param customIdentifier the customIdentifier value to set.
+     * @return the DocumentCreate object itself.
+     */
+    public DocumentCreate setCustomIdentifier(String customIdentifier) {
+        this.customIdentifier = customIdentifier;
         return this;
     }
 

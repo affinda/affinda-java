@@ -15,7 +15,7 @@ public final class AnnotationCreate {
     private List<Rectangle> rectangles;
 
     /*
-     * Uniquely identify a document.
+     * Unique identifier for the document
      */
     @JsonProperty(value = "document", required = true)
     private String document;
@@ -79,7 +79,7 @@ public final class AnnotationCreate {
     }
 
     /**
-     * Get the document property: Uniquely identify a document.
+     * Get the document property: Unique identifier for the document.
      *
      * @return the document value.
      */
@@ -88,7 +88,7 @@ public final class AnnotationCreate {
     }
 
     /**
-     * Set the document property: Uniquely identify a document.
+     * Set the document property: Unique identifier for the document.
      *
      * @param document the document value to set.
      * @return the AnnotationCreate object itself.

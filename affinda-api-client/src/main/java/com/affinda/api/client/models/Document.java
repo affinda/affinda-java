@@ -17,7 +17,8 @@ import java.util.List;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "resume", value = Resume.class),
     @JsonSubTypes.Type(name = "invoice", value = Invoice.class),
-    @JsonSubTypes.Type(name = "job-description", value = JobDescription.class)
+    @JsonSubTypes.Type(name = "job-description", value = JobDescription.class),
+    @JsonSubTypes.Type(name = "resume-redact", value = ResumeRedact.class)
 })
 @Fluent
 public class Document {

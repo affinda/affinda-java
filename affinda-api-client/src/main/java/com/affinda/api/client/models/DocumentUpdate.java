@@ -52,10 +52,17 @@ public final class DocumentUpdate {
     private String language;
 
     /*
-     * Specify a custom identifier for the document.
+     * Deprecated in favor of `customIdentifier`.
      */
     @JsonProperty(value = "identifier")
     private String identifier;
+
+    /*
+     * Specify a custom identifier for the document if you need one, not
+     * required to be unique.
+     */
+    @JsonProperty(value = "customIdentifier")
+    private String customIdentifier;
 
     /**
      * Get the collection property: Uniquely identify a collection.
@@ -200,7 +207,7 @@ public final class DocumentUpdate {
     }
 
     /**
-     * Get the identifier property: Specify a custom identifier for the document.
+     * Get the identifier property: Deprecated in favor of `customIdentifier`.
      *
      * @return the identifier value.
      */
@@ -209,13 +216,35 @@ public final class DocumentUpdate {
     }
 
     /**
-     * Set the identifier property: Specify a custom identifier for the document.
+     * Set the identifier property: Deprecated in favor of `customIdentifier`.
      *
      * @param identifier the identifier value to set.
      * @return the DocumentUpdate object itself.
      */
     public DocumentUpdate setIdentifier(String identifier) {
         this.identifier = identifier;
+        return this;
+    }
+
+    /**
+     * Get the customIdentifier property: Specify a custom identifier for the document if you need one, not required to
+     * be unique.
+     *
+     * @return the customIdentifier value.
+     */
+    public String getCustomIdentifier() {
+        return this.customIdentifier;
+    }
+
+    /**
+     * Set the customIdentifier property: Specify a custom identifier for the document if you need one, not required to
+     * be unique.
+     *
+     * @param customIdentifier the customIdentifier value to set.
+     * @return the DocumentUpdate object itself.
+     */
+    public DocumentUpdate setCustomIdentifier(String customIdentifier) {
+        this.customIdentifier = customIdentifier;
         return this;
     }
 }

@@ -431,6 +431,7 @@ public final class AffindaAPI {
                 @QueryParam("ready") Boolean ready,
                 @QueryParam("validatable") Boolean validatable,
                 @QueryParam("has_challenges") Boolean hasChallenges,
+                @QueryParam("custom_identifier") String customIdentifier,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/documents")
@@ -2366,6 +2367,7 @@ public final class AffindaAPI {
      * @param ready Filter by ready status.
      * @param validatable Filter for validatable documents.
      * @param hasChallenges Filter for documents with challenges.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2390,7 +2392,8 @@ public final class AffindaAPI {
                     Boolean failed,
                     Boolean ready,
                     Boolean validatable,
-                    Boolean hasChallenges) {
+                    Boolean hasChallenges,
+                    String customIdentifier) {
         final String accept = "application/json";
         String tagsConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
@@ -2416,6 +2419,7 @@ public final class AffindaAPI {
                 ready,
                 validatable,
                 hasChallenges,
+                customIdentifier,
                 accept);
     }
 
@@ -2441,6 +2445,7 @@ public final class AffindaAPI {
      * @param ready Filter by ready status.
      * @param validatable Filter for validatable documents.
      * @param hasChallenges Filter for documents with challenges.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2464,7 +2469,8 @@ public final class AffindaAPI {
             Boolean failed,
             Boolean ready,
             Boolean validatable,
-            Boolean hasChallenges) {
+            Boolean hasChallenges,
+            String customIdentifier) {
         return getAllDocumentsWithResponseAsync(
                         offset,
                         limit,
@@ -2481,7 +2487,8 @@ public final class AffindaAPI {
                         failed,
                         ready,
                         validatable,
-                        hasChallenges)
+                        hasChallenges,
+                        customIdentifier)
                 .flatMap(
                         (Response<PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -2514,6 +2521,7 @@ public final class AffindaAPI {
      * @param ready Filter by ready status.
      * @param validatable Filter for validatable documents.
      * @param hasChallenges Filter for documents with challenges.
+     * @param customIdentifier Filter for documents with this custom identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2537,7 +2545,8 @@ public final class AffindaAPI {
             Boolean failed,
             Boolean ready,
             Boolean validatable,
-            Boolean hasChallenges) {
+            Boolean hasChallenges,
+            String customIdentifier) {
         return getAllDocumentsAsync(
                         offset,
                         limit,
@@ -2554,7 +2563,8 @@ public final class AffindaAPI {
                         failed,
                         ready,
                         validatable,
-                        hasChallenges)
+                        hasChallenges,
+                        customIdentifier)
                 .block();
     }
 
