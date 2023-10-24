@@ -3,13 +3,13 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The field to be created. */
+/** The CollectionField model. */
 @Fluent
-public final class DataFieldCreateField {
+public final class CollectionField {
     /*
      * The label property.
      */
-    @JsonProperty(value = "label", required = true)
+    @JsonProperty(value = "label")
     private String label;
 
     /*
@@ -50,9 +50,9 @@ public final class DataFieldCreateField {
      * Set the label property: The label property.
      *
      * @param label the label value to set.
-     * @return the DataFieldCreateField object itself.
+     * @return the CollectionField object itself.
      */
-    public DataFieldCreateField setLabel(String label) {
+    public CollectionField setLabel(String label) {
         this.label = label;
         return this;
     }
@@ -70,9 +70,9 @@ public final class DataFieldCreateField {
      * Set the mandatory property: The mandatory property.
      *
      * @param mandatory the mandatory value to set.
-     * @return the DataFieldCreateField object itself.
+     * @return the CollectionField object itself.
      */
-    public DataFieldCreateField setMandatory(Boolean mandatory) {
+    public CollectionField setMandatory(Boolean mandatory) {
         this.mandatory = mandatory;
         return this;
     }
@@ -90,9 +90,9 @@ public final class DataFieldCreateField {
      * Set the showDropdown property: The showDropdown property.
      *
      * @param showDropdown the showDropdown value to set.
-     * @return the DataFieldCreateField object itself.
+     * @return the CollectionField object itself.
      */
-    public DataFieldCreateField setShowDropdown(Boolean showDropdown) {
+    public CollectionField setShowDropdown(Boolean showDropdown) {
         this.showDropdown = showDropdown;
         return this;
     }
@@ -112,9 +112,9 @@ public final class DataFieldCreateField {
      * dropdown in the validation tool.
      *
      * @param displayEnumValue the displayEnumValue value to set.
-     * @return the DataFieldCreateField object itself.
+     * @return the CollectionField object itself.
      */
-    public DataFieldCreateField setDisplayEnumValue(Boolean displayEnumValue) {
+    public CollectionField setDisplayEnumValue(Boolean displayEnumValue) {
         this.displayEnumValue = displayEnumValue;
         return this;
     }
@@ -132,9 +132,9 @@ public final class DataFieldCreateField {
      * Set the autoValidationThreshold property: The autoValidationThreshold property.
      *
      * @param autoValidationThreshold the autoValidationThreshold value to set.
-     * @return the DataFieldCreateField object itself.
+     * @return the CollectionField object itself.
      */
-    public DataFieldCreateField setAutoValidationThreshold(Float autoValidationThreshold) {
+    public CollectionField setAutoValidationThreshold(Float autoValidationThreshold) {
         this.autoValidationThreshold = autoValidationThreshold;
         return this;
     }

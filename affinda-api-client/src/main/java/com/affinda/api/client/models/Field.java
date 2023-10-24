@@ -38,6 +38,13 @@ public final class Field {
     private Boolean showDropdown;
 
     /*
+     * If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
+     */
+    @JsonProperty(value = "displayEnumValue")
+    private Boolean displayEnumValue;
+
+    /*
      * The enabledChildFields property.
      */
     @JsonProperty(value = "enabledChildFields")
@@ -158,6 +165,28 @@ public final class Field {
      */
     public Field setShowDropdown(Boolean showDropdown) {
         this.showDropdown = showDropdown;
+        return this;
+    }
+
+    /**
+     * Get the displayEnumValue property: If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
+     *
+     * @return the displayEnumValue value.
+     */
+    public Boolean isDisplayEnumValue() {
+        return this.displayEnumValue;
+    }
+
+    /**
+     * Set the displayEnumValue property: If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
+     *
+     * @param displayEnumValue the displayEnumValue value to set.
+     * @return the Field object itself.
+     */
+    public Field setDisplayEnumValue(Boolean displayEnumValue) {
+        this.displayEnumValue = displayEnumValue;
         return this;
     }
 

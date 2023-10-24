@@ -62,13 +62,6 @@ public final class DataPoint {
     private Boolean noRect;
 
     /*
-     * If true, both the value and the label for the enums will appear in the
-     * dropdown in the validation tool.
-     */
-    @JsonProperty(value = "displayEnumValue")
-    private Boolean displayEnumValue;
-
-    /*
      * The identifier of the parent data point if applicable.
      */
     @JsonProperty(value = "parent")
@@ -265,28 +258,6 @@ public final class DataPoint {
      */
     public DataPoint setNoRect(Boolean noRect) {
         this.noRect = noRect;
-        return this;
-    }
-
-    /**
-     * Get the displayEnumValue property: If true, both the value and the label for the enums will appear in the
-     * dropdown in the validation tool.
-     *
-     * @return the displayEnumValue value.
-     */
-    public Boolean isDisplayEnumValue() {
-        return this.displayEnumValue;
-    }
-
-    /**
-     * Set the displayEnumValue property: If true, both the value and the label for the enums will appear in the
-     * dropdown in the validation tool.
-     *
-     * @param displayEnumValue the displayEnumValue value to set.
-     * @return the DataPoint object itself.
-     */
-    public DataPoint setDisplayEnumValue(Boolean displayEnumValue) {
-        this.displayEnumValue = displayEnumValue;
         return this;
     }
 

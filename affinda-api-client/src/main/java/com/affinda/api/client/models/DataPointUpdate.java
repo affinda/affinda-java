@@ -25,13 +25,6 @@ public final class DataPointUpdate {
     private String description;
 
     /*
-     * If true, both the value and the label for the enums will appear in the
-     * dropdown in the validation tool.
-     */
-    @JsonProperty(value = "displayEnumValue")
-    private Boolean displayEnumValue;
-
-    /*
      * The identifier of the parent data point if applicable.
      */
     @JsonProperty(value = "parent")
@@ -94,28 +87,6 @@ public final class DataPointUpdate {
      */
     public DataPointUpdate setDescription(String description) {
         this.description = description;
-        return this;
-    }
-
-    /**
-     * Get the displayEnumValue property: If true, both the value and the label for the enums will appear in the
-     * dropdown in the validation tool.
-     *
-     * @return the displayEnumValue value.
-     */
-    public Boolean isDisplayEnumValue() {
-        return this.displayEnumValue;
-    }
-
-    /**
-     * Set the displayEnumValue property: If true, both the value and the label for the enums will appear in the
-     * dropdown in the validation tool.
-     *
-     * @param displayEnumValue the displayEnumValue value to set.
-     * @return the DataPointUpdate object itself.
-     */
-    public DataPointUpdate setDisplayEnumValue(Boolean displayEnumValue) {
-        this.displayEnumValue = displayEnumValue;
         return this;
     }
 

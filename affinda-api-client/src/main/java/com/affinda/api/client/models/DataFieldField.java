@@ -26,6 +26,13 @@ public final class DataFieldField {
     private boolean showDropdown;
 
     /*
+     * If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
+     */
+    @JsonProperty(value = "displayEnumValue", required = true)
+    private boolean displayEnumValue;
+
+    /*
      * The autoValidationThreshold property.
      */
     @JsonProperty(value = "autoValidationThreshold", required = true)
@@ -100,6 +107,28 @@ public final class DataFieldField {
      */
     public DataFieldField setShowDropdown(boolean showDropdown) {
         this.showDropdown = showDropdown;
+        return this;
+    }
+
+    /**
+     * Get the displayEnumValue property: If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
+     *
+     * @return the displayEnumValue value.
+     */
+    public boolean isDisplayEnumValue() {
+        return this.displayEnumValue;
+    }
+
+    /**
+     * Set the displayEnumValue property: If true, both the value and the label for the enums will appear in the
+     * dropdown in the validation tool.
+     *
+     * @param displayEnumValue the displayEnumValue value to set.
+     * @return the DataFieldField object itself.
+     */
+    public DataFieldField setDisplayEnumValue(boolean displayEnumValue) {
+        this.displayEnumValue = displayEnumValue;
         return this;
     }
 

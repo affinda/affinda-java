@@ -10,6 +10,7 @@ import com.affinda.api.client.models.ApiUserWithKey;
 import com.affinda.api.client.models.ApiUserWithoutKey;
 import com.affinda.api.client.models.BatchAddTagRequest;
 import com.affinda.api.client.models.BatchRemoveTagRequest;
+import com.affinda.api.client.models.CollectionField;
 import com.affinda.api.client.models.DataField;
 import com.affinda.api.client.models.DataFieldCreate;
 import com.affinda.api.client.models.DataPoint;
@@ -392,6 +393,31 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @BodyParam("application/json") DataFieldCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/collections/{identifier}/fields/{datapoint_identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<CollectionField>> getDataFieldForCollection(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @PathParam("datapoint_identifier") String datapointIdentifier,
+                @HeaderParam("Accept") String accept);
+
+        @Patch("/v3/collections/{identifier}/fields/{datapoint_identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<CollectionField>> updateDataFieldForCollection(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @PathParam("datapoint_identifier") String datapointIdentifier,
+                @BodyParam("application/json") CollectionField body,
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/collections/{identifier}/usage")
@@ -2282,6 +2308,128 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataField createDataFieldForCollection(String identifier, DataFieldCreate body) {
         return createDataFieldForCollectionAsync(identifier, body).block();
+    }
+
+    /**
+     * Get a data field for a collection assosciated with a data point.
+     *
+     * @param identifier Collection's identifier.
+     * @param datapointIdentifier Datapoint's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a data field for a collection assosciated with a data point along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<CollectionField>> getDataFieldForCollectionWithResponseAsync(
+            String identifier, String datapointIdentifier) {
+        final String accept = "application/json";
+        return service.getDataFieldForCollection(this.getRegion(), identifier, datapointIdentifier, accept);
+    }
+
+    /**
+     * Get a data field for a collection assosciated with a data point.
+     *
+     * @param identifier Collection's identifier.
+     * @param datapointIdentifier Datapoint's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a data field for a collection assosciated with a data point on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<CollectionField> getDataFieldForCollectionAsync(String identifier, String datapointIdentifier) {
+        return getDataFieldForCollectionWithResponseAsync(identifier, datapointIdentifier)
+                .flatMap(
+                        (Response<CollectionField> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Get a data field for a collection assosciated with a data point.
+     *
+     * @param identifier Collection's identifier.
+     * @param datapointIdentifier Datapoint's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a data field for a collection assosciated with a data point.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CollectionField getDataFieldForCollection(String identifier, String datapointIdentifier) {
+        return getDataFieldForCollectionAsync(identifier, datapointIdentifier).block();
+    }
+
+    /**
+     * Update data field for a collection assosciated with a data point.
+     *
+     * @param identifier Collection's identifier.
+     * @param datapointIdentifier Datapoint's identifier.
+     * @param body Data field properties to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<CollectionField>> updateDataFieldForCollectionWithResponseAsync(
+            String identifier, String datapointIdentifier, CollectionField body) {
+        final String accept = "application/json";
+        return service.updateDataFieldForCollection(this.getRegion(), identifier, datapointIdentifier, body, accept);
+    }
+
+    /**
+     * Update data field for a collection assosciated with a data point.
+     *
+     * @param identifier Collection's identifier.
+     * @param datapointIdentifier Datapoint's identifier.
+     * @param body Data field properties to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<CollectionField> updateDataFieldForCollectionAsync(
+            String identifier, String datapointIdentifier, CollectionField body) {
+        return updateDataFieldForCollectionWithResponseAsync(identifier, datapointIdentifier, body)
+                .flatMap(
+                        (Response<CollectionField> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update data field for a collection assosciated with a data point.
+     *
+     * @param identifier Collection's identifier.
+     * @param datapointIdentifier Datapoint's identifier.
+     * @param body Data field properties to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CollectionField updateDataFieldForCollection(
+            String identifier, String datapointIdentifier, CollectionField body) {
+        return updateDataFieldForCollectionAsync(identifier, datapointIdentifier, body).block();
     }
 
     /**

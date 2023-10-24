@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.affinda.api</groupId>
     <artifactId>affinda-api-client</artifactId>
-    <version>3.9.0</version>
+    <version>3.10.0</version>
     <packaging>jar</packaging>
     <name>Java Client Library for Affinda Resume Parser API</name>
     <description>This package contains Java Client Library for the Affinda Resume Parser API. For documentation on how

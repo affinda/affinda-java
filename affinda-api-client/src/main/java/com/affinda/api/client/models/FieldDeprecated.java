@@ -50,6 +50,12 @@ public final class FieldDeprecated {
     private Boolean showDropdown;
 
     /*
+     * The displayEnumValue property.
+     */
+    @JsonProperty(value = "displayEnumValue")
+    private Boolean displayEnumValue;
+
+    /*
      * The fields property.
      */
     @JsonProperty(value = "fields")
@@ -192,6 +198,26 @@ public final class FieldDeprecated {
      */
     public FieldDeprecated setShowDropdown(Boolean showDropdown) {
         this.showDropdown = showDropdown;
+        return this;
+    }
+
+    /**
+     * Get the displayEnumValue property: The displayEnumValue property.
+     *
+     * @return the displayEnumValue value.
+     */
+    public Boolean isDisplayEnumValue() {
+        return this.displayEnumValue;
+    }
+
+    /**
+     * Set the displayEnumValue property: The displayEnumValue property.
+     *
+     * @param displayEnumValue the displayEnumValue value to set.
+     * @return the FieldDeprecated object itself.
+     */
+    public FieldDeprecated setDisplayEnumValue(Boolean displayEnumValue) {
+        this.displayEnumValue = displayEnumValue;
         return this;
     }
 
