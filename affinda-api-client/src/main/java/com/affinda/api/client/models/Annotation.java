@@ -34,7 +34,7 @@ public class Annotation {
     /*
      * Unique identifier for the document
      */
-    @JsonProperty(value = "document")
+    @JsonProperty(value = "document", required = true)
     private String document;
 
     /*
@@ -98,6 +98,12 @@ public class Annotation {
      */
     @JsonProperty(value = "contentType", required = true)
     private AnnotationContentType contentType;
+
+    /*
+     * The parent annotation's ID
+     */
+    @JsonProperty(value = "parent")
+    private Integer parent;
 
     /*
      * Dictionary of <any>
@@ -387,6 +393,26 @@ public class Annotation {
      */
     public Annotation setContentType(AnnotationContentType contentType) {
         this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * Get the parent property: The parent annotation's ID.
+     *
+     * @return the parent value.
+     */
+    public Integer getParent() {
+        return this.parent;
+    }
+
+    /**
+     * Set the parent property: The parent annotation's ID.
+     *
+     * @param parent the parent value to set.
+     * @return the Annotation object itself.
+     */
+    public Annotation setParent(Integer parent) {
+        this.parent = parent;
         return this;
     }
 

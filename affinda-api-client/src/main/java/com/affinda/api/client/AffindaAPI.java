@@ -31,11 +31,10 @@ import com.affinda.api.client.models.DocumentEditRequest;
 import com.affinda.api.client.models.DocumentFormat;
 import com.affinda.api.client.models.DocumentState;
 import com.affinda.api.client.models.DocumentUpdate;
-import com.affinda.api.client.models.Enum20;
+import com.affinda.api.client.models.Enum19;
 import com.affinda.api.client.models.Extractor;
 import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
-import com.affinda.api.client.models.Get8ItemsItem;
 import com.affinda.api.client.models.IndexRequestBody;
 import com.affinda.api.client.models.Invitation;
 import com.affinda.api.client.models.InvitationCreate;
@@ -1274,7 +1273,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
-                @QueryParam("document_type") Enum20 documentType,
+                @QueryParam("document_type") Enum19 documentType,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/index")
@@ -2505,7 +2504,8 @@ public final class AffindaAPI {
      * @param createdDt Filter by created datetime.
      * @param search Partial, case-insensitive match with file name or tag name.
      * @param ordering Sort the result set. A "-" at the beginning denotes DESC sort, e.g. -created_dt. Sort by multiple
-     *     fields is supported.
+     *     fields is supported. Supported values include: 'file_name', 'extractor', 'created_dt', 'validated_dt',
+     *     'archived_dt' and 'parsed__&lt;dataPointSlug&gt;'.
      * @param includeData By default, this endpoint returns only the meta data of the documents. Set this to `true` will
      *     return a summary of the data that was parsed. If you want to retrieve the full set of data for a document,
      *     use the `GET /documents/{identifier}` endpoint.
@@ -2533,7 +2533,7 @@ public final class AffindaAPI {
                     List<Integer> tags,
                     DateRange createdDt,
                     String search,
-                    List<Get8ItemsItem> ordering,
+                    List<String> ordering,
                     Boolean includeData,
                     List<String> exclude,
                     Boolean inReview,
@@ -2583,7 +2583,8 @@ public final class AffindaAPI {
      * @param createdDt Filter by created datetime.
      * @param search Partial, case-insensitive match with file name or tag name.
      * @param ordering Sort the result set. A "-" at the beginning denotes DESC sort, e.g. -created_dt. Sort by multiple
-     *     fields is supported.
+     *     fields is supported. Supported values include: 'file_name', 'extractor', 'created_dt', 'validated_dt',
+     *     'archived_dt' and 'parsed__&lt;dataPointSlug&gt;'.
      * @param includeData By default, this endpoint returns only the meta data of the documents. Set this to `true` will
      *     return a summary of the data that was parsed. If you want to retrieve the full set of data for a document,
      *     use the `GET /documents/{identifier}` endpoint.
@@ -2610,7 +2611,7 @@ public final class AffindaAPI {
             List<Integer> tags,
             DateRange createdDt,
             String search,
-            List<Get8ItemsItem> ordering,
+            List<String> ordering,
             Boolean includeData,
             List<String> exclude,
             Boolean inReview,
@@ -2659,7 +2660,8 @@ public final class AffindaAPI {
      * @param createdDt Filter by created datetime.
      * @param search Partial, case-insensitive match with file name or tag name.
      * @param ordering Sort the result set. A "-" at the beginning denotes DESC sort, e.g. -created_dt. Sort by multiple
-     *     fields is supported.
+     *     fields is supported. Supported values include: 'file_name', 'extractor', 'created_dt', 'validated_dt',
+     *     'archived_dt' and 'parsed__&lt;dataPointSlug&gt;'.
      * @param includeData By default, this endpoint returns only the meta data of the documents. Set this to `true` will
      *     return a summary of the data that was parsed. If you want to retrieve the full set of data for a document,
      *     use the `GET /documents/{identifier}` endpoint.
@@ -2686,7 +2688,7 @@ public final class AffindaAPI {
             List<Integer> tags,
             DateRange createdDt,
             String search,
-            List<Get8ItemsItem> ordering,
+            List<String> ordering,
             Boolean includeData,
             List<String> exclude,
             Boolean inReview,
@@ -6766,7 +6768,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexesWithResponseAsync(
-            Integer offset, Integer limit, Enum20 documentType) {
+            Integer offset, Integer limit, Enum19 documentType) {
         final String accept = "application/json";
         return service.getAllIndexes(this.getRegion(), offset, limit, documentType, accept);
     }
@@ -6785,7 +6787,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> getAllIndexesAsync(
-            Integer offset, Integer limit, Enum20 documentType) {
+            Integer offset, Integer limit, Enum19 documentType) {
         return getAllIndexesWithResponseAsync(offset, limit, documentType)
                 .flatMap(
                         (Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> res) -> {
@@ -6811,7 +6813,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema getAllIndexes(
-            Integer offset, Integer limit, Enum20 documentType) {
+            Integer offset, Integer limit, Enum19 documentType) {
         return getAllIndexesAsync(offset, limit, documentType).block();
     }
 
