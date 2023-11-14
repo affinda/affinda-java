@@ -5,21 +5,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** IndexRequestBody. */
 @Fluent
-public final class IndexRequestBody {
+public final class IndexCreate {
     /*
-     * The name property.
+     * Unique index name
      */
-    @JsonProperty(value = "name")
+    @JsonProperty(value = "name", required = true)
     private String name;
 
     /*
      * The documentType property.
      */
     @JsonProperty(value = "documentType")
-    private PostContentSchemaDocumentType documentType;
+    private DocumentType documentType;
 
     /**
-     * Get the name property: The name property.
+     * Get the name property: Unique index name.
      *
      * @return the name value.
      */
@@ -28,12 +28,12 @@ public final class IndexRequestBody {
     }
 
     /**
-     * Set the name property: The name property.
+     * Set the name property: Unique index name.
      *
      * @param name the name value to set.
-     * @return the IndexRequestBody object itself.
+     * @return the IndexCreate object itself.
      */
-    public IndexRequestBody setName(String name) {
+    public IndexCreate setName(String name) {
         this.name = name;
         return this;
     }
@@ -43,7 +43,7 @@ public final class IndexRequestBody {
      *
      * @return the documentType value.
      */
-    public PostContentSchemaDocumentType getDocumentType() {
+    public DocumentType getDocumentType() {
         return this.documentType;
     }
 
@@ -51,9 +51,9 @@ public final class IndexRequestBody {
      * Set the documentType property: The documentType property.
      *
      * @param documentType the documentType value to set.
-     * @return the IndexRequestBody object itself.
+     * @return the IndexCreate object itself.
      */
-    public IndexRequestBody setDocumentType(PostContentSchemaDocumentType documentType) {
+    public IndexCreate setDocumentType(DocumentType documentType) {
         this.documentType = documentType;
         return this;
     }

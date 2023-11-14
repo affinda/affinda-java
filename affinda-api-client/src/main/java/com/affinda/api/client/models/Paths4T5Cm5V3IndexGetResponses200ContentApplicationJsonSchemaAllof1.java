@@ -4,9 +4,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema model. */
+/** The Paths4T5Cm5V3IndexGetResponses200ContentApplicationJsonSchemaAllof1 model. */
 @Fluent
-public final class PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema extends PaginatedResponse {
+public class Paths4T5Cm5V3IndexGetResponses200ContentApplicationJsonSchemaAllof1 {
     /*
      * The results property.
      */
@@ -26,9 +26,9 @@ public final class PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema
      * Set the results property: The results property.
      *
      * @param results the results value to set.
-     * @return the PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema object itself.
+     * @return the Paths4T5Cm5V3IndexGetResponses200ContentApplicationJsonSchemaAllof1 object itself.
      */
-    public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema setResults(List<Index> results) {
+    public Paths4T5Cm5V3IndexGetResponses200ContentApplicationJsonSchemaAllof1 setResults(List<Index> results) {
         this.results = results;
         return this;
     }

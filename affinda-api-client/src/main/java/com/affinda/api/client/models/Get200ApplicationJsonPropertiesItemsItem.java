@@ -7,55 +7,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class Get200ApplicationJsonPropertiesItemsItem {
     /*
-     * The name property.
+     * The document property.
      */
-    @JsonProperty(value = "name", required = true)
-    private String name;
-
-    /*
-     * The documentType property.
-     */
-    @JsonProperty(value = "documentType")
-    private GetResponses200ContentApplicationJsonSchemaResultsItemDocumentType documentType;
+    @JsonProperty(value = "document")
+    private String document;
 
     /**
-     * Get the name property: The name property.
+     * Get the document property: The document property.
      *
-     * @return the name value.
+     * @return the document value.
      */
-    public String getName() {
-        return this.name;
+    public String getDocument() {
+        return this.document;
     }
 
     /**
-     * Set the name property: The name property.
+     * Set the document property: The document property.
      *
-     * @param name the name value to set.
+     * @param document the document value to set.
      * @return the Get200ApplicationJsonPropertiesItemsItem object itself.
      */
-    public Get200ApplicationJsonPropertiesItemsItem setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Get the documentType property: The documentType property.
-     *
-     * @return the documentType value.
-     */
-    public GetResponses200ContentApplicationJsonSchemaResultsItemDocumentType getDocumentType() {
-        return this.documentType;
-    }
-
-    /**
-     * Set the documentType property: The documentType property.
-     *
-     * @param documentType the documentType value to set.
-     * @return the Get200ApplicationJsonPropertiesItemsItem object itself.
-     */
-    public Get200ApplicationJsonPropertiesItemsItem setDocumentType(
-            GetResponses200ContentApplicationJsonSchemaResultsItemDocumentType documentType) {
-        this.documentType = documentType;
+    public Get200ApplicationJsonPropertiesItemsItem setDocument(String document) {
+        this.document = document;
         return this;
     }
 }

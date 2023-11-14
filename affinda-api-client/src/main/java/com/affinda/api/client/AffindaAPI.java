@@ -35,7 +35,9 @@ import com.affinda.api.client.models.Enum19;
 import com.affinda.api.client.models.Extractor;
 import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
-import com.affinda.api.client.models.IndexRequestBody;
+import com.affinda.api.client.models.Index;
+import com.affinda.api.client.models.IndexCreate;
+import com.affinda.api.client.models.IndexUpdate;
 import com.affinda.api.client.models.Invitation;
 import com.affinda.api.client.models.InvitationCreate;
 import com.affinda.api.client.models.InvitationResponse;
@@ -56,7 +58,6 @@ import com.affinda.api.client.models.OrganizationRole;
 import com.affinda.api.client.models.Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema;
-import com.affinda.api.client.models.Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths26Civ0V3ApiUsersGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema;
@@ -457,6 +458,7 @@ public final class AffindaAPI {
                 @QueryParam("validatable") Boolean validatable,
                 @QueryParam("has_challenges") Boolean hasChallenges,
                 @QueryParam("custom_identifier") String customIdentifier,
+                @QueryParam("compact") Boolean compact,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/documents")
@@ -480,6 +482,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @QueryParam("format") DocumentFormat format,
+                @QueryParam("compact") Boolean compact,
                 @HeaderParam("Accept") String accept);
 
         @Patch("/v3/documents/{identifier}")
@@ -1282,9 +1285,21 @@ public final class AffindaAPI {
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema>> createIndex(
+        Mono<Response<Index>> createIndex(
                 @HostParam("region") Region region,
-                @BodyParam("application/json") IndexRequestBody body,
+                @BodyParam("application/json") IndexCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Patch("/v3/index/{name}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Index>> updateIndex(
+                @HostParam("region") Region region,
+                @PathParam("name") String name,
+                @BodyParam("application/json") IndexUpdate body,
                 @HeaderParam("Accept") String accept);
 
         @Delete("/v3/index/{name}")
@@ -2516,6 +2531,8 @@ public final class AffindaAPI {
      * @param validatable Filter for validatable documents.
      * @param hasChallenges Filter for documents with challenges.
      * @param customIdentifier Filter for documents with this custom identifier.
+     * @param compact If "true", the response is compacted to annotations' parsed data. Annotations' meta data are
+     *     excluded. Default is "false".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2541,7 +2558,8 @@ public final class AffindaAPI {
                     Boolean ready,
                     Boolean validatable,
                     Boolean hasChallenges,
-                    String customIdentifier) {
+                    String customIdentifier,
+                    Boolean compact) {
         final String accept = "application/json";
         String tagsConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
@@ -2568,6 +2586,7 @@ public final class AffindaAPI {
                 validatable,
                 hasChallenges,
                 customIdentifier,
+                compact,
                 accept);
     }
 
@@ -2595,6 +2614,8 @@ public final class AffindaAPI {
      * @param validatable Filter for validatable documents.
      * @param hasChallenges Filter for documents with challenges.
      * @param customIdentifier Filter for documents with this custom identifier.
+     * @param compact If "true", the response is compacted to annotations' parsed data. Annotations' meta data are
+     *     excluded. Default is "false".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2619,7 +2640,8 @@ public final class AffindaAPI {
             Boolean ready,
             Boolean validatable,
             Boolean hasChallenges,
-            String customIdentifier) {
+            String customIdentifier,
+            Boolean compact) {
         return getAllDocumentsWithResponseAsync(
                         offset,
                         limit,
@@ -2637,7 +2659,8 @@ public final class AffindaAPI {
                         ready,
                         validatable,
                         hasChallenges,
-                        customIdentifier)
+                        customIdentifier,
+                        compact)
                 .flatMap(
                         (Response<PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -2672,6 +2695,8 @@ public final class AffindaAPI {
      * @param validatable Filter for validatable documents.
      * @param hasChallenges Filter for documents with challenges.
      * @param customIdentifier Filter for documents with this custom identifier.
+     * @param compact If "true", the response is compacted to annotations' parsed data. Annotations' meta data are
+     *     excluded. Default is "false".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2696,7 +2721,8 @@ public final class AffindaAPI {
             Boolean ready,
             Boolean validatable,
             Boolean hasChallenges,
-            String customIdentifier) {
+            String customIdentifier,
+            Boolean compact) {
         return getAllDocumentsAsync(
                         offset,
                         limit,
@@ -2714,7 +2740,8 @@ public final class AffindaAPI {
                         ready,
                         validatable,
                         hasChallenges,
-                        customIdentifier)
+                        customIdentifier,
+                        compact)
                 .block();
     }
 
@@ -2783,6 +2810,8 @@ public final class AffindaAPI {
      *
      * @param identifier Document's identifier.
      * @param format Specify which format you want the response to be. Default is "json".
+     * @param compact If "true", the response is compacted to annotations' parsed data. Annotations' meta data are
+     *     excluded. Default is "false".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2790,9 +2819,10 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Document>> getDocumentWithResponseAsync(String identifier, DocumentFormat format) {
+    public Mono<Response<Document>> getDocumentWithResponseAsync(
+            String identifier, DocumentFormat format, Boolean compact) {
         final String accept = "application/json, application/xml";
-        return service.getDocument(this.getRegion(), identifier, format, accept);
+        return service.getDocument(this.getRegion(), identifier, format, compact, accept);
     }
 
     /**
@@ -2800,6 +2830,8 @@ public final class AffindaAPI {
      *
      * @param identifier Document's identifier.
      * @param format Specify which format you want the response to be. Default is "json".
+     * @param compact If "true", the response is compacted to annotations' parsed data. Annotations' meta data are
+     *     excluded. Default is "false".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2807,8 +2839,8 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Document> getDocumentAsync(String identifier, DocumentFormat format) {
-        return getDocumentWithResponseAsync(identifier, format)
+    public Mono<Document> getDocumentAsync(String identifier, DocumentFormat format, Boolean compact) {
+        return getDocumentWithResponseAsync(identifier, format, compact)
                 .flatMap(
                         (Response<Document> res) -> {
                             if (res.getValue() != null) {
@@ -2824,6 +2856,8 @@ public final class AffindaAPI {
      *
      * @param identifier Document's identifier.
      * @param format Specify which format you want the response to be. Default is "json".
+     * @param compact If "true", the response is compacted to annotations' parsed data. Annotations' meta data are
+     *     excluded. Default is "false".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2831,8 +2865,8 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Document getDocument(String identifier, DocumentFormat format) {
-        return getDocumentAsync(identifier, format).block();
+    public Document getDocument(String identifier, DocumentFormat format, Boolean compact) {
+        return getDocumentAsync(identifier, format, compact).block();
     }
 
     /**
@@ -6828,8 +6862,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema>> createIndexWithResponseAsync(
-            IndexRequestBody body) {
+    public Mono<Response<Index>> createIndexWithResponseAsync(IndexCreate body) {
         final String accept = "application/json";
         return service.createIndex(this.getRegion(), body, accept);
     }
@@ -6845,11 +6878,10 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema> createIndexAsync(
-            IndexRequestBody body) {
+    public Mono<Index> createIndexAsync(IndexCreate body) {
         return createIndexWithResponseAsync(body)
                 .flatMap(
-                        (Response<Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema> res) -> {
+                        (Response<Index> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -6869,8 +6901,65 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Paths1TvfqeiV3IndexPostResponses201ContentApplicationJsonSchema createIndex(IndexRequestBody body) {
+    public Index createIndex(IndexCreate body) {
         return createIndexAsync(body).block();
+    }
+
+    /**
+     * Updates the specified index.
+     *
+     * @param name Index name.
+     * @param body Index data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Index>> updateIndexWithResponseAsync(String name, IndexUpdate body) {
+        final String accept = "application/json";
+        return service.updateIndex(this.getRegion(), name, body, accept);
+    }
+
+    /**
+     * Updates the specified index.
+     *
+     * @param name Index name.
+     * @param body Index data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Index> updateIndexAsync(String name, IndexUpdate body) {
+        return updateIndexWithResponseAsync(name, body)
+                .flatMap(
+                        (Response<Index> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Updates the specified index.
+     *
+     * @param name Index name.
+     * @param body Index data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Index updateIndex(String name, IndexUpdate body) {
+        return updateIndexAsync(name, body).block();
     }
 
     /**

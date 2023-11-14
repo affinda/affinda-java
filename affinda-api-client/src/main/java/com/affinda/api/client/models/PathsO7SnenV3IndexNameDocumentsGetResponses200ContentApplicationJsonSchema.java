@@ -29,8 +29,7 @@ public final class PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicat
      * The results property.
      */
     @JsonProperty(value = "results")
-    private List<Paths1Kdm1ZxV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems>
-            results;
+    private List<Get200ApplicationJsonPropertiesItemsItem> results;
 
     /**
      * Get the count property: Number of indexed documents in result.
@@ -97,8 +96,7 @@ public final class PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicat
      *
      * @return the results value.
      */
-    public List<Paths1Kdm1ZxV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems>
-            getResults() {
+    public List<Get200ApplicationJsonPropertiesItemsItem> getResults() {
         return this.results;
     }
 
@@ -109,8 +107,7 @@ public final class PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicat
      * @return the PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema object itself.
      */
     public PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema setResults(
-            List<Paths1Kdm1ZxV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchemaPropertiesResultsItems>
-                    results) {
+            List<Get200ApplicationJsonPropertiesItemsItem> results) {
         this.results = results;
         return this;
     }
