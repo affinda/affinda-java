@@ -20,13 +20,14 @@ public final class DocumentCollectionCreate {
     private String workspace;
 
     /*
-     * Uniquely identify an extractor.
+     * Uniquely identify an extractor. Required if you are not a super user.
      */
     @JsonProperty(value = "extractor")
     private String extractor;
 
     /*
-     * Not applicable, please leave empty.
+     * Not applicable, please leave empty. This feature is reserved for super
+     * user.
      */
     @JsonProperty(value = "baseExtractor")
     private String baseExtractor;
@@ -123,7 +124,7 @@ public final class DocumentCollectionCreate {
     }
 
     /**
-     * Get the extractor property: Uniquely identify an extractor.
+     * Get the extractor property: Uniquely identify an extractor. Required if you are not a super user.
      *
      * @return the extractor value.
      */
@@ -132,7 +133,7 @@ public final class DocumentCollectionCreate {
     }
 
     /**
-     * Set the extractor property: Uniquely identify an extractor.
+     * Set the extractor property: Uniquely identify an extractor. Required if you are not a super user.
      *
      * @param extractor the extractor value to set.
      * @return the DocumentCollectionCreate object itself.
@@ -143,7 +144,7 @@ public final class DocumentCollectionCreate {
     }
 
     /**
-     * Get the baseExtractor property: Not applicable, please leave empty.
+     * Get the baseExtractor property: Not applicable, please leave empty. This feature is reserved for super user.
      *
      * @return the baseExtractor value.
      */
@@ -152,7 +153,7 @@ public final class DocumentCollectionCreate {
     }
 
     /**
-     * Set the baseExtractor property: Not applicable, please leave empty.
+     * Set the baseExtractor property: Not applicable, please leave empty. This feature is reserved for super user.
      *
      * @param baseExtractor the baseExtractor value to set.
      * @return the DocumentCollectionCreate object itself.

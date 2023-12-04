@@ -72,6 +72,12 @@ public final class DataFieldDataPoint {
     @JsonProperty(value = "manualEntry")
     private Boolean manualEntry;
 
+    /*
+     * The availableDataSources property.
+     */
+    @JsonProperty(value = "availableDataSources")
+    private List<MappingDataSource> availableDataSources;
+
     /**
      * Get the identifier property: Uniquely identify a data point.
      *
@@ -271,6 +277,26 @@ public final class DataFieldDataPoint {
      */
     public DataFieldDataPoint setManualEntry(Boolean manualEntry) {
         this.manualEntry = manualEntry;
+        return this;
+    }
+
+    /**
+     * Get the availableDataSources property: The availableDataSources property.
+     *
+     * @return the availableDataSources value.
+     */
+    public List<MappingDataSource> getAvailableDataSources() {
+        return this.availableDataSources;
+    }
+
+    /**
+     * Set the availableDataSources property: The availableDataSources property.
+     *
+     * @param availableDataSources the availableDataSources value to set.
+     * @return the DataFieldDataPoint object itself.
+     */
+    public DataFieldDataPoint setAvailableDataSources(List<MappingDataSource> availableDataSources) {
+        this.availableDataSources = availableDataSources;
         return this;
     }
 }

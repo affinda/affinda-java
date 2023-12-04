@@ -74,6 +74,12 @@ public final class DataPoint {
     private List<DataPoint> children;
 
     /*
+     * The availableDataSources property.
+     */
+    @JsonProperty(value = "availableDataSources")
+    private List<MappingDataSource> availableDataSources;
+
+    /*
      * If true, the model will not be used to predict this data point. Instead,
      * the user will be able to manually enter the value in the validation
      * tool.
@@ -298,6 +304,26 @@ public final class DataPoint {
      */
     public DataPoint setChildren(List<DataPoint> children) {
         this.children = children;
+        return this;
+    }
+
+    /**
+     * Get the availableDataSources property: The availableDataSources property.
+     *
+     * @return the availableDataSources value.
+     */
+    public List<MappingDataSource> getAvailableDataSources() {
+        return this.availableDataSources;
+    }
+
+    /**
+     * Set the availableDataSources property: The availableDataSources property.
+     *
+     * @param availableDataSources the availableDataSources value to set.
+     * @return the DataPoint object itself.
+     */
+    public DataPoint setAvailableDataSources(List<MappingDataSource> availableDataSources) {
+        this.availableDataSources = availableDataSources;
         return this;
     }
 

@@ -20,6 +20,24 @@ public final class Field {
     private String dataPoint;
 
     /*
+     * The different data types of annotations
+     */
+    @JsonProperty(value = "fieldType", required = true)
+    private AnnotationContentType fieldType;
+
+    /*
+     * Data source mapping identifier
+     */
+    @JsonProperty(value = "dataSource")
+    private String dataSource;
+
+    /*
+     * Defines how the data point is mapped to the data source
+     */
+    @JsonProperty(value = "mapping")
+    private String mapping;
+
+    /*
      * The mandatory property.
      */
     @JsonProperty(value = "mandatory")
@@ -43,6 +61,13 @@ public final class Field {
      */
     @JsonProperty(value = "displayEnumValue")
     private Boolean displayEnumValue;
+
+    /*
+     * If True, any dropdown annotations that fail to be mapped will be
+     * discarded
+     */
+    @JsonProperty(value = "dropNullEnums")
+    private Boolean dropNullEnums;
 
     /*
      * The enabledChildFields property.
@@ -105,6 +130,66 @@ public final class Field {
      */
     public Field setDataPoint(String dataPoint) {
         this.dataPoint = dataPoint;
+        return this;
+    }
+
+    /**
+     * Get the fieldType property: The different data types of annotations.
+     *
+     * @return the fieldType value.
+     */
+    public AnnotationContentType getFieldType() {
+        return this.fieldType;
+    }
+
+    /**
+     * Set the fieldType property: The different data types of annotations.
+     *
+     * @param fieldType the fieldType value to set.
+     * @return the Field object itself.
+     */
+    public Field setFieldType(AnnotationContentType fieldType) {
+        this.fieldType = fieldType;
+        return this;
+    }
+
+    /**
+     * Get the dataSource property: Data source mapping identifier.
+     *
+     * @return the dataSource value.
+     */
+    public String getDataSource() {
+        return this.dataSource;
+    }
+
+    /**
+     * Set the dataSource property: Data source mapping identifier.
+     *
+     * @param dataSource the dataSource value to set.
+     * @return the Field object itself.
+     */
+    public Field setDataSource(String dataSource) {
+        this.dataSource = dataSource;
+        return this;
+    }
+
+    /**
+     * Get the mapping property: Defines how the data point is mapped to the data source.
+     *
+     * @return the mapping value.
+     */
+    public String getMapping() {
+        return this.mapping;
+    }
+
+    /**
+     * Set the mapping property: Defines how the data point is mapped to the data source.
+     *
+     * @param mapping the mapping value to set.
+     * @return the Field object itself.
+     */
+    public Field setMapping(String mapping) {
+        this.mapping = mapping;
         return this;
     }
 
@@ -187,6 +272,26 @@ public final class Field {
      */
     public Field setDisplayEnumValue(Boolean displayEnumValue) {
         this.displayEnumValue = displayEnumValue;
+        return this;
+    }
+
+    /**
+     * Get the dropNullEnums property: If True, any dropdown annotations that fail to be mapped will be discarded.
+     *
+     * @return the dropNullEnums value.
+     */
+    public Boolean isDropNullEnums() {
+        return this.dropNullEnums;
+    }
+
+    /**
+     * Set the dropNullEnums property: If True, any dropdown annotations that fail to be mapped will be discarded.
+     *
+     * @param dropNullEnums the dropNullEnums value to set.
+     * @return the Field object itself.
+     */
+    public Field setDropNullEnums(Boolean dropNullEnums) {
+        this.dropNullEnums = dropNullEnums;
         return this;
     }
 

@@ -48,6 +48,12 @@ public final class Organization {
     @JsonProperty(value = "validationToolConfig")
     private OrganizationValidationToolConfig validationToolConfig;
 
+    /*
+     * Whether to show the custom field creation in the UI.
+     */
+    @JsonProperty(value = "showCustomFieldCreation")
+    private Boolean showCustomFieldCreation;
+
     /**
      * Get the identifier property: Uniquely identify an organization.
      *
@@ -185,6 +191,26 @@ public final class Organization {
      */
     public Organization setValidationToolConfig(OrganizationValidationToolConfig validationToolConfig) {
         this.validationToolConfig = validationToolConfig;
+        return this;
+    }
+
+    /**
+     * Get the showCustomFieldCreation property: Whether to show the custom field creation in the UI.
+     *
+     * @return the showCustomFieldCreation value.
+     */
+    public Boolean isShowCustomFieldCreation() {
+        return this.showCustomFieldCreation;
+    }
+
+    /**
+     * Set the showCustomFieldCreation property: Whether to show the custom field creation in the UI.
+     *
+     * @param showCustomFieldCreation the showCustomFieldCreation value to set.
+     * @return the Organization object itself.
+     */
+    public Organization setShowCustomFieldCreation(Boolean showCustomFieldCreation) {
+        this.showCustomFieldCreation = showCustomFieldCreation;
         return this;
     }
 }

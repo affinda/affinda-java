@@ -14,6 +14,12 @@ public final class DataFieldField {
     private String label;
 
     /*
+     * The different data types of annotations
+     */
+    @JsonProperty(value = "fieldType")
+    private AnnotationContentType fieldType;
+
+    /*
      * The mandatory property.
      */
     @JsonProperty(value = "mandatory", required = true)
@@ -50,6 +56,12 @@ public final class DataFieldField {
     @JsonProperty(value = "disabledChildFields", required = true)
     private List<Field> disabledChildFields;
 
+    /*
+     * Data source mapping identifier
+     */
+    @JsonProperty(value = "dataSource")
+    private String dataSource;
+
     /**
      * Get the label property: The label property.
      *
@@ -67,6 +79,26 @@ public final class DataFieldField {
      */
     public DataFieldField setLabel(String label) {
         this.label = label;
+        return this;
+    }
+
+    /**
+     * Get the fieldType property: The different data types of annotations.
+     *
+     * @return the fieldType value.
+     */
+    public AnnotationContentType getFieldType() {
+        return this.fieldType;
+    }
+
+    /**
+     * Set the fieldType property: The different data types of annotations.
+     *
+     * @param fieldType the fieldType value to set.
+     * @return the DataFieldField object itself.
+     */
+    public DataFieldField setFieldType(AnnotationContentType fieldType) {
+        this.fieldType = fieldType;
         return this;
     }
 
@@ -189,6 +221,26 @@ public final class DataFieldField {
      */
     public DataFieldField setDisabledChildFields(List<Field> disabledChildFields) {
         this.disabledChildFields = disabledChildFields;
+        return this;
+    }
+
+    /**
+     * Get the dataSource property: Data source mapping identifier.
+     *
+     * @return the dataSource value.
+     */
+    public String getDataSource() {
+        return this.dataSource;
+    }
+
+    /**
+     * Set the dataSource property: Data source mapping identifier.
+     *
+     * @param dataSource the dataSource value to set.
+     * @return the DataFieldField object itself.
+     */
+    public DataFieldField setDataSource(String dataSource) {
+        this.dataSource = dataSource;
         return this;
     }
 }

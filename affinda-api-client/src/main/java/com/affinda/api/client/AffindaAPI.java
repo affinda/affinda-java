@@ -48,6 +48,8 @@ import com.affinda.api.client.models.JobDescriptionSearchConfig;
 import com.affinda.api.client.models.JobDescriptionSearchDetail;
 import com.affinda.api.client.models.JobDescriptionSearchEmbed;
 import com.affinda.api.client.models.JobDescriptionSearchParameters;
+import com.affinda.api.client.models.MappingDataSource;
+import com.affinda.api.client.models.MappingDataSourceCreate;
 import com.affinda.api.client.models.Meta;
 import com.affinda.api.client.models.OccupationGroup;
 import com.affinda.api.client.models.Organization;
@@ -58,6 +60,7 @@ import com.affinda.api.client.models.OrganizationRole;
 import com.affinda.api.client.models.Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.Paths1Qr7BnyV3MappingDataSourcesIdentifierValuesGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths26Civ0V3ApiUsersGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema;
@@ -101,6 +104,7 @@ import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
+import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
@@ -827,6 +831,102 @@ public final class AffindaAPI {
         Mono<Response<Void>> batchDeleteAnnotations(
                 @HostParam("region") Region region,
                 @BodyParam("application/json") List<Integer> body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/mapping_data_sources")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<MappingDataSource>> createMappingDataSource(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") MappingDataSourceCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/mapping_data_sources/{identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<MappingDataSource>> getMappingDataSource(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v3/mapping_data_sources/{identifier}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteMappingDataSource(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/mapping_data_sources/{identifier}/values")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Paths1Qr7BnyV3MappingDataSourcesIdentifierValuesGetResponses200ContentApplicationJsonSchema>>
+                listMappingDataSourceValues(
+                        @HostParam("region") Region region,
+                        @QueryParam("limit") Integer limit,
+                        @QueryParam("offset") Integer offset,
+                        @QueryParam("search") String search,
+                        @PathParam("identifier") String identifier,
+                        @HeaderParam("Accept") String accept);
+
+        @Put("/v3/mapping_data_sources/{identifier}/values")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<List<Object>>> replaceMappingDataSourceValues(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") List<Object> body,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/mapping_data_sources/{identifier}/values")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> addMappingDataSourceValue(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") Object body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/mapping_data_sources/{identifier}/values/{value}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Object>> getMappingDataSourceValue(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @PathParam("value") String value,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v3/mapping_data_sources/{identifier}/values/{value}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteMappingDataSourceValue(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @PathParam("value") String value,
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/tags")
@@ -4569,6 +4669,456 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void batchDeleteAnnotations(List<Integer> body) {
         batchDeleteAnnotationsAsync(body).block();
+    }
+
+    /**
+     * Create a custom mapping data source.
+     *
+     * @param body A mapping data source is used to map from raw data found by our AI models to records in your
+     *     database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping data source is used to map from raw data found by our AI models to records in your database
+     *     along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<MappingDataSource>> createMappingDataSourceWithResponseAsync(MappingDataSourceCreate body) {
+        final String accept = "application/json";
+        return service.createMappingDataSource(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Create a custom mapping data source.
+     *
+     * @param body A mapping data source is used to map from raw data found by our AI models to records in your
+     *     database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping data source is used to map from raw data found by our AI models to records in your database on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<MappingDataSource> createMappingDataSourceAsync(MappingDataSourceCreate body) {
+        return createMappingDataSourceWithResponseAsync(body)
+                .flatMap(
+                        (Response<MappingDataSource> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create a custom mapping data source.
+     *
+     * @param body A mapping data source is used to map from raw data found by our AI models to records in your
+     *     database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping data source is used to map from raw data found by our AI models to records in your database.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MappingDataSource createMappingDataSource(MappingDataSourceCreate body) {
+        return createMappingDataSourceAsync(body).block();
+    }
+
+    /**
+     * Return a specific mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping data source is used to map from raw data found by our AI models to records in your database
+     *     along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<MappingDataSource>> getMappingDataSourceWithResponseAsync(String identifier) {
+        final String accept = "application/json";
+        return service.getMappingDataSource(this.getRegion(), identifier, accept);
+    }
+
+    /**
+     * Return a specific mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping data source is used to map from raw data found by our AI models to records in your database on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<MappingDataSource> getMappingDataSourceAsync(String identifier) {
+        return getMappingDataSourceWithResponseAsync(identifier)
+                .flatMap(
+                        (Response<MappingDataSource> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return a specific mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping data source is used to map from raw data found by our AI models to records in your database.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MappingDataSource getMappingDataSource(String identifier) {
+        return getMappingDataSourceAsync(identifier).block();
+    }
+
+    /**
+     * Delete the specified mapping data source from the database.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteMappingDataSourceWithResponseAsync(String identifier) {
+        final String accept = "application/json";
+        return service.deleteMappingDataSource(this.getRegion(), identifier, accept);
+    }
+
+    /**
+     * Delete the specified mapping data source from the database.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> deleteMappingDataSourceAsync(String identifier) {
+        return deleteMappingDataSourceWithResponseAsync(identifier).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Delete the specified mapping data source from the database.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteMappingDataSource(String identifier) {
+        deleteMappingDataSourceAsync(identifier).block();
+    }
+
+    /**
+     * Returns the list of all values in a mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param limit The numbers of results to return.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param search Search for specific values.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Paths1Qr7BnyV3MappingDataSourcesIdentifierValuesGetResponses200ContentApplicationJsonSchema>>
+            listMappingDataSourceValuesWithResponseAsync(
+                    String identifier, Integer limit, Integer offset, String search) {
+        final String accept = "application/json";
+        return service.listMappingDataSourceValues(this.getRegion(), limit, offset, search, identifier, accept);
+    }
+
+    /**
+     * Returns the list of all values in a mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param limit The numbers of results to return.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param search Search for specific values.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Paths1Qr7BnyV3MappingDataSourcesIdentifierValuesGetResponses200ContentApplicationJsonSchema>
+            listMappingDataSourceValuesAsync(String identifier, Integer limit, Integer offset, String search) {
+        return listMappingDataSourceValuesWithResponseAsync(identifier, limit, offset, search)
+                .flatMap(
+                        (Response<
+                                                Paths1Qr7BnyV3MappingDataSourcesIdentifierValuesGetResponses200ContentApplicationJsonSchema>
+                                        res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns the list of all values in a mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param limit The numbers of results to return.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param search Search for specific values.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Paths1Qr7BnyV3MappingDataSourcesIdentifierValuesGetResponses200ContentApplicationJsonSchema
+            listMappingDataSourceValues(String identifier, Integer limit, Integer offset, String search) {
+        return listMappingDataSourceValuesAsync(identifier, limit, offset, search).block();
+    }
+
+    /**
+     * Replaces the list of all values in a mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param body Array of AnyObject.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of AnyObject along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<Object>>> replaceMappingDataSourceValuesWithResponseAsync(
+            String identifier, List<Object> body) {
+        final String accept = "application/json";
+        return service.replaceMappingDataSourceValues(this.getRegion(), identifier, body, accept);
+    }
+
+    /**
+     * Replaces the list of all values in a mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param body Array of AnyObject.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of AnyObject on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<Object>> replaceMappingDataSourceValuesAsync(String identifier, List<Object> body) {
+        return replaceMappingDataSourceValuesWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<List<Object>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Replaces the list of all values in a mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param body Array of AnyObject.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of AnyObject.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<Object> replaceMappingDataSourceValues(String identifier, List<Object> body) {
+        return replaceMappingDataSourceValuesAsync(identifier, body).block();
+    }
+
+    /**
+     * Adds a value to a mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param body Any object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> addMappingDataSourceValueWithResponseAsync(String identifier, Object body) {
+        final String accept = "application/json";
+        return service.addMappingDataSourceValue(this.getRegion(), identifier, body, accept);
+    }
+
+    /**
+     * Adds a value to a mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param body Any object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> addMappingDataSourceValueAsync(String identifier, Object body) {
+        return addMappingDataSourceValueWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Adds a value to a mapping data source.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param body Any object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object addMappingDataSourceValue(String identifier, Object body) {
+        return addMappingDataSourceValueAsync(identifier, body).block();
+    }
+
+    /**
+     * Return a specific mapping dta source value.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param value Mapping Data Source Value's value.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Object>> getMappingDataSourceValueWithResponseAsync(String identifier, String value) {
+        final String accept = "application/json";
+        return service.getMappingDataSourceValue(this.getRegion(), identifier, value, accept);
+    }
+
+    /**
+     * Return a specific mapping dta source value.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param value Mapping Data Source Value's value.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Object> getMappingDataSourceValueAsync(String identifier, String value) {
+        return getMappingDataSourceValueWithResponseAsync(identifier, value)
+                .flatMap(
+                        (Response<Object> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return a specific mapping dta source value.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param value Mapping Data Source Value's value.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Object getMappingDataSourceValue(String identifier, String value) {
+        return getMappingDataSourceValueAsync(identifier, value).block();
+    }
+
+    /**
+     * Delete the specified mapping data source value from the database.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param value Mapping Data Source Value's value.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteMappingDataSourceValueWithResponseAsync(String identifier, String value) {
+        final String accept = "application/json";
+        return service.deleteMappingDataSourceValue(this.getRegion(), identifier, value, accept);
+    }
+
+    /**
+     * Delete the specified mapping data source value from the database.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param value Mapping Data Source Value's value.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> deleteMappingDataSourceValueAsync(String identifier, String value) {
+        return deleteMappingDataSourceValueWithResponseAsync(identifier, value)
+                .flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Delete the specified mapping data source value from the database.
+     *
+     * @param identifier Mapping data source's identifier.
+     * @param value Mapping Data Source Value's value.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteMappingDataSourceValue(String identifier, String value) {
+        deleteMappingDataSourceValueAsync(identifier, value).block();
     }
 
     /**

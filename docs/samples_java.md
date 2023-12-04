@@ -21,6 +21,9 @@ Document API - Data Point
 Document API - Annotation
 -------------------------
 
+Document API - Mapping Data Sources
+-----------------------------------
+
 Organization API - Organization
 -------------------------------
 

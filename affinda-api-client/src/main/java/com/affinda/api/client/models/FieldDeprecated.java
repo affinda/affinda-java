@@ -20,6 +20,24 @@ public final class FieldDeprecated {
     private String slug;
 
     /*
+     * The different data types of annotations
+     */
+    @JsonProperty(value = "fieldType", required = true)
+    private AnnotationContentType fieldType;
+
+    /*
+     * Data source mapping identifier
+     */
+    @JsonProperty(value = "dataSource")
+    private String dataSource;
+
+    /*
+     * Defines how the data point is mapped to the data source
+     */
+    @JsonProperty(value = "mapping")
+    private String mapping;
+
+    /*
      * The dataPoint property.
      */
     @JsonProperty(value = "dataPoint", required = true)
@@ -48,6 +66,13 @@ public final class FieldDeprecated {
      */
     @JsonProperty(value = "showDropdown")
     private Boolean showDropdown;
+
+    /*
+     * If True, any dropdown annotations that fail to be mapped will be
+     * discarded
+     */
+    @JsonProperty(value = "dropNullEnums")
+    private Boolean dropNullEnums;
 
     /*
      * The displayEnumValue property.
@@ -98,6 +123,66 @@ public final class FieldDeprecated {
      */
     public FieldDeprecated setSlug(String slug) {
         this.slug = slug;
+        return this;
+    }
+
+    /**
+     * Get the fieldType property: The different data types of annotations.
+     *
+     * @return the fieldType value.
+     */
+    public AnnotationContentType getFieldType() {
+        return this.fieldType;
+    }
+
+    /**
+     * Set the fieldType property: The different data types of annotations.
+     *
+     * @param fieldType the fieldType value to set.
+     * @return the FieldDeprecated object itself.
+     */
+    public FieldDeprecated setFieldType(AnnotationContentType fieldType) {
+        this.fieldType = fieldType;
+        return this;
+    }
+
+    /**
+     * Get the dataSource property: Data source mapping identifier.
+     *
+     * @return the dataSource value.
+     */
+    public String getDataSource() {
+        return this.dataSource;
+    }
+
+    /**
+     * Set the dataSource property: Data source mapping identifier.
+     *
+     * @param dataSource the dataSource value to set.
+     * @return the FieldDeprecated object itself.
+     */
+    public FieldDeprecated setDataSource(String dataSource) {
+        this.dataSource = dataSource;
+        return this;
+    }
+
+    /**
+     * Get the mapping property: Defines how the data point is mapped to the data source.
+     *
+     * @return the mapping value.
+     */
+    public String getMapping() {
+        return this.mapping;
+    }
+
+    /**
+     * Set the mapping property: Defines how the data point is mapped to the data source.
+     *
+     * @param mapping the mapping value to set.
+     * @return the FieldDeprecated object itself.
+     */
+    public FieldDeprecated setMapping(String mapping) {
+        this.mapping = mapping;
         return this;
     }
 
@@ -198,6 +283,26 @@ public final class FieldDeprecated {
      */
     public FieldDeprecated setShowDropdown(Boolean showDropdown) {
         this.showDropdown = showDropdown;
+        return this;
+    }
+
+    /**
+     * Get the dropNullEnums property: If True, any dropdown annotations that fail to be mapped will be discarded.
+     *
+     * @return the dropNullEnums value.
+     */
+    public Boolean isDropNullEnums() {
+        return this.dropNullEnums;
+    }
+
+    /**
+     * Set the dropNullEnums property: If True, any dropdown annotations that fail to be mapped will be discarded.
+     *
+     * @param dropNullEnums the dropNullEnums value to set.
+     * @return the FieldDeprecated object itself.
+     */
+    public FieldDeprecated setDropNullEnums(Boolean dropNullEnums) {
+        this.dropNullEnums = dropNullEnums;
         return this;
     }
 

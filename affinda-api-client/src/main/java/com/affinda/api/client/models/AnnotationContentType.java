@@ -24,6 +24,9 @@ public final class AnnotationContentType extends ExpandableStringEnum<Annotation
     /** Static value datetime for AnnotationContentType. */
     public static final AnnotationContentType DATETIME = fromString("datetime");
 
+    /** Static value daterange for AnnotationContentType. */
+    public static final AnnotationContentType DATERANGE = fromString("daterange");
+
     /** Static value boolean for AnnotationContentType. */
     public static final AnnotationContentType BOOLEAN = fromString("boolean");
 
@@ -32,6 +35,9 @@ public final class AnnotationContentType extends ExpandableStringEnum<Annotation
 
     /** Static value location for AnnotationContentType. */
     public static final AnnotationContentType LOCATION = fromString("location");
+
+    /** Static value phonenumber for AnnotationContentType. */
+    public static final AnnotationContentType PHONENUMBER = fromString("phonenumber");
 
     /** Static value json for AnnotationContentType. */
     public static final AnnotationContentType JSON = fromString("json");
