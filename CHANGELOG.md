@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.14.0] - 2024-01-31
+### Added
+- Add sourceEmailAddress to DocumentMeta model
+- Add sourceEmailAddress to document meta
+- Add list mapping data sources endpoint
+- Add tablesBeta to InvoiceData model
+- Added "website" data point type
+- Add mapping and dataSource to the field endpoints
+
+### Removed
+- Removed "cell" data point type
+
+### Changed
+- Add URL annotation type
+
 ## [3.13.0] - 2023-12-04
 ### Added
 - Added AnnotationContentType

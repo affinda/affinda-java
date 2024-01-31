@@ -15,6 +15,12 @@ public final class InvoiceData {
     private List<TableAnnotation> tables;
 
     /*
+     * The tablesBeta property.
+     */
+    @JsonProperty(value = "tablesBeta")
+    private List<TableBetaAnnotation> tablesBeta;
+
+    /*
      * The invoiceDate property.
      */
     @JsonProperty(value = "invoiceDate")
@@ -259,6 +265,26 @@ public final class InvoiceData {
      */
     public InvoiceData setTables(List<TableAnnotation> tables) {
         this.tables = tables;
+        return this;
+    }
+
+    /**
+     * Get the tablesBeta property: The tablesBeta property.
+     *
+     * @return the tablesBeta value.
+     */
+    public List<TableBetaAnnotation> getTablesBeta() {
+        return this.tablesBeta;
+    }
+
+    /**
+     * Set the tablesBeta property: The tablesBeta property.
+     *
+     * @param tablesBeta the tablesBeta value to set.
+     * @return the InvoiceData object itself.
+     */
+    public InvoiceData setTablesBeta(List<TableBetaAnnotation> tablesBeta) {
+        this.tablesBeta = tablesBeta;
         return this;
     }
 

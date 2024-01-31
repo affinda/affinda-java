@@ -33,7 +33,7 @@ public class AnnotationUpdate {
     private String raw;
 
     /*
-     * The parsed property.
+     * Anything
      */
     @JsonProperty(value = "parsed")
     private Object parsed;
@@ -139,7 +139,7 @@ public class AnnotationUpdate {
     }
 
     /**
-     * Get the parsed property: The parsed property.
+     * Get the parsed property: Anything.
      *
      * @return the parsed value.
      */
@@ -148,7 +148,7 @@ public class AnnotationUpdate {
     }
 
     /**
-     * Set the parsed property: The parsed property.
+     * Set the parsed property: Anything.
      *
      * @param parsed the parsed value to set.
      * @return the AnnotationUpdate object itself.

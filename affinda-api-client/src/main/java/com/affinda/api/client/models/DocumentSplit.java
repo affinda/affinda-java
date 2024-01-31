@@ -8,7 +8,7 @@ import java.util.List;
 @Fluent
 public final class DocumentSplit {
     /*
-     * Any object
+     * Anything
      */
     @JsonProperty(value = "identifier")
     private Object identifier;
@@ -20,7 +20,7 @@ public final class DocumentSplit {
     private List<DocumentSplitPage> pages;
 
     /**
-     * Get the identifier property: Any object.
+     * Get the identifier property: Anything.
      *
      * @return the identifier value.
      */
@@ -29,7 +29,7 @@ public final class DocumentSplit {
     }
 
     /**
-     * Set the identifier property: Any object.
+     * Set the identifier property: Anything.
      *
      * @param identifier the identifier value to set.
      * @return the DocumentSplit object itself.

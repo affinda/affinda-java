@@ -62,6 +62,12 @@ public final class DataFieldField {
     @JsonProperty(value = "dataSource")
     private String dataSource;
 
+    /*
+     * Defines how the data point is mapped to the data source
+     */
+    @JsonProperty(value = "mapping")
+    private String mapping;
+
     /**
      * Get the label property: The label property.
      *
@@ -241,6 +247,26 @@ public final class DataFieldField {
      */
     public DataFieldField setDataSource(String dataSource) {
         this.dataSource = dataSource;
+        return this;
+    }
+
+    /**
+     * Get the mapping property: Defines how the data point is mapped to the data source.
+     *
+     * @return the mapping value.
+     */
+    public String getMapping() {
+        return this.mapping;
+    }
+
+    /**
+     * Set the mapping property: Defines how the data point is mapped to the data source.
+     *
+     * @param mapping the mapping value to set.
+     * @return the DataFieldField object itself.
+     */
+    public DataFieldField setMapping(String mapping) {
+        this.mapping = mapping;
         return this;
     }
 }

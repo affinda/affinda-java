@@ -39,7 +39,7 @@ public final class AnnotationCreate {
     private String raw;
 
     /*
-     * The parsed property.
+     * Anything
      */
     @JsonProperty(value = "parsed")
     private Object parsed;
@@ -159,7 +159,7 @@ public final class AnnotationCreate {
     }
 
     /**
-     * Get the parsed property: The parsed property.
+     * Get the parsed property: Anything.
      *
      * @return the parsed value.
      */
@@ -168,7 +168,7 @@ public final class AnnotationCreate {
     }
 
     /**
-     * Set the parsed property: The parsed property.
+     * Set the parsed property: Anything.
      *
      * @param parsed the parsed value to set.
      * @return the AnnotationCreate object itself.

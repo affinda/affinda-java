@@ -45,9 +45,6 @@ public final class AnnotationContentType extends ExpandableStringEnum<Annotation
     /** Static value table for AnnotationContentType. */
     public static final AnnotationContentType TABLE = fromString("table");
 
-    /** Static value cell for AnnotationContentType. */
-    public static final AnnotationContentType CELL = fromString("cell");
-
     /** Static value expectedremuneration for AnnotationContentType. */
     public static final AnnotationContentType EXPECTEDREMUNERATION = fromString("expectedremuneration");
 
@@ -68,6 +65,12 @@ public final class AnnotationContentType extends ExpandableStringEnum<Annotation
 
     /** Static value table_deprecated for AnnotationContentType. */
     public static final AnnotationContentType TABLE_DEPRECATED = fromString("table_deprecated");
+
+    /** Static value url for AnnotationContentType. */
+    public static final AnnotationContentType URL = fromString("url");
+
+    /** Static value image for AnnotationContentType. */
+    public static final AnnotationContentType IMAGE = fromString("image");
 
     /**
      * Creates or finds a AnnotationContentType from its string representation.

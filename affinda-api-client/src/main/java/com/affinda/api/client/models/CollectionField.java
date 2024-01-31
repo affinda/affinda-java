@@ -37,6 +37,18 @@ public final class CollectionField {
     @JsonProperty(value = "autoValidationThreshold")
     private Float autoValidationThreshold;
 
+    /*
+     * Data source mapping identifier
+     */
+    @JsonProperty(value = "dataSource")
+    private String dataSource;
+
+    /*
+     * Defines how the data point is mapped to the data source
+     */
+    @JsonProperty(value = "mapping")
+    private String mapping;
+
     /**
      * Get the label property: The label property.
      *
@@ -136,6 +148,46 @@ public final class CollectionField {
      */
     public CollectionField setAutoValidationThreshold(Float autoValidationThreshold) {
         this.autoValidationThreshold = autoValidationThreshold;
+        return this;
+    }
+
+    /**
+     * Get the dataSource property: Data source mapping identifier.
+     *
+     * @return the dataSource value.
+     */
+    public String getDataSource() {
+        return this.dataSource;
+    }
+
+    /**
+     * Set the dataSource property: Data source mapping identifier.
+     *
+     * @param dataSource the dataSource value to set.
+     * @return the CollectionField object itself.
+     */
+    public CollectionField setDataSource(String dataSource) {
+        this.dataSource = dataSource;
+        return this;
+    }
+
+    /**
+     * Get the mapping property: Defines how the data point is mapped to the data source.
+     *
+     * @return the mapping value.
+     */
+    public String getMapping() {
+        return this.mapping;
+    }
+
+    /**
+     * Set the mapping property: Defines how the data point is mapped to the data source.
+     *
+     * @param mapping the mapping value to set.
+     * @return the CollectionField object itself.
+     */
+    public CollectionField setMapping(String mapping) {
+        this.mapping = mapping;
         return this;
     }
 }

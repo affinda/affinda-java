@@ -204,6 +204,13 @@ public final class DocumentMeta {
     private String sourceEmail;
 
     /*
+     * If the document is created via email ingestion, this field stores the
+     * email's From address.
+     */
+    @JsonProperty(value = "sourceEmailAddress")
+    private String sourceEmailAddress;
+
+    /*
      * The regionBias property.
      */
     @JsonProperty(value = "regionBias")
@@ -842,6 +849,28 @@ public final class DocumentMeta {
      */
     public DocumentMeta setSourceEmail(String sourceEmail) {
         this.sourceEmail = sourceEmail;
+        return this;
+    }
+
+    /**
+     * Get the sourceEmailAddress property: If the document is created via email ingestion, this field stores the
+     * email's From address.
+     *
+     * @return the sourceEmailAddress value.
+     */
+    public String getSourceEmailAddress() {
+        return this.sourceEmailAddress;
+    }
+
+    /**
+     * Set the sourceEmailAddress property: If the document is created via email ingestion, this field stores the
+     * email's From address.
+     *
+     * @param sourceEmailAddress the sourceEmailAddress value to set.
+     * @return the DocumentMeta object itself.
+     */
+    public DocumentMeta setSourceEmailAddress(String sourceEmailAddress) {
+        this.sourceEmailAddress = sourceEmailAddress;
         return this;
     }
 

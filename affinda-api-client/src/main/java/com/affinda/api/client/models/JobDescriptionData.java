@@ -122,8 +122,7 @@ public final class JobDescriptionData {
     private String rawText;
 
     /*
-     * Dictionary of
-     * components·tk0gmx·schemas·jobdescriptiondata·additionalproperties
+     * Dictionary of <any>
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
 
@@ -490,8 +489,7 @@ public final class JobDescriptionData {
     }
 
     /**
-     * Get the additionalProperties property: Dictionary of
-     * components·tk0gmx·schemas·jobdescriptiondata·additionalproperties.
+     * Get the additionalProperties property: Dictionary of &lt;any&gt;.
      *
      * @return the additionalProperties value.
      */
@@ -501,8 +499,7 @@ public final class JobDescriptionData {
     }
 
     /**
-     * Set the additionalProperties property: Dictionary of
-     * components·tk0gmx·schemas·jobdescriptiondata·additionalproperties.
+     * Set the additionalProperties property: Dictionary of &lt;any&gt;.
      *
      * @param additionalProperties the additionalProperties value to set.
      * @return the JobDescriptionData object itself.

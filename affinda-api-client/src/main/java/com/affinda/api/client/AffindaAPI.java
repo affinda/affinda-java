@@ -48,8 +48,11 @@ import com.affinda.api.client.models.JobDescriptionSearchConfig;
 import com.affinda.api.client.models.JobDescriptionSearchDetail;
 import com.affinda.api.client.models.JobDescriptionSearchEmbed;
 import com.affinda.api.client.models.JobDescriptionSearchParameters;
+import com.affinda.api.client.models.Mapping;
+import com.affinda.api.client.models.MappingCreate;
 import com.affinda.api.client.models.MappingDataSource;
 import com.affinda.api.client.models.MappingDataSourceCreate;
+import com.affinda.api.client.models.MappingUpdate;
 import com.affinda.api.client.models.Meta;
 import com.affinda.api.client.models.OccupationGroup;
 import com.affinda.api.client.models.Organization;
@@ -57,9 +60,11 @@ import com.affinda.api.client.models.OrganizationCreate;
 import com.affinda.api.client.models.OrganizationMembership;
 import com.affinda.api.client.models.OrganizationMembershipUpdate;
 import com.affinda.api.client.models.OrganizationRole;
+import com.affinda.api.client.models.Paths11QdcofV3MappingDataSourcesGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths18Wh2VcV3InvitationsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1Czpnk1V3ResumeSearchEmbedPostRequestbodyContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1D5Zg6MV3AnnotationsGetResponses200ContentApplicationJsonSchema;
+import com.affinda.api.client.models.Paths1Dpvb2PV3MappingsGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths1Qr7BnyV3MappingDataSourcesIdentifierValuesGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.Paths26Civ0V3ApiUsersGetResponses200ContentApplicationJsonSchema;
 import com.affinda.api.client.models.PathsCl024WV3IndexNameDocumentsPostRequestbodyContentApplicationJsonSchema;
@@ -463,6 +468,7 @@ public final class AffindaAPI {
                 @QueryParam("has_challenges") Boolean hasChallenges,
                 @QueryParam("custom_identifier") String customIdentifier,
                 @QueryParam("compact") Boolean compact,
+                @QueryParam("count") Boolean count,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/documents")
@@ -844,6 +850,19 @@ public final class AffindaAPI {
                 @BodyParam("application/json") MappingDataSourceCreate body,
                 @HeaderParam("Accept") String accept);
 
+        @Get("/v3/mapping_data_sources")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Paths11QdcofV3MappingDataSourcesGetResponses200ContentApplicationJsonSchema>>
+                listMappingDataSources(
+                        @HostParam("region") Region region,
+                        @QueryParam("offset") Integer offset,
+                        @QueryParam("limit") Integer limit,
+                        @HeaderParam("Accept") String accept);
+
         @Get("/v3/mapping_data_sources/{identifier}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
@@ -927,6 +946,64 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @PathParam("identifier") String identifier,
                 @PathParam("value") String value,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/mappings")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Mapping>> createMapping(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") MappingCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/mappings")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Paths1Dpvb2PV3MappingsGetResponses200ContentApplicationJsonSchema>> listMappings(
+                @HostParam("region") Region region,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @QueryParam("mapping_data_source") String mappingDataSource,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/mappings/{identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Mapping>> getMapping(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v3/mappings/{identifier}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteMapping(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @HeaderParam("Accept") String accept);
+
+        @Patch("/v3/mappings/{identifier}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Mapping>> updateMapping(
+                @HostParam("region") Region region,
+                @PathParam("identifier") String identifier,
+                @BodyParam("application/json") MappingUpdate body,
                 @HeaderParam("Accept") String accept);
 
         @Get("/v3/tags")
@@ -2633,6 +2710,8 @@ public final class AffindaAPI {
      * @param customIdentifier Filter for documents with this custom identifier.
      * @param compact If "true", the response is compacted to annotations' parsed data. Annotations' meta data are
      *     excluded. Default is "false".
+     * @param count If "false", the documents count is not computed, thus saving time for large collections. Default is
+     *     "true".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2659,7 +2738,8 @@ public final class AffindaAPI {
                     Boolean validatable,
                     Boolean hasChallenges,
                     String customIdentifier,
-                    Boolean compact) {
+                    Boolean compact,
+                    Boolean count) {
         final String accept = "application/json";
         String tagsConverted =
                 JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
@@ -2687,6 +2767,7 @@ public final class AffindaAPI {
                 hasChallenges,
                 customIdentifier,
                 compact,
+                count,
                 accept);
     }
 
@@ -2716,6 +2797,8 @@ public final class AffindaAPI {
      * @param customIdentifier Filter for documents with this custom identifier.
      * @param compact If "true", the response is compacted to annotations' parsed data. Annotations' meta data are
      *     excluded. Default is "false".
+     * @param count If "false", the documents count is not computed, thus saving time for large collections. Default is
+     *     "true".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2741,7 +2824,8 @@ public final class AffindaAPI {
             Boolean validatable,
             Boolean hasChallenges,
             String customIdentifier,
-            Boolean compact) {
+            Boolean compact,
+            Boolean count) {
         return getAllDocumentsWithResponseAsync(
                         offset,
                         limit,
@@ -2760,7 +2844,8 @@ public final class AffindaAPI {
                         validatable,
                         hasChallenges,
                         customIdentifier,
-                        compact)
+                        compact,
+                        count)
                 .flatMap(
                         (Response<PathsOxm5M7V3DocumentsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -2797,6 +2882,8 @@ public final class AffindaAPI {
      * @param customIdentifier Filter for documents with this custom identifier.
      * @param compact If "true", the response is compacted to annotations' parsed data. Annotations' meta data are
      *     excluded. Default is "false".
+     * @param count If "false", the documents count is not computed, thus saving time for large collections. Default is
+     *     "true".
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -2822,7 +2909,8 @@ public final class AffindaAPI {
             Boolean validatable,
             Boolean hasChallenges,
             String customIdentifier,
-            Boolean compact) {
+            Boolean compact,
+            Boolean count) {
         return getAllDocumentsAsync(
                         offset,
                         limit,
@@ -2841,7 +2929,8 @@ public final class AffindaAPI {
                         validatable,
                         hasChallenges,
                         customIdentifier,
-                        compact)
+                        compact,
+                        count)
                 .block();
     }
 
@@ -4731,6 +4820,66 @@ public final class AffindaAPI {
     }
 
     /**
+     * Returns the list of all custom mapping data sources.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Paths11QdcofV3MappingDataSourcesGetResponses200ContentApplicationJsonSchema>>
+            listMappingDataSourcesWithResponseAsync(Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.listMappingDataSources(this.getRegion(), offset, limit, accept);
+    }
+
+    /**
+     * Returns the list of all custom mapping data sources.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Paths11QdcofV3MappingDataSourcesGetResponses200ContentApplicationJsonSchema>
+            listMappingDataSourcesAsync(Integer offset, Integer limit) {
+        return listMappingDataSourcesWithResponseAsync(offset, limit)
+                .flatMap(
+                        (Response<Paths11QdcofV3MappingDataSourcesGetResponses200ContentApplicationJsonSchema> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns the list of all custom mapping data sources.
+     *
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Paths11QdcofV3MappingDataSourcesGetResponses200ContentApplicationJsonSchema listMappingDataSources(
+            Integer offset, Integer limit) {
+        return listMappingDataSourcesAsync(offset, limit).block();
+    }
+
+    /**
      * Return a specific mapping data source.
      *
      * @param identifier Mapping data source's identifier.
@@ -5119,6 +5268,288 @@ public final class AffindaAPI {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void deleteMappingDataSourceValue(String identifier, String value) {
         deleteMappingDataSourceValueAsync(identifier, value).block();
+    }
+
+    /**
+     * Create a custom mapping.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping allows you to specify specific settings regarding a lookup against a MappingDataSource should
+     *     be applied along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Mapping>> createMappingWithResponseAsync(MappingCreate body) {
+        final String accept = "application/json";
+        return service.createMapping(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Create a custom mapping.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping allows you to specify specific settings regarding a lookup against a MappingDataSource should
+     *     be applied on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Mapping> createMappingAsync(MappingCreate body) {
+        return createMappingWithResponseAsync(body)
+                .flatMap(
+                        (Response<Mapping> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create a custom mapping.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping allows you to specify specific settings regarding a lookup against a MappingDataSource should
+     *     be applied.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mapping createMapping(MappingCreate body) {
+        return createMappingAsync(body).block();
+    }
+
+    /**
+     * Returns the list of all custom data mappings.
+     *
+     * @param mappingDataSource Mapping data source's identifier.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Paths1Dpvb2PV3MappingsGetResponses200ContentApplicationJsonSchema>>
+            listMappingsWithResponseAsync(String mappingDataSource, Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.listMappings(this.getRegion(), offset, limit, mappingDataSource, accept);
+    }
+
+    /**
+     * Returns the list of all custom data mappings.
+     *
+     * @param mappingDataSource Mapping data source's identifier.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Paths1Dpvb2PV3MappingsGetResponses200ContentApplicationJsonSchema> listMappingsAsync(
+            String mappingDataSource, Integer offset, Integer limit) {
+        return listMappingsWithResponseAsync(mappingDataSource, offset, limit)
+                .flatMap(
+                        (Response<Paths1Dpvb2PV3MappingsGetResponses200ContentApplicationJsonSchema> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns the list of all custom data mappings.
+     *
+     * @param mappingDataSource Mapping data source's identifier.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Paths1Dpvb2PV3MappingsGetResponses200ContentApplicationJsonSchema listMappings(
+            String mappingDataSource, Integer offset, Integer limit) {
+        return listMappingsAsync(mappingDataSource, offset, limit).block();
+    }
+
+    /**
+     * Return a specific mapping.
+     *
+     * @param identifier Mapping's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping allows you to specify specific settings regarding a lookup against a MappingDataSource should
+     *     be applied along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Mapping>> getMappingWithResponseAsync(String identifier) {
+        final String accept = "application/json";
+        return service.getMapping(this.getRegion(), identifier, accept);
+    }
+
+    /**
+     * Return a specific mapping.
+     *
+     * @param identifier Mapping's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping allows you to specify specific settings regarding a lookup against a MappingDataSource should
+     *     be applied on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Mapping> getMappingAsync(String identifier) {
+        return getMappingWithResponseAsync(identifier)
+                .flatMap(
+                        (Response<Mapping> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return a specific mapping.
+     *
+     * @param identifier Mapping's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping allows you to specify specific settings regarding a lookup against a MappingDataSource should
+     *     be applied.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mapping getMapping(String identifier) {
+        return getMappingAsync(identifier).block();
+    }
+
+    /**
+     * Delete the specified mapping from the database.
+     *
+     * @param identifier Mapping's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteMappingWithResponseAsync(String identifier) {
+        final String accept = "application/json";
+        return service.deleteMapping(this.getRegion(), identifier, accept);
+    }
+
+    /**
+     * Delete the specified mapping from the database.
+     *
+     * @param identifier Mapping's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> deleteMappingAsync(String identifier) {
+        return deleteMappingWithResponseAsync(identifier).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Delete the specified mapping from the database.
+     *
+     * @param identifier Mapping's identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteMapping(String identifier) {
+        deleteMappingAsync(identifier).block();
+    }
+
+    /**
+     * Updates a specific mapping.
+     *
+     * @param identifier Mapping's identifier.
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping allows you to specify specific settings regarding a lookup against a MappingDataSource should
+     *     be applied along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Mapping>> updateMappingWithResponseAsync(String identifier, MappingUpdate body) {
+        final String accept = "application/json";
+        return service.updateMapping(this.getRegion(), identifier, body, accept);
+    }
+
+    /**
+     * Updates a specific mapping.
+     *
+     * @param identifier Mapping's identifier.
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping allows you to specify specific settings regarding a lookup against a MappingDataSource should
+     *     be applied on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Mapping> updateMappingAsync(String identifier, MappingUpdate body) {
+        return updateMappingWithResponseAsync(identifier, body)
+                .flatMap(
+                        (Response<Mapping> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Updates a specific mapping.
+     *
+     * @param identifier Mapping's identifier.
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a mapping allows you to specify specific settings regarding a lookup against a MappingDataSource should
+     *     be applied.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mapping updateMapping(String identifier, MappingUpdate body) {
+        return updateMappingAsync(identifier, body).block();
     }
 
     /**
