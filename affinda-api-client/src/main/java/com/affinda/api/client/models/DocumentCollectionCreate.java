@@ -83,6 +83,13 @@ public final class DocumentCollectionCreate {
     @JsonProperty(value = "trainsExtractor")
     private Boolean trainsExtractor;
 
+    /*
+     * If True, users cannot validate documents with missing mandatory fields,
+     * or failing validation rules.
+     */
+    @JsonProperty(value = "disableConfirmationIfValidationRulesFail")
+    private Boolean disableConfirmationIfValidationRulesFail;
+
     /**
      * Get the name property: The name property.
      *
@@ -326,6 +333,29 @@ public final class DocumentCollectionCreate {
      */
     public DocumentCollectionCreate setTrainsExtractor(Boolean trainsExtractor) {
         this.trainsExtractor = trainsExtractor;
+        return this;
+    }
+
+    /**
+     * Get the disableConfirmationIfValidationRulesFail property: If True, users cannot validate documents with missing
+     * mandatory fields, or failing validation rules.
+     *
+     * @return the disableConfirmationIfValidationRulesFail value.
+     */
+    public Boolean isDisableConfirmationIfValidationRulesFail() {
+        return this.disableConfirmationIfValidationRulesFail;
+    }
+
+    /**
+     * Set the disableConfirmationIfValidationRulesFail property: If True, users cannot validate documents with missing
+     * mandatory fields, or failing validation rules.
+     *
+     * @param disableConfirmationIfValidationRulesFail the disableConfirmationIfValidationRulesFail value to set.
+     * @return the DocumentCollectionCreate object itself.
+     */
+    public DocumentCollectionCreate setDisableConfirmationIfValidationRulesFail(
+            Boolean disableConfirmationIfValidationRulesFail) {
+        this.disableConfirmationIfValidationRulesFail = disableConfirmationIfValidationRulesFail;
         return this;
     }
 }

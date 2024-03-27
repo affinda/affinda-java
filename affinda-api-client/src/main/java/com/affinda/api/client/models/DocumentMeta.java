@@ -131,10 +131,22 @@ public final class DocumentMeta {
     private Boolean isArchived;
 
     /*
+     * The skipParse property.
+     */
+    @JsonProperty(value = "skipParse")
+    private Boolean skipParse;
+
+    /*
      * The confirmedDt property.
      */
     @JsonProperty(value = "confirmedDt")
     private OffsetDateTime confirmedDt;
+
+    /*
+     * The confirmedBy property.
+     */
+    @JsonProperty(value = "confirmedBy")
+    private UserNullable confirmedBy;
 
     /*
      * The isConfirmed property.
@@ -147,6 +159,12 @@ public final class DocumentMeta {
      */
     @JsonProperty(value = "rejectedDt")
     private OffsetDateTime rejectedDt;
+
+    /*
+     * The rejectedBy property.
+     */
+    @JsonProperty(value = "rejectedBy")
+    private UserNullable rejectedBy;
 
     /*
      * The isRejected property.
@@ -183,12 +201,6 @@ public final class DocumentMeta {
      */
     @JsonProperty(value = "tags")
     private List<Tag> tags;
-
-    /*
-     * The confirmedBy property.
-     */
-    @JsonProperty(value = "confirmedBy")
-    private UserNullable confirmedBy;
 
     /*
      * The createdBy property.
@@ -611,6 +623,26 @@ public final class DocumentMeta {
     }
 
     /**
+     * Get the skipParse property: The skipParse property.
+     *
+     * @return the skipParse value.
+     */
+    public Boolean isSkipParse() {
+        return this.skipParse;
+    }
+
+    /**
+     * Set the skipParse property: The skipParse property.
+     *
+     * @param skipParse the skipParse value to set.
+     * @return the DocumentMeta object itself.
+     */
+    public DocumentMeta setSkipParse(Boolean skipParse) {
+        this.skipParse = skipParse;
+        return this;
+    }
+
+    /**
      * Get the confirmedDt property: The confirmedDt property.
      *
      * @return the confirmedDt value.
@@ -627,6 +659,26 @@ public final class DocumentMeta {
      */
     public DocumentMeta setConfirmedDt(OffsetDateTime confirmedDt) {
         this.confirmedDt = confirmedDt;
+        return this;
+    }
+
+    /**
+     * Get the confirmedBy property: The confirmedBy property.
+     *
+     * @return the confirmedBy value.
+     */
+    public UserNullable getConfirmedBy() {
+        return this.confirmedBy;
+    }
+
+    /**
+     * Set the confirmedBy property: The confirmedBy property.
+     *
+     * @param confirmedBy the confirmedBy value to set.
+     * @return the DocumentMeta object itself.
+     */
+    public DocumentMeta setConfirmedBy(UserNullable confirmedBy) {
+        this.confirmedBy = confirmedBy;
         return this;
     }
 
@@ -667,6 +719,26 @@ public final class DocumentMeta {
      */
     public DocumentMeta setRejectedDt(OffsetDateTime rejectedDt) {
         this.rejectedDt = rejectedDt;
+        return this;
+    }
+
+    /**
+     * Get the rejectedBy property: The rejectedBy property.
+     *
+     * @return the rejectedBy value.
+     */
+    public UserNullable getRejectedBy() {
+        return this.rejectedBy;
+    }
+
+    /**
+     * Set the rejectedBy property: The rejectedBy property.
+     *
+     * @param rejectedBy the rejectedBy value to set.
+     * @return the DocumentMeta object itself.
+     */
+    public DocumentMeta setRejectedBy(UserNullable rejectedBy) {
+        this.rejectedBy = rejectedBy;
         return this;
     }
 
@@ -787,26 +859,6 @@ public final class DocumentMeta {
      */
     public DocumentMeta setTags(List<Tag> tags) {
         this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the confirmedBy property: The confirmedBy property.
-     *
-     * @return the confirmedBy value.
-     */
-    public UserNullable getConfirmedBy() {
-        return this.confirmedBy;
-    }
-
-    /**
-     * Set the confirmedBy property: The confirmedBy property.
-     *
-     * @param confirmedBy the confirmedBy value to set.
-     * @return the DocumentMeta object itself.
-     */
-    public DocumentMeta setConfirmedBy(UserNullable confirmedBy) {
-        this.confirmedBy = confirmedBy;
         return this;
     }
 

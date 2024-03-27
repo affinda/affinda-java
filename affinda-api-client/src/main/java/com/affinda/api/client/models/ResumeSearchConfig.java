@@ -3,7 +3,6 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import java.util.Map;
 
 /** The ResumeSearchConfig model. */
 @Fluent
@@ -145,7 +144,7 @@ public final class ResumeSearchConfig {
      * Customize the theme of the embeded search tool.
      */
     @JsonProperty(value = "searchToolTheme")
-    private Map<String, Object> searchToolTheme;
+    private ResumeSearchConfigSearchToolTheme searchToolTheme;
 
     /*
      * ID of the logged in user.
@@ -182,6 +181,12 @@ public final class ResumeSearchConfig {
      */
     @JsonProperty(value = "customFieldsConfig")
     private List<CustomFieldConfig> customFieldsConfig;
+
+    /*
+     * The unit of distance to use for location based searches
+     */
+    @JsonProperty(value = "distanceUnit")
+    private ResumeSearchConfigDistanceUnit distanceUnit;
 
     /**
      * Get the allowPdfDownload property: The allowPdfDownload property.
@@ -630,7 +635,7 @@ public final class ResumeSearchConfig {
      *
      * @return the searchToolTheme value.
      */
-    public Map<String, Object> getSearchToolTheme() {
+    public ResumeSearchConfigSearchToolTheme getSearchToolTheme() {
         return this.searchToolTheme;
     }
 
@@ -640,7 +645,7 @@ public final class ResumeSearchConfig {
      * @param searchToolTheme the searchToolTheme value to set.
      * @return the ResumeSearchConfig object itself.
      */
-    public ResumeSearchConfig setSearchToolTheme(Map<String, Object> searchToolTheme) {
+    public ResumeSearchConfig setSearchToolTheme(ResumeSearchConfigSearchToolTheme searchToolTheme) {
         this.searchToolTheme = searchToolTheme;
         return this;
     }
@@ -740,6 +745,26 @@ public final class ResumeSearchConfig {
      */
     public ResumeSearchConfig setCustomFieldsConfig(List<CustomFieldConfig> customFieldsConfig) {
         this.customFieldsConfig = customFieldsConfig;
+        return this;
+    }
+
+    /**
+     * Get the distanceUnit property: The unit of distance to use for location based searches.
+     *
+     * @return the distanceUnit value.
+     */
+    public ResumeSearchConfigDistanceUnit getDistanceUnit() {
+        return this.distanceUnit;
+    }
+
+    /**
+     * Set the distanceUnit property: The unit of distance to use for location based searches.
+     *
+     * @param distanceUnit the distanceUnit value to set.
+     * @return the ResumeSearchConfig object itself.
+     */
+    public ResumeSearchConfig setDistanceUnit(ResumeSearchConfigDistanceUnit distanceUnit) {
+        this.distanceUnit = distanceUnit;
         return this;
     }
 }

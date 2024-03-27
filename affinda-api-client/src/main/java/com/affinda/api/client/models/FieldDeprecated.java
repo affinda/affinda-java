@@ -73,6 +73,12 @@ public final class FieldDeprecated {
     private Boolean showDropdown;
 
     /*
+     * The displayRawText property.
+     */
+    @JsonProperty(value = "displayRawText")
+    private Boolean displayRawText;
+
+    /*
      * If True, any dropdown annotations that fail to parse to a value will be
      * discarded
      */
@@ -293,6 +299,26 @@ public final class FieldDeprecated {
      */
     public FieldDeprecated setShowDropdown(Boolean showDropdown) {
         this.showDropdown = showDropdown;
+        return this;
+    }
+
+    /**
+     * Get the displayRawText property: The displayRawText property.
+     *
+     * @return the displayRawText value.
+     */
+    public Boolean isDisplayRawText() {
+        return this.displayRawText;
+    }
+
+    /**
+     * Set the displayRawText property: The displayRawText property.
+     *
+     * @param displayRawText the displayRawText value to set.
+     * @return the FieldDeprecated object itself.
+     */
+    public FieldDeprecated setDisplayRawText(Boolean displayRawText) {
+        this.displayRawText = displayRawText;
         return this;
     }
 

@@ -93,6 +93,13 @@ public final class Field {
     private String slug;
 
     /*
+     * If true, then the validation tool will show the user the raw text found
+     * on the page, not the value that has been parsed to a specific type.
+     */
+    @JsonProperty(value = "displayRawText")
+    private Boolean displayRawText;
+
+    /*
      * The fields property.
      */
     @JsonProperty(value = "fields")
@@ -362,6 +369,28 @@ public final class Field {
      */
     public Field setSlug(String slug) {
         this.slug = slug;
+        return this;
+    }
+
+    /**
+     * Get the displayRawText property: If true, then the validation tool will show the user the raw text found on the
+     * page, not the value that has been parsed to a specific type.
+     *
+     * @return the displayRawText value.
+     */
+    public Boolean isDisplayRawText() {
+        return this.displayRawText;
+    }
+
+    /**
+     * Set the displayRawText property: If true, then the validation tool will show the user the raw text found on the
+     * page, not the value that has been parsed to a specific type.
+     *
+     * @param displayRawText the displayRawText value to set.
+     * @return the Field object itself.
+     */
+    public Field setDisplayRawText(Boolean displayRawText) {
+        this.displayRawText = displayRawText;
         return this;
     }
 

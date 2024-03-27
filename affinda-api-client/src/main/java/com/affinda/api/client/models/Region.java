@@ -12,6 +12,9 @@ public final class Region extends ExpandableStringEnum<Region> {
     /** Static value api.eu1 for Region. */
     public static final Region API_EU1 = fromString("api.eu1");
 
+    /** Static value api.us1 for Region. */
+    public static final Region API_US1 = fromString("api.us1");
+
     /**
      * Creates or finds a Region from its string representation.
      *

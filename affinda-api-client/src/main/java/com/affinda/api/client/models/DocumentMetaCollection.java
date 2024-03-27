@@ -2,6 +2,7 @@ package com.affinda.api.client.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** The DocumentMetaCollection model. */
 @Fluent
@@ -23,6 +24,12 @@ public final class DocumentMetaCollection {
      */
     @JsonProperty(value = "extractor")
     private DocumentMetaCollectionExtractor extractor;
+
+    /*
+     * The validationRules property.
+     */
+    @JsonProperty(value = "validationRules")
+    private List<ValidationRule> validationRules;
 
     /**
      * Get the identifier property: Uniquely identify a collection.
@@ -81,6 +88,26 @@ public final class DocumentMetaCollection {
      */
     public DocumentMetaCollection setExtractor(DocumentMetaCollectionExtractor extractor) {
         this.extractor = extractor;
+        return this;
+    }
+
+    /**
+     * Get the validationRules property: The validationRules property.
+     *
+     * @return the validationRules value.
+     */
+    public List<ValidationRule> getValidationRules() {
+        return this.validationRules;
+    }
+
+    /**
+     * Set the validationRules property: The validationRules property.
+     *
+     * @param validationRules the validationRules value to set.
+     * @return the DocumentMetaCollection object itself.
+     */
+    public DocumentMetaCollection setValidationRules(List<ValidationRule> validationRules) {
+        this.validationRules = validationRules;
         return this;
     }
 }

@@ -25,6 +25,12 @@ public final class ValidationToolConfig {
     private Boolean hideCollection;
 
     /*
+     * Hide the edit pages button.
+     */
+    @JsonProperty(value = "hideEditPages")
+    private Boolean hideEditPages;
+
+    /*
      * Hide the export menu.
      */
     @JsonProperty(value = "hideExport")
@@ -35,6 +41,24 @@ public final class ValidationToolConfig {
      */
     @JsonProperty(value = "hideFilename")
     private Boolean hideFilename;
+
+    /*
+     * Hide the reject document button.
+     */
+    @JsonProperty(value = "hideReject")
+    private Boolean hideReject;
+
+    /*
+     * Hide the reparse button.
+     */
+    @JsonProperty(value = "hideReparse")
+    private Boolean hideReparse;
+
+    /*
+     * Hide the run OCR button.
+     */
+    @JsonProperty(value = "hideRunOcr")
+    private Boolean hideRunOcr;
 
     /*
      * Hide the tags editor.
@@ -128,6 +152,26 @@ public final class ValidationToolConfig {
     }
 
     /**
+     * Get the hideEditPages property: Hide the edit pages button.
+     *
+     * @return the hideEditPages value.
+     */
+    public Boolean isHideEditPages() {
+        return this.hideEditPages;
+    }
+
+    /**
+     * Set the hideEditPages property: Hide the edit pages button.
+     *
+     * @param hideEditPages the hideEditPages value to set.
+     * @return the ValidationToolConfig object itself.
+     */
+    public ValidationToolConfig setHideEditPages(Boolean hideEditPages) {
+        this.hideEditPages = hideEditPages;
+        return this;
+    }
+
+    /**
      * Get the hideExport property: Hide the export menu.
      *
      * @return the hideExport value.
@@ -164,6 +208,66 @@ public final class ValidationToolConfig {
      */
     public ValidationToolConfig setHideFilename(Boolean hideFilename) {
         this.hideFilename = hideFilename;
+        return this;
+    }
+
+    /**
+     * Get the hideReject property: Hide the reject document button.
+     *
+     * @return the hideReject value.
+     */
+    public Boolean isHideReject() {
+        return this.hideReject;
+    }
+
+    /**
+     * Set the hideReject property: Hide the reject document button.
+     *
+     * @param hideReject the hideReject value to set.
+     * @return the ValidationToolConfig object itself.
+     */
+    public ValidationToolConfig setHideReject(Boolean hideReject) {
+        this.hideReject = hideReject;
+        return this;
+    }
+
+    /**
+     * Get the hideReparse property: Hide the reparse button.
+     *
+     * @return the hideReparse value.
+     */
+    public Boolean isHideReparse() {
+        return this.hideReparse;
+    }
+
+    /**
+     * Set the hideReparse property: Hide the reparse button.
+     *
+     * @param hideReparse the hideReparse value to set.
+     * @return the ValidationToolConfig object itself.
+     */
+    public ValidationToolConfig setHideReparse(Boolean hideReparse) {
+        this.hideReparse = hideReparse;
+        return this;
+    }
+
+    /**
+     * Get the hideRunOcr property: Hide the run OCR button.
+     *
+     * @return the hideRunOcr value.
+     */
+    public Boolean isHideRunOcr() {
+        return this.hideRunOcr;
+    }
+
+    /**
+     * Set the hideRunOcr property: Hide the run OCR button.
+     *
+     * @param hideRunOcr the hideRunOcr value to set.
+     * @return the ValidationToolConfig object itself.
+     */
+    public ValidationToolConfig setHideRunOcr(Boolean hideRunOcr) {
+        this.hideRunOcr = hideRunOcr;
         return this;
     }
 

@@ -51,6 +51,9 @@ public final class ResthookEvent extends ExpandableStringEnum<ResthookEvent> {
     /** Static value document.rejected for ResthookEvent. */
     public static final ResthookEvent DOCUMENT_REJECTED = fromString("document.rejected");
 
+    /** Static value annotation.validated for ResthookEvent. */
+    public static final ResthookEvent ANNOTATION_VALIDATED = fromString("annotation.validated");
+
     /**
      * Creates or finds a ResthookEvent from its string representation.
      *

@@ -13,10 +13,10 @@ public final class ThemeConfigPalette {
     private ThemeConfigPaletteMode mode;
 
     /*
-     * The background property.
+     * Anything
      */
     @JsonProperty(value = "background")
-    private ThemeConfigPaletteBackground background;
+    private Object background;
 
     /*
      * The text property.
@@ -93,21 +93,21 @@ public final class ThemeConfigPalette {
     }
 
     /**
-     * Get the background property: The background property.
+     * Get the background property: Anything.
      *
      * @return the background value.
      */
-    public ThemeConfigPaletteBackground getBackground() {
+    public Object getBackground() {
         return this.background;
     }
 
     /**
-     * Set the background property: The background property.
+     * Set the background property: Anything.
      *
      * @param background the background value to set.
      * @return the ThemeConfigPalette object itself.
      */
-    public ThemeConfigPalette setBackground(ThemeConfigPaletteBackground background) {
+    public ThemeConfigPalette setBackground(Object background) {
         this.background = background;
         return this;
     }

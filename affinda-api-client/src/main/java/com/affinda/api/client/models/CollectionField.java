@@ -49,6 +49,12 @@ public final class CollectionField {
     @JsonProperty(value = "mapping")
     private String mapping;
 
+    /*
+     * Defines how the data point is mapped to the data source
+     */
+    @JsonProperty(value = "displayRawText")
+    private String displayRawText;
+
     /**
      * Get the label property: The label property.
      *
@@ -188,6 +194,26 @@ public final class CollectionField {
      */
     public CollectionField setMapping(String mapping) {
         this.mapping = mapping;
+        return this;
+    }
+
+    /**
+     * Get the displayRawText property: Defines how the data point is mapped to the data source.
+     *
+     * @return the displayRawText value.
+     */
+    public String getDisplayRawText() {
+        return this.displayRawText;
+    }
+
+    /**
+     * Set the displayRawText property: Defines how the data point is mapped to the data source.
+     *
+     * @param displayRawText the displayRawText value to set.
+     * @return the CollectionField object itself.
+     */
+    public CollectionField setDisplayRawText(String displayRawText) {
+        this.displayRawText = displayRawText;
         return this;
     }
 }

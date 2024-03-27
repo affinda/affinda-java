@@ -13,10 +13,10 @@ public final class ThemeConfigTypography {
     private String fontFamily;
 
     /*
-     * The fontSize property.
+     * Anything
      */
     @JsonProperty(value = "fontSize")
-    private String fontSize;
+    private Object fontSize;
 
     /*
      * The fontWeightRegular property.
@@ -57,21 +57,21 @@ public final class ThemeConfigTypography {
     }
 
     /**
-     * Get the fontSize property: The fontSize property.
+     * Get the fontSize property: Anything.
      *
      * @return the fontSize value.
      */
-    public String getFontSize() {
+    public Object getFontSize() {
         return this.fontSize;
     }
 
     /**
-     * Set the fontSize property: The fontSize property.
+     * Set the fontSize property: Anything.
      *
      * @param fontSize the fontSize value to set.
      * @return the ThemeConfigTypography object itself.
      */
-    public ThemeConfigTypography setFontSize(String fontSize) {
+    public ThemeConfigTypography setFontSize(Object fontSize) {
         this.fontSize = fontSize;
         return this;
     }

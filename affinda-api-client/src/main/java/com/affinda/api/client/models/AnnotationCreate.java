@@ -56,6 +56,13 @@ public final class AnnotationCreate {
     @JsonProperty(value = "parent")
     private Integer parent;
 
+    /*
+     * The validation results created, changed or deleted as a result of
+     * creating the annotation.
+     */
+    @JsonProperty(value = "validationResults")
+    private List<ChangedValidationResults> validationResults;
+
     /**
      * Get the rectangles property: x/y coordinates for the rectangles containing the data. An annotation can be
      * contained within multiple rectangles.
@@ -215,6 +222,28 @@ public final class AnnotationCreate {
      */
     public AnnotationCreate setParent(Integer parent) {
         this.parent = parent;
+        return this;
+    }
+
+    /**
+     * Get the validationResults property: The validation results created, changed or deleted as a result of creating
+     * the annotation.
+     *
+     * @return the validationResults value.
+     */
+    public List<ChangedValidationResults> getValidationResults() {
+        return this.validationResults;
+    }
+
+    /**
+     * Set the validationResults property: The validation results created, changed or deleted as a result of creating
+     * the annotation.
+     *
+     * @param validationResults the validationResults value to set.
+     * @return the AnnotationCreate object itself.
+     */
+    public AnnotationCreate setValidationResults(List<ChangedValidationResults> validationResults) {
+        this.validationResults = validationResults;
         return this;
     }
 }

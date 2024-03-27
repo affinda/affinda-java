@@ -55,6 +55,13 @@ public final class DataFieldCreateField {
     @JsonProperty(value = "mapping")
     private String mapping;
 
+    /*
+     * If true, then the validation tool will show the user the raw text found
+     * on the page, not the value that has been parsed to a specific type.
+     */
+    @JsonProperty(value = "displayRawText")
+    private Boolean displayRawText;
+
     /**
      * Get the label property: The label property.
      *
@@ -214,6 +221,28 @@ public final class DataFieldCreateField {
      */
     public DataFieldCreateField setMapping(String mapping) {
         this.mapping = mapping;
+        return this;
+    }
+
+    /**
+     * Get the displayRawText property: If true, then the validation tool will show the user the raw text found on the
+     * page, not the value that has been parsed to a specific type.
+     *
+     * @return the displayRawText value.
+     */
+    public Boolean isDisplayRawText() {
+        return this.displayRawText;
+    }
+
+    /**
+     * Set the displayRawText property: If true, then the validation tool will show the user the raw text found on the
+     * page, not the value that has been parsed to a specific type.
+     *
+     * @param displayRawText the displayRawText value to set.
+     * @return the DataFieldCreateField object itself.
+     */
+    public DataFieldCreateField setDisplayRawText(Boolean displayRawText) {
+        this.displayRawText = displayRawText;
         return this;
     }
 }

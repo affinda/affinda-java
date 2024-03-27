@@ -26,6 +26,15 @@ public final class RegionBias {
     @JsonProperty(value = "squareCoordinates")
     private List<Float> squareCoordinates;
 
+    /*
+     * If true, the location must be within the region, as opposed to prefering
+     * locations within the region.
+     * Default to false.
+     *
+     */
+    @JsonProperty(value = "strict")
+    private Boolean strict;
+
     /**
      * Get the country property: A single alpha-2 country code (e.g. AU) used by google geocoding service.
      *
@@ -85,6 +94,28 @@ public final class RegionBias {
      */
     public RegionBias setSquareCoordinates(List<Float> squareCoordinates) {
         this.squareCoordinates = squareCoordinates;
+        return this;
+    }
+
+    /**
+     * Get the strict property: If true, the location must be within the region, as opposed to prefering locations
+     * within the region. Default to false.
+     *
+     * @return the strict value.
+     */
+    public Boolean isStrict() {
+        return this.strict;
+    }
+
+    /**
+     * Set the strict property: If true, the location must be within the region, as opposed to prefering locations
+     * within the region. Default to false.
+     *
+     * @param strict the strict value to set.
+     * @return the RegionBias object itself.
+     */
+    public RegionBias setStrict(Boolean strict) {
+        this.strict = strict;
         return this;
     }
 }

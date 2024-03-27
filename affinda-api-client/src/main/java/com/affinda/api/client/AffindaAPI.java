@@ -4,11 +4,14 @@ import com.affinda.api.client.models.Annotation;
 import com.affinda.api.client.models.AnnotationBatchUpdate;
 import com.affinda.api.client.models.AnnotationCreate;
 import com.affinda.api.client.models.AnnotationUpdate;
+import com.affinda.api.client.models.AnnotationWithValidationResults;
+import com.affinda.api.client.models.AnotationDelete;
 import com.affinda.api.client.models.ApiUserCreate;
 import com.affinda.api.client.models.ApiUserUpdate;
 import com.affinda.api.client.models.ApiUserWithKey;
 import com.affinda.api.client.models.ApiUserWithoutKey;
 import com.affinda.api.client.models.BatchAddTagRequest;
+import com.affinda.api.client.models.BatchDeleteAnnotationsResponse;
 import com.affinda.api.client.models.BatchRemoveTagRequest;
 import com.affinda.api.client.models.CollectionField;
 import com.affinda.api.client.models.DataField;
@@ -31,7 +34,7 @@ import com.affinda.api.client.models.DocumentEditRequest;
 import com.affinda.api.client.models.DocumentFormat;
 import com.affinda.api.client.models.DocumentState;
 import com.affinda.api.client.models.DocumentUpdate;
-import com.affinda.api.client.models.Enum19;
+import com.affinda.api.client.models.Enum20;
 import com.affinda.api.client.models.Extractor;
 import com.affinda.api.client.models.ExtractorCreate;
 import com.affinda.api.client.models.ExtractorUpdate;
@@ -93,6 +96,9 @@ import com.affinda.api.client.models.TagCreate;
 import com.affinda.api.client.models.TagUpdate;
 import com.affinda.api.client.models.UsageByCollection;
 import com.affinda.api.client.models.UsageByWorkspace;
+import com.affinda.api.client.models.ValidationResult;
+import com.affinda.api.client.models.ValidationResultCreate;
+import com.affinda.api.client.models.ValidationResultUpdate;
 import com.affinda.api.client.models.ValidationToolConfig;
 import com.affinda.api.client.models.Workspace;
 import com.affinda.api.client.models.WorkspaceCreate;
@@ -564,6 +570,60 @@ public final class AffindaAPI {
                 @BodyParam("application/json") DocumentEditRequest body,
                 @HeaderParam("Accept") String accept);
 
+        @Get("/v3/validation_results")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<List<ValidationResult>>> getAllValidationResults(
+                @HostParam("region") Region region,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
+                @QueryParam("document") String document,
+                @HeaderParam("Accept") String accept);
+
+        @Post("/v3/validation_results")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ValidationResult>> createValidationResult(
+                @HostParam("region") Region region,
+                @BodyParam("application/json") ValidationResultCreate body,
+                @HeaderParam("Accept") String accept);
+
+        @Get("/v3/validation_results/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ValidationResult>> getValidationResult(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
+        @Patch("/v3/validation_results/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<ValidationResult>> updateValidationResult(
+                @HostParam("region") Region region,
+                @PathParam("id") int id,
+                @BodyParam("application/json") ValidationResultUpdate body,
+                @HeaderParam("Accept") String accept);
+
+        @Delete("/v3/validation_results/{id}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = RequestErrorException.class,
+                code = {400, 401})
+        @UnexpectedResponseExceptionType(RequestErrorException.class)
+        Mono<Response<Void>> deleteValidationResult(
+                @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
+
         @Get("/v3/extractors")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
@@ -771,7 +831,7 @@ public final class AffindaAPI {
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Annotation>> createAnnotation(
+        Mono<Response<AnnotationWithValidationResults>> createAnnotation(
                 @HostParam("region") Region region,
                 @BodyParam("application/json") AnnotationCreate body,
                 @HeaderParam("Accept") String accept);
@@ -798,12 +858,12 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Delete("/v3/annotations/{id}")
-        @ExpectedResponses({204})
+        @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Void>> deleteAnnotation(
+        Mono<Response<AnotationDelete>> deleteAnnotation(
                 @HostParam("region") Region region, @PathParam("id") int id, @HeaderParam("Accept") String accept);
 
         @Post("/v3/annotations/batch_create")
@@ -829,12 +889,12 @@ public final class AffindaAPI {
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/annotations/batch_delete")
-        @ExpectedResponses({204})
+        @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = RequestErrorException.class,
                 code = {400, 401})
         @UnexpectedResponseExceptionType(RequestErrorException.class)
-        Mono<Response<Void>> batchDeleteAnnotations(
+        Mono<Response<BatchDeleteAnnotationsResponse>> batchDeleteAnnotations(
                 @HostParam("region") Region region,
                 @BodyParam("application/json") List<Integer> body,
                 @HeaderParam("Accept") String accept);
@@ -1453,7 +1513,7 @@ public final class AffindaAPI {
                 @HostParam("region") Region region,
                 @QueryParam("offset") Integer offset,
                 @QueryParam("limit") Integer limit,
-                @QueryParam("document_type") Enum19 documentType,
+                @QueryParam("document_type") Enum20 documentType,
                 @HeaderParam("Accept") String accept);
 
         @Post("/v3/index")
@@ -1498,6 +1558,8 @@ public final class AffindaAPI {
         @UnexpectedResponseExceptionType(RequestErrorException.class)
         Mono<Response<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema>> getAllIndexDocuments(
                 @HostParam("region") Region region,
+                @QueryParam("offset") Integer offset,
+                @QueryParam("limit") Integer limit,
                 @PathParam("name") String name,
                 @HeaderParam("Accept") String accept);
 
@@ -3374,6 +3436,281 @@ public final class AffindaAPI {
     }
 
     /**
+     * Returns the validation results of a document.
+     *
+     * @param document Filter by document.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of ValidationResult along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<List<ValidationResult>>> getAllValidationResultsWithResponseAsync(
+            String document, Integer offset, Integer limit) {
+        final String accept = "application/json";
+        return service.getAllValidationResults(this.getRegion(), offset, limit, document, accept);
+    }
+
+    /**
+     * Returns the validation results of a document.
+     *
+     * @param document Filter by document.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of ValidationResult on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<List<ValidationResult>> getAllValidationResultsAsync(String document, Integer offset, Integer limit) {
+        return getAllValidationResultsWithResponseAsync(document, offset, limit)
+                .flatMap(
+                        (Response<List<ValidationResult>> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Returns the validation results of a document.
+     *
+     * @param document Filter by document.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return array of ValidationResult.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<ValidationResult> getAllValidationResults(String document, Integer offset, Integer limit) {
+        return getAllValidationResultsAsync(document, offset, limit).block();
+    }
+
+    /**
+     * Create a validation result.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validation result arising from a ValidationRule along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ValidationResult>> createValidationResultWithResponseAsync(ValidationResultCreate body) {
+        final String accept = "application/json";
+        return service.createValidationResult(this.getRegion(), body, accept);
+    }
+
+    /**
+     * Create a validation result.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validation result arising from a ValidationRule on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ValidationResult> createValidationResultAsync(ValidationResultCreate body) {
+        return createValidationResultWithResponseAsync(body)
+                .flatMap(
+                        (Response<ValidationResult> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Create a validation result.
+     *
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validation result arising from a ValidationRule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ValidationResult createValidationResult(ValidationResultCreate body) {
+        return createValidationResultAsync(body).block();
+    }
+
+    /**
+     * Return a specific validation result.
+     *
+     * @param id Validation result's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validation result arising from a ValidationRule along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ValidationResult>> getValidationResultWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.getValidationResult(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Return a specific validation result.
+     *
+     * @param id Validation result's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validation result arising from a ValidationRule on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ValidationResult> getValidationResultAsync(int id) {
+        return getValidationResultWithResponseAsync(id)
+                .flatMap(
+                        (Response<ValidationResult> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Return a specific validation result.
+     *
+     * @param id Validation result's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validation result arising from a ValidationRule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ValidationResult getValidationResult(int id) {
+        return getValidationResultAsync(id).block();
+    }
+
+    /**
+     * Update a validation result.
+     *
+     * @param id Validation result's ID.
+     * @param body Validation result data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validation result arising from a ValidationRule along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<ValidationResult>> updateValidationResultWithResponseAsync(
+            int id, ValidationResultUpdate body) {
+        final String accept = "application/json";
+        return service.updateValidationResult(this.getRegion(), id, body, accept);
+    }
+
+    /**
+     * Update a validation result.
+     *
+     * @param id Validation result's ID.
+     * @param body Validation result data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validation result arising from a ValidationRule on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ValidationResult> updateValidationResultAsync(int id, ValidationResultUpdate body) {
+        return updateValidationResultWithResponseAsync(id, body)
+                .flatMap(
+                        (Response<ValidationResult> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
+    }
+
+    /**
+     * Update a validation result.
+     *
+     * @param id Validation result's ID.
+     * @param body Validation result data to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return validation result arising from a ValidationRule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ValidationResult updateValidationResult(int id, ValidationResultUpdate body) {
+        return updateValidationResultAsync(id, body).block();
+    }
+
+    /**
+     * Remove validation result.
+     *
+     * @param id Validation result's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteValidationResultWithResponseAsync(int id) {
+        final String accept = "application/json";
+        return service.deleteValidationResult(this.getRegion(), id, accept);
+    }
+
+    /**
+     * Remove validation result.
+     *
+     * @param id Validation result's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Void> deleteValidationResultAsync(int id) {
+        return deleteValidationResultWithResponseAsync(id).flatMap((Response<Void> res) -> Mono.empty());
+    }
+
+    /**
+     * Remove validation result.
+     *
+     * @param id Validation result's ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws RequestErrorException thrown if the request is rejected by server.
+     * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deleteValidationResult(int id) {
+        deleteValidationResultAsync(id).block();
+    }
+
+    /**
      * Returns your custom extractors as well as Affinda's off-the-shelf extractors.
      *
      * @param organization Filter by organization.
@@ -4408,7 +4745,7 @@ public final class AffindaAPI {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Annotation>> createAnnotationWithResponseAsync(AnnotationCreate body) {
+    public Mono<Response<AnnotationWithValidationResults>> createAnnotationWithResponseAsync(AnnotationCreate body) {
         final String accept = "application/json";
         return service.createAnnotation(this.getRegion(), body, accept);
     }
@@ -4424,10 +4761,10 @@ public final class AffindaAPI {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Annotation> createAnnotationAsync(AnnotationCreate body) {
+    public Mono<AnnotationWithValidationResults> createAnnotationAsync(AnnotationCreate body) {
         return createAnnotationWithResponseAsync(body)
                 .flatMap(
-                        (Response<Annotation> res) -> {
+                        (Response<AnnotationWithValidationResults> res) -> {
                             if (res.getValue() != null) {
                                 return Mono.just(res.getValue());
                             } else {
@@ -4447,7 +4784,7 @@ public final class AffindaAPI {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Annotation createAnnotation(AnnotationCreate body) {
+    public AnnotationWithValidationResults createAnnotation(AnnotationCreate body) {
         return createAnnotationAsync(body).block();
     }
 
@@ -4570,10 +4907,10 @@ public final class AffindaAPI {
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteAnnotationWithResponseAsync(int id) {
+    public Mono<Response<AnotationDelete>> deleteAnnotationWithResponseAsync(int id) {
         final String accept = "application/json";
         return service.deleteAnnotation(this.getRegion(), id, accept);
     }
@@ -4586,11 +4923,19 @@ public final class AffindaAPI {
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAnnotationAsync(int id) {
-        return deleteAnnotationWithResponseAsync(id).flatMap((Response<Void> res) -> Mono.empty());
+    public Mono<AnotationDelete> deleteAnnotationAsync(int id) {
+        return deleteAnnotationWithResponseAsync(id)
+                .flatMap(
+                        (Response<AnotationDelete> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
     }
 
     /**
@@ -4601,10 +4946,11 @@ public final class AffindaAPI {
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deleteAnnotation(int id) {
-        deleteAnnotationAsync(id).block();
+    public AnotationDelete deleteAnnotation(int id) {
+        return deleteAnnotationAsync(id).block();
     }
 
     /**
@@ -4723,10 +5069,10 @@ public final class AffindaAPI {
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> batchDeleteAnnotationsWithResponseAsync(List<Integer> body) {
+    public Mono<Response<BatchDeleteAnnotationsResponse>> batchDeleteAnnotationsWithResponseAsync(List<Integer> body) {
         final String accept = "application/json";
         return service.batchDeleteAnnotations(this.getRegion(), body, accept);
     }
@@ -4739,11 +5085,19 @@ public final class AffindaAPI {
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> batchDeleteAnnotationsAsync(List<Integer> body) {
-        return batchDeleteAnnotationsWithResponseAsync(body).flatMap((Response<Void> res) -> Mono.empty());
+    public Mono<BatchDeleteAnnotationsResponse> batchDeleteAnnotationsAsync(List<Integer> body) {
+        return batchDeleteAnnotationsWithResponseAsync(body)
+                .flatMap(
+                        (Response<BatchDeleteAnnotationsResponse> res) -> {
+                            if (res.getValue() != null) {
+                                return Mono.just(res.getValue());
+                            } else {
+                                return Mono.empty();
+                            }
+                        });
     }
 
     /**
@@ -4754,10 +5108,11 @@ public final class AffindaAPI {
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void batchDeleteAnnotations(List<Integer> body) {
-        batchDeleteAnnotationsAsync(body).block();
+    public BatchDeleteAnnotationsResponse batchDeleteAnnotations(List<Integer> body) {
+        return batchDeleteAnnotationsAsync(body).block();
     }
 
     /**
@@ -7783,7 +8138,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema>> getAllIndexesWithResponseAsync(
-            Integer offset, Integer limit, Enum19 documentType) {
+            Integer offset, Integer limit, Enum20 documentType) {
         final String accept = "application/json";
         return service.getAllIndexes(this.getRegion(), offset, limit, documentType, accept);
     }
@@ -7802,7 +8157,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> getAllIndexesAsync(
-            Integer offset, Integer limit, Enum19 documentType) {
+            Integer offset, Integer limit, Enum20 documentType) {
         return getAllIndexesWithResponseAsync(offset, limit, documentType)
                 .flatMap(
                         (Response<PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema> res) -> {
@@ -7828,7 +8183,7 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsDvrcp3V3IndexGetResponses200ContentApplicationJsonSchema getAllIndexes(
-            Integer offset, Integer limit, Enum19 documentType) {
+            Integer offset, Integer limit, Enum20 documentType) {
         return getAllIndexesAsync(offset, limit, documentType).block();
     }
 
@@ -7992,6 +8347,8 @@ public final class AffindaAPI {
      * Returns all the indexed documents for that index.
      *
      * @param name Index name.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -8000,15 +8357,17 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema>>
-            getAllIndexDocumentsWithResponseAsync(String name) {
+            getAllIndexDocumentsWithResponseAsync(String name, Integer offset, Integer limit) {
         final String accept = "application/json";
-        return service.getAllIndexDocuments(this.getRegion(), name, accept);
+        return service.getAllIndexDocuments(this.getRegion(), offset, limit, name, accept);
     }
 
     /**
      * Returns all the indexed documents for that index.
      *
      * @param name Index name.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -8017,8 +8376,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema> getAllIndexDocumentsAsync(
-            String name) {
-        return getAllIndexDocumentsWithResponseAsync(name)
+            String name, Integer offset, Integer limit) {
+        return getAllIndexDocumentsWithResponseAsync(name, offset, limit)
                 .flatMap(
                         (Response<PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema> res) -> {
                             if (res.getValue() != null) {
@@ -8033,6 +8392,8 @@ public final class AffindaAPI {
      * Returns all the indexed documents for that index.
      *
      * @param name Index name.
+     * @param offset The number of documents to skip before starting to collect the result set.
+     * @param limit The numbers of results to return.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws RequestErrorException thrown if the request is rejected by server.
      * @throws RequestErrorException thrown if the request is rejected by server on status code 400, 401.
@@ -8041,8 +8402,8 @@ public final class AffindaAPI {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PathsO7SnenV3IndexNameDocumentsGetResponses200ContentApplicationJsonSchema getAllIndexDocuments(
-            String name) {
-        return getAllIndexDocumentsAsync(name).block();
+            String name, Integer offset, Integer limit) {
+        return getAllIndexDocumentsAsync(name, offset, limit).block();
     }
 
     /**

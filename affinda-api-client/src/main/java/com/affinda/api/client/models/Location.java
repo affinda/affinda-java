@@ -25,6 +25,12 @@ public class Location {
     private String state;
 
     /*
+     * The stateCode property.
+     */
+    @JsonProperty(value = "stateCode", access = JsonProperty.Access.WRITE_ONLY)
+    private String stateCode;
+
+    /*
      * The country property.
      */
     @JsonProperty(value = "country", access = JsonProperty.Access.WRITE_ONLY)
@@ -78,6 +84,12 @@ public class Location {
     @JsonProperty(value = "longitude", access = JsonProperty.Access.WRITE_ONLY)
     private Float longitude;
 
+    /*
+     * The poBox property.
+     */
+    @JsonProperty(value = "poBox", access = JsonProperty.Access.WRITE_ONLY)
+    private String poBox;
+
     /**
      * Get the formatted property: The formatted property.
      *
@@ -103,6 +115,15 @@ public class Location {
      */
     public String getState() {
         return this.state;
+    }
+
+    /**
+     * Get the stateCode property: The stateCode property.
+     *
+     * @return the stateCode value.
+     */
+    public String getStateCode() {
+        return this.stateCode;
     }
 
     /**
@@ -195,5 +216,14 @@ public class Location {
      */
     public Float getLongitude() {
         return this.longitude;
+    }
+
+    /**
+     * Get the poBox property: The poBox property.
+     *
+     * @return the poBox value.
+     */
+    public String getPoBox() {
+        return this.poBox;
     }
 }

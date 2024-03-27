@@ -28,8 +28,8 @@ public final class DataFieldField {
     /*
      * The showDropdown property.
      */
-    @JsonProperty(value = "showDropdown", required = true)
-    private boolean showDropdown;
+    @JsonProperty(value = "showDropdown")
+    private Boolean showDropdown;
 
     /*
      * If true, both the value and the label for the enums will appear in the
@@ -67,6 +67,13 @@ public final class DataFieldField {
      */
     @JsonProperty(value = "mapping")
     private String mapping;
+
+    /*
+     * If true, then the validation tool will show the user the raw text found
+     * on the page, not the value that has been parsed to a specific type.
+     */
+    @JsonProperty(value = "displayRawText")
+    private Boolean displayRawText;
 
     /**
      * Get the label property: The label property.
@@ -133,7 +140,7 @@ public final class DataFieldField {
      *
      * @return the showDropdown value.
      */
-    public boolean isShowDropdown() {
+    public Boolean isShowDropdown() {
         return this.showDropdown;
     }
 
@@ -143,7 +150,7 @@ public final class DataFieldField {
      * @param showDropdown the showDropdown value to set.
      * @return the DataFieldField object itself.
      */
-    public DataFieldField setShowDropdown(boolean showDropdown) {
+    public DataFieldField setShowDropdown(Boolean showDropdown) {
         this.showDropdown = showDropdown;
         return this;
     }
@@ -267,6 +274,28 @@ public final class DataFieldField {
      */
     public DataFieldField setMapping(String mapping) {
         this.mapping = mapping;
+        return this;
+    }
+
+    /**
+     * Get the displayRawText property: If true, then the validation tool will show the user the raw text found on the
+     * page, not the value that has been parsed to a specific type.
+     *
+     * @return the displayRawText value.
+     */
+    public Boolean isDisplayRawText() {
+        return this.displayRawText;
+    }
+
+    /**
+     * Set the displayRawText property: If true, then the validation tool will show the user the raw text found on the
+     * page, not the value that has been parsed to a specific type.
+     *
+     * @param displayRawText the displayRawText value to set.
+     * @return the DataFieldField object itself.
+     */
+    public DataFieldField setDisplayRawText(Boolean displayRawText) {
+        this.displayRawText = displayRawText;
         return this;
     }
 }

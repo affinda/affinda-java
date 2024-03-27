@@ -3,9 +3,9 @@ package com.affinda.api.client.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ThemeConfigPaletteBackground model. */
+/** The Components1Kwk9B6SchemasThemeconfigPropertiesPalettePropertiesBackgroundOneof1 model. */
 @Fluent
-public final class ThemeConfigPaletteBackground {
+public final class Components1Kwk9B6SchemasThemeconfigPropertiesPalettePropertiesBackgroundOneof1 {
     /*
      * The default property.
      */
@@ -31,9 +31,10 @@ public final class ThemeConfigPaletteBackground {
      * Set the defaultProperty property: The default property.
      *
      * @param defaultProperty the defaultProperty value to set.
-     * @return the ThemeConfigPaletteBackground object itself.
+     * @return the Components1Kwk9B6SchemasThemeconfigPropertiesPalettePropertiesBackgroundOneof1 object itself.
      */
-    public ThemeConfigPaletteBackground setDefaultProperty(String defaultProperty) {
+    public Components1Kwk9B6SchemasThemeconfigPropertiesPalettePropertiesBackgroundOneof1 setDefaultProperty(
+            String defaultProperty) {
         this.defaultProperty = defaultProperty;
         return this;
     }
@@ -51,9 +52,9 @@ public final class ThemeConfigPaletteBackground {
      * Set the paper property: The paper property.
      *
      * @param paper the paper value to set.
-     * @return the ThemeConfigPaletteBackground object itself.
+     * @return the Components1Kwk9B6SchemasThemeconfigPropertiesPalettePropertiesBackgroundOneof1 object itself.
      */
-    public ThemeConfigPaletteBackground setPaper(String paper) {
+    public Components1Kwk9B6SchemasThemeconfigPropertiesPalettePropertiesBackgroundOneof1 setPaper(String paper) {
         this.paper = paper;
         return this;
     }

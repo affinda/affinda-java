@@ -11,7 +11,7 @@ import reactor.core.publisher.Flux;
 public final class DocumentCreate {
     /*
      * File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF,
-     * HTML, PNG, JPG
+     * HTML, PNG, JPG, TIFF, ODT, XLS, XLSX, ZIP
      */
     @JsonProperty(value = "file")
     private Flux<ByteBuffer> file;
@@ -102,8 +102,23 @@ public final class DocumentCreate {
     @JsonProperty(value = "lowPriority")
     private Boolean lowPriority;
 
+    /*
+     * If true, the returned parse result (assuming `wait` is also true) will
+     * be a compact version of the full result.
+     */
+    @JsonProperty(value = "compact")
+    private Boolean compact;
+
+    /*
+     * If true, no data will be stored after parsing. Only compatible with
+     * requests where wait: True.
+     */
+    @JsonProperty(value = "deleteAfterParse")
+    private Boolean deleteAfterParse;
+
     /**
-     * Get the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
+     * Get the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG,
+     * TIFF, ODT, XLS, XLSX, ZIP.
      *
      * @return the file value.
      */
@@ -112,7 +127,8 @@ public final class DocumentCreate {
     }
 
     /**
-     * Set the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG.
+     * Set the file property: File as binary data blob. Supported formats: PDF, DOC, DOCX, TXT, RTF, HTML, PNG, JPG,
+     * TIFF, ODT, XLS, XLSX, ZIP.
      *
      * @param file the file value to set.
      * @return the DocumentCreate object itself.
@@ -389,6 +405,50 @@ public final class DocumentCreate {
      */
     public DocumentCreate setLowPriority(Boolean lowPriority) {
         this.lowPriority = lowPriority;
+        return this;
+    }
+
+    /**
+     * Get the compact property: If true, the returned parse result (assuming `wait` is also true) will be a compact
+     * version of the full result.
+     *
+     * @return the compact value.
+     */
+    public Boolean isCompact() {
+        return this.compact;
+    }
+
+    /**
+     * Set the compact property: If true, the returned parse result (assuming `wait` is also true) will be a compact
+     * version of the full result.
+     *
+     * @param compact the compact value to set.
+     * @return the DocumentCreate object itself.
+     */
+    public DocumentCreate setCompact(Boolean compact) {
+        this.compact = compact;
+        return this;
+    }
+
+    /**
+     * Get the deleteAfterParse property: If true, no data will be stored after parsing. Only compatible with requests
+     * where wait: True.
+     *
+     * @return the deleteAfterParse value.
+     */
+    public Boolean isDeleteAfterParse() {
+        return this.deleteAfterParse;
+    }
+
+    /**
+     * Set the deleteAfterParse property: If true, no data will be stored after parsing. Only compatible with requests
+     * where wait: True.
+     *
+     * @param deleteAfterParse the deleteAfterParse value to set.
+     * @return the DocumentCreate object itself.
+     */
+    public DocumentCreate setDeleteAfterParse(Boolean deleteAfterParse) {
+        this.deleteAfterParse = deleteAfterParse;
         return this;
     }
 }

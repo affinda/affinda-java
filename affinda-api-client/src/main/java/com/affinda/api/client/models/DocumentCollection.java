@@ -38,6 +38,12 @@ public final class DocumentCollection {
     private Float autoValidationThreshold;
 
     /*
+     * The autoValidateIfValidationRulesPass property.
+     */
+    @JsonProperty(value = "autoValidateIfValidationRulesPass")
+    private Boolean autoValidateIfValidationRulesPass;
+
+    /*
      * The fields property.
      */
     @JsonProperty(value = "fields")
@@ -112,6 +118,13 @@ public final class DocumentCollection {
      */
     @JsonProperty(value = "trainsExtractor")
     private Boolean trainsExtractor;
+
+    /*
+     * If True, users cannot validate documents with missing mandatory fields,
+     * or failing validation rules.
+     */
+    @JsonProperty(value = "disableConfirmationIfValidationRulesFail")
+    private Boolean disableConfirmationIfValidationRulesFail;
 
     /**
      * Get the identifier property: Uniquely identify a collection.
@@ -210,6 +223,26 @@ public final class DocumentCollection {
      */
     public DocumentCollection setAutoValidationThreshold(Float autoValidationThreshold) {
         this.autoValidationThreshold = autoValidationThreshold;
+        return this;
+    }
+
+    /**
+     * Get the autoValidateIfValidationRulesPass property: The autoValidateIfValidationRulesPass property.
+     *
+     * @return the autoValidateIfValidationRulesPass value.
+     */
+    public Boolean isAutoValidateIfValidationRulesPass() {
+        return this.autoValidateIfValidationRulesPass;
+    }
+
+    /**
+     * Set the autoValidateIfValidationRulesPass property: The autoValidateIfValidationRulesPass property.
+     *
+     * @param autoValidateIfValidationRulesPass the autoValidateIfValidationRulesPass value to set.
+     * @return the DocumentCollection object itself.
+     */
+    public DocumentCollection setAutoValidateIfValidationRulesPass(Boolean autoValidateIfValidationRulesPass) {
+        this.autoValidateIfValidationRulesPass = autoValidateIfValidationRulesPass;
         return this;
     }
 
@@ -458,6 +491,29 @@ public final class DocumentCollection {
      */
     public DocumentCollection setTrainsExtractor(Boolean trainsExtractor) {
         this.trainsExtractor = trainsExtractor;
+        return this;
+    }
+
+    /**
+     * Get the disableConfirmationIfValidationRulesFail property: If True, users cannot validate documents with missing
+     * mandatory fields, or failing validation rules.
+     *
+     * @return the disableConfirmationIfValidationRulesFail value.
+     */
+    public Boolean isDisableConfirmationIfValidationRulesFail() {
+        return this.disableConfirmationIfValidationRulesFail;
+    }
+
+    /**
+     * Set the disableConfirmationIfValidationRulesFail property: If True, users cannot validate documents with missing
+     * mandatory fields, or failing validation rules.
+     *
+     * @param disableConfirmationIfValidationRulesFail the disableConfirmationIfValidationRulesFail value to set.
+     * @return the DocumentCollection object itself.
+     */
+    public DocumentCollection setDisableConfirmationIfValidationRulesFail(
+            Boolean disableConfirmationIfValidationRulesFail) {
+        this.disableConfirmationIfValidationRulesFail = disableConfirmationIfValidationRulesFail;
         return this;
     }
 }

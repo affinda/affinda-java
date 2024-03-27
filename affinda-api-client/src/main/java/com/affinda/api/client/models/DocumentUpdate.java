@@ -45,6 +45,12 @@ public final class DocumentUpdate {
     private Boolean isArchived;
 
     /*
+     * The skipParse property.
+     */
+    @JsonProperty(value = "skipParse")
+    private Boolean skipParse;
+
+    /*
      * Language code in ISO 639-1 format. Must specify zh-cn or zh-tw for
      * Chinese.
      */
@@ -183,6 +189,26 @@ public final class DocumentUpdate {
      */
     public DocumentUpdate setIsArchived(Boolean isArchived) {
         this.isArchived = isArchived;
+        return this;
+    }
+
+    /**
+     * Get the skipParse property: The skipParse property.
+     *
+     * @return the skipParse value.
+     */
+    public Boolean isSkipParse() {
+        return this.skipParse;
+    }
+
+    /**
+     * Set the skipParse property: The skipParse property.
+     *
+     * @param skipParse the skipParse value to set.
+     * @return the DocumentUpdate object itself.
+     */
+    public DocumentUpdate setSkipParse(Boolean skipParse) {
+        this.skipParse = skipParse;
         return this;
     }
 

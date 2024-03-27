@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The ThemeConfig model. */
 @Fluent
-public final class ThemeConfig {
+public class ThemeConfig {
     /*
      * The palette property.
      */

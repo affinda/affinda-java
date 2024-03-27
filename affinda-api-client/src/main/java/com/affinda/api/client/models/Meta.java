@@ -127,6 +127,12 @@ public final class Meta {
     @JsonProperty(value = "regionBias")
     private RegionBias regionBias;
 
+    /*
+     * The isOcrd property.
+     */
+    @JsonProperty(value = "isOcrd")
+    private Boolean isOcrd;
+
     /**
      * Get the identifier property: Unique identifier for the document.
      *
@@ -504,6 +510,26 @@ public final class Meta {
      */
     public Meta setRegionBias(RegionBias regionBias) {
         this.regionBias = regionBias;
+        return this;
+    }
+
+    /**
+     * Get the isOcrd property: The isOcrd property.
+     *
+     * @return the isOcrd value.
+     */
+    public Boolean isOcrd() {
+        return this.isOcrd;
+    }
+
+    /**
+     * Set the isOcrd property: The isOcrd property.
+     *
+     * @param isOcrd the isOcrd value to set.
+     * @return the Meta object itself.
+     */
+    public Meta setIsOcrd(Boolean isOcrd) {
+        this.isOcrd = isOcrd;
         return this;
     }
 }
